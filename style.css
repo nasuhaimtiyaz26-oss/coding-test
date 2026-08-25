@@ -1777,6 +1777,9 @@ footer {
 
         transition:
             0.3s ease;
+           .team-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .nav-links.open {
@@ -1821,6 +1824,20 @@ footer {
         align-items: flex-start;
 
         flex-direction: column;
+       .team-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .team-card:last-child {
+        grid-column: 1 / -1;
+
+        max-width: 50%;
+
+        width: 100%;
+
+        margin:
+            0 auto;
     }
 
 }
@@ -1832,6 +1849,30 @@ footer {
 
 @media (max-width: 600px) {
 
+    .team-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .team-card:last-child {
+        grid-column: auto;
+
+        max-width: none;
+    }
+
+    .team-photo-wrap {
+        height: 420px;
+    }
+
+    .team-content {
+        padding:
+            24px 22px 27px;
+    }
+
+    .team-content h3 {
+        font-size: 17px;
+    }
+   
     .navbar {
         height: 68px;
     }
