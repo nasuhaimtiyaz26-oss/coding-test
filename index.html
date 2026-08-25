@@ -1,1183 +1,1211 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =====================================================
+   SAFE ENERGY
+   MAIN JAVASCRIPT
+===================================================== */
 
-<head>
 
-    <meta charset="UTF-8">
+/* =====================================================
+   CONFIGURATION
+===================================================== */
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+/*
+   Official Our World in Data Energy Dataset.
 
-    <meta name="description"
-          content="Importance of Safe Energy - Global energy data, renewable energy, sustainability and energy efficiency.">
+   This single dataset contains:
+   - Primary energy consumption
+   - Fossil energy
+   - Renewable energy
+   - Nuclear energy
+   - Electricity generation
+   - Electricity by source
+*/
 
-    <title>Importance of Safe Energy</title>
+const OWID_ENERGY_DATA =
+    "https://raw.githubusercontent.com/owid/energy-data/master/owid-energy-data.csv";
 
 
-    <!-- Google Font -->
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+/* =====================================================
+   MOBILE NAVIGATION
+===================================================== */
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+const mobileMenu =
+    document.getElementById("mobileMenu");
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+const navLinks =
+    document.getElementById("navLinks");
 
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+if (mobileMenu && navLinks) {
 
+    mobileMenu.addEventListener("click", function () {
 
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+        navLinks.classList.toggle("open");
 
+        const icon =
+            mobileMenu.querySelector("i");
 
-    <!-- Main CSS -->
-    <link rel="stylesheet"
-          href="style.css">
+        if (navLinks.classList.contains("open")) {
 
-</head>
+            icon.classList.remove("fa-bars");
 
+            icon.classList.add("fa-xmark");
 
-<body>
+        } else {
 
+            icon.classList.remove("fa-xmark");
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+            icon.classList.add("fa-bars");
 
-<nav class="navbar" id="navbar">
+        }
 
-    <div class="nav-container">
+    });
 
-        <a href="#home" class="logo">
 
-            <span class="logo-icon">
-                <i class="fa-solid fa-leaf"></i>
-            </span>
+    document.querySelectorAll(".nav-links a")
+        .forEach(function (link) {
 
-            SAFE ENERGY
+            link.addEventListener("click", function () {
 
-        </a>
+                navLinks.classList.remove("open");
 
+                const icon =
+                    mobileMenu.querySelector("i");
 
-        <div class="nav-links" id="navLinks">
+                icon.classList.remove("fa-xmark");
 
-            <a href="#home">HOME</a>
+                icon.classList.add("fa-bars");
 
-            <a href="#energy-data">ENERGY DATA</a>
+            });
 
-            <a href="#why-safe-energy">WHY SAFE ENERGY</a>
+        });
 
-            <a href="#effects">EFFECTS</a>
+}
 
-            <a href="#ways">WAYS TO SAVE</a>
 
-            <a href="#sources">SOURCES</a>
+/* =====================================================
+   STICKY NAVBAR
+===================================================== */
 
-        </div>
+const navbar =
+    document.getElementById("navbar");
 
 
-        <button class="mobile-menu"
-                id="mobileMenu"
-                aria-label="Open navigation menu">
+window.addEventListener("scroll", function () {
 
-            <i class="fa-solid fa-bars"></i>
+    if (!navbar) return;
 
-        </button>
+    if (window.scrollY > 50) {
 
-    </div>
+        navbar.classList.add("scrolled");
 
-</nav>
+    } else {
 
+        navbar.classList.remove("scrolled");
 
+    }
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+});
 
-<section class="hero" id="home">
 
-    <div class="hero-overlay"></div>
+/* =====================================================
+   CSV PARSER
+===================================================== */
 
+/*
+   Handles commas inside quoted CSV fields.
+*/
 
-    <div class="hero-content">
+function parseCSVLine(line) {
 
-        <div class="hero-tag">
+    const result = [];
 
-            <i class="fa-solid fa-earth-americas"></i>
+    let current = "";
 
-            ENERGY • SUSTAINABILITY • FUTURE
+    let insideQuotes = false;
 
-        </div>
 
+    for (let i = 0; i < line.length; i++) {
 
-        <h1>
+        const char = line[i];
 
-            IMPORTANCE OF
+        const next = line[i + 1];
 
-            <span>SAFE ENERGY</span>
 
-        </h1>
+        if (char === '"' && next === '"') {
 
+            current += '"';
 
-        <p>
-            Powering a cleaner, safer and more sustainable future.
-        </p>
+            i++;
 
+            continue;
 
-        <a href="#energy-data"
-           class="hero-button">
+        }
 
-            EXPLORE ENERGY DATA
 
-            <i class="fa-solid fa-arrow-down"></i>
+        if (char === '"') {
 
-        </a>
+            insideQuotes = !insideQuotes;
 
-    </div>
+            continue;
 
+        }
 
-    <div class="scroll-indicator">
 
-        <span>SCROLL TO EXPLORE</span>
+        if (char === "," && !insideQuotes) {
 
-        <i class="fa-solid fa-chevron-down"></i>
+            result.push(current);
 
-    </div>
+            current = "";
 
-</section>
+        } else {
 
+            current += char;
 
+        }
 
-<!-- =====================================================
-     ENERGY DATA
-===================================================== -->
+    }
 
-<section class="energy-section" id="energy-data">
 
-    <div class="section-container">
+    result.push(current);
 
+    return result;
 
-        <div class="section-heading">
+}
 
-            <span class="section-label">
-                GLOBAL ENERGY DATA
-            </span>
 
+function parseCSV(text) {
 
-            <h2>
+    const lines =
+        text
+            .trim()
+            .split(/\r?\n/);
 
-                Understanding
 
-                <span>Our Energy World</span>
+    if (lines.length < 2) {
 
-            </h2>
+        return [];
 
+    }
 
-            <p>
-                Explore global energy trends using
-                data from Our World in Data.
-            </p>
 
-        </div>
+    const headers =
+        parseCSVLine(lines[0]);
 
 
+    return lines
+        .slice(1)
+        .map(function (line) {
 
-        <div class="dashboard">
+            const values =
+                parseCSVLine(line);
 
 
-            <div class="dashboard-header">
+            const row = {};
 
-                <div>
 
-                    <span class="dashboard-label">
-                        DATA VISUALIZATION
-                    </span>
+            headers.forEach(function (header, index) {
 
+                row[header] =
+                    values[index] ?? "";
 
-                    <h3>
-                        ENERGY DATA EXPLORER
-                    </h3>
+            });
 
-                </div>
 
+            return row;
 
-                <div class="source-badge">
+        });
 
-                    <i class="fa-solid fa-database"></i>
+}
 
-                    Source: Our World in Data
 
-                </div>
+/* =====================================================
+   LOAD OWID DATA
+===================================================== */
 
-            </div>
+async function loadEnergyData() {
 
+    try {
 
+        const response =
+            await fetch(
+                OWID_ENERGY_DATA,
+                {
+                    cache: "no-store"
+                }
+            );
 
-            <!-- DATA CARDS -->
 
-            <div class="data-cards">
+        if (!response.ok) {
 
+            throw new Error(
+                "Unable to load OWID Energy Dataset."
+            );
 
-                <div class="data-card">
+        }
 
-                    <div class="data-icon renewable">
-                        <i class="fa-solid fa-solar-panel"></i>
-                    </div>
 
-                    <div>
+        const csv =
+            await response.text();
 
-                        <span>RENEWABLE</span>
 
-                        <strong>
-                            Solar • Wind • Hydro
-                        </strong>
+        return parseCSV(csv);
 
-                    </div>
+    }
 
-                </div>
+    catch (error) {
 
+        console.error(
+            "OWID DATA ERROR:",
+            error
+        );
 
-                <div class="data-card">
 
-                    <div class="data-icon fossil">
-                        <i class="fa-solid fa-fire"></i>
-                    </div>
+        showDataError(
+            "Unable to load the live energy dataset. Please check your internet connection."
+        );
 
-                    <div>
 
-                        <span>FOSSIL FUELS</span>
+        return [];
 
-                        <strong>
-                            Coal • Gas • Oil
-                        </strong>
+    }
 
-                    </div>
+}
 
-                </div>
 
+/* =====================================================
+   DATA ERROR
+===================================================== */
 
-                <div class="data-card">
+function showDataError(message) {
 
-                    <div class="data-icon nuclear">
-                        <i class="fa-solid fa-atom"></i>
-                    </div>
+    const dashboard =
+        document.querySelector(".dashboard");
 
-                    <div>
 
-                        <span>NUCLEAR</span>
+    if (!dashboard) return;
 
-                        <strong>
-                            Nuclear Energy
-                        </strong>
 
-                    </div>
+    const errorBox =
+        document.createElement("div");
 
-                </div>
 
+    errorBox.className =
+        "data-error";
 
-                <div class="data-card">
 
-                    <div class="data-icon electricity">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
+    errorBox.innerHTML = `
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>${message}</span>
+    `;
 
-                    <div>
 
-                        <span>ELECTRICITY</span>
+    dashboard.prepend(errorBox);
 
-                        <strong>
-                            Global Generation
-                        </strong>
+}
 
-                    </div>
 
-                </div>
+/* =====================================================
+   GLOBAL CHART DEFAULTS
+===================================================== */
 
+Chart.defaults.font.family =
+    "Inter, Arial, sans-serif";
 
-            </div>
+Chart.defaults.animation.duration =
+    1200;
 
 
+/* =====================================================
+   GET WORLD DATA
+===================================================== */
 
-            <!-- =================================================
-                 GRAPH 1
-            ================================================= -->
+function getWorldData(data) {
 
-            <div class="chart-card chart-dark">
+    return data.filter(function (row) {
 
-                <div class="chart-header">
+        return (
+            row.Entity === "World"
+        );
 
-                    <div>
+    });
 
-                        <span>ENERGY TRANSITION</span>
+}
 
-                        <h3>
-                            Renewable Energy vs Fossil Fuels
-                        </h3>
 
-                    </div>
+/* =====================================================
+   NUMBER CHECK
+===================================================== */
 
-                    <i class="fa-solid fa-leaf"></i>
+function validNumber(value) {
 
-                </div>
+    if (
+        value === undefined ||
+        value === null ||
+        value === ""
+    ) {
 
+        return false;
 
-                <div class="chart-description">
+    }
 
-                    <p>
-                        Renewable energy provides a cleaner and more
-                        sustainable alternative to fossil fuels.
-                        Reducing dependence on fossil energy and
-                        increasing renewable energy use can help
-                        protect the environment and create a safer
-                        energy future.
-                    </p>
 
-                </div>
+    return Number.isFinite(
+        Number(value)
+    );
 
+}
 
-                <div class="chart-wrapper">
 
-                    <canvas id="renewableFossilChart"></canvas>
+/* =====================================================
+   CLEAN DATA
+===================================================== */
 
-                </div>
+function cleanSeries(
+    data,
+    column,
+    startYear = 1965
+) {
 
+    return data.filter(function (row) {
 
-                <div class="chart-source-dark">
+        return (
+            Number(row.Year) >= startYear &&
+            validNumber(row[column])
+        );
 
-                    Data source:
-                    Our World in Data Energy Dataset
+    });
 
-                </div>
+}
 
-            </div>
 
+/* =====================================================
+   CHART 1
+   RENEWABLE VS FOSSIL
+===================================================== */
 
+function createRenewableFossilChart(data) {
 
-            <!-- =================================================
-                 GRAPH 2
-            ================================================= -->
+    const canvas =
+        document.getElementById(
+            "renewableFossilChart"
+        );
 
-            <div class="chart-card">
 
-                <div class="chart-header">
+    if (!canvas) return;
 
-                    <div>
 
-                        <span>GLOBAL TREND</span>
+    /*
+       These are actual columns in
+       the OWID Energy Dataset.
+    */
 
-                        <h3>
-                            Global Energy Consumption
-                        </h3>
+    const renewable =
+        cleanSeries(
+            data,
+            "renewables"
+        );
 
-                        <small>
-                            Primary energy consumption (TWh)
-                        </small>
 
-                    </div>
+    const fossil =
+        cleanSeries(
+            data,
+            "fossil_fuels"
+        );
 
-                    <i class="fa-solid fa-chart-line"></i>
 
-                </div>
+    /*
+       Use only years that exist in both
+       datasets.
+    */
 
+    const years =
+        renewable
+            .map(row => Number(row.Year))
+            .filter(function (year) {
 
-                <div class="chart-wrapper">
+                return fossil.some(
+                    row =>
+                        Number(row.Year) === year
+                );
 
-                    <canvas id="energyConsumptionChart"></canvas>
+            });
 
-                </div>
 
+    const filteredYears =
+        years.slice(-40);
 
-                <div class="chart-source-text">
 
-                    Source:
-                    Our World in Data Energy Dataset
+    const renewableMap =
+        new Map(
+            renewable.map(
+                row => [
+                    Number(row.Year),
+                    Number(row.renewables)
+                ]
+            )
+        );
 
-                </div>
 
-            </div>
+    const fossilMap =
+        new Map(
+            fossil.map(
+                row => [
+                    Number(row.Year),
+                    Number(row.fossil_fuels)
+                ]
+            )
+        );
 
 
+    new Chart(canvas, {
 
-            <!-- =================================================
-                 GRAPH 3
-            ================================================= -->
+        type: "line",
 
-            <div class="chart-card">
+        data: {
 
-                <div class="chart-header">
+            labels: filteredYears,
 
-                    <div>
+            datasets: [
 
-                        <span>ELECTRICITY MIX</span>
+                {
 
-                        <h3>
-                            Electricity Generation by Energy Source
-                        </h3>
+                    label:
+                        "Renewable Energy",
 
-                        <small>
-                            Global electricity generation (TWh)
-                        </small>
+                    data:
+                        filteredYears.map(
+                            year =>
+                                renewableMap.get(year)
+                        ),
 
-                    </div>
+                    borderColor:
+                        "#48d597",
 
-                    <i class="fa-solid fa-bolt"></i>
+                    backgroundColor:
+                        "rgba(72,213,151,.12)",
 
-                </div>
+                    fill: true,
 
+                    tension: .35,
 
-                <div class="chart-wrapper">
+                    borderWidth: 3,
 
-                    <canvas id="electricityChart"></canvas>
+                    pointRadius: 0
 
-                </div>
+                },
 
 
-                <div class="chart-source-text">
+                {
 
-                    Source:
-                    Our World in Data Energy Dataset
+                    label:
+                        "Fossil Fuels",
 
-                </div>
+                    data:
+                        filteredYears.map(
+                            year =>
+                                fossilMap.get(year)
+                        ),
 
-            </div>
+                    borderColor:
+                        "#e2a45c",
 
+                    backgroundColor:
+                        "rgba(226,164,92,.08)",
 
+                    fill: true,
 
-            <div class="dashboard-source">
+                    tension: .35,
 
-                <a href="https://ourworldindata.org/energy"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="source-button">
+                    borderWidth: 3,
 
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    pointRadius: 0
 
-                    VIEW OWID DATA
+                }
 
-                </a>
+            ]
 
-            </div>
+        },
 
-        </div>
 
-    </div>
+        options: {
 
-</section>
+            responsive: true,
 
+            maintainAspectRatio: false,
 
 
-<!-- =====================================================
-     WHY SAFE ENERGY
-===================================================== -->
+            interaction: {
 
-<section class="why-section" id="why-safe-energy">
+                mode: "index",
 
-    <div class="section-container">
+                intersect: false
 
+            },
 
-        <div class="section-heading center">
 
-            <span class="section-label">
-                WHY IT MATTERS
-            </span>
+            plugins: {
 
+                legend: {
 
-            <h2>
-                Why <span>Safe Energy?</span>
-            </h2>
+                    labels: {
 
+                        color: "#ffffff",
 
-            <p>
-                Energy choices influence environmental quality,
-                energy security and long-term sustainability.
-            </p>
+                        usePointStyle: true,
 
-        </div>
+                        padding: 25
 
+                    }
 
+                },
 
-        <div class="benefits-grid">
 
+                tooltip: {
 
-            <div class="benefit-card">
+                    backgroundColor:
+                        "rgba(3,20,14,.95)",
 
-                <span class="benefit-number">01</span>
+                    padding: 14,
 
-                <div class="benefit-icon">
-                    <i class="fa-solid fa-tree"></i>
-                </div>
+                    cornerRadius: 12,
 
-                <h3>
-                    Protects the Environment
-                </h3>
+                    callbacks: {
 
-                <p>
-                    Cleaner energy systems can reduce environmental
-                    pressures and support the protection of ecosystems
-                    and natural resources.
-                </p>
+                        label: function (context) {
 
-            </div>
+                            return (
+                                context.dataset.label +
+                                ": " +
+                                Number(
+                                    context.raw
+                                ).toLocaleString() +
+                                " TWh"
+                            );
 
+                        }
 
-            <div class="benefit-card">
+                    }
 
-                <span class="benefit-number">02</span>
+                }
 
-                <div class="benefit-icon">
-                    <i class="fa-solid fa-cloud"></i>
-                </div>
+            },
 
-                <h3>
-                    Reduces Carbon Emissions
-                </h3>
 
-                <p>
-                    Replacing high-emission energy sources with
-                    low-carbon alternatives can help reduce
-                    greenhouse gas emissions.
-                </p>
+            scales: {
 
-            </div>
+                x: {
 
+                    ticks: {
 
-            <div class="benefit-card">
+                        color:
+                            "rgba(255,255,255,.55)",
 
-                <span class="benefit-number">03</span>
+                        maxTicksLimit: 8
 
-                <div class="benefit-icon">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
+                    },
 
-                <h3>
-                    Improves Energy Security
-                </h3>
+                    grid: {
 
-                <p>
-                    A diversified energy system can improve resilience
-                    by reducing dependence on a single energy source.
-                </p>
+                        color:
+                            "rgba(255,255,255,.07)"
 
-            </div>
+                    }
 
+                },
 
-            <div class="benefit-card">
 
-                <span class="benefit-number">04</span>
+                y: {
 
-                <div class="benefit-icon">
-                    <i class="fa-solid fa-seedling"></i>
-                </div>
+                    ticks: {
 
-                <h3>
-                    Supports a Sustainable Future
-                </h3>
+                        color:
+                            "rgba(255,255,255,.55)",
 
-                <p>
-                    Sustainable energy development supports long-term
-                    environmental and economic resilience.
-                </p>
+                        callback: function (value) {
 
-            </div>
+                            return (
+                                Number(value)
+                                .toLocaleString() +
+                                " TWh"
+                            );
 
+                        }
 
-        </div>
+                    },
 
-    </div>
+                    grid: {
 
-</section>
+                        color:
+                            "rgba(255,255,255,.07)"
 
+                    }
 
+                }
 
-<!-- =====================================================
-     EFFECTS OF NOT USING RENEWABLE ENERGY
-===================================================== -->
+            }
 
-<section class="effects-section" id="effects">
+        }
 
-    <div class="section-container">
+    });
 
+}
 
-        <div class="section-heading center">
 
-            <span class="section-label">
-                ENERGY & ENVIRONMENT
-            </span>
+/* =====================================================
+   CHART 2
+   GLOBAL ENERGY CONSUMPTION
+===================================================== */
 
+function createEnergyConsumptionChart(data) {
 
-            <h2>
-                Effects of <span>Continued Fossil Dependence</span>
-            </h2>
+    const canvas =
+        document.getElementById(
+            "energyConsumptionChart"
+        );
 
 
-            <p>
-                Energy-related greenhouse gas emissions are strongly
-                connected to the continued use of fossil fuels.
-            </p>
+    if (!canvas) return;
 
-        </div>
 
+    /*
+       Actual OWID column:
+       primary_energy_consumption
 
+       Unit:
+       TWh
+    */
 
-        <div class="effects-layout">
+    const filtered =
+        cleanSeries(
+            data,
+            "primary_energy_consumption",
+            1965
+        ).slice(-50);
 
 
-            <!-- EFFECT INTRO -->
+    new Chart(canvas, {
 
-            <div class="effects-intro">
+        type: "line",
 
-                <div class="effects-icon">
+        data: {
 
-                    <i class="fa-solid fa-smog"></i>
+            labels:
+                filtered.map(
+                    row => row.Year
+                ),
 
-                </div>
+            datasets: [
 
+                {
 
-                <h3>
-                    Why the Energy Transition Matters
-                </h3>
+                    label:
+                        "Global Primary Energy Consumption",
 
+                    data:
+                        filtered.map(
+                            row =>
+                                Number(
+                                    row.primary_energy_consumption
+                                )
+                        ),
 
-                <p>
-                    Fossil fuel combustion and related energy activities
-                    contribute significantly to greenhouse gas emissions.
-                    Without sufficient transition toward lower-emission
-                    energy systems, emissions remain a major environmental
-                    challenge.
-                </p>
+                    borderColor:
+                        "#159765",
 
+                    backgroundColor:
+                        "rgba(21,151,101,.13)",
 
-                <a href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="outline-button">
+                    fill: true,
 
-                    IEA EMISSIONS DATA
+                    tension: .3,
 
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    borderWidth: 3,
 
-                </a>
+                    pointRadius: 0,
 
-            </div>
+                    pointHoverRadius: 5
 
+                }
 
+            ]
 
-            <!-- EFFECT CARDS -->
+        },
 
-            <div class="effects-grid">
 
+        options: {
 
-                <div class="effect-card">
+            responsive: true,
 
-                    <div class="effect-card-icon">
-                        <i class="fa-solid fa-temperature-arrow-up"></i>
-                    </div>
+            maintainAspectRatio: false,
 
-                    <h3>
-                        Climate Pressure
-                    </h3>
 
-                    <p>
-                        Greenhouse gas emissions from energy contribute
-                        to climate change and increase pressure on efforts
-                        to decarbonise the energy system.
-                    </p>
+            interaction: {
 
-                    <span>
-                        IEA • GHG EMISSIONS FROM ENERGY
-                    </span>
+                mode: "index",
 
-                </div>
+                intersect: false
 
+            },
 
-                <div class="effect-card">
 
-                    <div class="effect-card-icon">
-                        <i class="fa-solid fa-wind"></i>
-                    </div>
+            plugins: {
 
-                    <h3>
-                        Air Pollution
-                    </h3>
+                legend: {
 
-                    <p>
-                        Energy systems based on combustion can release
-                        pollutants alongside greenhouse gases, creating
-                        additional environmental and public-health
-                        challenges.
-                    </p>
+                    display: false
 
-                    <span>
-                        ENERGY & ENVIRONMENT
-                    </span>
+                },
 
-                </div>
 
+                tooltip: {
 
-                <div class="effect-card">
+                    backgroundColor:
+                        "#062c20",
 
-                    <div class="effect-card-icon">
-                        <i class="fa-solid fa-fire-flame-simple"></i>
-                    </div>
+                    padding: 12,
 
-                    <h3>
-                        Continued Emissions
-                    </h3>
+                    callbacks: {
 
-                    <p>
-                        Continued dependence on high-emission fuels makes
-                        the transition toward a lower-carbon energy system
-                        more difficult.
-                    </p>
+                        label: function (context) {
 
-                    <span>
-                        IEA DATA PRODUCT
-                    </span>
+                            return (
+                                "Energy: " +
+                                Number(
+                                    context.raw
+                                ).toLocaleString(
+                                    undefined,
+                                    {
+                                        maximumFractionDigits: 0
+                                    }
+                                ) +
+                                " TWh"
+                            );
 
-                </div>
+                        }
 
+                    }
 
-                <div class="effect-card">
+                }
 
-                    <div class="effect-card-icon">
-                        <i class="fa-solid fa-earth-asia"></i>
-                    </div>
+            },
 
-                    <h3>
-                        Long-Term Environmental Risk
-                    </h3>
 
-                    <p>
-                        Persistent energy-related emissions increase the
-                        importance of cleaner generation, energy efficiency
-                        and responsible energy management.
-                    </p>
+            scales: {
 
-                    <span>
-                        SUSTAINABLE ENERGY TRANSITION
-                    </span>
+                x: {
 
-                </div>
+                    ticks: {
 
+                        color: "#7b8b84",
 
-            </div>
+                        maxTicksLimit: 8
 
-        </div>
+                    },
 
-    </div>
+                    grid: {
 
-</section>
+                        display: false
 
+                    }
 
+                },
 
-<!-- =====================================================
-     WAYS TO SAVE ENERGY
-===================================================== -->
 
-<section class="ways-section" id="ways">
+                y: {
 
-    <div class="section-container">
+                    beginAtZero: false,
 
+                    ticks: {
 
-        <div class="section-heading center">
+                        color: "#7b8b84",
 
-            <span class="section-label">
-                ENERGY EFFICIENCY
-            </span>
+                        callback: function (value) {
 
+                            return (
+                                Number(value)
+                                .toLocaleString() +
+                                " TWh"
+                            );
 
-            <h2>
-                Ways to <span>Save Energy</span>
-            </h2>
+                        }
 
+                    },
 
-            <p>
-                Practical energy-management approaches based on
-                ENERGY STAR Smart Home guidance.
-            </p>
+                    grid: {
 
-        </div>
+                        color:
+                            "rgba(0,0,0,.06)"
 
+                    }
 
+                }
 
-        <div class="ways-grid">
+            }
 
+        }
 
-            <div class="way-card">
+    });
 
-                <div class="way-number">
-                    01
-                </div>
+}
 
-                <div class="way-icon">
-                    <i class="fa-solid fa-temperature-half"></i>
-                </div>
 
-                <h3>
-                    Use Smart Thermostats
-                </h3>
+/* =====================================================
+   CHART 3
+   ELECTRICITY GENERATION
+===================================================== */
 
-                <p>
-                    Smart thermostats can monitor and adjust temperature
-                    settings and can reduce heating or cooling when it
-                    is not required.
-                </p>
+function createElectricityChart(data) {
 
-                <a href="https://www.energystar.gov/products/smart_home_tips/smart_thermostats"
-                   target="_blank"
-                   rel="noopener noreferrer">
+    const canvas =
+        document.getElementById(
+            "electricityChart"
+        );
 
-                    LEARN MORE
 
-                    <i class="fa-solid fa-arrow-right"></i>
+    if (!canvas) return;
 
-                </a>
 
-            </div>
+    /*
+       Actual OWID electricity columns:
 
+       Fossil:
+       fossil_electricity
 
+       Nuclear:
+       nuclear_electricity
 
-            <div class="way-card">
+       Renewables:
+       renewables_electricity
+    */
 
-                <div class="way-number">
-                    02
-                </div>
+    const renewable =
+        cleanSeries(
+            data,
+            "renewables_electricity",
+            1985
+        );
 
-                <div class="way-icon">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
 
-                <h3>
-                    Improve Smart Lighting
-                </h3>
+    const fossil =
+        cleanSeries(
+            data,
+            "fossil_electricity",
+            1985
+        );
 
-                <p>
-                    Smart lighting can use schedules, sensors and
-                    remote controls to reduce unnecessary lighting
-                    when spaces are unoccupied.
-                </p>
 
-                <a href="https://www.energystar.gov/products/smart_home_tips/smart_lighting"
-                   target="_blank"
-                   rel="noopener noreferrer">
+    const nuclear =
+        cleanSeries(
+            data,
+            "nuclear_electricity",
+            1985
+        );
 
-                    LEARN MORE
 
-                    <i class="fa-solid fa-arrow-right"></i>
+    const fossilMap =
+        new Map(
+            fossil.map(
+                row => [
+                    Number(row.Year),
+                    Number(row.fossil_electricity)
+                ]
+            )
+        );
 
-                </a>
 
-            </div>
+    const nuclearMap =
+        new Map(
+            nuclear.map(
+                row => [
+                    Number(row.Year),
+                    Number(row.nuclear_electricity)
+                ]
+            )
+        );
 
 
+    const renewableMap =
+        new Map(
+            renewable.map(
+                row => [
+                    Number(row.Year),
+                    Number(row.renewables_electricity)
+                ]
+            )
+        );
 
-            <div class="way-card">
 
-                <div class="way-number">
-                    03
-                </div>
+    const years =
+        Array.from(
+            new Set(
+                [
+                    ...renewableMap.keys(),
+                    ...fossilMap.keys(),
+                    ...nuclearMap.keys()
+                ]
+            )
+        )
+        .sort(
+            (a,b) => a-b
+        )
+        .slice(-40);
 
-                <div class="way-icon">
-                    <i class="fa-solid fa-house-circle-check"></i>
-                </div>
 
-                <h3>
-                    Manage Devices Automatically
-                </h3>
+    new Chart(canvas, {
 
-                <p>
-                    Smart home energy-management systems can schedule
-                    devices, suggest energy-saving actions and respond
-                    to occupancy.
-                </p>
+        type: "line",
 
-                <a href="https://www.energystar.gov/products/smart_home_energy_mgnt_systems"
-                   target="_blank"
-                   rel="noopener noreferrer">
+        data: {
 
-                    LEARN MORE
+            labels: years,
 
-                    <i class="fa-solid fa-arrow-right"></i>
+            datasets: [
 
-                </a>
+                {
 
-            </div>
+                    label:
+                        "Renewables",
 
+                    data:
+                        years.map(
+                            year =>
+                                renewableMap.get(year) ?? null
+                        ),
 
+                    borderColor:
+                        "#159765",
 
-            <div class="way-card">
+                    backgroundColor:
+                        "rgba(21,151,101,.08)",
 
-                <div class="way-number">
-                    04
-                </div>
+                    borderWidth: 3,
 
-                <div class="way-icon">
-                    <i class="fa-solid fa-plug-circle-check"></i>
-                </div>
+                    tension: .3,
 
-                <h3>
-                    Choose Efficient Appliances
-                </h3>
+                    pointRadius: 0
 
-                <p>
-                    ENERGY STAR certified appliances are designed to
-                    use energy efficiently while providing the required
-                    household function.
-                </p>
+                },
 
-                <a href="https://www.energystar.gov/products"
-                   target="_blank"
-                   rel="noopener noreferrer">
 
-                    LEARN MORE
+                {
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                    label:
+                        "Fossil Fuels",
 
-                </a>
+                    data:
+                        years.map(
+                            year =>
+                                fossilMap.get(year) ?? null
+                        ),
 
-            </div>
+                    borderColor:
+                        "#d9984f",
 
+                    backgroundColor:
+                        "rgba(217,152,79,.06)",
 
-        </div>
+                    borderWidth: 3,
 
+                    tension: .3,
 
+                    pointRadius: 0
 
-        <div class="ways-note">
+                },
 
-            <i class="fa-solid fa-circle-info"></i>
 
-            <p>
-                ENERGY efficiency reduces unnecessary energy demand,
-                while renewable energy helps reduce dependence on
-                high-emission energy sources. Both approaches are
-                important components of a sustainable energy system.
-            </p>
+                {
 
-        </div>
+                    label:
+                        "Nuclear",
 
-    </div>
+                    data:
+                        years.map(
+                            year =>
+                                nuclearMap.get(year) ?? null
+                        ),
 
-</section>
+                    borderColor:
+                        "#4b9ed0",
 
+                    backgroundColor:
+                        "rgba(75,158,208,.06)",
 
+                    borderWidth: 3,
 
-<!-- =====================================================
-     SOURCES
-===================================================== -->
+                    tension: .3,
 
-<section class="sources-section" id="sources">
+                    pointRadius: 0
 
-    <div class="section-container">
+                }
 
+            ]
 
-        <div class="section-heading center">
+        },
 
-            <span class="section-label">
-                RESEARCH SOURCES
-            </span>
 
+        options: {
 
-            <h2>
-                Official <span>Sources</span>
-            </h2>
+            responsive: true,
 
+            maintainAspectRatio: false,
 
-            <p>
-                Primary sources used to support the information
-                presented throughout this project.
-            </p>
 
-        </div>
+            interaction: {
 
+                mode: "index",
 
+                intersect: false
 
-        <div class="sources-grid">
+            },
 
 
-            <a href="https://ourworldindata.org/energy"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="research-source">
+            plugins: {
 
-                <div class="source-logo">
-                    <i class="fa-solid fa-chart-area"></i>
-                </div>
+                legend: {
 
-                <div>
+                    labels: {
 
-                    <span>
-                        GLOBAL ENERGY DATA
-                    </span>
+                        color: "#50635a",
 
-                    <h3>
-                        Our World in Data
-                    </h3>
+                        usePointStyle: true,
 
-                    <p>
-                        Energy consumption, energy mix and
-                        electricity data.
-                    </p>
+                        padding: 18
 
-                </div>
+                    }
 
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                },
 
-            </a>
 
+                tooltip: {
 
+                    backgroundColor:
+                        "#062c20",
 
-            <a href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="research-source">
+                    padding: 12,
 
-                <div class="source-logo">
-                    <i class="fa-solid fa-industry"></i>
-                </div>
+                    callbacks: {
 
-                <div>
+                        label: function (context) {
 
-                    <span>
-                        GREENHOUSE GAS DATA
-                    </span>
+                            return (
+                                context.dataset.label +
+                                ": " +
+                                Number(
+                                    context.raw
+                                ).toLocaleString() +
+                                " TWh"
+                            );
 
-                    <h3>
-                        International Energy Agency
-                    </h3>
+                        }
 
-                    <p>
-                        Greenhouse Gas Emissions from Energy.
-                    </p>
+                    }
 
-                </div>
+                }
 
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            },
 
-            </a>
 
+            scales: {
 
+                x: {
 
-            <a href="https://www.energystar.gov/products/smart_home_tips"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="research-source">
+                    ticks: {
 
-                <div class="source-logo">
-                    <i class="fa-solid fa-house-circle-check"></i>
-                </div>
+                        color: "#7b8b84",
 
-                <div>
+                        maxTicksLimit: 8
 
-                    <span>
-                        ENERGY EFFICIENCY
-                    </span>
+                    },
 
-                    <h3>
-                        ENERGY STAR
-                    </h3>
+                    grid: {
 
-                    <p>
-                        Smart home energy-saving guidance.
-                    </p>
+                        display: false
 
-                </div>
+                    }
 
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                },
 
-            </a>
 
+                y: {
 
-        </div>
+                    ticks: {
 
+                        color: "#7b8b84",
 
-    </div>
+                        callback: function (value) {
 
-</section>
+                            return (
+                                Number(value)
+                                .toLocaleString() +
+                                " TWh"
+                            );
 
+                        }
 
+                    },
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+                    grid: {
 
-<footer>
+                        color:
+                            "rgba(0,0,0,.06)"
 
-    <div class="footer-container">
+                    }
 
+                }
 
-        <div class="footer-logo">
+            }
 
-            <i class="fa-solid fa-leaf"></i>
+        }
 
-            IMPORTANCE OF SAFE ENERGY
+    });
 
-        </div>
+}
 
 
-        <p>
-            Building a safer and more sustainable energy future.
-        </p>
+/* =====================================================
+   START WEBSITE
+===================================================== */
 
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
 
-        <div class="footer-source">
+        /*
+           Load ONE official OWID dataset.
+           Then create all charts from it.
+        */
 
-            Research sources:
+        const rawData =
+            await loadEnergyData();
 
-            <a href="https://ourworldindata.org/energy"
-               target="_blank"
-               rel="noopener noreferrer">
 
-                Our World in Data
+        if (!rawData.length) {
 
-            </a>
+            return;
 
-            •
+        }
 
 
-            <a href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
-               target="_blank"
-               rel="noopener noreferrer">
+        const world =
+            getWorldData(rawData);
 
-                IEA
 
-            </a>
+        if (!world.length) {
 
-            •
+            showDataError(
+                "World energy records could not be found in the dataset."
+            );
 
+            return;
 
-            <a href="https://www.energystar.gov/products/smart_home_tips"
-               target="_blank"
-               rel="noopener noreferrer">
+        }
 
-                ENERGY STAR
 
-            </a>
+        createRenewableFossilChart(world);
 
-        </div>
+        createEnergyConsumptionChart(world);
 
+        createElectricityChart(world);
 
-        <div class="footer-bottom">
-
-            © 2026 Safe Energy Project.
-
-            Built for educational and research presentation purposes.
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-
-<!-- JavaScript -->
-<script src="script.js"></script>
-
-</body>
-
-</html>
+    }
+);
