@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +7,474 @@
 
     <title>Importance of Safe Energy</title>
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", Arial, sans-serif;
+            background: #07130d;
+            color: white;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 22px 6%;
+            background: rgba(4, 15, 10, 0.75);
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #72d572;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #72d572;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(2, 15, 8, 0.88),
+                    rgba(2, 20, 10, 0.55),
+                    rgba(2, 20, 10, 0.3)
+                ),
+                url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=90");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 88%;
+            max-width: 1400px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .small-title {
+            color: #8ee38e;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .subtitle {
+            max-width: 560px;
+            color: #d7e5da;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 15px 24px;
+
+            background: #72d572;
+            color: #061009;
+
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-3px);
+            background: #9aef9a;
+        }
+
+        /* DATA CARD */
+        .data-card {
+            padding: 30px;
+            border-radius: 18px;
+
+            background: rgba(8, 25, 15, 0.82);
+            border: 1px solid rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+        }
+
+        .data-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .data-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #83d983;
+            font-weight: 800;
+        }
+
+        .data-header h2 {
+            font-size: 21px;
+            margin-top: 7px;
+        }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            background: #72d572;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #72d572;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .data-box {
+            padding: 18px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+        }
+
+        .data-box span {
+            display: block;
+            color: #91a898;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .data-box strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .data-box small {
+            color: #9db2a1;
+        }
+
+        .source-btn {
+            display: block;
+            text-align: center;
+
+            margin-top: 20px;
+            padding: 14px;
+
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 7px;
+
+            transition: 0.3s;
+        }
+
+        .source-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 110px 7%;
+        }
+
+        .data-section {
+            background: #f3f7f3;
+            color: #122218;
+        }
+
+        .why-section {
+            background: #0a1910;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 55px;
+        }
+
+        .section-heading p {
+            color: #4fae5b;
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .section-heading span {
+            line-height: 1.7;
+            color: #637267;
+        }
+
+        .why-section .section-heading span {
+            color: #a9b9ad;
+        }
+
+        /* CHARTS */
+        .charts {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .chart-card h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .chart-container {
+            height: 330px;
+        }
+
+        /* FEATURES */
+        .feature-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .icon {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #a9b9ad;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* SOURCE */
+        .source-section {
+            padding: 70px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+
+            background: #12291a;
+        }
+
+        .source-section p {
+            color: #7bdd7b;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .source-section h2 {
+            margin-bottom: 10px;
+        }
+
+        .source-section span {
+            color: #a9b9ad;
+        }
+
+        .source-section a {
+            padding: 15px 22px;
+            background: #72d572;
+            color: #061009;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 45px 7%;
+            text-align: center;
+            background: #050d08;
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo span {
+            color: #72d572;
+        }
+
+        footer p {
+            color: #9aac9e;
+            margin-bottom: 10px;
+        }
+
+        footer small {
+            color: #66756a;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+
+            .navbar {
+                padding: 18px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                padding: 120px 0 70px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .charts {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .source-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
     <nav class="navbar">
-        <div class="logo">SAFE<span>ENERGY</span></div>
+
+        <div class="logo">
+            SAFE<span>ENERGY</span>
+        </div>
 
         <div class="nav-links">
             <a href="#home">HOME</a>
@@ -29,20 +482,24 @@
             <a href="#why">WHY SAFE ENERGY</a>
             <a href="#sources">SOURCES</a>
         </div>
+
     </nav>
 
 
-    <!-- HERO -->
     <section id="home" class="hero">
-
-        <div class="hero-overlay"></div>
 
         <div class="hero-content">
 
             <div class="hero-text">
-                <p class="small-title">ENERGY • SUSTAINABILITY • FUTURE</p>
 
-                <h1>IMPORTANCE<br>OF SAFE ENERGY</h1>
+                <p class="small-title">
+                    ENERGY • SUSTAINABILITY • FUTURE
+                </p>
+
+                <h1>
+                    IMPORTANCE<br>
+                    OF SAFE ENERGY
+                </h1>
 
                 <p class="subtitle">
                     Powering a cleaner, safer and more sustainable future.
@@ -51,19 +508,28 @@
                 <a href="#data" class="explore-btn">
                     EXPLORE ENERGY DATA ↓
                 </a>
+
             </div>
 
-            <!-- DATA CARD -->
+
             <div class="data-card">
 
                 <div class="data-header">
+
                     <div>
-                        <p class="data-label">OUR WORLD IN DATA</p>
-                        <h2>ENERGY DATA EXPLORER</h2>
+                        <p class="data-label">
+                            OUR WORLD IN DATA
+                        </p>
+
+                        <h2>
+                            ENERGY DATA EXPLORER
+                        </h2>
                     </div>
 
                     <div class="live-dot"></div>
+
                 </div>
+
 
                 <div class="data-grid">
 
@@ -93,51 +559,67 @@
 
                 </div>
 
+
                 <a
                     class="source-btn"
                     href="https://ourworldindata.org/energy"
-                    target="_blank">
+                    target="_blank"
+                    rel="noopener noreferrer">
+
                     VIEW DATA SOURCE ↗
+
                 </a>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- ENERGY DATA -->
     <section id="data" class="section data-section">
 
         <div class="section-heading">
+
             <p>OUR WORLD IN DATA</p>
 
-            <h2>Understanding Global Energy</h2>
+            <h2>
+                Understanding Global Energy
+            </h2>
 
             <span>
                 Explore the relationship between renewable energy,
                 fossil fuels and global electricity generation.
             </span>
+
         </div>
 
 
         <div class="charts">
 
             <div class="chart-card">
-                <h3>Renewable vs Fossil Energy</h3>
+
+                <h3>
+                    Renewable vs Fossil Energy
+                </h3>
 
                 <div class="chart-container">
                     <canvas id="energyChart"></canvas>
                 </div>
+
             </div>
 
 
             <div class="chart-card">
-                <h3>Global Energy Consumption</h3>
+
+                <h3>
+                    Global Energy Consumption
+                </h3>
 
                 <div class="chart-container">
                     <canvas id="consumptionChart"></canvas>
                 </div>
+
             </div>
 
         </div>
@@ -145,68 +627,87 @@
     </section>
 
 
-    <!-- WHY SAFE ENERGY -->
     <section id="why" class="section why-section">
 
         <div class="section-heading">
+
             <p>WHY IT MATTERS</p>
 
-            <h2>Why Safe Energy Is Important</h2>
+            <h2>
+                Why Safe Energy Is Important
+            </h2>
 
             <span>
                 Safe and sustainable energy plays an important role
                 in protecting our planet and supporting future generations.
             </span>
+
         </div>
 
 
         <div class="feature-grid">
 
             <div class="feature-card">
+
                 <div class="icon">🌱</div>
 
-                <h3>Protects the Environment</h3>
+                <h3>
+                    Protects the Environment
+                </h3>
 
                 <p>
                     Cleaner energy sources can reduce environmental
                     impacts and help protect natural ecosystems.
                 </p>
+
             </div>
 
 
             <div class="feature-card">
+
                 <div class="icon">🌍</div>
 
-                <h3>Reduces Carbon Emissions</h3>
+                <h3>
+                    Reduces Carbon Emissions
+                </h3>
 
                 <p>
                     Renewable energy can help reduce dependence on
                     high-carbon energy sources.
                 </p>
+
             </div>
 
 
             <div class="feature-card">
+
                 <div class="icon">⚡</div>
 
-                <h3>Improves Energy Security</h3>
+                <h3>
+                    Improves Energy Security
+                </h3>
 
                 <p>
                     A diverse energy system can make energy supplies
                     more resilient and reliable.
                 </p>
+
             </div>
 
 
             <div class="feature-card">
+
                 <div class="icon">♻️</div>
 
-                <h3>Supports a Sustainable Future</h3>
+                <h3>
+                    Supports a Sustainable Future
+                </h3>
 
                 <p>
                     Sustainable energy choices can support long-term
                     economic and environmental development.
                 </p>
+
             </div>
 
         </div>
@@ -214,30 +715,36 @@
     </section>
 
 
-    <!-- SOURCE -->
     <section id="sources" class="source-section">
 
         <div>
+
             <p>DATA SOURCE</p>
 
-            <h2>Our World in Data</h2>
+            <h2>
+                Our World in Data
+            </h2>
 
             <span>
                 Energy data and visualizations are based on information
                 available through the Our World in Data Energy Explorer.
             </span>
+
         </div>
+
 
         <a
             href="https://ourworldindata.org/energy"
-            target="_blank">
+            target="_blank"
+            rel="noopener noreferrer">
+
             OPEN ENERGY EXPLORER ↗
+
         </a>
 
     </section>
 
 
-    <!-- FOOTER -->
     <footer>
 
         <div class="footer-logo">
@@ -255,7 +762,167 @@
     </footer>
 
 
-    <script src="script.js"></script>
+    <script>
+
+        /* RENEWABLE VS FOSSIL ENERGY */
+
+        const energyCanvas =
+            document.getElementById("energyChart");
+
+        new Chart(energyCanvas, {
+
+            type: "bar",
+
+            data: {
+
+                labels: [
+                    "Coal",
+                    "Oil",
+                    "Gas",
+                    "Hydro",
+                    "Solar",
+                    "Wind"
+                ],
+
+                datasets: [
+
+                    {
+                        label: "Energy Share (%)",
+
+                        data: [
+                            26,
+                            31,
+                            23,
+                            7,
+                            3,
+                            7
+                        ],
+
+                        backgroundColor: [
+                            "#26382b",
+                            "#34483a",
+                            "#405847",
+                            "#58a866",
+                            "#83cf78",
+                            "#72b96d"
+                        ],
+
+                        borderRadius: 5
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: false
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Share (%)"
+                        }
+                    }
+
+                }
+
+            }
+
+        });
+
+
+        /* GLOBAL ENERGY CONSUMPTION */
+
+        const consumptionCanvas =
+            document.getElementById("consumptionChart");
+
+        new Chart(consumptionCanvas, {
+
+            type: "line",
+
+            data: {
+
+                labels: [
+                    "2000",
+                    "2005",
+                    "2010",
+                    "2015",
+                    "2020",
+                    "2025"
+                ],
+
+                datasets: [
+
+                    {
+                        label: "Global Energy Consumption",
+
+                        data: [
+                            100,
+                            112,
+                            125,
+                            137,
+                            142,
+                            151
+                        ],
+
+                        borderColor: "#3d8f50",
+
+                        backgroundColor: "rgba(61,143,80,0.15)",
+
+                        fill: true,
+
+                        tension: 0.4,
+
+                        pointRadius: 4
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                plugins: {
+
+                    legend: {
+                        display: true
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+                        beginAtZero: false
+                    }
+
+                }
+
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
+```
