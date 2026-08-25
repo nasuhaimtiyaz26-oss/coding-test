@@ -5,1529 +5,1507 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Safe Energy | Importance of Safe Energy</title>
+    <title>Safe Energy | Renewable Energy & Sustainability</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
+    <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Main CSS -->
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
 
 <body>
 
-    <!-- =====================================================
-         NAVBAR
-    ====================================================== -->
 
-    <header class="navbar" id="navbar">
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-        <div class="nav-container">
+<nav class="navbar" id="navbar">
 
-            <a href="#home" class="logo">
+    <div class="nav-container">
 
-                <span class="logo-icon">
-                    <i class="fa-solid fa-leaf"></i>
-                </span>
+        <a href="#home" class="logo">
 
-                SAFE ENERGY
+            <div class="logo-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
 
-            </a>
+            SAFE ENERGY
 
-
-            <nav class="nav-links" id="navLinks">
-
-                <a href="#home">HOME</a>
-
-                <a href="#energy">ENERGY DATA</a>
-
-                <a href="#why">WHY SAFE ENERGY</a>
-
-                <a href="#effects">ENVIRONMENT</a>
-
-                <a href="#save">SAVE ENERGY</a>
-
-                <a href="#sources">SOURCES</a>
-
-            </nav>
+        </a>
 
 
-            <button
-                class="mobile-menu"
-                id="mobileMenu"
-                aria-label="Open navigation menu">
+        <div class="nav-links" id="navLinks">
 
-                <i class="fa-solid fa-bars"></i>
+            <a href="#home">HOME</a>
 
-            </button>
+            <a href="#energy">ENERGY DATA</a>
+
+            <a href="#why">WHY RENEWABLE</a>
+
+            <a href="#effects">EFFECTS</a>
+
+            <a href="#save">WHAT WE CAN DO</a>
+
+            <a href="#sources">SOURCES</a>
 
         </div>
 
-    </header>
+
+        <button class="mobile-menu" id="mobileMenu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </div>
+
+</nav>
 
 
 
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-    <main>
+<section class="hero" id="home">
 
-        <section class="hero" id="home">
-
-            <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
 
 
-            <div class="hero-content">
+    <div class="hero-content">
 
-                <div class="hero-tag">
+        <div class="hero-tag">
 
-                    <i class="fa-solid fa-earth-americas"></i>
+            <i class="fa-solid fa-leaf"></i>
 
-                    ENVIRONMENTAL ENERGY RESEARCH
+            SAFE ENERGY • SUSTAINABLE FUTURE
+
+        </div>
+
+
+        <h1>
+
+            Powering A
+
+            <span>Cleaner</span>
+
+            Future
+
+        </h1>
+
+
+        <p>
+
+            Understanding why renewable energy matters
+            and what happens when we continue depending
+            heavily on fossil fuels.
+
+        </p>
+
+
+        <a href="#energy" class="hero-button">
+
+            EXPLORE ENERGY DATA
+
+            <i class="fa-solid fa-arrow-down"></i>
+
+        </a>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span>SCROLL TO EXPLORE</span>
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ENERGY DATA
+===================================================== -->
+
+<section class="energy-section" id="energy">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                GLOBAL ENERGY DATA
+            </span>
+
+            <h2>
+                The Global
+                <span>Energy Picture</span>
+            </h2>
+
+            <p>
+
+                Explore global energy trends using data
+                from Our World in Data. The charts show
+                how renewable energy, fossil fuels and
+                electricity generation have changed over time.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="dashboard">
+
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <span class="dashboard-label">
+                        ENERGY RESEARCH DASHBOARD
+                    </span>
+
+                    <h3>
+                        Global Energy Trends
+                    </h3>
 
                 </div>
 
 
-                <h1>
+                <div class="source-badge">
 
-                    The Importance of
-                    <span>Safe Energy</span>
+                    <i class="fa-solid fa-database"></i>
 
-                </h1>
+                    OUR WORLD IN DATA
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DATA CARDS -->
+
+            <div class="data-cards">
+
+
+                <div class="data-card">
+
+                    <div class="data-icon renewable">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            RENEWABLE
+                        </span>
+
+                        <strong>
+                            Clean Energy
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="data-card">
+
+                    <div class="data-icon fossil">
+
+                        <i class="fa-solid fa-industry"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            FOSSIL FUELS
+                        </span>
+
+                        <strong>
+                            Carbon Intensive
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="data-card">
+
+                    <div class="data-icon nuclear">
+
+                        <i class="fa-solid fa-atom"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            NUCLEAR
+                        </span>
+
+                        <strong>
+                            Low-Carbon
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="data-card">
+
+                    <div class="data-icon electricity">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            ELECTRICITY
+                        </span>
+
+                        <strong>
+                            Global Generation
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GRAPH 1 -->
+
+            <div class="chart-card chart-dark">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            ENERGY TRANSITION
+                        </span>
+
+                        <h3>
+                            Renewable Energy vs Fossil Fuels
+                        </h3>
+
+                        <small>
+                            Global primary energy trends
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas id="renewableFossilChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GRAPH 2 -->
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            GLOBAL CONSUMPTION
+                        </span>
+
+                        <h3>
+                            Global Energy Consumption
+                        </h3>
+
+                        <small>
+                            Primary energy use over time
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-chart-area"></i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas id="energyConsumptionChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GRAPH 3 -->
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            ELECTRICITY GENERATION
+                        </span>
+
+                        <h3>
+                            How Electricity Is Generated
+                        </h3>
+
+                        <small>
+                            Renewable, fossil and nuclear electricity
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas id="electricityChart"></canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="dashboard-source">
+
+                <a
+                    href="https://ourworldindata.org/energy"
+                    target="_blank"
+                    class="source-button">
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    VIEW OUR WORLD IN DATA
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY RENEWABLE ENERGY
+===================================================== -->
+
+<section class="why-section" id="why">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                WHY IT MATTERS
+            </span>
+
+            <h2>
+                Why Choose
+                <span>Renewable Energy?</span>
+            </h2>
+
+            <p>
+
+                Renewable energy can reduce dependence
+                on fossil fuels while supporting a cleaner,
+                more resilient energy system.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="benefits-grid">
+
+
+            <div class="benefit-card">
+
+                <span class="benefit-number">
+                    01
+                </span>
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-cloud"></i>
+
+                </div>
+
+                <h3>
+                    Lower Emissions
+                </h3>
+
+                <p>
+
+                    Renewable sources such as solar and wind
+                    generate electricity without directly
+                    burning fossil fuels.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit-card">
+
+                <span class="benefit-number">
+                    02
+                </span>
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-sun"></i>
+
+                </div>
+
+                <h3>
+                    Sustainable Resources
+                </h3>
+
+                <p>
+
+                    Renewable energy uses naturally replenished
+                    resources such as sunlight, wind and water.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit-card">
+
+                <span class="benefit-number">
+                    03
+                </span>
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-shield-heart"></i>
+
+                </div>
+
+                <h3>
+                    Energy Security
+                </h3>
+
+                <p>
+
+                    A diversified energy system can reduce
+                    dependence on a limited range of fuel sources.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="benefit-card">
+
+                <span class="benefit-number">
+                    04
+                </span>
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid fa-earth-asia"></i>
+
+                </div>
+
+                <h3>
+                    Protecting Our Future
+                </h3>
+
+                <p>
+
+                    Cleaner energy choices can contribute
+                    to long-term environmental protection
+                    and climate goals.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EFFECTS WHEN WE DON'T USE RENEWABLE ENERGY
+===================================================== -->
+
+<section class="effects-section" id="effects">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                WHEN RENEWABLE ENERGY IS NOT USED
+            </span>
+
+            <h2>
+                The Effects of
+                <span>Fossil Fuel Dependence</span>
+            </h2>
+
+            <p>
+
+                Heavy dependence on fossil fuels can increase
+                greenhouse gas emissions and create wider
+                environmental and energy challenges.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             IEA RESEARCH PANEL
+        ================================================= -->
+
+        <div class="iea-research-panel">
+
+
+            <div class="iea-panel-header">
+
+                <div>
+
+                    <span>
+                        IEA RESEARCH
+                    </span>
+
+                    <h3>
+                        Greenhouse Gas Emissions from Energy
+                    </h3>
+
+                </div>
+
+
+                <div class="iea-badge">
+                    IEA
+                </div>
+
+            </div>
+
+
+
+            <div class="iea-panel-content">
+
+
+                <div class="iea-stat">
+
+                    <strong>
+                        CO₂
+                    </strong>
+
+                    <span>
+                        Carbon dioxide emissions
+                    </span>
+
+                </div>
+
+
+
+                <div class="iea-stat">
+
+                    <strong>
+                        CH₄
+                    </strong>
+
+                    <span>
+                        Methane emissions
+                    </span>
+
+                </div>
+
+
+
+                <div class="iea-stat">
+
+                    <strong>
+                        N₂O
+                    </strong>
+
+                    <span>
+                        Nitrous oxide emissions
+                    </span>
+
+                </div>
+
+
+
+                <div class="iea-stat">
+
+                    <strong>
+                        GHG
+                    </strong>
+
+                    <span>
+                        Energy-related greenhouse gases
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <p class="iea-note">
+
+                The IEA Greenhouse Gas Emissions from Energy
+                database provides annual data on greenhouse gas
+                emissions from energy, including CO₂, CH₄ and N₂O
+                from fuel combustion as well as fugitive emissions
+                from energy sectors.
+
+            </p>
+
+
+
+            <a
+                href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
+                target="_blank"
+                class="iea-source-button">
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                VIEW IEA SOURCE
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EFFECT CARDS
+        ================================================= -->
+
+        <div class="effects-grid">
+
+
+            <!-- EFFECT 1 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    01
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-smog"></i>
+
+                </div>
+
+
+                <h3>
+                    Higher Greenhouse Gas Emissions
+                </h3>
 
 
                 <p>
 
-                    Understanding renewable energy, sustainability,
-                    environmental protection and the future of
-                    responsible energy use.
+                    When energy systems continue to depend
+                    heavily on fossil fuels, burning coal, oil
+                    and natural gas releases greenhouse gases.
+                    This contributes to the accumulation of
+                    heat-trapping gases in the atmosphere.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EFFECT 2 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    02
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-temperature-high"></i>
+
+                </div>
+
+
+                <h3>
+                    Increased Climate Pressure
+                </h3>
+
+
+                <p>
+
+                    Higher energy-related greenhouse gas
+                    emissions increase pressure on the global
+                    climate system and make climate targets
+                    more difficult to achieve.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EFFECT 3 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    03
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-industry"></i>
+
+                </div>
+
+
+                <h3>
+                    Continued Fossil Fuel Dependence
+                </h3>
+
+
+                <p>
+
+                    Relying heavily on fossil fuels keeps energy
+                    systems dependent on coal, oil and natural
+                    gas instead of increasing the contribution
+                    of renewable sources.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EFFECT 4 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    04
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-earth-americas"></i>
+
+                </div>
+
+
+                <h3>
+                    Greater Environmental Pressure
+                </h3>
+
+
+                <p>
+
+                    Fossil-fuel-based energy production can
+                    create additional environmental pressures
+                    through fuel extraction, combustion and
+                    energy-related emissions.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EFFECT 5 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    05
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-wind"></i>
+
+                </div>
+
+
+                <h3>
+                    Air Pollution
+                </h3>
+
+
+                <p>
+
+                    Burning fossil fuels can release pollutants
+                    alongside greenhouse gases, affecting
+                    air quality around energy generation,
+                    transportation and industrial activities.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EFFECT 6 -->
+
+            <div class="effect-card">
+
+                <span class="effect-number">
+                    06
+                </span>
+
+
+                <div class="effect-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <h3>
+                    Slower Energy Transition
+                </h3>
+
+
+                <p>
+
+                    Continued dependence on conventional energy
+                    sources can make the transition towards a
+                    lower-emission and more diversified energy
+                    system more challenging.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONCLUSION
+        ================================================= -->
+
+        <div class="effects-message">
+
+            <div class="effects-message-icon">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    The Key Message
+                </h3>
+
+                <p>
+
+                    Renewable energy is not simply about
+                    producing electricity from different
+                    sources. It is part of a broader transition
+                    towards an energy system that can reduce
+                    greenhouse gas emissions and dependence
+                    on fossil fuels.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHAT WE CAN DO
+===================================================== -->
+
+<section class="save-section" id="save">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                TAKE ACTION
+            </span>
+
+            <h2>
+                Ways We Can
+                <span>Save Energy</span>
+            </h2>
+
+            <p>
+
+                Small changes in how we use energy can
+                contribute to a more efficient and sustainable
+                future.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ENERGY STAR PANEL -->
+
+        <div class="energystar-panel">
+
+
+            <div class="energystar-logo">
+
+                ENERGY<br>
+                STAR
+
+            </div>
+
+
+            <div class="energystar-content">
+
+                <span>
+                    ENERGY EFFICIENCY
+                </span>
+
+                <h3>
+                    Use Energy More Efficiently
+                </h3>
+
+                <p>
+
+                    Choosing efficient appliances, reducing
+                    unnecessary electricity use and improving
+                    energy efficiency can help reduce energy
+                    demand.
 
                 </p>
 
 
                 <a
-                    href="#energy"
-                    class="hero-button">
-
-                    EXPLORE THE DATA
-
-                    <i class="fa-solid fa-arrow-down"></i>
-
-                </a>
-
-            </div>
-
-
-            <div class="scroll-indicator">
-
-                <span>SCROLL TO EXPLORE</span>
-
-                <i class="fa-solid fa-chevron-down"></i>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             ENERGY DATA
-        ====================================================== -->
-
-        <section
-            class="energy-section"
-            id="energy">
-
-            <div class="section-container">
-
-                <div class="section-heading center">
-
-                    <span class="section-label">
-                        GLOBAL ENERGY DATA
-                    </span>
-
-                    <h2>
-                        Understanding Our
-                        <span>Energy Future</span>
-                    </h2>
-
-                    <p>
-
-                        Explore global energy trends using
-                        data from Our World in Data.
-                        These visualisations show how energy
-                        production and electricity generation
-                        are changing over time.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- DASHBOARD -->
-
-                <div class="dashboard">
-
-
-                    <div class="dashboard-header">
-
-                        <div>
-
-                            <span class="dashboard-label">
-                                GLOBAL ENERGY DASHBOARD
-                            </span>
-
-                            <h3>
-                                Energy & Electricity Overview
-                            </h3>
-
-                        </div>
-
-
-                        <div class="source-badge">
-
-                            <i class="fa-solid fa-database"></i>
-
-                            OUR WORLD IN DATA
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- DATA CARDS -->
-
-                    <div class="data-cards">
-
-
-                        <div class="data-card">
-
-                            <div class="data-icon renewable">
-
-                                <i class="fa-solid fa-leaf"></i>
-
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    RENEWABLE
-                                </span>
-
-                                <strong>
-                                    Clean Energy
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="data-card">
-
-                            <div class="data-icon fossil">
-
-                                <i class="fa-solid fa-industry"></i>
-
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    FOSSIL FUELS
-                                </span>
-
-                                <strong>
-                                    Conventional Energy
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="data-card">
-
-                            <div class="data-icon nuclear">
-
-                                <i class="fa-solid fa-atom"></i>
-
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    NUCLEAR
-                                </span>
-
-                                <strong>
-                                    Nuclear Energy
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="data-card">
-
-                            <div class="data-icon electricity">
-
-                                <i class="fa-solid fa-bolt"></i>
-
-                            </div>
-
-                            <div>
-
-                                <span>
-                                    ELECTRICITY
-                                </span>
-
-                                <strong>
-                                    Global Generation
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         CHART 1
-                    ================================================== -->
-
-                    <div class="chart-card chart-dark">
-
-                        <div class="chart-header">
-
-                            <div>
-
-                                <span>
-                                    ENERGY TRANSITION
-                                </span>
-
-                                <h3>
-                                    Renewable Energy vs Fossil Fuels
-                                </h3>
-
-                                <small>
-                                    Global primary energy trends
-                                </small>
-
-                            </div>
-
-
-                            <i class="fa-solid fa-chart-line"></i>
-
-                        </div>
-
-
-                        <div class="chart-description">
-
-                            <p>
-                                Renewable energy is becoming
-                                increasingly important as the
-                                world moves towards a safer and
-                                more sustainable energy system.
-                            </p>
-
-                        </div>
-
-
-                        <div class="chart-wrapper">
-
-                            <canvas
-                                id="renewableFossilChart">
-                            </canvas>
-
-                        </div>
-
-
-                        <div class="chart-source-text">
-
-                            Source: Our World in Data
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         CHART 2
-                    ================================================== -->
-
-                    <div class="chart-card">
-
-                        <div class="chart-header">
-
-                            <div>
-
-                                <span>
-                                    GLOBAL ENERGY USE
-                                </span>
-
-                                <h3>
-                                    Global Energy Consumption
-                                </h3>
-
-                                <small>
-                                    Total primary energy use worldwide
-                                </small>
-
-                            </div>
-
-
-                            <i class="fa-solid fa-globe"></i>
-
-                        </div>
-
-
-                        <div class="chart-wrapper">
-
-                            <canvas
-                                id="energyConsumptionChart">
-                            </canvas>
-
-                        </div>
-
-
-                        <div class="chart-source-text">
-
-                            Source: Our World in Data
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         CHART 3
-                    ================================================== -->
-
-                    <div class="chart-card">
-
-                        <div class="chart-header">
-
-                            <div>
-
-                                <span>
-                                    ELECTRICITY GENERATION
-                                </span>
-
-                                <h3>
-                                    Renewable, Fossil & Nuclear Electricity
-                                </h3>
-
-                                <small>
-                                    Global electricity generation trends
-                                </small>
-
-                            </div>
-
-
-                            <i class="fa-solid fa-bolt"></i>
-
-                        </div>
-
-
-                        <div class="chart-wrapper">
-
-                            <canvas
-                                id="electricityChart">
-                            </canvas>
-
-                        </div>
-
-
-                        <div class="chart-source-text">
-
-                            Source: Our World in Data
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="dashboard-source">
-
-                        <a
-                            href="https://ourworldindata.org/energy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="source-button">
-
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                            VIEW OUR WORLD IN DATA
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             WHY SAFE ENERGY
-        ====================================================== -->
-
-        <section
-            class="why-section"
-            id="why">
-
-            <div class="section-container">
-
-                <div class="section-heading center">
-
-                    <span class="section-label">
-                        WHY IT MATTERS
-                    </span>
-
-                    <h2>
-                        Why Choose
-                        <span>Safe Energy?</span>
-                    </h2>
-
-                    <p>
-
-                        Safe and sustainable energy can support
-                        human development while protecting the
-                        environment for future generations.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="benefits-grid">
-
-
-                    <!-- CARD 1 -->
-
-                    <article class="benefit-card">
-
-                        <span class="benefit-number">
-                            01
-                        </span>
-
-                        <div class="benefit-icon">
-
-                            <i class="fa-solid fa-leaf"></i>
-
-                        </div>
-
-                        <h3>
-                            Protects the Environment
-                        </h3>
-
-                        <p>
-
-                            Renewable energy can reduce dependence
-                            on fossil fuels and help lower harmful
-                            emissions that affect the environment.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- CARD 2 -->
-
-                    <article class="benefit-card">
-
-                        <span class="benefit-number">
-                            02
-                        </span>
-
-                        <div class="benefit-icon">
-
-                            <i class="fa-solid fa-wind"></i>
-
-                        </div>
-
-                        <h3>
-                            Reduces Pollution
-                        </h3>
-
-                        <p>
-
-                            Cleaner energy sources can help reduce
-                            air pollution and create healthier
-                            environments for communities.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- CARD 3 -->
-
-                    <article class="benefit-card">
-
-                        <span class="benefit-number">
-                            03
-                        </span>
-
-                        <div class="benefit-icon">
-
-                            <i class="fa-solid fa-solar-panel"></i>
-
-                        </div>
-
-                        <h3>
-                            Supports Sustainability
-                        </h3>
-
-                        <p>
-
-                            Renewable resources such as solar,
-                            wind and hydropower provide alternatives
-                            to finite energy resources.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <!-- CARD 4 -->
-
-                    <article class="benefit-card">
-
-                        <span class="benefit-number">
-                            04
-                        </span>
-
-                        <div class="benefit-icon">
-
-                            <i class="fa-solid fa-seedling"></i>
-
-                        </div>
-
-                        <h3>
-                            Builds a Better Future
-                        </h3>
-
-                        <p>
-
-                            Responsible energy choices can support
-                            long-term economic development while
-                            protecting natural resources.
-
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             ENVIRONMENTAL EFFECTS
-        ====================================================== -->
-
-        <section
-            class="effects-section"
-            id="effects">
-
-            <div class="section-container">
-
-                <div class="section-heading">
-
-                    <span class="section-label">
-                        ENVIRONMENTAL IMPACT
-                    </span>
-
-                    <h2>
-                        Energy and the
-                        <span>Environment</span>
-                    </h2>
-
-                    <p>
-
-                        The way energy is produced and consumed
-                        has a major influence on air quality,
-                        climate, ecosystems and human communities.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- IEA PANEL -->
-
-                <div class="iea-research-panel">
-
-
-                    <div class="iea-panel-header">
-
-                        <div>
-
-                            <span>
-                                GLOBAL ENERGY RESEARCH
-                            </span>
-
-                            <h3>
-                                Key Energy Priorities
-                            </h3>
-
-                        </div>
-
-
-                        <div class="iea-badge">
-
-                            IEA
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="iea-panel-content">
-
-
-                        <div class="iea-stat">
-
-                            <strong>
-                                CLEAN
-                            </strong>
-
-                            <span>
-                                Cleaner energy systems
-                            </span>
-
-                        </div>
-
-
-                        <div class="iea-stat">
-
-                            <strong>
-                                EFFICIENT
-                            </strong>
-
-                            <span>
-                                Better energy efficiency
-                            </span>
-
-                        </div>
-
-
-                        <div class="iea-stat">
-
-                            <strong>
-                                SECURE
-                            </strong>
-
-                            <span>
-                                Reliable energy supply
-                            </span>
-
-                        </div>
-
-
-                        <div class="iea-stat">
-
-                            <strong>
-                                SUSTAINABLE
-                            </strong>
-
-                            <span>
-                                Long-term environmental protection
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <p class="iea-note">
-
-                        A safer energy future requires cleaner
-                        technologies, improved efficiency,
-                        responsible consumption and continued
-                        investment in sustainable energy systems.
-
-                    </p>
-
-
-                    <a
-                        href="https://www.iea.org/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="iea-source-button">
-
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                        EXPLORE IEA RESEARCH
-
-                    </a>
-
-                </div>
-
-
-
-                <!-- EFFECT CARDS -->
-
-                <div class="effects-grid">
-
-
-                    <article class="effect-card">
-
-                        <span class="effect-number">
-                            01
-                        </span>
-
-                        <div class="effect-icon">
-
-                            <i class="fa-solid fa-smog"></i>
-
-                        </div>
-
-                        <h3>
-                            Air Pollution
-                        </h3>
-
-                        <p>
-
-                            Burning fossil fuels can release
-                            pollutants into the atmosphere.
-                            Cleaner energy technologies can help
-                            improve air quality.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="effect-card">
-
-                        <span class="effect-number">
-                            02
-                        </span>
-
-                        <div class="effect-icon">
-
-                            <i class="fa-solid fa-temperature-high"></i>
-
-                        </div>
-
-                        <h3>
-                            Climate Change
-                        </h3>
-
-                        <p>
-
-                            Energy production is an important
-                            source of greenhouse gas emissions.
-                            Moving towards low-carbon energy can
-                            help address climate change.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="effect-card">
-
-                        <span class="effect-number">
-                            03
-                        </span>
-
-                        <div class="effect-icon">
-
-                            <i class="fa-solid fa-water"></i>
-
-                        </div>
-
-                        <h3>
-                            Natural Resources
-                        </h3>
-
-                        <p>
-
-                            Sustainable energy systems can reduce
-                            pressure on finite natural resources
-                            and support responsible resource use.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="effect-card">
-
-                        <span class="effect-number">
-                            04
-                        </span>
-
-                        <div class="effect-icon">
-
-                            <i class="fa-solid fa-tree"></i>
-
-                        </div>
-
-                        <h3>
-                            Ecosystems
-                        </h3>
-
-                        <p>
-
-                            Protecting ecosystems requires energy
-                            systems that consider environmental
-                            impacts and minimise unnecessary
-                            pollution.
-
-                        </p>
-
-                    </article>
-
-                </div>
-
-
-
-                <!-- CONCLUSION -->
-
-                <div class="effects-message">
-
-                    <div class="effects-message-icon">
-
-                        <i class="fa-solid fa-circle-check"></i>
-
-                    </div>
-
-
-                    <div>
-
-                        <h3>
-                            A Safer Energy Future Starts Today
-                        </h3>
-
-                        <p>
-
-                            Choosing cleaner energy, improving
-                            efficiency and reducing unnecessary
-                            energy consumption are important steps
-                            towards a healthier and more sustainable
-                            future.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             WAYS TO SAVE ENERGY
-        ====================================================== -->
-
-        <section
-            class="save-section"
-            id="save">
-
-            <div class="section-container">
-
-                <div class="section-heading center">
-
-                    <span class="section-label">
-                        TAKE ACTION
-                    </span>
-
-                    <h2>
-                        Ways to
-                        <span>Save Energy</span>
-                    </h2>
-
-                    <p>
-
-                        Small changes in our daily habits can
-                        reduce energy consumption and support
-                        a more sustainable lifestyle.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- ENERGY STAR PANEL -->
-
-                <div class="energystar-panel">
-
-
-                    <div class="energystar-logo">
-
-                        ENERGY
-                        <br>
-                        STAR
-                        <br>
-                        <i class="fa-solid fa-star"></i>
-
-                    </div>
-
-
-                    <div class="energystar-content">
-
-                        <span>
-                            ENERGY EFFICIENCY
-                        </span>
-
-                        <h3>
-                            Use Energy More Efficiently
-                        </h3>
-
-                        <p>
-
-                            Energy-efficient products and
-                            responsible energy habits can help
-                            reduce unnecessary energy use while
-                            maintaining comfort and productivity.
-
-                        </p>
-
-
-                        <a
-                            href="https://www.energystar.gov/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="energystar-button">
-
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                            LEARN MORE
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- SAVE CARDS -->
-
-                <div class="save-grid">
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            01
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-lightbulb"></i>
-
-                        </div>
-
-                        <h3>
-                            Switch Off Unused Lights
-                        </h3>
-
-                        <p>
-
-                            Turn off lights when leaving a room
-                            and make use of natural daylight
-                            whenever possible.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            02
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-snowflake"></i>
-
-                        </div>
-
-                        <h3>
-                            Use Appliances Efficiently
-                        </h3>
-
-                        <p>
-
-                            Use air conditioners, fans and other
-                            appliances responsibly and avoid
-                            unnecessary operation.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            03
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-plug"></i>
-
-                        </div>
-
-                        <h3>
-                            Unplug Unused Devices
-                        </h3>
-
-                        <p>
-
-                            Disconnect chargers and electrical
-                            devices when they are not needed
-                            to avoid unnecessary energy use.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            04
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-solar-panel"></i>
-
-                        </div>
-
-                        <h3>
-                            Consider Renewable Energy
-                        </h3>
-
-                        <p>
-
-                            Where practical, renewable energy
-                            technologies such as solar power can
-                            provide cleaner electricity.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            05
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-gauge-high"></i>
-
-                        </div>
-
-                        <h3>
-                            Improve Energy Efficiency
-                        </h3>
-
-                        <p>
-
-                            Choose efficient appliances and
-                            equipment designed to provide the
-                            required performance with less energy.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="save-card">
-
-                        <span class="save-number">
-                            06
-                        </span>
-
-                        <div class="save-icon">
-
-                            <i class="fa-solid fa-people-group"></i>
-
-                        </div>
-
-                        <h3>
-                            Encourage Others
-                        </h3>
-
-                        <p>
-
-                            Share responsible energy habits with
-                            family, friends and communities to
-                            create wider positive impact.
-
-                        </p>
-
-                    </article>
-
-                </div>
-
-
-
-                <!-- CONCLUSION -->
-
-                <div class="save-conclusion">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-
-                    <div>
-
-                        <h3>
-                            Every Action Matters
-                        </h3>
-
-                        <p>
-
-                            Saving energy is not only about reducing
-                            electricity bills. It is also about
-                            protecting resources, reducing waste
-                            and contributing to a more sustainable
-                            future.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             SOURCES
-        ====================================================== -->
-
-        <section
-            class="sources-section"
-            id="sources">
-
-            <div class="section-container">
-
-                <div class="section-heading center">
-
-                    <span class="section-label">
-                        RESEARCH & REFERENCES
-                    </span>
-
-                    <h2>
-                        Trusted
-                        <span>Sources</span>
-                    </h2>
-
-                    <p>
-
-                        This website uses information and data
-                        from established international energy
-                        and environmental organisations.
-
-                    </p>
-
-                </div>
-
-
-
-                <div class="sources-grid">
-
-
-                    <!-- OWID -->
-
-                    <article class="research-source-card">
-
-                        <div class="research-source-icon owid-icon">
-
-                            <i class="fa-solid fa-chart-column"></i>
-
-                        </div>
-
-
-                        <span>
-                            DATA & VISUALISATION
-                        </span>
-
-
-                        <h3>
-                            Our World in Data
-                        </h3>
-
-
-                        <p>
-
-                            Provides global datasets and
-                            research on energy, climate,
-                            environment and sustainable
-                            development.
-
-                        </p>
-
-
-                        <a
-                            href="https://ourworldindata.org/energy"
-                            target="_blank"
-                            rel="noopener noreferrer">
-
-                            VIEW SOURCE
-
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                        </a>
-
-                    </article>
-
-
-
-                    <!-- IEA -->
-
-                    <article class="research-source-card">
-
-                        <div class="research-source-icon iea-icon">
-
-                            <i class="fa-solid fa-building-columns"></i>
-
-                        </div>
-
-
-                        <span>
-                            ENERGY RESEARCH
-                        </span>
-
-
-                        <h3>
-                            International Energy Agency
-                        </h3>
-
-
-                        <p>
-
-                            Provides research, analysis and
-                            data on global energy systems,
-                            energy security and clean energy
-                            transitions.
-
-                        </p>
-
-
-                        <a
-                            href="https://www.iea.org/"
-                            target="_blank"
-                            rel="noopener noreferrer">
-
-                            VIEW SOURCE
-
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                        </a>
-
-                    </article>
-
-
-
-                    <!-- ENERGY STAR -->
-
-                    <article class="research-source-card">
-
-                        <div class="research-source-icon star-icon">
-
-                            <i class="fa-solid fa-star"></i>
-
-                        </div>
-
-
-                        <span>
-                            ENERGY EFFICIENCY
-                        </span>
-
-
-                        <h3>
-                            ENERGY STAR
-                        </h3>
-
-
-                        <p>
-
-                            Provides guidance and information
-                            about energy-efficient products,
-                            buildings and everyday energy use.
-
-                        </p>
-
-
-                        <a
-                            href="https://www.energystar.gov/"
-                            target="_blank"
-                            rel="noopener noreferrer">
-
-                            VIEW SOURCE
-
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                        </a>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
-
-    <footer>
-
-        <div class="footer-container">
-
-
-            <div class="footer-logo">
-
-                <i class="fa-solid fa-leaf"></i>
-
-                SAFE ENERGY
-
-            </div>
-
-
-            <p>
-
-                Importance of Safe Energy —
-                Towards a Cleaner and Sustainable Future.
-
-            </p>
-
-
-            <div class="footer-source">
-
-                Research and data supported by:
-
-                <a
-                    href="https://ourworldindata.org/"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    Our World in Data
-
-                </a>
-
-                ·
-
-                <a
-                    href="https://www.iea.org/"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    IEA
-
-                </a>
-
-                ·
-
-                <a
                     href="https://www.energystar.gov/"
                     target="_blank"
-                    rel="noopener noreferrer">
+                    class="energystar-button">
 
-                    ENERGY STAR
+                    LEARN MORE
+
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
                 </a>
-
-            </div>
-
-
-            <div class="footer-bottom">
-
-                © 2026 Safe Energy Research Website.
-                All rights reserved.
 
             </div>
 
         </div>
 
-    </footer>
+
+
+        <!-- SAVE GRID -->
+
+        <div class="save-grid">
+
+
+            <div class="save-card">
+
+                <span class="save-number">
+                    01
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                </div>
+
+                <h3>
+                    Turn Off Unused Devices
+                </h3>
+
+                <p>
+
+                    Switch off lights, computers and electrical
+                    devices when they are not needed.
+
+                </p>
+
+            </div>
 
 
 
-    <!-- =====================================================
-         CHART.JS
-    ====================================================== -->
+            <div class="save-card">
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js">
-    </script>
+                <span class="save-number">
+                    02
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-solar-panel"></i>
+
+                </div>
+
+                <h3>
+                    Support Renewable Energy
+                </h3>
+
+                <p>
+
+                    Encourage the use of cleaner energy sources
+                    such as solar, wind and hydropower.
+
+                </p>
+
+            </div>
 
 
-    <!-- =====================================================
-         MAIN JAVASCRIPT
-    ====================================================== -->
 
-    <script src="script.js"></script>
+            <div class="save-card">
+
+                <span class="save-number">
+                    03
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-temperature-arrow-down"></i>
+
+                </div>
+
+                <h3>
+                    Reduce Energy Waste
+                </h3>
+
+                <p>
+
+                    Avoid unnecessary energy consumption and
+                    improve efficiency in homes, schools and
+                    workplaces.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="save-card">
+
+                <span class="save-number">
+                    04
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-bus"></i>
+
+                </div>
+
+                <h3>
+                    Choose Efficient Transport
+                </h3>
+
+                <p>
+
+                    Walking, cycling, public transportation and
+                    efficient vehicles can help reduce energy
+                    consumption.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="save-card">
+
+                <span class="save-number">
+                    05
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-building"></i>
+
+                </div>
+
+                <h3>
+                    Improve Building Efficiency
+                </h3>
+
+                <p>
+
+                    Good insulation, efficient lighting and
+                    responsible cooling can reduce electricity
+                    demand.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="save-card">
+
+                <span class="save-number">
+                    06
+                </span>
+
+                <div class="save-icon">
+
+                    <i class="fa-solid fa-people-group"></i>
+
+                </div>
+
+                <h3>
+                    Spread Awareness
+                </h3>
+
+                <p>
+
+                    Educating others about safe and sustainable
+                    energy can encourage better decisions across
+                    communities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="save-conclusion">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            <div>
+
+                <h3>
+                    Every Energy Choice Matters
+                </h3>
+
+                <p>
+
+                    A cleaner energy future depends on better
+                    choices from individuals, organisations,
+                    industries and governments.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SOURCES
+===================================================== -->
+
+<section class="sources-section" id="sources">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                RESEARCH SOURCES
+            </span>
+
+            <h2>
+                Reliable
+                <span>Data Sources</span>
+            </h2>
+
+            <p>
+
+                Information presented on this website is
+                supported by established energy and research
+                organisations.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="sources-grid">
+
+
+            <!-- OWID -->
+
+            <div class="research-source-card">
+
+                <div class="research-source-icon owid-icon">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                </div>
+
+
+                <span>
+                    DATA & RESEARCH
+                </span>
+
+
+                <h3>
+                    Our World in Data
+                </h3>
+
+
+                <p>
+
+                    Provides global energy datasets and
+                    interactive visualisations used for the
+                    energy charts on this website.
+
+                </p>
+
+
+                <a
+                    href="https://ourworldindata.org/energy"
+                    target="_blank">
+
+                    VIEW SOURCE
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- IEA -->
+
+            <div class="research-source-card">
+
+                <div class="research-source-icon iea-icon">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                </div>
+
+
+                <span>
+                    ENERGY RESEARCH
+                </span>
+
+
+                <h3>
+                    International Energy Agency
+                </h3>
+
+
+                <p>
+
+                    The IEA Greenhouse Gas Emissions from Energy
+                    database provides annual energy-related
+                    greenhouse gas emissions data.
+
+                </p>
+
+
+                <a
+                    href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
+                    target="_blank">
+
+                    VIEW SOURCE
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ENERGY STAR -->
+
+            <div class="research-source-card">
+
+                <div class="research-source-icon star-icon">
+
+                    <i class="fa-solid fa-star"></i>
+
+                </div>
+
+
+                <span>
+                    ENERGY EFFICIENCY
+                </span>
+
+
+                <h3>
+                    ENERGY STAR
+                </h3>
+
+
+                <p>
+
+                    Provides information and guidance about
+                    energy efficiency and reducing energy use.
+
+                </p>
+
+
+                <a
+                    href="https://www.energystar.gov/"
+                    target="_blank">
+
+                    VIEW SOURCE
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-logo">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            SAFE ENERGY
+
+        </div>
+
+
+        <p>
+
+            Understanding energy.
+            Protecting the future.
+
+        </p>
+
+
+        <div class="footer-source">
+
+            Research sources:
+
+            Our World in Data •
+            International Energy Agency •
+            ENERGY STAR
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 Safe Energy.
+            Educational Research Website.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
 
 </body>
 
