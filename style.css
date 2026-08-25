@@ -1,6 +1,6 @@
 /* =====================================================
    SAFE ENERGY
-   MAIN STYLESHEET
+   CLEAN & STABLE STYLE.CSS
 ===================================================== */
 
 * {
@@ -9,33 +9,28 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "Inter", Arial, sans-serif;
     background: #f4f8f5;
     color: #10251c;
     line-height: 1.6;
 }
-
 
 a {
     text-decoration: none;
     color: inherit;
 }
 
-
 button {
     font-family: inherit;
 }
 
-
 /* =====================================================
-   NAVIGATION
+   NAVBAR
 ===================================================== */
 
 .navbar {
@@ -43,102 +38,89 @@ button {
     top: 0;
     left: 0;
     width: 100%;
+    height: 78px;
     z-index: 1000;
 
-    background: rgba(4, 27, 18, 0.35);
+    background: rgba(3, 30, 19, 0.45);
+    backdrop-filter: blur(15px);
 
-    backdrop-filter: blur(14px);
-
-    border-bottom: 1px solid
-        rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     transition: 0.3s ease;
 }
 
-
 .navbar.scrolled {
-    background: rgba(3, 24, 16, 0.94);
+    background: rgba(3, 27, 18, 0.95);
 }
 
-
 .nav-container {
-    width: min(1200px, 92%);
+    width: 92%;
+    max-width: 1200px;
+    height: 100%;
     margin: auto;
-
-    height: 78px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-
 .logo {
-    color: white;
-
-    font-size: 17px;
-    font-weight: 800;
-
-    letter-spacing: 1px;
-
     display: flex;
     align-items: center;
     gap: 10px;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
-
 .logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
 
-    display: grid;
-    place-items: center;
-
-    background: #19a66d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
 
+    background: #16a36b;
     color: white;
 }
-
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 30px;
 }
-
 
 .nav-links a {
     color: rgba(255, 255, 255, 0.85);
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 1px;
 
     transition: 0.25s ease;
 }
 
-
 .nav-links a:hover {
-    color: #56dda2;
+    color: #58dfa1;
 }
-
 
 .mobile-menu {
     display: none;
 
-    background: none;
     border: none;
+    background: transparent;
 
     color: white;
-
     font-size: 22px;
 
     cursor: pointer;
 }
-
 
 /* =====================================================
    HERO
@@ -155,13 +137,13 @@ button {
 
     text-align: center;
 
-    background-image:
-        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2200&q=85");
+    background-image: url(
+        "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2200&q=85"
+    );
 
     background-size: cover;
     background-position: center;
 }
-
 
 .hero-overlay {
     position: absolute;
@@ -170,53 +152,47 @@ button {
     background:
         linear-gradient(
             135deg,
-            rgba(2, 27, 17, 0.88),
-            rgba(2, 45, 27, 0.55),
-            rgba(1, 15, 9, 0.78)
+            rgba(2, 30, 18, 0.88),
+            rgba(3, 57, 35, 0.55),
+            rgba(0, 12, 7, 0.82)
         );
 }
-
 
 .hero-content {
     position: relative;
     z-index: 2;
 
-    width: min(900px, 90%);
+    width: 90%;
+    max-width: 900px;
 
     color: white;
 }
 
-
 .hero-tag {
     display: inline-flex;
-
     align-items: center;
     gap: 8px;
 
-    padding: 8px 14px;
+    padding: 8px 15px;
 
-    border: 1px solid
-        rgba(255, 255, 255, 0.22);
-
-    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
 
     background: rgba(255, 255, 255, 0.08);
 
     backdrop-filter: blur(10px);
 
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-
     letter-spacing: 1.5px;
 
     margin-bottom: 25px;
 }
 
-
 .hero h1 {
     font-size: clamp(42px, 6vw, 78px);
 
-    line-height: 1.02;
+    line-height: 1.03;
 
     font-weight: 800;
 
@@ -225,56 +201,41 @@ button {
     margin-bottom: 22px;
 }
 
-
 .hero h1 span {
     color: #5be4a4;
 }
 
-
 .hero p {
     font-size: 19px;
 
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(255, 255, 255, 0.85);
 
     margin-bottom: 35px;
 }
 
-
-.hero-button,
-.source-button {
+.hero-button {
     display: inline-flex;
-
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 
-    padding: 15px 22px;
+    padding: 15px 23px;
 
-    background: #17a66d;
-
+    background: #16a36b;
     color: white;
 
     border-radius: 10px;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
-
     letter-spacing: 1px;
 
     transition: 0.3s ease;
-
-    box-shadow:
-        0 12px 30px
-        rgba(0, 0, 0, 0.2);
 }
 
-
-.hero-button:hover,
-.source-button:hover {
+.hero-button:hover {
+    background: #20bd7b;
     transform: translateY(-3px);
-
-    background: #20bd7c;
 }
-
 
 .scroll-indicator {
     position: absolute;
@@ -286,60 +247,53 @@ button {
 
     z-index: 2;
 
-    color: rgba(255, 255, 255, 0.55);
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    align-items: center;
+    gap: 5px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 8px;
+    letter-spacing: 2px;
 }
 
-
 /* =====================================================
-   GENERAL SECTIONS
+   GENERAL SECTION
 ===================================================== */
 
 .energy-section,
 .why-section,
 .sources-section {
-    padding: 110px 0;
+    padding: 100px 0;
 }
 
-
 .section-container {
-    width: min(1200px, 92%);
+    width: 92%;
+    max-width: 1200px;
     margin: auto;
 }
 
-
 .section-heading {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
-
 
 .section-heading.center {
     text-align: center;
-
     max-width: 700px;
 
     margin-left: auto;
     margin-right: auto;
 }
 
-
 .section-label {
     color: #159765;
 
-    font-size: 11px;
-
+    font-size: 10px;
     font-weight: 800;
 
     letter-spacing: 2px;
 }
-
 
 .section-heading h2 {
     margin-top: 8px;
@@ -353,43 +307,39 @@ button {
     letter-spacing: -1.5px;
 }
 
-
 .section-heading h2 span {
     color: #159765;
 }
 
-
 .section-heading p {
-    margin-top: 15px;
+    margin-top: 14px;
 
-    color: #68786f;
+    color: #6b7b73;
 
-    max-width: 650px;
+    font-size: 14px;
 }
-
 
 /* =====================================================
    DASHBOARD
 ===================================================== */
 
 .dashboard {
+    width: 100%;
+
     background: white;
 
     border-radius: 24px;
 
     padding: 28px;
 
+    border: 1px solid #e1ebe5;
+
     box-shadow:
-        0 25px 70px
-        rgba(20, 65, 44, 0.10);
-
-    border: 1px solid #e4eee8;
+        0 25px 70px rgba(20, 65, 44, 0.1);
 }
-
 
 .dashboard-header {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
@@ -398,47 +348,38 @@ button {
     margin-bottom: 25px;
 }
 
-
 .dashboard-label {
     color: #159765;
 
     font-size: 9px;
-
     font-weight: 800;
 
     letter-spacing: 1.8px;
 }
 
-
 .dashboard-header h3 {
-    margin-top: 3px;
+    margin-top: 4px;
 
     font-size: 22px;
-
     font-weight: 800;
 }
 
-
 .source-badge {
-    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
 
-    border-radius: 100px;
+    padding: 10px 14px;
 
     background: #edf8f2;
 
     color: #167451;
 
+    border-radius: 50px;
+
     font-size: 11px;
-
     font-weight: 700;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
 }
-
 
 /* =====================================================
    DATA CARDS
@@ -447,44 +388,38 @@ button {
 .data-cards {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 14px;
 
     margin-bottom: 20px;
 }
 
-
 .data-card {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
     padding: 18px;
 
     background: #f6faf7;
 
-    border: 1px solid #e5eee8;
+    border: 1px solid #e2ece6;
 
     border-radius: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
 }
-
 
 .data-card span {
     display: block;
 
-    font-size: 8px;
-
     color: #84928b;
 
+    font-size: 8px;
     font-weight: 700;
 
     letter-spacing: 1px;
 }
-
 
 .data-card strong {
     display: block;
@@ -494,68 +429,61 @@ button {
     font-size: 12px;
 }
 
-
 .data-icon {
     width: 42px;
     height: 42px;
 
-    border-radius: 12px;
-
-    display: grid;
-
-    place-items: center;
-
     flex-shrink: 0;
-}
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+}
 
 .data-icon.renewable {
     background: #dff7e9;
     color: #149662;
 }
 
-
 .data-icon.fossil {
     background: #f8eadb;
     color: #b8732c;
 }
-
 
 .data-icon.nuclear {
     background: #e0f0f9;
     color: #3988b8;
 }
 
-
 .data-icon.electricity {
     background: #e8e5fb;
     color: #6655b9;
 }
-
 
 /* =====================================================
    CHART CARDS
 ===================================================== */
 
 .chart-card {
-    background: #fbfdfc;
-
-    border: 1px solid #e4eee8;
-
-    border-radius: 18px;
+    margin-top: 18px;
 
     padding: 22px;
 
-    margin-top: 18px;
-}
+    background: #fbfdfc;
 
+    border: 1px solid #e1ebe5;
+
+    border-radius: 18px;
+}
 
 .chart-dark {
     background:
         linear-gradient(
             145deg,
-            #062b1e,
-            #0a3b2a
+            #05291c,
+            #0b402d
         );
 
     border: none;
@@ -563,69 +491,65 @@ button {
     color: white;
 }
 
-
 .chart-header {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
     margin-bottom: 15px;
 }
 
-
 .chart-header span {
-    font-size: 9px;
+    color: #159765;
 
+    font-size: 9px;
     font-weight: 800;
 
     letter-spacing: 1.5px;
-
-    color: #159765;
 }
-
 
 .chart-dark .chart-header span {
     color: #62dfa6;
 }
 
-
 .chart-header h3 {
+    margin-top: 4px;
+
     font-size: 17px;
-
     font-weight: 800;
-
-    margin-top: 3px;
 }
-
 
 .chart-header > i {
-    font-size: 22px;
-
     color: #159765;
-}
 
+    font-size: 22px;
+}
 
 .chart-dark .chart-header > i {
     color: #5be4a4;
 }
 
+/* =====================================================
+   RENEWABLE VS FOSSIL DESCRIPTION
+===================================================== */
 
 .chart-description {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-
 .chart-description p {
+    color: rgba(255, 255, 255, 0.93);
+
     font-size: 20px;
 
     line-height: 1.65;
 
     font-weight: 700;
-
-    color: rgba(255, 255, 255, 0.92);
 }
 
+/* =====================================================
+   CHART SIZE
+===================================================== */
 
 .chart-wrapper {
     position: relative;
@@ -635,12 +559,9 @@ button {
     height: 350px;
 }
 
-
-.chart-card:not(.chart-dark)
-.chart-wrapper {
-    height: 320px;
+.chart-card:not(.chart-dark) .chart-wrapper {
+    height: 330px;
 }
-
 
 .dashboard-source {
     text-align: center;
@@ -648,94 +569,107 @@ button {
     padding-top: 25px;
 }
 
+.source-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 20px;
+
+    background: #159765;
+    color: white;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s ease;
+}
+
+.source-button:hover {
+    background: #20b878;
+    transform: translateY(-2px);
+}
 
 /* =====================================================
-   BENEFITS
+   WHY SAFE ENERGY
 ===================================================== */
 
 .why-section {
     background: #eaf3ed;
 }
 
-
 .benefits-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 18px;
 }
 
-
 .benefit-card {
     position: relative;
 
-    background: white;
+    min-height: 290px;
 
     padding: 28px;
 
-    min-height: 290px;
-
-    border-radius: 18px;
+    background: white;
 
     border: 1px solid #dfeae3;
 
+    border-radius: 18px;
+
     transition: 0.3s ease;
 }
-
 
 .benefit-card:hover {
     transform: translateY(-7px);
 
     box-shadow:
-        0 20px 40px
-        rgba(20, 80, 50, 0.12);
+        0 20px 40px rgba(20, 80, 50, 0.12);
 }
-
 
 .benefit-number {
     position: absolute;
 
-    top: 20px;
+    top: 18px;
     right: 20px;
 
     color: #dcebe2;
 
     font-size: 32px;
-
     font-weight: 800;
 }
-
 
 .benefit-icon {
     width: 55px;
     height: 55px;
 
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    place-items: center;
-
-    background: #e1f7eb;
-
-    color: #149662;
+    margin-bottom: 25px;
 
     border-radius: 15px;
 
-    font-size: 21px;
+    background: #e1f7eb;
+    color: #149662;
 
-    margin-bottom: 25px;
+    font-size: 21px;
 }
 
-
 .benefit-card h3 {
+    margin-bottom: 12px;
+
     font-size: 18px;
 
     line-height: 1.3;
-
-    margin-bottom: 12px;
 }
-
 
 .benefit-card p {
     color: #6c7c74;
@@ -745,7 +679,6 @@ button {
     line-height: 1.7;
 }
 
-
 /* =====================================================
    SOURCES
 ===================================================== */
@@ -754,8 +687,15 @@ button {
     background: #f5f9f6;
 }
 
-
 .source-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 45px;
+
     background:
         linear-gradient(
             135deg,
@@ -765,71 +705,56 @@ button {
 
     border-radius: 24px;
 
-    padding: 45px;
-
     color: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 30px;
 }
-
 
 .source-box h2 {
-    font-size: 34px;
-
     margin-top: 6px;
-}
 
+    font-size: 34px;
+}
 
 .source-box p {
+    margin-top: 8px;
+
     color: rgba(255, 255, 255, 0.72);
 
-    margin-top: 8px;
+    font-size: 14px;
 }
-
 
 /* =====================================================
    FOOTER
 ===================================================== */
 
 footer {
+    padding: 45px 0;
+
     background: #031b12;
 
     color: white;
-
-    padding: 45px 0;
 }
 
-
 .footer-container {
-    width: min(1200px, 92%);
+    width: 92%;
+    max-width: 1200px;
 
     margin: auto;
 
     text-align: center;
 }
 
-
 .footer-logo {
-    font-weight: 800;
-
     font-size: 15px;
+    font-weight: 800;
 
     letter-spacing: 1px;
 }
-
 
 .footer-logo i {
     color: #5be4a4;
 
     margin-right: 7px;
 }
-
 
 .footer-container > p {
     margin-top: 10px;
@@ -839,15 +764,13 @@ footer {
     font-size: 13px;
 }
 
-
 .footer-source {
     margin-top: 18px;
 
-    font-size: 11px;
-
     color: rgba(255, 255, 255, 0.45);
-}
 
+    font-size: 11px;
+}
 
 .footer-source a {
     color: #5be4a4;
@@ -855,26 +778,23 @@ footer {
     font-weight: 700;
 }
 
-
 .footer-bottom {
     margin-top: 25px;
-
     padding-top: 20px;
 
-    border-top: 1px solid
-        rgba(255, 255, 255, 0.08);
-
-    font-size: 10px;
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
 
     color: rgba(255, 255, 255, 0.35);
+
+    font-size: 10px;
 }
 
-
 /* =====================================================
-   RESPONSIVE
+   TABLET
 ===================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
 
     .nav-links {
         position: absolute;
@@ -884,16 +804,16 @@ footer {
 
         width: 100%;
 
-        background: rgba(3, 24, 16, 0.98);
+        padding: 25px;
 
-        padding: 20px;
-
+        display: flex;
         flex-direction: column;
 
-        gap: 20px;
+        gap: 22px;
 
-        transform:
-            translateY(-150%);
+        background: rgba(3, 27, 18, 0.98);
+
+        transform: translateY(-150%);
 
         opacity: 0;
 
@@ -902,49 +822,50 @@ footer {
         transition: 0.3s ease;
     }
 
-
     .nav-links.open {
-        transform:
-            translateY(0);
+        transform: translateY(0);
 
         opacity: 1;
 
         pointer-events: auto;
     }
 
-
     .mobile-menu {
         display: block;
     }
 
-
     .data-cards {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 
     .benefits-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 
     .source-box {
         flex-direction: column;
 
         align-items: flex-start;
     }
-
 }
 
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width: 600px) {
+
+    .navbar {
+        height: 68px;
+    }
 
     .nav-container {
         height: 68px;
     }
 
+    .nav-links {
+        top: 68px;
+    }
 
     .hero h1 {
         font-size: 42px;
@@ -952,11 +873,9 @@ footer {
         letter-spacing: -2px;
     }
 
-
     .hero p {
         font-size: 16px;
     }
-
 
     .energy-section,
     .why-section,
@@ -964,59 +883,47 @@ footer {
         padding: 75px 0;
     }
 
-
     .dashboard {
         padding: 15px;
 
         border-radius: 18px;
     }
 
-
     .dashboard-header {
-        align-items: flex-start;
-
         flex-direction: column;
-    }
 
+        align-items: flex-start;
+    }
 
     .data-cards {
         grid-template-columns: 1fr;
     }
 
-
     .benefits-grid {
         grid-template-columns: 1fr;
     }
-
 
     .chart-card {
         padding: 15px;
     }
 
-
     .chart-wrapper {
         height: 280px;
     }
 
-
-    .chart-card:not(.chart-dark)
-    .chart-wrapper {
+    .chart-card:not(.chart-dark) .chart-wrapper {
         height: 280px;
     }
-
 
     .chart-description p {
         font-size: 17px;
     }
 
-
     .source-box {
         padding: 30px;
     }
 
-
     .source-box h2 {
-        font-size: 26px;
+        font-size: 27px;
     }
-
 }
