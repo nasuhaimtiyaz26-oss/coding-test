@@ -1,5 +1,5 @@
 /* =====================================================
-   IMPORTANCE OF SAFE ENERGY
+   SAFE ENERGY
    MAIN JAVASCRIPT
 ===================================================== */
 
@@ -8,27 +8,30 @@
    MOBILE NAVIGATION
 ===================================================== */
 
-const mobileMenu =
-    document.getElementById("mobileMenu");
+document.addEventListener("DOMContentLoaded", function () {
 
-const navLinks =
-    document.getElementById("navLinks");
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+    const navbar =
+        document.getElementById("navbar");
 
 
-if (mobileMenu && navLinks) {
+    /* Mobile menu */
 
-    mobileMenu.addEventListener(
-        "click",
-        function () {
+    if (mobileMenu && navLinks) {
+
+        mobileMenu.addEventListener("click", function () {
 
             navLinks.classList.toggle("open");
 
             const icon =
                 mobileMenu.querySelector("i");
 
-            if (
-                navLinks.classList.contains("open")
-            ) {
+            if (navLinks.classList.contains("open")) {
 
                 icon.classList.remove("fa-bars");
 
@@ -42,17 +45,16 @@ if (mobileMenu && navLinks) {
 
             }
 
-        }
-    );
+        });
 
 
-    document
-        .querySelectorAll(".nav-links a")
-        .forEach(function (link) {
+        /* Close mobile menu */
 
-            link.addEventListener(
-                "click",
-                function () {
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
 
                     navLinks.classList.remove("open");
 
@@ -63,42 +65,46 @@ if (mobileMenu && navLinks) {
 
                     icon.classList.add("fa-bars");
 
-                }
-            );
+                });
 
-        });
+            });
 
-}
-
-
-/* =====================================================
-   STICKY NAVIGATION
-===================================================== */
-
-const navbar =
-    document.getElementById("navbar");
+    }
 
 
-if (navbar) {
+    /* =================================================
+       STICKY NAVBAR
+    ================================================= */
 
-    window.addEventListener(
-        "scroll",
-        function () {
+    window.addEventListener("scroll", function () {
 
-            if (window.scrollY > 50) {
+        if (!navbar) return;
 
-                navbar.classList.add("scrolled");
+        if (window.scrollY > 50) {
 
-            } else {
+            navbar.classList.add("scrolled");
 
-                navbar.classList.remove("scrolled");
+        } else {
 
-            }
+            navbar.classList.remove("scrolled");
 
         }
-    );
 
-}
+    });
+
+
+    /* =================================================
+       START CHARTS
+    ================================================= */
+
+    renewableFossilChart();
+
+    energyConsumptionChart();
+
+    electricityChart();
+
+});
+
 
 
 /* =====================================================
@@ -109,8 +115,9 @@ const OWID =
     "https://ourworldindata.org/grapher/";
 
 
+
 /* =====================================================
-   CSV LOADER
+   DOWNLOAD CSV
 ===================================================== */
 
 async function getOWIDData(slug) {
@@ -126,7 +133,8 @@ async function getOWIDData(slug) {
         if (!response.ok) {
 
             throw new Error(
-                "Could not load OWID dataset."
+                "OWID request failed: " +
+                response.status
             );
 
         }
@@ -154,76 +162,70 @@ async function getOWIDData(slug) {
 }
 
 
+
 /* =====================================================
    CSV PARSER
+   Handles quoted CSV values better than split(",")
 ===================================================== */
 
 function parseCSV(text) {
 
     const rows = [];
 
-    let currentRow = [];
+    let row = [];
 
-    let currentValue = "";
+    let value = "";
 
     let insideQuotes = false;
 
 
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
+    for (let i = 0; i < text.length; i++) {
 
-        const char =
-            text[i];
+        const char = text[i];
 
-        const next =
-            text[i + 1];
+        const next = text[i + 1];
 
 
-        if (
-            char === '"' &&
-            insideQuotes &&
-            next === '"'
-        ) {
+        if (char === '"' && insideQuotes && next === '"') {
 
-            currentValue += '"';
+            value += '"';
 
             i++;
 
         }
 
-
-        else if (
-            char === '"'
-        ) {
+        else if (char === '"') {
 
             insideQuotes =
                 !insideQuotes;
 
         }
 
+        else if (char === "," && !insideQuotes) {
 
-        else if (
-            char === "," &&
-            !insideQuotes
-        ) {
+            row.push(value);
 
-            currentRow.push(
-                currentValue
-            );
-
-            currentValue = "";
+            value = "";
 
         }
 
-
         else if (
-            (char === "\n" ||
-             char === "\r") &&
+            (char === "\n" || char === "\r") &&
             !insideQuotes
         ) {
+
+            if (value !== "" || row.length > 0) {
+
+                row.push(value);
+
+                rows.push(row);
+
+            }
+
+            value = "";
+
+            row = [];
+
 
             if (
                 char === "\r" &&
@@ -234,43 +236,22 @@ function parseCSV(text) {
 
             }
 
-
-            currentRow.push(
-                currentValue
-            );
-
-            rows.push(
-                currentRow
-            );
-
-            currentRow = [];
-
-            currentValue = "";
-
         }
-
 
         else {
 
-            currentValue += char;
+            value += char;
 
         }
 
     }
 
 
-    if (
-        currentValue.length > 0 ||
-        currentRow.length > 0
-    ) {
+    if (value !== "" || row.length > 0) {
 
-        currentRow.push(
-            currentValue
-        );
+        row.push(value);
 
-        rows.push(
-            currentRow
-        );
+        rows.push(row);
 
     }
 
@@ -283,7 +264,11 @@ function parseCSV(text) {
 
 
     const headers =
-        rows[0];
+        rows[0].map(function (header) {
+
+            return header.trim();
+
+        });
 
 
     return rows
@@ -292,19 +277,14 @@ function parseCSV(text) {
 
             const object = {};
 
+            headers.forEach(function (header, index) {
 
-            headers.forEach(
-                function (
-                    header,
-                    index
-                ) {
+                object[header] =
+                    values[index] !== undefined
+                        ? values[index].trim()
+                        : "";
 
-                    object[header] =
-                        values[index] ?? "";
-
-                }
-            );
-
+            });
 
             return object;
 
@@ -313,21 +293,51 @@ function parseCSV(text) {
 }
 
 
+
 /* =====================================================
-   GET WORLD
+   WORLD DATA
 ===================================================== */
 
-function getWorldData(data) {
+function worldData(data) {
 
-    return data.filter(
-        function (row) {
+    return data.filter(function (row) {
 
-            return row.Entity === "World";
+        return row.Entity === "World";
 
-        }
-    );
+    });
 
 }
+
+
+
+/* =====================================================
+   FIND COLUMN
+===================================================== */
+
+function findColumn(row, searchTerms) {
+
+    const keys =
+        Object.keys(row);
+
+
+    return keys.find(function (key) {
+
+        const lower =
+            key.toLowerCase();
+
+
+        return searchTerms.some(function (term) {
+
+            return lower.includes(
+                term.toLowerCase()
+            );
+
+        });
+
+    });
+
+}
+
 
 
 /* =====================================================
@@ -341,9 +351,10 @@ Chart.defaults.animation.duration =
     1200;
 
 
+
 /* =====================================================
    CHART 1
-   RENEWABLE VS FOSSIL
+   RENEWABLE VS FOSSIL ENERGY
 ===================================================== */
 
 async function renewableFossilChart() {
@@ -354,15 +365,11 @@ async function renewableFossilChart() {
         );
 
 
-    if (!canvas) {
-
-        return;
-
-    }
+    if (!canvas) return;
 
 
     const data =
-        getWorldData(
+        worldData(
             await getOWIDData(
                 "primary-energy-from-fossil-nuclear-renewables"
             )
@@ -380,31 +387,27 @@ async function renewableFossilChart() {
     }
 
 
-    const columns =
-        Object.keys(data[0]);
-
-
     console.log(
-        "Chart 1 columns:",
-        columns
+        "Renewable/Fossil columns:",
+        Object.keys(data[0])
     );
 
 
     const renewableColumn =
-        columns.find(
-            column =>
-                column
-                    .toLowerCase()
-                    .includes("renewable")
+        findColumn(
+            data[0],
+            [
+                "renewables"
+            ]
         );
 
 
     const fossilColumn =
-        columns.find(
-            column =>
-                column
-                    .toLowerCase()
-                    .includes("fossil")
+        findColumn(
+            data[0],
+            [
+                "fossil"
+            ]
         );
 
 
@@ -414,7 +417,7 @@ async function renewableFossilChart() {
     ) {
 
         console.error(
-            "Chart 1 columns missing."
+            "Renewable/Fossil columns not found."
         );
 
         return;
@@ -424,208 +427,190 @@ async function renewableFossilChart() {
 
     const filtered =
         data
-            .filter(
-                row =>
-                    Number(row.Year) >= 1985
-            )
-            .filter(
-                row =>
+            .filter(function (row) {
+
+                return (
+                    Number(row.Year) >= 1965 &&
                     Number.isFinite(
-                        Number(
-                            row[renewableColumn]
-                        )
+                        Number(row[renewableColumn])
                     ) &&
                     Number.isFinite(
-                        Number(
-                            row[fossilColumn]
-                        )
+                        Number(row[fossilColumn])
                     )
-            )
-            .slice(-40);
+                );
+
+            })
+            .sort(function (a, b) {
+
+                return (
+                    Number(a.Year) -
+                    Number(b.Year)
+                );
+
+            });
 
 
-    new Chart(
-        canvas,
-        {
-
-            type: "line",
-
-            data: {
-
-                labels:
-                    filtered.map(
-                        row => row.Year
-                    ),
-
-                datasets: [
-
-                    {
-
-                        label:
-                            "Renewable Energy",
-
-                        data:
-                            filtered.map(
-                                row =>
-                                    Number(
-                                        row[
-                                            renewableColumn
-                                        ]
-                                    )
-                            ),
-
-                        borderColor:
-                            "#55e3a2",
-
-                        backgroundColor:
-                            "rgba(85,227,162,.12)",
-
-                        fill:
-                            true,
-
-                        tension:
-                            .35,
-
-                        borderWidth:
-                            3,
-
-                        pointRadius:
-                            0
-
-                    },
+    if (!filtered.length) return;
 
 
-                    {
+    new Chart(canvas, {
 
-                        label:
-                            "Fossil Fuels",
+        type: "line",
 
-                        data:
-                            filtered.map(
-                                row =>
-                                    Number(
-                                        row[
-                                            fossilColumn
-                                        ]
-                                    )
-                            ),
+        data: {
 
-                        borderColor:
-                            "#e0a15b",
+            labels:
+                filtered.map(
+                    row => row.Year
+                ),
 
-                        backgroundColor:
-                            "rgba(224,161,91,.08)",
+            datasets: [
 
-                        fill:
-                            true,
+                {
 
-                        tension:
-                            .35,
+                    label:
+                        "Renewable Energy",
 
-                        borderWidth:
-                            3,
+                    data:
+                        filtered.map(
+                            row =>
+                                Number(
+                                    row[renewableColumn]
+                                )
+                        ),
 
-                        pointRadius:
-                            0
+                    borderColor:
+                        "#48d597",
 
-                    }
+                    backgroundColor:
+                        "rgba(72,213,151,.12)",
 
-                ]
+                    fill: true,
+
+                    tension: .35,
+
+                    borderWidth: 3,
+
+                    pointRadius: 0,
+
+                    pointHoverRadius: 5
+
+                },
+
+
+                {
+
+                    label:
+                        "Fossil Fuels",
+
+                    data:
+                        filtered.map(
+                            row =>
+                                Number(
+                                    row[fossilColumn]
+                                )
+                        ),
+
+                    borderColor:
+                        "#e2a45c",
+
+                    backgroundColor:
+                        "rgba(226,164,92,.08)",
+
+                    fill: true,
+
+                    tension: .35,
+
+                    borderWidth: 3,
+
+                    pointRadius: 0,
+
+                    pointHoverRadius: 5
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            interaction: {
+
+                mode: "index",
+
+                intersect: false
 
             },
 
+            plugins: {
 
-            options: {
+                legend: {
 
-                responsive:
-                    true,
+                    labels: {
 
-                maintainAspectRatio:
-                    false,
+                        color: "#ffffff",
 
-                interaction: {
+                        usePointStyle: true,
 
-                    mode:
-                        "index",
-
-                    intersect:
-                        false
-
-                },
-
-
-                plugins: {
-
-                    legend: {
-
-                        labels: {
-
-                            color:
-                                "#ffffff",
-
-                            usePointStyle:
-                                true
-
-                        }
-
-                    },
-
-
-                    tooltip: {
-
-                        backgroundColor:
-                            "#031b12",
-
-                        padding:
-                            13,
-
-                        cornerRadius:
-                            10
+                        padding: 20
 
                     }
 
                 },
 
+                tooltip: {
 
-                scales: {
+                    backgroundColor:
+                        "rgba(3,20,14,.95)",
 
-                    x: {
+                    padding: 14,
 
-                        ticks: {
+                    cornerRadius: 10
 
-                            color:
-                                "rgba(255,255,255,.6)",
+                }
 
-                            maxTicksLimit:
-                                8
+            },
 
-                        },
+            scales: {
 
-                        grid: {
+                x: {
 
-                            color:
-                                "rgba(255,255,255,.07)"
+                    ticks: {
 
-                        }
+                        color:
+                            "rgba(255,255,255,.6)",
+
+                        maxTicksLimit: 8
 
                     },
 
+                    grid: {
 
-                    y: {
+                        color:
+                            "rgba(255,255,255,.07)"
 
-                        ticks: {
+                    }
 
-                            color:
-                                "rgba(255,255,255,.6)"
+                },
 
-                        },
+                y: {
 
-                        grid: {
+                    ticks: {
 
-                            color:
-                                "rgba(255,255,255,.07)"
+                        color:
+                            "rgba(255,255,255,.6)"
 
-                        }
+                    },
+
+                    grid: {
+
+                        color:
+                            "rgba(255,255,255,.07)"
 
                     }
 
@@ -634,19 +619,18 @@ async function renewableFossilChart() {
             }
 
         }
-    );
+
+    });
 
 }
+
 
 
 /* =====================================================
    CHART 2
    GLOBAL ENERGY CONSUMPTION
 
-   Uses OWID:
-   global-primary-energy-by-source
-
-   Total is calculated from actual source data.
+   Uses OWID total primary energy dataset.
 ===================================================== */
 
 async function energyConsumptionChart() {
@@ -657,25 +641,47 @@ async function energyConsumptionChart() {
         );
 
 
-    if (!canvas) {
+    if (!canvas) return;
 
-        return;
 
-    }
-
+    /*
+     * OWID dataset specifically for
+     * global primary energy consumption.
+     */
 
     const data =
-        getWorldData(
+        worldData(
             await getOWIDData(
-                "global-primary-energy-by-source"
+                "global-energy-substitution"
             )
         );
 
 
-    if (!data.length) {
+    /*
+     * If the first dataset does not contain
+     * the expected total value, use the
+     * primary-energy-consumption dataset.
+     */
+
+    let world = data;
+
+
+    if (!world.length) {
+
+        world =
+            worldData(
+                await getOWIDData(
+                    "primary-energy-consumption"
+                )
+            );
+
+    }
+
+
+    if (!world.length) {
 
         console.error(
-            "Global energy data unavailable."
+            "Global energy consumption data unavailable."
         );
 
         return;
@@ -683,58 +689,67 @@ async function energyConsumptionChart() {
     }
 
 
-    const columns =
-        Object.keys(data[0]);
-
-
     console.log(
-        "Chart 2 columns:",
-        columns
+        "Energy consumption columns:",
+        Object.keys(world[0])
     );
 
 
     /*
-       Only use actual energy-source columns.
-    */
+     * Find total energy column.
+     */
 
-    const sourceColumns =
-        columns.filter(
-            function (column) {
+    const column =
+        findColumn(
+            world[0],
+            [
+                "primary energy consumption",
+                "energy consumption",
+                "primary energy",
+                "total energy"
+            ]
+        );
 
-                const name =
-                    column.toLowerCase();
 
+    if (!column) {
+
+        console.error(
+            "Total energy consumption column not found."
+        );
+
+        return;
+
+    }
+
+
+    const filtered =
+        world
+            .filter(function (row) {
 
                 return (
-
-                    name.includes("coal") ||
-
-                    name.includes("oil") ||
-
-                    name.includes("gas") ||
-
-                    name.includes("nuclear") ||
-
-                    name.includes("hydro") ||
-
-                    name.includes("wind") ||
-
-                    name.includes("solar") ||
-
-                    name.includes("biofuel") ||
-
-                    name.includes("biomass")
-
+                    Number.isFinite(
+                        Number(row.Year)
+                    ) &&
+                    Number.isFinite(
+                        Number(row[column])
+                    )
                 );
 
-            }
-        );
+            })
+            .sort(function (a, b) {
+
+                return (
+                    Number(a.Year) -
+                    Number(b.Year)
+                );
+
+            });
 
 
-    if (!sourceColumns.length) {
+    if (!filtered.length) {
 
         console.error(
-            "No energy source columns found."
+            "No valid energy consumption rows."
         );
 
         return;
@@ -742,293 +757,166 @@ async function energyConsumptionChart() {
     }
 
 
-    const calculated =
-        data
-            .filter(
-                row =>
-                    Number(row.Year) >= 1985
-            )
-            .map(
-                function (row) {
-
-                    let total = 0;
+    console.log(
+        "Global energy consumption:",
+        filtered
+    );
 
 
-                    sourceColumns.forEach(
-                        function (column) {
+    new Chart(canvas, {
 
-                            const value =
+        type: "line",
+
+        data: {
+
+            labels:
+                filtered.map(
+                    row => row.Year
+                ),
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Global Energy Consumption",
+
+                    data:
+                        filtered.map(
+                            row =>
                                 Number(
                                     row[column]
-                                );
-
-
-                            if (
-                                Number.isFinite(
-                                    value
                                 )
-                            ) {
-
-                                total += value;
-
-                            }
-
-                        }
-                    );
-
-
-                    return {
-
-                        year:
-                            Number(row.Year),
-
-                        total:
-                            total
-
-                    };
-
-                }
-            )
-            .filter(
-                row =>
-                    row.total > 0
-            )
-            .slice(-40);
-
-
-    if (!calculated.length) {
-
-        console.error(
-            "Global consumption values unavailable."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        window.globalEnergyChart
-    ) {
-
-        window.globalEnergyChart.destroy();
-
-    }
-
-
-    window.globalEnergyChart =
-        new Chart(
-            canvas,
-            {
-
-                type:
-                    "line",
-
-                data: {
-
-                    labels:
-                        calculated.map(
-                            row =>
-                                row.year
                         ),
 
-                    datasets: [
+                    borderColor:
+                        "#12a36d",
 
-                        {
+                    backgroundColor:
+                        "rgba(18,163,109,.12)",
 
-                            label:
-                                "Global Energy Consumption",
+                    fill: true,
 
-                            data:
-                                calculated.map(
-                                    row =>
-                                        row.total
-                                ),
+                    tension: .35,
 
-                            borderColor:
-                                "#149b68",
+                    borderWidth: 3,
 
-                            backgroundColor:
-                                "rgba(20,155,104,.14)",
+                    pointRadius: 0,
 
-                            fill:
-                                true,
+                    pointHoverRadius: 5
 
-                            tension:
-                                .35,
+                }
 
-                            borderWidth:
-                                3,
+            ]
 
-                            pointRadius:
-                                0,
+        },
 
-                            pointHoverRadius:
-                                6
+        options: {
 
-                        }
+            responsive: true,
 
-                    ]
+            maintainAspectRatio: false,
+
+            interaction: {
+
+                mode: "index",
+
+                intersect: false
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    display: false
 
                 },
 
+                tooltip: {
 
-                options: {
+                    backgroundColor:
+                        "#062c20",
 
-                    responsive:
-                        true,
+                    padding: 12,
 
-                    maintainAspectRatio:
-                        false,
+                    callbacks: {
 
-                    interaction: {
+                        label:
+                            function (context) {
 
-                        mode:
-                            "index",
+                                return (
+                                    "Energy: " +
+                                    Number(
+                                        context.parsed.y
+                                    ).toLocaleString(
+                                        undefined,
+                                        {
+                                            maximumFractionDigits: 2
+                                        }
+                                    )
+                                );
 
-                        intersect:
-                            false
+                            }
+
+                    }
+
+                }
+
+            },
+
+            scales: {
+
+                x: {
+
+                    ticks: {
+
+                        color: "#7b8b84",
+
+                        maxTicksLimit: 8
 
                     },
 
+                    grid: {
 
-                    plugins: {
+                        display: false
 
-                        legend: {
+                    }
 
-                            display:
-                                false
+                },
 
-                        },
+                y: {
 
+                    beginAtZero: true,
 
-                        tooltip: {
+                    ticks: {
 
-                            backgroundColor:
-                                "#062c20",
-
-                            padding:
-                                14,
-
-                            cornerRadius:
-                                10,
-
-                            displayColors:
-                                false,
-
-                            callbacks: {
-
-                                label:
-                                    function (
-                                        context
-                                    ) {
-
-                                        return (
-
-                                            "Energy: " +
-
-                                            Number(
-                                                context
-                                                    .parsed
-                                                    .y
-                                            ).toLocaleString(
-                                                undefined,
-                                                {
-                                                    maximumFractionDigits:
-                                                        1
-                                                }
-                                            )
-
-                                        );
-
-                                    }
-
-                            }
-
-                        }
+                        color: "#7b8b84"
 
                     },
 
+                    grid: {
 
-                    scales: {
-
-                        x: {
-
-                            ticks: {
-
-                                color:
-                                    "#7b8b84",
-
-                                maxTicksLimit:
-                                    8
-
-                            },
-
-                            grid: {
-
-                                display:
-                                    false
-
-                            }
-
-                        },
-
-
-                        y: {
-
-                            beginAtZero:
-                                true,
-
-                            ticks: {
-
-                                color:
-                                    "#7b8b84",
-
-                                callback:
-                                    function (
-                                        value
-                                    ) {
-
-                                        return Number(
-                                            value
-                                        ).toLocaleString();
-
-                                    }
-
-                            },
-
-                            grid: {
-
-                                color:
-                                    "rgba(0,0,0,.06)"
-
-                            }
-
-                        }
+                        color:
+                            "rgba(0,0,0,.06)"
 
                     }
 
                 }
 
             }
-        );
 
+        }
 
-    console.log(
-        "Global Energy Consumption loaded."
-    );
+    });
 
 }
+
 
 
 /* =====================================================
    CHART 3
    ELECTRICITY GENERATION
-
-   Official OWID dataset:
-   elec-fossil-nuclear-renewables
-
-   Unit: TWh
 ===================================================== */
 
 async function electricityChart() {
@@ -1039,22 +927,17 @@ async function electricityChart() {
         );
 
 
-    if (!canvas) {
+    if (!canvas) return;
 
-        console.error(
-            "electricityChart canvas missing."
-        );
 
-        return;
-
-    }
-
+    /*
+     * Official OWID electricity generation
+     * dataset.
+     */
 
     const data =
-        getWorldData(
-            await getOWIDData(
-                "elec-fossil-nuclear-renewables"
-            )
+        await getOWIDData(
+            "elec-fossil-nuclear-renewables"
         );
 
 
@@ -1069,70 +952,72 @@ async function electricityChart() {
     }
 
 
-    const columns =
-        Object.keys(data[0]);
+    /*
+     * World only.
+     */
 
+    const world =
+        worldData(data);
+
+
+    if (!world.length) {
+
+        console.error(
+            "World electricity data unavailable."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Display the actual column names
+     * in browser console.
+     */
 
     console.log(
-        "Chart 3 columns:",
-        columns
+        "Electricity columns:",
+        Object.keys(world[0])
     );
 
 
     /*
-       Automatically identify the actual
-       electricity generation columns.
-    */
+     * Find columns.
+     */
+
+    const columns =
+        Object.keys(world[0]);
+
 
     const fossilColumn =
-        columns.find(
-            column => {
+        columns.find(function (column) {
 
-                const name =
-                    column.toLowerCase();
+            return column
+                .toLowerCase()
+                .includes("fossil");
 
-                return (
-                    name.includes(
-                        "electricity from fossil"
-                    )
-                );
-
-            }
-        );
+        });
 
 
     const nuclearColumn =
-        columns.find(
-            column => {
+        columns.find(function (column) {
 
-                const name =
-                    column.toLowerCase();
+            return column
+                .toLowerCase()
+                .includes("nuclear");
 
-                return (
-                    name.includes(
-                        "electricity from nuclear"
-                    )
-                );
-
-            }
-        );
+        });
 
 
     const renewableColumn =
-        columns.find(
-            column => {
+        columns.find(function (column) {
 
-                const name =
-                    column.toLowerCase();
+            return column
+                .toLowerCase()
+                .includes("renewable");
 
-                return (
-                    name.includes(
-                        "electricity from renewables"
-                    )
-                );
-
-            }
-        );
+        });
 
 
     console.log(
@@ -1146,10 +1031,14 @@ async function electricityChart() {
     );
 
     console.log(
-        "Renewables:",
+        "Renewable:",
         renewableColumn
     );
 
+
+    /*
+     * Make sure all 3 columns exist.
+     */
 
     if (
         !fossilColumn ||
@@ -1158,402 +1047,322 @@ async function electricityChart() {
     ) {
 
         console.error(
-            "Required electricity columns not found."
+            "Could not find electricity columns."
         );
 
         return;
-
-    }
-
-
-    const filtered =
-        data
-            .filter(
-                row =>
-                    Number(row.Year) >= 1985
-            )
-            .filter(
-                row =>
-                    Number.isFinite(
-                        Number(
-                            row[fossilColumn]
-                        )
-                    ) &&
-                    Number.isFinite(
-                        Number(
-                            row[nuclearColumn]
-                        )
-                    ) &&
-                    Number.isFinite(
-                        Number(
-                            row[renewableColumn]
-                        )
-                    )
-            )
-            .slice(-40);
-
-
-    if (!filtered.length) {
-
-        console.error(
-            "No electricity generation values."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        window.electricityChartInstance
-    ) {
-
-        window.electricityChartInstance.destroy();
 
     }
 
 
     /*
-       Regular line chart rather than stacked chart.
+     * Clean and sort data.
+     */
 
-       This makes each source's actual TWh
-       value easier to read.
-    */
+    const filtered =
+        world
+            .filter(function (row) {
 
-    window.electricityChartInstance =
-        new Chart(
-            canvas,
-            {
+                const year =
+                    Number(row.Year);
 
-                type:
-                    "line",
+                const fossil =
+                    Number(
+                        row[fossilColumn]
+                    );
 
-                data: {
+                const nuclear =
+                    Number(
+                        row[nuclearColumn]
+                    );
 
-                    labels:
+                const renewable =
+                    Number(
+                        row[renewableColumn]
+                    );
+
+
+                return (
+                    year >= 1965 &&
+
+                    Number.isFinite(fossil) &&
+
+                    Number.isFinite(nuclear) &&
+
+                    Number.isFinite(renewable)
+                );
+
+            })
+            .sort(function (a, b) {
+
+                return (
+                    Number(a.Year) -
+                    Number(b.Year)
+                );
+
+            });
+
+
+    if (!filtered.length) {
+
+        console.error(
+            "Electricity chart has no valid data."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Final electricity data:",
+        filtered
+    );
+
+
+    /*
+     * Create chart.
+     */
+
+    new Chart(canvas, {
+
+        type: "line",
+
+        data: {
+
+            labels:
+                filtered.map(
+                    row => row.Year
+                ),
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Renewable Energy",
+
+                    data:
                         filtered.map(
                             row =>
-                                row.Year
+                                Number(
+                                    row[
+                                        renewableColumn
+                                    ]
+                                )
                         ),
 
-                    datasets: [
+                    borderColor:
+                        "#12a36d",
 
-                        {
+                    borderWidth: 3,
 
-                            label:
-                                "Renewables",
+                    tension: .35,
 
-                            data:
-                                filtered.map(
-                                    row =>
-                                        Number(
-                                            row[
-                                                renewableColumn
-                                            ]
-                                        )
-                                ),
+                    pointRadius: 0,
 
-                            borderColor:
-                                "#149b68",
-
-                            backgroundColor:
-                                "rgba(20,155,104,.10)",
-
-                            borderWidth:
-                                3,
-
-                            tension:
-                                .3,
-
-                            pointRadius:
-                                0,
-
-                            pointHoverRadius:
-                                6
-
-                        },
-
-
-                        {
-
-                            label:
-                                "Fossil Fuels",
-
-                            data:
-                                filtered.map(
-                                    row =>
-                                        Number(
-                                            row[
-                                                fossilColumn
-                                            ]
-                                        )
-                                ),
-
-                            borderColor:
-                                "#d89449",
-
-                            backgroundColor:
-                                "rgba(216,148,73,.08)",
-
-                            borderWidth:
-                                3,
-
-                            tension:
-                                .3,
-
-                            pointRadius:
-                                0,
-
-                            pointHoverRadius:
-                                6
-
-                        },
-
-
-                        {
-
-                            label:
-                                "Nuclear",
-
-                            data:
-                                filtered.map(
-                                    row =>
-                                        Number(
-                                            row[
-                                                nuclearColumn
-                                            ]
-                                        )
-                                ),
-
-                            borderColor:
-                                "#4da9dc",
-
-                            backgroundColor:
-                                "rgba(77,169,220,.08)",
-
-                            borderWidth:
-                                3,
-
-                            tension:
-                                .3,
-
-                            pointRadius:
-                                0,
-
-                            pointHoverRadius:
-                                6
-
-                        }
-
-                    ]
+                    pointHoverRadius: 5
 
                 },
 
 
-                options: {
+                {
 
-                    responsive:
-                        true,
+                    label:
+                        "Fossil Fuels",
 
-                    maintainAspectRatio:
-                        false,
+                    data:
+                        filtered.map(
+                            row =>
+                                Number(
+                                    row[
+                                        fossilColumn
+                                    ]
+                                )
+                        ),
 
-                    interaction: {
+                    borderColor:
+                        "#d9984f",
 
-                        mode:
-                            "index",
+                    borderWidth: 3,
 
-                        intersect:
-                            false
+                    tension: .35,
+
+                    pointRadius: 0,
+
+                    pointHoverRadius: 5
+
+                },
+
+
+                {
+
+                    label:
+                        "Nuclear Energy",
+
+                    data:
+                        filtered.map(
+                            row =>
+                                Number(
+                                    row[
+                                        nuclearColumn
+                                    ]
+                                )
+                        ),
+
+                    borderColor:
+                        "#65b9e8",
+
+                    borderWidth: 3,
+
+                    tension: .35,
+
+                    pointRadius: 0,
+
+                    pointHoverRadius: 5
+
+                }
+
+            ]
+
+        },
+
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            interaction: {
+
+                mode: "index",
+
+                intersect: false
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    display: true,
+
+                    labels: {
+
+                        usePointStyle: true,
+
+                        color: "#50635a",
+
+                        padding: 18
+
+                    }
+
+                },
+
+
+                tooltip: {
+
+                    backgroundColor:
+                        "rgba(3,35,24,.95)",
+
+                    padding: 13,
+
+                    cornerRadius: 10,
+
+                    callbacks: {
+
+                        label:
+                            function (context) {
+
+                                return (
+                                    context.dataset.label +
+                                    ": " +
+                                    Number(
+                                        context.parsed.y
+                                    ).toLocaleString(
+                                        undefined,
+                                        {
+                                            maximumFractionDigits: 1
+                                        }
+                                    ) +
+                                    " TWh"
+                                );
+
+                            }
+
+                    }
+
+                }
+
+            },
+
+
+            scales: {
+
+                x: {
+
+                    title: {
+
+                        display: true,
+
+                        text: "Year",
+
+                        color: "#718078"
 
                     },
 
+                    ticks: {
 
-                    animation: {
+                        color: "#7b8b84",
 
-                        duration:
-                            1300
-
-                    },
-
-
-                    plugins: {
-
-                        legend: {
-
-                            labels: {
-
-                                color:
-                                    "#50635a",
-
-                                usePointStyle:
-                                    true,
-
-                                padding:
-                                    18
-
-                            }
-
-                        },
-
-
-                        tooltip: {
-
-                            backgroundColor:
-                                "#062c20",
-
-                            titleColor:
-                                "#ffffff",
-
-                            bodyColor:
-                                "#ffffff",
-
-                            padding:
-                                13,
-
-                            cornerRadius:
-                                10,
-
-                            callbacks: {
-
-                                label:
-                                    function (
-                                        context
-                                    ) {
-
-                                        return (
-
-                                            context
-                                                .dataset
-                                                .label +
-
-                                            ": " +
-
-                                            Number(
-                                                context
-                                                    .parsed
-                                                    .y
-                                            ).toLocaleString(
-                                                undefined,
-                                                {
-                                                    maximumFractionDigits:
-                                                        1
-                                                }
-                                            ) +
-
-                                            " TWh"
-
-                                        );
-
-                                    }
-
-                            }
-
-                        }
+                        maxTicksLimit: 8
 
                     },
 
+                    grid: {
 
-                    scales: {
+                        display: false
 
-                        x: {
+                    }
 
-                            ticks: {
-
-                                color:
-                                    "#7b8b84",
-
-                                maxTicksLimit:
-                                    8
-
-                            },
-
-                            grid: {
-
-                                display:
-                                    false
-
-                            }
-
-                        },
+                },
 
 
-                        y: {
+                y: {
 
-                            beginAtZero:
-                                true,
+                    beginAtZero: true,
 
-                            ticks: {
+                    title: {
 
-                                color:
-                                    "#7b8b84",
+                        display: true,
 
-                                callback:
-                                    function (
-                                        value
-                                    ) {
+                        text:
+                            "Electricity Generation (TWh)",
 
-                                        return (
-                                            Number(
-                                                value
-                                            ).toLocaleString() +
-                                            " TWh"
-                                        );
+                        color: "#718078"
 
-                                    }
+                    },
 
-                            },
+                    ticks: {
 
-                            grid: {
+                        color: "#7b8b84"
 
-                                color:
-                                    "rgba(0,0,0,.06)"
+                    },
 
-                            },
+                    grid: {
 
-                            title: {
-
-                                display:
-                                    true,
-
-                                text:
-                                    "Electricity Generation (TWh)",
-
-                                color:
-                                    "#7b8b84"
-
-                            }
-
-                        }
+                        color:
+                            "rgba(0,0,0,.06)"
 
                     }
 
                 }
 
             }
-        );
 
+        }
 
-    console.log(
-        "Electricity Generation loaded."
-    );
+    });
 
 }
-
-
-/* =====================================================
-   START WEBSITE
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        renewableFossilChart();
-
-        energyConsumptionChart();
-
-        electricityChart();
-
-    }
-);
