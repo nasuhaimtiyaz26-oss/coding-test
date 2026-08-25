@@ -1,6 +1,11 @@
 /* =====================================================
    SAFE ENERGY
-   CLEAN & STABLE STYLE.CSS
+   PROFESSIONAL ENVIRONMENTAL RESEARCH WEBSITE
+===================================================== */
+
+
+/* =====================================================
+   GLOBAL RESET
 ===================================================== */
 
 * {
@@ -11,6 +16,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -29,50 +35,68 @@ button {
     font-family: inherit;
 }
 
+
 /* =====================================================
    NAVBAR
 ===================================================== */
 
 .navbar {
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100%;
     height: 78px;
+
     z-index: 1000;
 
-    background: rgba(3, 30, 19, 0.45);
-    backdrop-filter: blur(15px);
+    background:
+        rgba(3, 30, 19, 0.45);
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter:
+        blur(15px);
 
-    transition: 0.3s ease;
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+    transition:
+        0.3s ease;
 }
 
 .navbar.scrolled {
-    background: rgba(3, 27, 18, 0.95);
+    background:
+        rgba(3, 27, 18, 0.96);
 }
 
 .nav-container {
     width: 92%;
     max-width: 1200px;
+
     height: 100%;
+
     margin: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 }
 
 .logo {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     color: white;
 
     font-size: 16px;
+
     font-weight: 800;
+
     letter-spacing: 1px;
 }
 
@@ -81,29 +105,38 @@ button {
     height: 38px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
 
     background: #16a36b;
+
     color: white;
 }
 
 .nav-links {
     display: flex;
+
     align-items: center;
-    gap: 30px;
+
+    gap: 25px;
 }
 
 .nav-links a {
-    color: rgba(255, 255, 255, 0.85);
+    color:
+        rgba(255,255,255,0.85);
 
-    font-size: 11px;
+    font-size: 10px;
+
     font-weight: 700;
+
     letter-spacing: 1px;
 
-    transition: 0.25s ease;
+    transition:
+        0.25s ease;
 }
 
 .nav-links a:hover {
@@ -114,13 +147,16 @@ button {
     display: none;
 
     border: none;
+
     background: transparent;
 
     color: white;
+
     font-size: 22px;
 
     cursor: pointer;
 }
+
 
 /* =====================================================
    HERO
@@ -132,37 +168,44 @@ button {
     position: relative;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     text-align: center;
 
-    background-image: url(
+    background-image:
+        url(
         "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2200&q=85"
-    );
+        );
 
     background-size: cover;
+
     background-position: center;
 }
 
 .hero-overlay {
     position: absolute;
+
     inset: 0;
 
     background:
         linear-gradient(
             135deg,
-            rgba(2, 30, 18, 0.88),
-            rgba(3, 57, 35, 0.55),
-            rgba(0, 12, 7, 0.82)
+            rgba(2,30,18,0.88),
+            rgba(3,57,35,0.55),
+            rgba(0,12,7,0.82)
         );
 }
 
 .hero-content {
     position: relative;
+
     z-index: 2;
 
     width: 90%;
+
     max-width: 900px;
 
     color: white;
@@ -170,27 +213,36 @@ button {
 
 .hero-tag {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
 
     padding: 8px 15px;
 
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border:
+        1px solid rgba(255,255,255,0.2);
+
     border-radius: 50px;
 
-    background: rgba(255, 255, 255, 0.08);
+    background:
+        rgba(255,255,255,0.08);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
 
     font-size: 10px;
+
     font-weight: 700;
+
     letter-spacing: 1.5px;
 
     margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-size: clamp(42px, 6vw, 78px);
+    font-size:
+        clamp(42px, 6vw, 78px);
 
     line-height: 1.03;
 
@@ -208,69 +260,90 @@ button {
 .hero p {
     font-size: 19px;
 
-    color: rgba(255, 255, 255, 0.85);
+    color:
+        rgba(255,255,255,0.85);
 
     margin-bottom: 35px;
 }
 
 .hero-button {
     display: inline-flex;
+
     align-items: center;
+
     gap: 10px;
 
     padding: 15px 23px;
 
     background: #16a36b;
+
     color: white;
 
     border-radius: 10px;
 
     font-size: 11px;
+
     font-weight: 800;
+
     letter-spacing: 1px;
 
-    transition: 0.3s ease;
+    transition:
+        0.3s ease;
 }
 
 .hero-button:hover {
     background: #20bd7b;
-    transform: translateY(-3px);
+
+    transform:
+        translateY(-3px);
 }
 
 .scroll-indicator {
     position: absolute;
 
     bottom: 25px;
+
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     z-index: 2;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     gap: 5px;
 
-    color: rgba(255, 255, 255, 0.55);
+    color:
+        rgba(255,255,255,0.55);
 
     font-size: 8px;
+
     letter-spacing: 2px;
 }
 
+
 /* =====================================================
-   GENERAL SECTION
+   GENERAL SECTIONS
 ===================================================== */
 
 .energy-section,
 .why-section,
+.effects-section,
+.save-section,
 .sources-section {
     padding: 100px 0;
 }
 
 .section-container {
     width: 92%;
+
     max-width: 1200px;
+
     margin: auto;
 }
 
@@ -280,9 +353,11 @@ button {
 
 .section-heading.center {
     text-align: center;
-    max-width: 700px;
+
+    max-width: 780px;
 
     margin-left: auto;
+
     margin-right: auto;
 }
 
@@ -290,6 +365,7 @@ button {
     color: #159765;
 
     font-size: 10px;
+
     font-weight: 800;
 
     letter-spacing: 2px;
@@ -298,7 +374,8 @@ button {
 .section-heading h2 {
     margin-top: 8px;
 
-    font-size: clamp(32px, 4vw, 50px);
+    font-size:
+        clamp(32px,4vw,50px);
 
     line-height: 1.1;
 
@@ -317,7 +394,10 @@ button {
     color: #6b7b73;
 
     font-size: 14px;
+
+    line-height: 1.8;
 }
+
 
 /* =====================================================
    DASHBOARD
@@ -332,15 +412,19 @@ button {
 
     padding: 28px;
 
-    border: 1px solid #e1ebe5;
+    border:
+        1px solid #e1ebe5;
 
     box-shadow:
-        0 25px 70px rgba(20, 65, 44, 0.1);
+        0 25px 70px
+        rgba(20,65,44,0.1);
 }
 
 .dashboard-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -352,6 +436,7 @@ button {
     color: #159765;
 
     font-size: 9px;
+
     font-weight: 800;
 
     letter-spacing: 1.8px;
@@ -361,12 +446,15 @@ button {
     margin-top: 4px;
 
     font-size: 22px;
+
     font-weight: 800;
 }
 
 .source-badge {
     display: flex;
+
     align-items: center;
+
     gap: 7px;
 
     padding: 10px 14px;
@@ -378,8 +466,10 @@ button {
     border-radius: 50px;
 
     font-size: 11px;
+
     font-weight: 700;
 }
+
 
 /* =====================================================
    DATA CARDS
@@ -388,7 +478,8 @@ button {
 .data-cards {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap: 14px;
 
@@ -397,6 +488,7 @@ button {
 
 .data-card {
     display: flex;
+
     align-items: center;
 
     gap: 12px;
@@ -405,7 +497,8 @@ button {
 
     background: #f6faf7;
 
-    border: 1px solid #e2ece6;
+    border:
+        1px solid #e2ece6;
 
     border-radius: 15px;
 }
@@ -416,6 +509,7 @@ button {
     color: #84928b;
 
     font-size: 8px;
+
     font-weight: 700;
 
     letter-spacing: 1px;
@@ -436,7 +530,9 @@ button {
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 12px;
@@ -444,23 +540,28 @@ button {
 
 .data-icon.renewable {
     background: #dff7e9;
+
     color: #149662;
 }
 
 .data-icon.fossil {
     background: #f8eadb;
+
     color: #b8732c;
 }
 
 .data-icon.nuclear {
     background: #e0f0f9;
+
     color: #3988b8;
 }
 
 .data-icon.electricity {
     background: #e8e5fb;
+
     color: #6655b9;
 }
+
 
 /* =====================================================
    CHART CARDS
@@ -473,7 +574,8 @@ button {
 
     background: #fbfdfc;
 
-    border: 1px solid #e1ebe5;
+    border:
+        1px solid #e1ebe5;
 
     border-radius: 18px;
 }
@@ -493,7 +595,9 @@ button {
 
 .chart-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     margin-bottom: 15px;
@@ -503,6 +607,7 @@ button {
     color: #159765;
 
     font-size: 9px;
+
     font-weight: 800;
 
     letter-spacing: 1.5px;
@@ -516,7 +621,23 @@ button {
     margin-top: 4px;
 
     font-size: 17px;
+
     font-weight: 800;
+}
+
+.chart-header small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #89968f;
+
+    font-size: 10px;
+}
+
+.chart-dark .chart-header small {
+    color:
+        rgba(255,255,255,0.55);
 }
 
 .chart-header > i {
@@ -529,16 +650,13 @@ button {
     color: #5be4a4;
 }
 
-/* =====================================================
-   RENEWABLE VS FOSSIL DESCRIPTION
-===================================================== */
-
 .chart-description {
     margin-bottom: 20px;
 }
 
 .chart-description p {
-    color: rgba(255, 255, 255, 0.93);
+    color:
+        rgba(255,255,255,0.93);
 
     font-size: 20px;
 
@@ -546,10 +664,6 @@ button {
 
     font-weight: 700;
 }
-
-/* =====================================================
-   CHART SIZE
-===================================================== */
 
 .chart-wrapper {
     position: relative;
@@ -559,8 +673,19 @@ button {
     height: 350px;
 }
 
-.chart-card:not(.chart-dark) .chart-wrapper {
+.chart-card:not(.chart-dark)
+.chart-wrapper {
     height: 330px;
+}
+
+.chart-source-text {
+    margin-top: 15px;
+
+    color: #89968f;
+
+    font-size: 10px;
+
+    text-align: right;
 }
 
 .dashboard-source {
@@ -569,19 +694,25 @@ button {
     padding-top: 25px;
 }
 
-.source-button {
+.source-button,
+.iea-source-button,
+.energystar-button {
     display: inline-flex;
+
     align-items: center;
+
     gap: 10px;
 
     padding: 14px 20px;
 
     background: #159765;
+
     color: white;
 
     border-radius: 10px;
 
     font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -589,10 +720,15 @@ button {
     transition: 0.3s ease;
 }
 
-.source-button:hover {
+.source-button:hover,
+.iea-source-button:hover,
+.energystar-button:hover {
     background: #20b878;
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
+
 
 /* =====================================================
    WHY SAFE ENERGY
@@ -605,7 +741,8 @@ button {
 .benefits-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap: 18px;
 }
@@ -619,7 +756,8 @@ button {
 
     background: white;
 
-    border: 1px solid #dfeae3;
+    border:
+        1px solid #dfeae3;
 
     border-radius: 18px;
 
@@ -627,21 +765,25 @@ button {
 }
 
 .benefit-card:hover {
-    transform: translateY(-7px);
+    transform:
+        translateY(-7px);
 
     box-shadow:
-        0 20px 40px rgba(20, 80, 50, 0.12);
+        0 20px 40px
+        rgba(20,80,50,0.12);
 }
 
 .benefit-number {
     position: absolute;
 
     top: 18px;
+
     right: 20px;
 
     color: #dcebe2;
 
     font-size: 32px;
+
     font-weight: 800;
 }
 
@@ -650,7 +792,9 @@ button {
     height: 55px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     margin-bottom: 25px;
@@ -658,6 +802,7 @@ button {
     border-radius: 15px;
 
     background: #e1f7eb;
+
     color: #149662;
 
     font-size: 21px;
@@ -679,48 +824,652 @@ button {
     line-height: 1.7;
 }
 
+
+/* =====================================================
+   EFFECTS SECTION
+===================================================== */
+
+.effects-section {
+    background:
+        linear-gradient(
+            180deg,
+            #f5f9f6,
+            #eaf3ed
+        );
+}
+
+
+/* IEA RESEARCH PANEL */
+
+.iea-research-panel {
+    margin-bottom: 25px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #05291c,
+            #0b4932
+        );
+
+    border-radius: 22px;
+
+    color: white;
+
+    box-shadow:
+        0 20px 50px
+        rgba(3,45,28,0.14);
+}
+
+.iea-panel-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.iea-panel-header span {
+    color: #65dfa8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.iea-panel-header h3 {
+    margin-top: 5px;
+
+    font-size: 23px;
+}
+
+.iea-badge {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.1);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.iea-panel-content {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap: 12px;
+}
+
+.iea-stat {
+    padding: 20px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+
+    border-radius: 15px;
+}
+
+.iea-stat strong {
+    display: block;
+
+    color: #69e5ac;
+
+    font-size: 24px;
+}
+
+.iea-stat span {
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        rgba(255,255,255,0.62);
+
+    font-size: 11px;
+}
+
+.iea-note {
+    margin-top: 20px;
+
+    max-width: 950px;
+
+    color:
+        rgba(255,255,255,0.72);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.iea-source-button {
+    margin-top: 18px;
+}
+
+
+/* EFFECT GRID */
+
+.effects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 18px;
+}
+
+.effect-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: white;
+
+    border:
+        1px solid #dfeae3;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition:
+        0.3s ease;
+}
+
+.effect-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(80,60,30,0.12);
+}
+
+.effect-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 15px;
+
+    background: #fff1e4;
+
+    color: #c47830;
+
+    font-size: 20px;
+}
+
+.effect-number {
+    position: absolute;
+
+    top: 20px;
+
+    right: 25px;
+
+    color: #edf0ee;
+
+    font-size: 38px;
+
+    font-weight: 800;
+}
+
+.effect-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 19px;
+}
+
+.effect-card p {
+    color: #687970;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+/* EFFECT CONCLUSION */
+
+.effects-message {
+    margin-top: 25px;
+
+    padding: 27px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    background: #062c20;
+
+    border-radius: 19px;
+
+    color: white;
+}
+
+.effects-message-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.1);
+
+    color: #62dfa6;
+}
+
+.effects-message h3 {
+    margin-bottom: 5px;
+
+    font-size: 18px;
+}
+
+.effects-message p {
+    color:
+        rgba(255,255,255,0.7);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   WAYS TO SAVE ENERGY
+===================================================== */
+
+.save-section {
+    background: white;
+}
+
+
+/* ENERGY STAR PANEL */
+
+.energystar-panel {
+    margin-bottom: 30px;
+
+    padding: 32px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7fbf8,
+            #edf7f1
+        );
+
+    border:
+        1px solid #dce9e0;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(20,80,50,0.07);
+}
+
+.energystar-logo {
+    min-width: 130px;
+
+    padding: 20px 15px;
+
+    border-radius: 15px;
+
+    background: #087443;
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.25;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.energystar-content > span {
+    color: #159765;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.energystar-content h3 {
+    margin-top: 5px;
+
+    font-size: 23px;
+
+    color: #10251c;
+}
+
+.energystar-content p {
+    max-width: 850px;
+
+    margin-top: 8px;
+
+    color: #687970;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.energystar-button {
+    margin-top: 18px;
+}
+
+
+/* SAVE CARDS */
+
+.save-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+.save-card {
+    position: relative;
+
+    padding: 30px;
+
+    min-height: 275px;
+
+    background: #fbfdfc;
+
+    border:
+        1px solid #dfeae3;
+
+    border-radius: 20px;
+
+    transition:
+        0.3s ease;
+
+    overflow: hidden;
+}
+
+.save-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(20,80,50,0.1);
+}
+
+.save-number {
+    position: absolute;
+
+    top: 18px;
+
+    right: 22px;
+
+    color: #e4eee8;
+
+    font-size: 36px;
+
+    font-weight: 800;
+}
+
+.save-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 15px;
+
+    background: #e1f7eb;
+
+    color: #149662;
+
+    font-size: 20px;
+}
+
+.save-card h3 {
+    margin-bottom: 12px;
+
+    font-size: 18px;
+}
+
+.save-card p {
+    color: #687970;
+
+    font-size: 13px;
+
+    line-height: 1.75;
+}
+
+
+/* SAVE CONCLUSION */
+
+.save-conclusion {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 18px;
+
+    background:
+        #062c20;
+
+    color: white;
+
+    border-radius: 19px;
+}
+
+.save-conclusion > i {
+    color: #5be4a4;
+
+    font-size: 25px;
+
+    margin-top: 2px;
+}
+
+.save-conclusion h3 {
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+.save-conclusion p {
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
 /* =====================================================
    SOURCES
 ===================================================== */
 
 .sources-section {
-    background: #f5f9f6;
+    background: #f4f8f5;
 }
 
-.source-box {
+.sources-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+.research-source-card {
+    padding: 30px;
+
+    background: white;
+
+    border:
+        1px solid #dfeae3;
+
+    border-radius: 20px;
+
+    transition:
+        0.3s ease;
+}
+
+.research-source-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        0 20px 45px
+        rgba(20,80,50,0.1);
+}
+
+.research-source-icon {
+    width: 55px;
+    height: 55px;
+
     display: flex;
+
     align-items: center;
-    justify-content: space-between;
 
-    gap: 30px;
+    justify-content: center;
 
-    padding: 45px;
+    margin-bottom: 20px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #073622,
-            #0e6040
-        );
+    border-radius: 15px;
 
-    border-radius: 24px;
-
-    color: white;
+    font-size: 20px;
 }
 
-.source-box h2 {
-    margin-top: 6px;
+.owid-icon {
+    background: #e1f7eb;
 
-    font-size: 34px;
+    color: #149662;
 }
 
-.source-box p {
-    margin-top: 8px;
+.iea-icon {
+    background: #e8f0f5;
 
-    color: rgba(255, 255, 255, 0.72);
-
-    font-size: 14px;
+    color: #356c8d;
 }
+
+.star-icon {
+    background: #fff5dc;
+
+    color: #bd8a1e;
+}
+
+.research-source-card > span {
+    color: #159765;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.research-source-card h3 {
+    margin-top: 5px;
+
+    font-size: 19px;
+}
+
+.research-source-card p {
+    margin-top: 10px;
+
+    min-height: 80px;
+
+    color: #687970;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.research-source-card a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+
+    color: #159765;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.research-source-card a:hover {
+    color: #0b6d47;
+}
+
 
 /* =====================================================
    FOOTER
@@ -736,6 +1485,7 @@ footer {
 
 .footer-container {
     width: 92%;
+
     max-width: 1200px;
 
     margin: auto;
@@ -745,6 +1495,7 @@ footer {
 
 .footer-logo {
     font-size: 15px;
+
     font-weight: 800;
 
     letter-spacing: 1px;
@@ -759,7 +1510,8 @@ footer {
 .footer-container > p {
     margin-top: 10px;
 
-    color: rgba(255, 255, 255, 0.6);
+    color:
+        rgba(255,255,255,0.6);
 
     font-size: 13px;
 }
@@ -767,9 +1519,12 @@ footer {
 .footer-source {
     margin-top: 18px;
 
-    color: rgba(255, 255, 255, 0.45);
+    color:
+        rgba(255,255,255,0.45);
 
     font-size: 11px;
+
+    line-height: 2;
 }
 
 .footer-source a {
@@ -780,19 +1535,35 @@ footer {
 
 .footer-bottom {
     margin-top: 25px;
+
     padding-top: 20px;
 
     border-top:
-        1px solid rgba(255, 255, 255, 0.08);
+        1px solid rgba(255,255,255,0.08);
 
-    color: rgba(255, 255, 255, 0.35);
+    color:
+        rgba(255,255,255,0.35);
 
     font-size: 10px;
 }
 
+
 /* =====================================================
    TABLET
 ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+    }
+
+}
+
 
 @media (max-width: 950px) {
 
@@ -800,6 +1571,7 @@ footer {
         position: absolute;
 
         top: 78px;
+
         left: 0;
 
         width: 100%;
@@ -807,23 +1579,28 @@ footer {
         padding: 25px;
 
         display: flex;
+
         flex-direction: column;
 
         gap: 22px;
 
-        background: rgba(3, 27, 18, 0.98);
+        background:
+            rgba(3,27,18,0.98);
 
-        transform: translateY(-150%);
+        transform:
+            translateY(-150%);
 
         opacity: 0;
 
         pointer-events: none;
 
-        transition: 0.3s ease;
+        transition:
+            0.3s ease;
     }
 
     .nav-links.open {
-        transform: translateY(0);
+        transform:
+            translateY(0);
 
         opacity: 1;
 
@@ -835,19 +1612,38 @@ footer {
     }
 
     .data-cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .source-box {
-        flex-direction: column;
+    .iea-panel-content {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
 
+    .save-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .sources-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .energystar-panel {
         align-items: flex-start;
+
+        flex-direction: column;
     }
+
 }
+
 
 /* =====================================================
    MOBILE
@@ -867,6 +1663,15 @@ footer {
         top: 68px;
     }
 
+    .logo {
+        font-size: 13px;
+    }
+
+    .logo-icon {
+        width: 34px;
+        height: 34px;
+    }
+
     .hero h1 {
         font-size: 42px;
 
@@ -879,6 +1684,8 @@ footer {
 
     .energy-section,
     .why-section,
+    .effects-section,
+    .save-section,
     .sources-section {
         padding: 75px 0;
     }
@@ -896,27 +1703,67 @@ footer {
     }
 
     .data-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .benefits-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .chart-card {
         padding: 15px;
     }
 
+    .chart-wrapper,
+    .chart-card:not(.chart-dark)
     .chart-wrapper {
-        height: 280px;
-    }
-
-    .chart-card:not(.chart-dark) .chart-wrapper {
         height: 280px;
     }
 
     .chart-description p {
         font-size: 17px;
+    }
+
+    .effects-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .iea-research-panel {
+        padding: 22px;
+    }
+
+    .iea-panel-header {
+        align-items: flex-start;
+    }
+
+    .iea-panel-header h3 {
+        font-size: 19px;
+    }
+
+    .iea-panel-content {
+        grid-template-columns:
+            1fr;
+    }
+
+    .save-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .energystar-panel {
+        padding: 24px;
+    }
+
+    .energystar-logo {
+        width: 100%;
+    }
+
+    .effects-message,
+    .save-conclusion {
+        padding: 22px;
     }
 
     .source-box {
@@ -926,4 +1773,5 @@ footer {
     .source-box h2 {
         font-size: 27px;
     }
+
 }
