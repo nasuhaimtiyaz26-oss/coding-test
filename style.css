@@ -1,36 +1,29 @@
-/* =====================================================
-   GLOBAL VARIABLES
-===================================================== */
+/* =========================================================
+   IMPORTANCE OF SAFE ENERGY
+   MAIN STYLESHEET
+========================================================= */
+
+/* ---------- ROOT ---------- */
 
 :root {
-
-    --green-dark: #062c20;
-    --green-deep: #031a11;
+    --dark-green: #062c20;
+    --deep-green: #031b12;
     --green: #087f5b;
-    --green-light: #25c281;
-    --green-bright: #67dca8;
+    --bright-green: #38d996;
+    --light-green: #eaf8f1;
 
     --white: #ffffff;
-    --background: #f4f7f5;
-
-    --text: #07130f;
-    --muted: #6b7c74;
-
-    --border: rgba(255,255,255,0.12);
+    --black: #07130f;
+    --gray: #6c7c75;
+    --light-bg: #f4f7f5;
 
     --radius: 24px;
-
-    --shadow:
-        0 25px 70px rgba(0,0,0,0.15);
-
-    --transition:
-        0.35s cubic-bezier(.2,.8,.2,1);
+    --shadow: 0 20px 60px rgba(0, 40, 25, 0.12);
+    --transition: 0.3s ease;
 }
 
 
-/* =====================================================
-   RESET
-===================================================== */
+/* ---------- RESET ---------- */
 
 * {
     margin: 0;
@@ -38,205 +31,147 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
-
 body {
-
-    font-family:
-        "Inter",
-        sans-serif;
-
-    background:
-        var(--background);
-
-    color:
-        var(--text);
-
+    font-family: "Inter", Arial, sans-serif;
+    background: var(--light-bg);
+    color: var(--black);
     overflow-x: hidden;
 }
-
 
 a {
     text-decoration: none;
     color: inherit;
 }
 
-
 button {
     font-family: inherit;
 }
 
 
-/* =====================================================
+/* =========================================================
    NAVIGATION
-===================================================== */
+========================================================= */
 
 .navbar {
-
     position: fixed;
-
     top: 0;
     left: 0;
 
     width: 100%;
+    height: 80px;
 
-    height: 82px;
-
-    padding:
-        0 clamp(20px, 5vw, 80px);
+    padding: 0 6%;
 
     display: flex;
-
+    align-items: center;
     justify-content: space-between;
 
-    align-items: center;
-
-    z-index: 999;
+    z-index: 1000;
 
     color: white;
 
-    transition:
-        background var(--transition),
-        backdrop-filter var(--transition);
+    transition: 0.3s ease;
 }
-
 
 .navbar.scrolled {
+    background: rgba(3, 27, 18, 0.92);
+    backdrop-filter: blur(15px);
 
-    background:
-        rgba(3,25,17,0.86);
-
-    backdrop-filter:
-        blur(20px);
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 
-/* LOGO */
+/* ---------- LOGO ---------- */
 
 .logo {
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
 
     font-size: 15px;
-
     font-weight: 800;
-
-    letter-spacing: .5px;
+    letter-spacing: 1px;
 }
-
 
 .logo > span:last-child > span {
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 }
 
-
 .logo-icon {
+    width: 40px;
+    height: 40px;
 
-    width: 38px;
-    height: 38px;
-
-    display: grid;
-
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 12px;
 
-    background:
-        rgba(255,255,255,0.1);
-
-    border:
-        1px solid rgba(255,255,255,0.2);
-
-    backdrop-filter:
-        blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 
-/* NAV LINKS */
+/* ---------- NAV LINKS ---------- */
 
 .nav-links {
-
     display: flex;
-
     align-items: center;
-
-    gap:
-        clamp(20px,3vw,45px);
+    gap: 35px;
 }
 
-
 .nav-links a {
-
     position: relative;
 
-    font-size: 11px;
+    color: white;
 
+    font-size: 11px;
     font-weight: 700;
 
     letter-spacing: 1px;
 
-    opacity: .75;
+    opacity: 0.75;
 
-    transition:
-        opacity var(--transition);
+    transition: var(--transition);
 }
-
 
 .nav-links a:hover,
 .nav-links a.active {
     opacity: 1;
 }
 
-
 .nav-links a::after {
-
     content: "";
 
     position: absolute;
 
     left: 0;
-
     bottom: -8px;
 
     width: 0;
-
     height: 2px;
 
-    background:
-        var(--green-bright);
+    background: var(--bright-green);
 
-    transition:
-        width var(--transition);
+    transition: var(--transition);
 }
-
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-
     width: 100%;
 }
 
 
-/* MOBILE MENU */
+/* ---------- MOBILE BUTTON ---------- */
 
 .mobile-menu {
-
     display: none;
 
     border: none;
-
     background: transparent;
 
     color: white;
@@ -247,20 +182,17 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================================
    HERO
-===================================================== */
+========================================================= */
 
 .hero {
-
     position: relative;
 
-    min-height: 100svh;
+    min-height: 100vh;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
@@ -269,283 +201,229 @@ button {
 
     overflow: hidden;
 
-    background-image:
-        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
+    background-image: url(
+        "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85"
+    );
 
     background-size: cover;
-
     background-position: center;
 }
 
-
 .hero-overlay {
-
     position: absolute;
-
     inset: 0;
 
     background:
         linear-gradient(
             180deg,
-            rgba(2,20,13,.67),
-            rgba(3,27,18,.88)
+            rgba(2, 20, 13, 0.65),
+            rgba(3, 27, 18, 0.9)
         );
 }
 
-
 .hero-content {
-
     position: relative;
 
     z-index: 2;
 
-    max-width: 1100px;
+    max-width: 1000px;
 
-    padding: 100px 25px 60px;
+    padding: 120px 25px 60px;
 
-    animation:
-        heroReveal 1s ease both;
+    animation: heroAnimation 1s ease;
 }
 
 
-.hero-badge {
+/* ---------- HERO BADGE ---------- */
 
+.hero-badge {
     display: inline-flex;
 
     align-items: center;
-
     gap: 8px;
 
-    padding: 9px 16px;
+    padding: 10px 17px;
+
+    margin-bottom: 25px;
 
     border-radius: 50px;
 
-    background:
-        rgba(255,255,255,.08);
+    background: rgba(255, 255, 255, 0.08);
 
-    border:
-        1px solid rgba(255,255,255,.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
-    backdrop-filter:
-        blur(15px);
+    backdrop-filter: blur(10px);
 
     font-size: 10px;
-
     font-weight: 800;
 
     letter-spacing: 1.5px;
+}
+
+.hero-badge i {
+    color: var(--bright-green);
+}
+
+
+/* ---------- HERO TITLE ---------- */
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 78px);
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -3px;
 
     margin-bottom: 25px;
 }
 
-
-.hero-badge i {
-    color:
-        var(--green-bright);
-}
-
-
-.hero h1 {
-
-    font-size:
-        clamp(42px,6vw,76px);
-
-    line-height: .98;
-
-    letter-spacing: -3px;
-
-    font-weight: 800;
-
-    margin-bottom: 28px;
-}
-
-
 .hero h1 span {
-
-    color: transparent;
-
-    background:
-        linear-gradient(
-            90deg,
-            white,
-            var(--green-bright)
-        );
-
-    -webkit-background-clip: text;
-
-    background-clip: text;
+    color: var(--bright-green);
 }
 
+
+/* ---------- HERO DESCRIPTION ---------- */
 
 .hero p {
-
-    font-size:
-        clamp(16px,2vw,21px);
-
-    color:
-        rgba(255,255,255,.82);
-
     margin-bottom: 38px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: clamp(16px, 2vw, 21px);
 }
 
 
-.hero-button {
+/* ---------- HERO BUTTON ---------- */
 
+.hero-button {
     display: inline-flex;
 
     align-items: center;
+    gap: 12px;
 
-    gap: 14px;
-
-    padding:
-        15px 18px 15px 23px;
+    padding: 15px 20px 15px 23px;
 
     border-radius: 50px;
 
-    background:
-        var(--green-light);
+    background: var(--bright-green);
 
-    color:
-        #05251a;
+    color: #03251a;
 
     font-size: 11px;
-
     font-weight: 800;
 
     letter-spacing: 1px;
 
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition);
+    transition: var(--transition);
 }
-
 
 .hero-button:hover {
-
-    transform:
-        translateY(-4px);
+    transform: translateY(-4px);
 
     box-shadow:
-        0 15px 40px rgba(37,194,129,.35);
+        0 15px 40px rgba(56, 217, 150, 0.35);
 }
 
-
 .hero-button span {
-
     width: 34px;
     height: 34px;
 
-    display: grid;
-
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
 
-    background:
-        rgba(0,0,0,.15);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 
-/* SCROLL */
+/* ---------- SCROLL INDICATOR ---------- */
 
 .scroll-indicator {
-
     position: absolute;
 
-    bottom: 35px;
-
+    bottom: 30px;
     left: 50%;
 
-    transform:
-        translateX(-50%);
+    transform: translateX(-50%);
 
     z-index: 3;
 
     display: flex;
-
     align-items: center;
+    gap: 15px;
 
-    gap: 14px;
-
-    color:
-        rgba(255,255,255,.55);
+    color: rgba(255, 255, 255, 0.5);
 
     font-size: 9px;
 
     letter-spacing: 2px;
 }
 
-
 .scroll-line {
-
-    width: 50px;
-
+    width: 45px;
     height: 1px;
 
-    background:
-        rgba(255,255,255,.35);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 
-/* =====================================================
-   GENERAL SECTIONS
-===================================================== */
+/* =========================================================
+   GENERAL SECTION
+========================================================= */
+
+.energy-section,
+.why-section {
+    padding: 110px 6%;
+}
 
 .energy-section {
+    background: var(--light-bg);
+}
 
-    padding:
-        120px clamp(20px,6vw,100px);
-
-    background:
-        var(--background);
+.why-section {
+    background: white;
 }
 
 
-.section-heading {
+/* ---------- SECTION HEADER ---------- */
 
+.section-heading {
     max-width: 1300px;
 
-    margin:
-        0 auto 55px;
+    margin: 0 auto 55px;
 
     display: flex;
 
-    align-items: end;
-
+    align-items: flex-end;
     justify-content: space-between;
 
     gap: 40px;
 }
 
-
 .section-heading h2 {
-
     margin-top: 12px;
 
-    font-size:
-        clamp(35px,5vw,58px);
+    font-size: clamp(35px, 5vw, 58px);
 
     line-height: 1;
 
     letter-spacing: -2px;
 }
 
-
 .section-heading > p {
-
     max-width: 430px;
 
-    color:
-        var(--muted);
+    color: var(--gray);
 
     line-height: 1.7;
 }
 
-
 .eyebrow {
-
-    color:
-        var(--green);
+    color: var(--green);
 
     font-size: 10px;
 
@@ -554,44 +432,38 @@ button {
     letter-spacing: 2px;
 }
 
-
 .eyebrow i {
     margin-right: 5px;
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
+/* =========================================================
+   ENERGY DASHBOARD
+========================================================= */
 
 .dashboard {
-
     max-width: 1300px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns:
-        .75fr 1.25fr;
+    grid-template-columns: 0.75fr 1.25fr;
 
-    background:
-        var(--green-deep);
-
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 
     overflow: hidden;
 
-    box-shadow:
-        var(--shadow);
+    background: var(--deep-green);
+
+    box-shadow: var(--shadow);
 }
 
 
-.dashboard-intro {
+/* ---------- DASHBOARD INTRO ---------- */
 
-    padding:
-        clamp(35px,5vw,70px);
+.dashboard-intro {
+    padding: 60px;
 
     color: white;
 
@@ -603,11 +475,8 @@ button {
         );
 }
 
-
 .dashboard-number {
-
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 
     font-size: 11px;
 
@@ -616,47 +485,39 @@ button {
     letter-spacing: 2px;
 }
 
-
 .dashboard-intro h3 {
+    margin: 30px 0 20px;
 
-    margin:
-        30px 0 20px;
-
-    font-size:
-        clamp(30px,3vw,45px);
+    font-size: clamp(30px, 3vw, 45px);
 
     line-height: 1;
 
     letter-spacing: -1.5px;
 }
 
-
 .dashboard-intro p {
-
     max-width: 400px;
 
-    color:
-        #a6b7af;
+    margin-bottom: 35px;
+
+    color: #a6b7af;
 
     line-height: 1.8;
-
-    margin-bottom: 35px;
 }
 
 
-.source-button {
+/* ---------- SOURCE BUTTON ---------- */
 
+.source-button {
     display: inline-flex;
 
     align-items: center;
 
-    gap: 12px;
+    gap: 10px;
 
-    padding:
-        14px 18px;
+    padding: 14px 18px;
 
-    border:
-        1px solid rgba(255,255,255,.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 
     border-radius: 50px;
 
@@ -666,35 +527,29 @@ button {
 
     letter-spacing: 1px;
 
-    transition:
-        background var(--transition);
+    transition: var(--transition);
 }
-
 
 .source-button:hover {
+    background: rgba(255, 255, 255, 0.1);
 
-    background:
-        rgba(255,255,255,.1);
+    transform: translateY(-3px);
 }
 
+
+/* ---------- DATA PANEL ---------- */
 
 .data-panel {
+    padding: 45px;
 
-    padding:
-        clamp(25px,4vw,45px);
-
-    background:
-        rgba(10,30,22,.9);
+    background: rgba(10, 30, 22, 0.95);
 }
 
-
 .panel-header {
-
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
+    justify-content: space-between;
 
     gap: 20px;
 
@@ -703,30 +558,26 @@ button {
     color: white;
 }
 
-
-.panel-header span {
+.panel-header > div:first-child span {
+    color: var(--bright-green);
 
     font-size: 9px;
-
-    color:
-        var(--green-bright);
 
     font-weight: 800;
 
     letter-spacing: 1.5px;
 }
 
-
 .panel-header h3 {
-
     margin-top: 6px;
 
     font-size: 20px;
 }
 
 
-.status {
+/* ---------- STATUS ---------- */
 
+.status {
     display: flex;
 
     align-items: center;
@@ -737,46 +588,38 @@ button {
 
     border-radius: 30px;
 
-    background:
-        rgba(255,255,255,.06);
+    background: rgba(255, 255, 255, 0.06);
+
+    color: #a6b7af;
 
     font-size: 9px;
-
-    color:
-        #a6b7af;
 
     white-space: nowrap;
 }
 
-
 .status-dot {
-
     width: 7px;
     height: 7px;
 
     border-radius: 50%;
 
-    background:
-        var(--green-light);
+    background: var(--bright-green);
 
-    box-shadow:
-        0 0 10px var(--green-light);
+    box-shadow: 0 0 10px var(--bright-green);
 }
 
 
-.data-cards {
+/* ---------- DATA CARDS ---------- */
 
+.data-cards {
     display: grid;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 15px;
 }
 
-
 .data-card {
-
     display: flex;
 
     align-items: center;
@@ -787,167 +630,128 @@ button {
 
     border-radius: 18px;
 
-    border:
-        1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
-    background:
-        rgba(255,255,255,.045);
+    background: rgba(255, 255, 255, 0.045);
 
     color: white;
 
-    transition:
-        transform var(--transition),
-        background var(--transition);
+    transition: var(--transition);
 }
-
 
 .data-card:hover {
+    transform: translateY(-5px);
 
-    transform:
-        translateY(-5px);
-
-    background:
-        rgba(255,255,255,.08);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-
 .data-card span {
-
     display: block;
 
-    color:
-        #91a69d;
+    margin-bottom: 5px;
+
+    color: #91a69d;
 
     font-size: 8px;
 
     font-weight: 800;
 
     letter-spacing: 1px;
-
-    margin-bottom: 5px;
 }
-
 
 .data-card strong {
     font-size: 13px;
 }
 
-
 .data-icon {
-
     width: 45px;
     height: 45px;
 
     flex-shrink: 0;
 
-    display: grid;
-
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 14px;
 
     font-size: 18px;
 }
 
-
 .renewable-icon {
-
     color: #6de0a7;
 
-    background:
-        rgba(37,194,129,.12);
+    background: rgba(37, 194, 129, 0.12);
 }
-
 
 .fossil-icon {
-
     color: #f0b86d;
 
-    background:
-        rgba(240,184,109,.1);
+    background: rgba(240, 184, 109, 0.1);
 }
-
 
 .nuclear-icon {
-
     color: #91d5ff;
 
-    background:
-        rgba(145,213,255,.1);
+    background: rgba(145, 213, 255, 0.1);
 }
-
 
 .electricity-icon {
-
     color: #fff18b;
 
-    background:
-        rgba(255,241,139,.1);
+    background: rgba(255, 241, 139, 0.1);
 }
 
 
-/* =====================================================
-   FEATURE CHART
-===================================================== */
+/* =========================================================
+   RENEWABLE VS FOSSIL CHART
+========================================================= */
 
 .feature-chart {
-
     max-width: 1300px;
 
-    margin:
-        35px auto 0;
-
-    border-radius:
-        var(--radius);
+    margin: 35px auto 0;
 
     overflow: hidden;
 
-    box-shadow:
-        var(--shadow);
+    border-radius: var(--radius);
 
-    background:
-        #081a13;
+    background: #071a12;
+
+    box-shadow: var(--shadow);
 }
 
 
-.chart-visual {
+/* ---------- CHART BACKGROUND ---------- */
 
+.chart-visual {
     position: relative;
 
     min-height: 570px;
 
-    color: white;
-
     overflow: hidden;
+
+    color: white;
 }
 
-
-/*
-   SOLAR + ENERGY BACKGROUND
-*/
-
 .chart-background {
-
     position: absolute;
 
     inset: 0;
 
     background-image:
-        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=85");
+        url(
+            "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=85"
+        );
 
     background-size: cover;
 
     background-position: center;
 
-    transform:
-        scale(1.03);
+    transform: scale(1.03);
 }
 
-
-/* DARK OVERLAY */
-
 .chart-overlay {
-
     position: absolute;
 
     inset: 0;
@@ -955,15 +759,16 @@ button {
     background:
         linear-gradient(
             90deg,
-            rgba(2,20,13,.96),
-            rgba(2,25,17,.86),
-            rgba(2,20,13,.76)
+            rgba(2, 20, 13, 0.96),
+            rgba(2, 25, 17, 0.87),
+            rgba(2, 20, 13, 0.75)
         );
 }
 
 
-.chart-content {
+/* ---------- CHART CONTENT ---------- */
 
+.chart-content {
     position: relative;
 
     z-index: 2;
@@ -971,11 +776,8 @@ button {
     padding: 50px;
 }
 
-
 .chart-label {
-
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 
     font-size: 10px;
 
@@ -984,89 +786,66 @@ button {
     letter-spacing: 2px;
 }
 
-
 .chart-title h3 {
+    margin: 10px 0 5px;
 
-    font-size:
-        clamp(28px,4vw,43px);
-
-    margin:
-        10px 0 5px;
+    font-size: clamp(28px, 4vw, 43px);
 
     letter-spacing: -1.5px;
 }
 
-
 .chart-title p {
-
-    color:
-        rgba(255,255,255,.6);
+    color: rgba(255, 255, 255, 0.6);
 
     font-size: 13px;
 }
 
-
 .chart-wrapper {
-
     height: 370px;
 
     margin-top: 20px;
 }
 
 
-/* =====================================================
-   RENEWABLE DESCRIPTION
-===================================================== */
+/* =========================================================
+   REQUESTED DESCRIPTION
+========================================================= */
 
 .renewable-description {
-
     display: flex;
 
     align-items: center;
 
     gap: 25px;
 
-    padding:
-        35px 50px;
+    padding: 35px 50px;
 
-    background:
-        rgba(4,45,31,.98);
+    background: #042d1f;
 
     border-top:
-        1px solid rgba(255,255,255,.1);
+        1px solid rgba(255, 255, 255, 0.1);
 }
 
-
 .message-icon {
-
     width: 60px;
     height: 60px;
 
     flex-shrink: 0;
 
-    display: grid;
-
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 18px;
 
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 
-    background:
-        rgba(37,194,129,.1);
+    background: rgba(56, 217, 150, 0.1);
 
     font-size: 24px;
 }
 
-
-/*
-   REQUESTED:
-   20px + STRONG/BOLD
-*/
-
 .renewable-description p {
-
     color: white;
 
     font-size: 20px;
@@ -1077,123 +856,94 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================================
    OTHER CHARTS
-===================================================== */
+========================================================= */
 
 .chart-grid {
-
     max-width: 1300px;
 
-    margin:
-        35px auto 0;
+    margin: 35px auto 0;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     gap: 35px;
 }
 
-
 .chart-card {
-
     padding: 30px;
 
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 
-    background:
-        white;
+    background: white;
+
+    border: 1px solid rgba(0, 0, 0, 0.05);
 
     box-shadow:
-        0 20px 50px rgba(8,40,28,.08);
-
-    border:
-        1px solid rgba(0,0,0,.05);
+        0 20px 50px rgba(8, 40, 28, 0.08);
 }
 
-
 .chart-card-header {
-
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
 
     margin-bottom: 25px;
 }
 
-
 .chart-card-header span {
+    color: var(--green);
 
     font-size: 9px;
-
-    color:
-        var(--green);
 
     font-weight: 800;
 
     letter-spacing: 1.5px;
 }
 
-
 .chart-card h3 {
-
     margin-top: 6px;
 
     font-size: 21px;
-
-    letter-spacing: -.5px;
 }
 
-
 .chart-small-icon {
-
     width: 45px;
     height: 45px;
 
-    display: grid;
-
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border-radius: 14px;
 
-    background:
-        #edf8f3;
+    background: var(--light-green);
 
-    color:
-        var(--green);
+    color: var(--green);
 }
 
-
 .small-chart {
-
     height: 310px;
 }
 
-
 .chart-source {
-
     margin-top: 18px;
 
-    color:
-        #8a9892;
+    color: #8a9892;
 
     font-size: 10px;
-
-    font-weight: 600;
 }
 
 
-.data-note {
+/* ---------- DATA NOTE ---------- */
 
+.data-note {
     max-width: 1300px;
 
-    margin:
-        30px auto 0;
+    margin: 30px auto 0;
 
     display: flex;
 
@@ -1201,77 +951,56 @@ button {
 
     gap: 12px;
 
-    color:
-        #75857e;
+    color: #75857e;
 
     font-size: 11px;
 
     line-height: 1.6;
 }
 
-
 .data-note i {
-    color:
-        var(--green);
+    color: var(--green);
 }
 
 
-/* =====================================================
+/* =========================================================
    WHY SAFE ENERGY
-===================================================== */
-
-.why-section {
-
-    padding:
-        120px clamp(20px,6vw,100px);
-
-    background:
-        white;
-}
-
+========================================================= */
 
 .centered {
-
     display: block;
 
     text-align: center;
-
-    margin-bottom: 60px;
 }
-
 
 .centered > p {
-
-    margin:
-        20px auto 0;
+    margin: 20px auto 0;
 }
 
-
 .benefits-grid {
-
     max-width: 1300px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 20px;
 }
 
-
 .benefit-card {
-
     position: relative;
-
-    padding: 35px;
 
     min-height: 330px;
 
-    border-radius:
-        var(--radius);
+    padding: 35px;
+
+    overflow: hidden;
+
+    border-radius: var(--radius);
+
+    border: 1px solid #e2ece6;
 
     background:
         linear-gradient(
@@ -1280,81 +1009,58 @@ button {
             #edf5f0
         );
 
-    border:
-        1px solid #e2ece6;
-
-    overflow: hidden;
-
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition);
+    transition: var(--transition);
 }
-
 
 .benefit-card:hover {
-
-    transform:
-        translateY(-10px);
+    transform: translateY(-10px);
 
     box-shadow:
-        0 25px 60px rgba(7,57,40,.12);
+        0 25px 60px rgba(7, 57, 40, 0.12);
 }
 
-
 .benefit-number {
-
     position: absolute;
 
+    top: 22px;
     right: 25px;
 
-    top: 22px;
-
-    color:
-        #c8d9d1;
+    color: #c8d9d1;
 
     font-size: 12px;
 
     font-weight: 800;
 }
 
-
 .benefit-icon {
-
     width: 58px;
     height: 58px;
 
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    place-items: center;
+    margin-bottom: 30px;
 
     border-radius: 18px;
 
-    background:
-        var(--green-dark);
+    background: var(--dark-green);
 
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 
     font-size: 22px;
-
-    margin-bottom: 30px;
 }
 
-
 .benefit-card h3 {
+    margin-bottom: 15px;
 
     font-size: 20px;
 
     line-height: 1.2;
-
-    margin-bottom: 15px;
 }
 
-
 .benefit-card p {
-
-    color:
-        #687b72;
+    color: #687b72;
 
     font-size: 13px;
 
@@ -1362,83 +1068,67 @@ button {
 }
 
 
-/* =====================================================
+/* =========================================================
    CTA
-===================================================== */
+========================================================= */
 
 .cta-section {
-
-    padding:
-        120px 25px;
+    padding: 120px 25px;
 
     text-align: center;
 
     color: white;
 
     background:
-
         linear-gradient(
-            rgba(2,30,20,.88),
-            rgba(2,30,20,.95)
+            rgba(2, 30, 20, 0.88),
+            rgba(2, 30, 20, 0.95)
         ),
-
-        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2200&q=85");
+        url(
+            "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=2200&q=85"
+        );
 
     background-size: cover;
 
     background-position: center;
 }
 
-
 .cta-content {
-
     max-width: 900px;
 
     margin: auto;
 }
 
-
 .cta-section h2 {
+    margin: 18px 0;
 
-    margin:
-        18px 0;
+    font-size: clamp(40px, 6vw, 70px);
 
-    font-size:
-        clamp(40px,6vw,70px);
-
-    line-height: .98;
+    line-height: 0.98;
 
     letter-spacing: -3px;
 }
 
-
 .cta-section p {
-
-    color:
-        rgba(255,255,255,.7);
-
     margin-bottom: 35px;
+
+    color: rgba(255, 255, 255, 0.7);
 }
 
-
 .cta-button {
-
     display: inline-flex;
 
     align-items: center;
 
     gap: 12px;
 
-    padding:
-        15px 22px;
+    padding: 15px 22px;
 
     border-radius: 50px;
 
-    background:
-        white;
+    background: white;
 
-    color:
-        var(--green-dark);
+    color: var(--dark-green);
 
     font-size: 11px;
 
@@ -1446,53 +1136,41 @@ button {
 
     letter-spacing: 1px;
 
-    transition:
-        transform var(--transition);
+    transition: var(--transition);
 }
-
 
 .cta-button:hover {
-
-    transform:
-        translateY(-4px);
+    transform: translateY(-4px);
 }
 
 
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 footer {
+    padding: 70px 6% 25px;
 
     color: white;
 
-    background:
-        #03110c;
-
-    padding:
-        70px clamp(25px,6vw,100px) 25px;
+    background: #03110c;
 }
 
-
 .footer-main {
-
     max-width: 1300px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns:
-        2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
 
     gap: 80px;
 
     padding-bottom: 60px;
 }
 
-
 .footer-brand p {
-
     margin-top: 25px;
 
     font-size: 12px;
@@ -1502,20 +1180,15 @@ footer {
     letter-spacing: 1px;
 }
 
-
 .footer-brand small {
-
     display: block;
 
-    color:
-        #73847c;
-
     margin-top: 8px;
+
+    color: #73847c;
 }
 
-
 .footer-links {
-
     display: flex;
 
     flex-direction: column;
@@ -1523,54 +1196,45 @@ footer {
     gap: 13px;
 }
 
-
 .footer-links h4 {
+    margin-bottom: 10px;
 
-    color:
-        var(--green-bright);
+    color: var(--bright-green);
 
     font-size: 10px;
 
     letter-spacing: 1.5px;
-
-    margin-bottom: 10px;
 }
 
-
 .footer-links a {
-
-    color:
-        #9eafa7;
+    color: #9eafa7;
 
     font-size: 12px;
 
-    transition:
-        color var(--transition);
+    transition: var(--transition);
 }
-
 
 .footer-links a:hover {
     color: white;
 }
 
-
 .footer-bottom {
-
     max-width: 1300px;
 
     margin: auto;
 
     padding-top: 25px;
 
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
     display: flex;
+
+    align-items: center;
 
     justify-content: space-between;
 
-    color:
-        #66766f;
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    color: #66766f;
 
     font-size: 9px;
 
@@ -1578,77 +1242,65 @@ footer {
 }
 
 
-/* =====================================================
+/* =========================================================
    ANIMATION
-===================================================== */
+========================================================= */
 
-@keyframes heroReveal {
+@keyframes heroAnimation {
 
     from {
-
         opacity: 0;
 
         transform:
             translateY(30px);
-
     }
 
     to {
-
         opacity: 1;
 
         transform:
             translateY(0);
-
     }
 }
 
 
-/* =====================================================
+/* =========================================================
    TABLET
-===================================================== */
+========================================================= */
 
 @media (max-width: 1000px) {
 
     .dashboard {
-
         grid-template-columns: 1fr;
     }
 
-
     .benefits-grid {
-
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 
     .footer-main {
-
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
-
 }
 
 
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
 @media (max-width: 700px) {
 
     .navbar {
         height: 70px;
-    }
 
+        padding: 0 20px;
+    }
 
     .nav-links {
 
         position: fixed;
 
         top: 70px;
-
         left: 0;
 
         width: 100%;
@@ -1664,148 +1316,134 @@ footer {
         gap: 25px;
 
         background:
-            rgba(3,17,12,.97);
+            rgba(3, 17, 12, 0.97);
 
-        backdrop-filter:
-            blur(20px);
+        backdrop-filter: blur(20px);
     }
-
 
     .nav-links.open {
         display: flex;
     }
 
-
     .mobile-menu {
         display: block;
     }
 
-
     .hero h1 {
-
-        letter-spacing:
-            -2px;
+        letter-spacing: -2px;
     }
-
-
-    .section-heading {
-
-        display: block;
-    }
-
-
-    .section-heading > p {
-
-        margin-top: 25px;
-    }
-
-
-    .data-cards {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .panel-header {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-
-    .chart-content {
-
-        padding:
-            30px 20px;
-    }
-
-
-    .chart-visual {
-
-        min-height: 500px;
-    }
-
-
-    .chart-wrapper {
-
-        height: 330px;
-    }
-
-
-    .renewable-description {
-
-        padding:
-            30px 20px;
-
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-
-    .renewable-description p {
-
-        font-size: 20px;
-
-        line-height: 1.6;
-    }
-
-
-    .chart-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .benefits-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-
-    .benefit-card {
-
-        min-height: auto;
-    }
-
-
-    .footer-main {
-
-        grid-template-columns: 1fr;
-
-        gap: 45px;
-    }
-
-
-    .footer-bottom {
-
-        flex-direction: column;
-
-        gap: 12px;
-    }
-
 
     .scroll-indicator {
         display: none;
     }
 
+    .section-heading {
+        display: block;
+    }
+
+    .section-heading > p {
+        margin-top: 25px;
+    }
+
+    .dashboard-intro {
+        padding: 40px 25px;
+    }
+
+    .data-panel {
+        padding: 25px;
+    }
+
+    .data-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .chart-content {
+        padding: 35px 20px;
+    }
+
+    .chart-visual {
+        min-height: 500px;
+    }
+
+    .chart-wrapper {
+        height: 320px;
+    }
+
+    .renewable-description {
+        padding: 30px 20px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .renewable-description p {
+        font-size: 20px;
+
+        line-height: 1.6;
+    }
+
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefit-card {
+        min-height: auto;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 12px;
+    }
 }
 
 
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media (max-width: 450px) {
 
-    * {
-
-        scroll-behavior: auto !important;
-
-        animation: none !important;
-
-        transition: none !important;
+    .hero h1 {
+        font-size: 40px;
     }
 
+    .hero p {
+        font-size: 15px;
+    }
+
+    .hero-button {
+        font-size: 9px;
+    }
+
+    .section-heading h2 {
+        font-size: 36px;
+    }
+
+    .chart-title h3 {
+        font-size: 28px;
+    }
+
+    .renewable-description p {
+        font-size: 18px;
+    }
 }
