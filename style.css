@@ -1,3 +1,8 @@
+/* =====================================================
+   IMPORTANCE OF SAFE ENERGY
+   MAIN WEBSITE STYLES
+   ===================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,85 +15,140 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
-    background: #f4f8f4;
-    color: #102018;
+    background: #f2f6f3;
+    color: #081810;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: min(1180px, calc(100% - 48px));
+    margin: auto;
 }
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+   ===================================================== */
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-
     width: 100%;
-    height: 75px;
+    z-index: 999;
+
+    background: rgba(3, 20, 12, 0.55);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-container {
+    width: min(1180px, calc(100% - 48px));
+
+    min-height: 75px;
+
+    margin: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
-
-    padding: 0 7%;
-
-    z-index: 1000;
-
-    background: rgba(8, 30, 17, 0.65);
-    backdrop-filter: blur(12px);
-
-    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .logo {
     color: white;
-    font-size: 22px;
+
+    font-size: 15px;
+
     font-weight: 800;
-    letter-spacing: 1px;
+
+    letter-spacing: 2px;
 }
 
-.logo span {
-    color: #8ee09a;
+.logo span:first-child {
+    color: #56e49a;
+
+    margin-right: 7px;
 }
 
-.nav-links {
+.logo .green {
+    color: #56e49a;
+}
+
+nav {
     display: flex;
+
     gap: 30px;
 }
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
+nav a {
+    color: rgba(255,255,255,0.85);
 
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
 
     transition: 0.3s;
 }
 
-.nav-links a:hover {
-    color: #8ee09a;
+nav a:hover {
+    color: #56e49a;
+}
+
+.menu-btn {
+    display: none;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+   ===================================================== */
 
 .hero {
     min-height: 100vh;
 
     position: relative;
 
+    display: flex;
+
+    align-items: center;
+
+    color: white;
+
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+
+    inset: 0;
+
     background-image:
-        url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=90");
+        url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
 
     background-size: cover;
-    background-position: center;
 
-    display: flex;
-    align-items: center;
+    background-position: center;
 }
 
 .hero-overlay {
@@ -99,150 +159,342 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(4, 25, 12, 0.88),
-            rgba(4, 25, 12, 0.48),
-            rgba(4, 25, 12, 0.25)
+            rgba(1,17,10,0.88),
+            rgba(1,17,10,0.5),
+            rgba(1,17,10,0.7)
         );
 }
 
 .hero-content {
     position: relative;
 
-    width: 86%;
-    max-width: 1400px;
+    z-index: 2;
+
+    width: min(1180px, calc(100% - 48px));
 
     margin: auto;
 
-    display: grid;
-
-    grid-template-columns: 1.2fr 0.8fr;
-
-    gap: 70px;
-
-    align-items: center;
+    padding-top: 60px;
 }
 
-.small-title {
-    color: #a9e8ad;
+.eyebrow {
+    color: #56e49a;
 
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 11px;
+
+    font-weight: 800;
 
     letter-spacing: 4px;
-
-    margin-bottom: 20px;
 }
 
 .hero h1 {
-    color: white;
-
     font-size: 48px;
-    font-weight: 800;
 
-    line-height: 1.05;
+    line-height: 1;
+
+    font-weight: 800;
 
     letter-spacing: -2px;
 
-    margin-bottom: 25px;
+    margin-top: 22px;
 }
 
-.subtitle {
-    max-width: 550px;
+.hero h1 span {
+    color: #bdf8d8;
+}
+
+.hero-subtitle {
+    font-size: 18px;
 
     color: rgba(255,255,255,0.85);
 
-    font-size: 18px;
+    max-width: 600px;
 
     line-height: 1.7;
 
-    margin-bottom: 35px;
+    margin-top: 20px;
 }
 
-.explore-btn {
-    display: inline-block;
+.hero-button {
+    display: inline-flex;
 
-    padding: 15px 25px;
+    align-items: center;
 
-    border-radius: 50px;
+    gap: 12px;
 
-    background: #8ee09a;
+    margin-top: 30px;
 
-    color: #0a2514;
+    padding: 15px 23px;
 
-    text-decoration: none;
+    background: #27c77b;
+
+    color: #032012;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 40px rgba(39,199,123,0.3);
+}
+
+.scroll-text {
+    margin-top: 75px;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.5;
+}
+
+
+/* =====================================================
+   ENERGY DATA
+   ===================================================== */
+
+.data-section {
+    background:
+        linear-gradient(
+            145deg,
+            #061b12,
+            #0b2d1d,
+            #102f21
+        );
+
+    color: white;
+
+    padding: 110px 0;
+}
+
+.section-number {
+    color: #56e49a;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    gap: 50px;
+
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 55px;
+
+    line-height: 0.95;
+
+    letter-spacing: -3px;
+
+    margin-top: 10px;
+}
+
+.section-title p {
+    max-width: 490px;
+
+    color: #9eb1a6;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
+
+.dashboard {
+    display: grid;
+
+    grid-template-columns: 300px 1fr;
+
+    gap: 20px;
+}
+
+.dashboard-info {
+    padding: 28px;
+
+    min-height: 100%;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter: blur(20px);
+}
+
+.live {
+    color: #bdf8d8;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.dashboard-info h3 {
+    font-size: 26px;
+
+    line-height: 1;
+
+    margin-top: 45px;
+
+    letter-spacing: -1px;
+}
+
+.dashboard-info h3 span {
+    color: #56e49a;
+
+    display: block;
+
+    margin-top: 5px;
+}
+
+.dashboard-info p {
+    color: #9eb1a6;
 
     font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-top: 20px;
+}
+
+.source-label {
+    background: rgba(86,228,154,0.08);
+
+    color: #bdf8d8;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    margin-top: 25px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.source-button {
+    display: block;
+
+    text-align: center;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    padding: 13px;
+
+    border-radius: 999px;
+
+    margin-top: 12px;
+
+    font-size: 10px;
+
     font-weight: 800;
 
     transition: 0.3s;
 }
 
-.explore-btn:hover {
-    transform: translateY(-4px);
+.source-button:hover {
+    background: rgba(255,255,255,0.08);
+}
 
-    background: white;
+.dashboard-info small {
+    display: block;
+
+    color: #71867b;
+
+    font-size: 9px;
+
+    margin-top: 25px;
 }
 
 
-/* =========================
-   DATA CARD
-========================= */
+/* =====================================================
+   METRICS
+   ===================================================== */
 
-.data-card {
-    padding: 30px;
+.metrics {
+    display: grid;
 
-    border-radius: 25px;
+    grid-template-columns: repeat(4,1fr);
 
-    background: rgba(255,255,255,0.12);
+    gap: 12px;
 
-    border: 1px solid rgba(255,255,255,0.25);
-
-    backdrop-filter: blur(20px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,0.3);
-
-    color: white;
+    margin-bottom: 12px;
 }
 
-.data-header {
-    display: flex;
+.metric {
+    min-height: 120px;
 
-    align-items: center;
+    padding: 18px;
 
-    justify-content: space-between;
+    border-radius: 20px;
 
-    margin-bottom: 25px;
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.data-label {
-    font-size: 10px;
+.metric span {
+    color: #9eb1a6;
 
-    letter-spacing: 2px;
+    font-size: 9px;
 
-    color: #a9e8ad;
+    font-weight: 800;
 
-    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-.data-header h2 {
-    font-size: 20px;
+.metric strong {
+    display: block;
 
-    margin-top: 5px;
+    color: #eafff2;
+
+    font-size: 23px;
+
+    margin-top: 15px;
 }
 
-.live-dot {
-    width: 10px;
-    height: 10px;
+.metric small {
+    color: #71867b;
 
-    border-radius: 50%;
-
-    background: #8ee09a;
-
-    box-shadow: 0 0 15px #8ee09a;
+    font-size: 9px;
 }
 
-.data-grid {
+
+/* =====================================================
+   CHARTS
+   ===================================================== */
+
+.charts {
     display: grid;
 
     grid-template-columns: 1fr 1fr;
@@ -250,220 +502,277 @@ body {
     gap: 12px;
 }
 
-.data-box {
-    padding: 18px;
+.chart-card {
+    position: relative;
 
-    border-radius: 15px;
+    overflow: hidden;
 
-    background: rgba(0,0,0,0.22);
+    min-height: 350px;
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.06);
 
     border: 1px solid rgba(255,255,255,0.1);
 }
 
-.data-box span {
-    display: block;
+.chart-card.full {
+    grid-column: 1 / -1;
+
+    min-height: 390px;
+}
+
+.chart-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: start;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+.chart-number {
+    color: #56e49a;
 
     font-size: 9px;
 
-    letter-spacing: 1px;
-
-    color: #a9e8ad;
-
-    margin-bottom: 8px;
+    font-weight: 800;
 }
 
-.data-box strong {
-    display: block;
-
+.chart-header h3 {
     font-size: 15px;
 
-    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
-.data-box small {
-    color: rgba(255,255,255,0.6);
+.unit {
+    color: #7e9388;
 
-    font-size: 10px;
+    font-size: 9px;
+
+    padding: 6px 9px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 999px;
 }
 
-.source-btn {
-    display: block;
+.chart-container {
+    position: relative;
 
-    text-align: center;
+    height: 260px;
 
     margin-top: 20px;
 
-    padding: 13px;
+    z-index: 4;
+}
 
-    border-radius: 10px;
+.chart-container.large {
+    height: 295px;
+}
+
+
+/* =====================================================
+   RENEWABLE / FOSSIL BACKGROUND
+   ===================================================== */
+
+.petroleum-background {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=1200&q=80");
+
+    background-size: cover;
+
+    background-position: center;
+
+    opacity: 0.18;
+
+    filter: saturate(0.8);
+}
+
+.solar-background {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80");
+
+    background-size: cover;
+
+    background-position: center;
+
+    opacity: 0.15;
+
+    mix-blend-mode: screen;
+}
+
+
+/* =====================================================
+   REQUESTED RENEWABLE ENERGY MESSAGE
+   ===================================================== */
+
+.renewable-message {
+    position: relative;
+
+    z-index: 6;
 
     color: white;
 
-    text-decoration: none;
-
-    background: rgba(255,255,255,0.12);
-
-    font-size: 11px;
-
-    font-weight: 700;
-
-    transition: 0.3s;
-}
-
-.source-btn:hover {
-    background: rgba(255,255,255,0.25);
-}
-
-
-/* =========================
-   GENERAL SECTIONS
-========================= */
-
-.section {
-    padding: 110px 7%;
-}
-
-.section-heading {
-    max-width: 700px;
-
-    margin-bottom: 55px;
-}
-
-.section-heading p {
-    color: #3b8b4d;
-
-    font-size: 11px;
-
-    letter-spacing: 3px;
+    font-size: 20px;
 
     font-weight: 800;
 
-    margin-bottom: 12px;
-}
+    line-height: 1.45;
 
-.section-heading h2 {
-    font-size: 40px;
+    max-width: 850px;
 
-    margin-bottom: 15px;
+    margin-top: 16px;
 
-    letter-spacing: -1px;
-}
-
-.section-heading span {
-    color: #657269;
-
-    line-height: 1.7;
-
-    font-size: 15px;
+    text-shadow:
+        0 3px 18px rgba(0,0,0,0.8);
 }
 
 
-/* =========================
-   CHARTS
-========================= */
+/* =====================================================
+   DATA STATUS
+   ===================================================== */
 
-.data-section {
-    background: #f4f8f4;
+#dataStatus {
+    color: #80968b;
+
+    font-size: 10px;
+
+    margin-top: 14px;
 }
 
-.charts {
+
+/* =====================================================
+   WHY SAFE ENERGY
+   ===================================================== */
+
+.why-section {
+    padding: 110px 0;
+
+    background: #f2f6f3;
+}
+
+.center-title {
+    text-align: center;
+
+    max-width: 720px;
+
+    margin: auto;
+}
+
+.center-title h2 {
+    font-size: 55px;
+
+    letter-spacing: -3px;
+
+    margin-top: 10px;
+}
+
+.center-title p {
+    color: #687a71;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-top: 15px;
+}
+
+.why-grid {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4,1fr);
 
-    gap: 25px;
+    gap: 15px;
+
+    margin-top: 50px;
 }
 
-.chart-card {
+.why-card {
     background: white;
 
     padding: 30px;
 
-    border-radius: 22px;
+    min-height: 260px;
 
-    box-shadow:
-        0 15px 50px rgba(20,60,30,0.08);
-}
+    border-radius: 24px;
 
-.chart-card h3 {
-    margin-bottom: 25px;
-
-    font-size: 18px;
-}
-
-.chart-container {
-    height: 320px;
-}
-
-
-/* =========================
-   WHY SAFE ENERGY
-========================= */
-
-.why-section {
-    background: #0b2415;
-
-    color: white;
-}
-
-.why-section .section-heading span {
-    color: rgba(255,255,255,0.65);
-}
-
-.feature-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 20px;
-}
-
-.feature-card {
-    padding: 30px;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,0.07);
-
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid #e1ebe5;
 
     transition: 0.3s;
 }
 
-.feature-card:hover {
+.why-card:hover {
     transform: translateY(-8px);
 
-    background: rgba(255,255,255,0.11);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.1);
 }
 
 .icon {
-    font-size: 35px;
+    width: 48px;
 
-    margin-bottom: 25px;
+    height: 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #e6f7ed;
+
+    border-radius: 14px;
+
+    font-size: 22px;
 }
 
-.feature-card h3 {
-    font-size: 18px;
+.why-card h3 {
+    font-size: 17px;
 
-    margin-bottom: 15px;
+    margin-top: 28px;
 }
 
-.feature-card p {
-    color: rgba(255,255,255,0.65);
+.why-card p {
+    color: #687a71;
 
     font-size: 13px;
 
     line-height: 1.7;
+
+    margin-top: 10px;
 }
 
 
-/* =========================
-   SOURCE
-========================= */
+/* =====================================================
+   SOURCES
+   ===================================================== */
 
-.source-section {
-    padding: 80px 7%;
+.sources-section {
+    padding: 80px 0;
+
+    background: #e8f1eb;
+}
+
+.sources-box {
+    background: #061b12;
+
+    color: white;
+
+    padding: 45px;
+
+    border-radius: 30px;
 
     display: flex;
 
@@ -471,151 +780,187 @@ body {
 
     justify-content: space-between;
 
-    gap: 40px;
-
-    background: #dcebdd;
+    gap: 30px;
 }
 
-.source-section p {
-    font-size: 11px;
-
-    letter-spacing: 3px;
-
-    font-weight: 800;
-
-    color: #3b8b4d;
-}
-
-.source-section h2 {
+.sources-box h2 {
     font-size: 32px;
 
-    margin: 8px 0 12px;
+    margin-top: 10px;
 }
 
-.source-section span {
-    color: #59675d;
+.sources-box p {
+    max-width: 650px;
 
-    font-size: 14px;
+    color: #a7b9ae;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-top: 12px;
 }
 
-.source-section a {
+.sources-box .hero-button {
+    margin: 0;
+
     white-space: nowrap;
+}
 
-    background: #0b2415;
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    background: #04130c;
 
     color: white;
 
-    text-decoration: none;
+    padding: 40px 0;
+}
 
-    padding: 15px 25px;
+.footer-content {
+    display: flex;
 
-    border-radius: 50px;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.footer-content h3 {
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+.footer-content p,
+.footer-content span,
+.footer-content a {
+    display: block;
+
+    color: #80968b;
 
     font-size: 11px;
 
-    font-weight: 700;
+    margin-top: 8px;
+}
+
+.footer-content a {
+    color: #bdf8d8;
 }
 
 
-/* =========================
-   FOOTER
-========================= */
+/* =====================================================
+   TABLET
+   ===================================================== */
 
-footer {
-    padding: 50px 7%;
+@media(max-width: 950px) {
 
-    background: #06150c;
-
-    text-align: center;
-
-    color: rgba(255,255,255,0.6);
-}
-
-.footer-logo {
-    color: white;
-
-    font-size: 22px;
-
-    font-weight: 800;
-
-    margin-bottom: 12px;
-}
-
-.footer-logo span {
-    color: #8ee09a;
-}
-
-footer p {
-    font-size: 13px;
-
-    margin-bottom: 10px;
-}
-
-footer small {
-    font-size: 10px;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1000px) {
-
-    .hero-content {
+    .dashboard {
         grid-template-columns: 1fr;
-
-        padding-top: 100px;
-        padding-bottom: 60px;
     }
 
-    .feature-grid {
-        grid-template-columns: 1fr 1fr;
+    .metrics {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media(max-width: 700px) {
+
+    .container,
+    .nav-container,
+    .hero-content {
+        width: calc(100% - 28px);
+    }
+
+    nav {
+        display: none;
+
+        position: absolute;
+
+        top: 75px;
+
+        left: 14px;
+
+        right: 14px;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        background: rgba(3,20,12,0.96);
+
+        border-radius: 18px;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .section-title {
+        display: block;
+    }
+
+    .section-title h2 {
+        font-size: 45px;
+    }
+
+    .section-title p {
+        margin-top: 20px;
     }
 
     .charts {
         grid-template-columns: 1fr;
     }
-}
 
-
-@media (max-width: 700px) {
-
-    .navbar {
-        padding: 0 5%;
+    .chart-card.full {
+        grid-column: auto;
     }
 
-    .nav-links {
-        display: none;
-    }
-
-    .hero-content {
-        width: 90%;
-    }
-
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .data-grid {
+    .why-grid {
         grid-template-columns: 1fr;
     }
 
-    .section {
-        padding: 80px 6%;
+    .center-title h2 {
+        font-size: 43px;
     }
 
-    .section-heading h2 {
-        font-size: 30px;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .source-section {
+    .sources-box,
+    .footer-content {
         flex-direction: column;
 
         align-items: flex-start;
     }
+
+    .sources-box {
+        padding: 30px;
+    }
+
+    .renewable-message {
+        font-size: 20px;
+    }
+
 }
