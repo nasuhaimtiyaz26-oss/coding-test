@@ -1344,6 +1344,187 @@ button {
     line-height: 1.7;
 }
 
+/* =====================================================
+   OUR TEAM
+===================================================== */
+
+.team-section {
+    background:
+        linear-gradient(
+            180deg,
+            #eaf3ed,
+            #f4f8f5
+        );
+}
+
+.team-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+
+    align-items: stretch;
+}
+
+.team-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background: white;
+
+    border:
+        1px solid #dfeae3;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(20,80,50,0.08);
+
+    transition:
+        0.35s ease;
+}
+
+.team-card:hover {
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 25px 55px
+        rgba(20,80,50,0.14);
+}
+
+
+/* TEAM IMAGE */
+
+.team-photo-wrap {
+    position: relative;
+
+    height: 390px;
+
+    overflow: hidden;
+
+    background: #dfeae3;
+}
+
+.team-photo-wrap::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3,27,18,0) 55%,
+            rgba(3,27,18,0.22) 100%
+        );
+
+    pointer-events: none;
+}
+
+.team-photo {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center 20%;
+
+    transition:
+        transform 0.5s ease;
+}
+
+.team-card:hover .team-photo {
+    transform:
+        scale(1.04);
+}
+
+
+/* TEAM CONTENT */
+
+.team-content {
+    position: relative;
+
+    padding:
+        27px 26px 30px;
+}
+
+.team-number {
+    position: absolute;
+
+    top: 22px;
+
+    right: 24px;
+
+    color: #dcebe2;
+
+    font-size: 34px;
+
+    line-height: 1;
+
+    font-weight: 800;
+}
+
+.team-content h3 {
+    position: relative;
+
+    z-index: 1;
+
+    max-width: 90%;
+
+    font-size: 18px;
+
+    line-height: 1.35;
+
+    font-weight: 800;
+
+    letter-spacing: -0.2px;
+}
+
+.team-line {
+    width: 42px;
+
+    height: 3px;
+
+    margin:
+        17px 0 16px;
+
+    border-radius: 10px;
+
+    background: #159765;
+}
+
+.team-program {
+    color: #159765;
+
+    font-size: 9px;
+
+    line-height: 1.65;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.team-centre {
+    margin-top: 9px;
+
+    color: #687970;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    font-weight: 600;
+}
 
 /* =====================================================
    SOURCES
