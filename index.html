@@ -1,481 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Importance of Safe Energy - Renewable energy, sustainability and environmental protection.">
 
     <title>Importance of Safe Energy</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
 
-    <!-- CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ================= NAVIGATION ================= -->
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
 
-<header class="navbar">
-    <div class="nav-container">
+    <header class="navbar" id="navbar">
 
         <a href="#home" class="logo">
-            <span>✦</span> SAFE<span class="green">ENERGY</span>
-        </a>
 
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-        <nav id="navMenu">
-            <a href="#home">HOME</a>
-            <a href="#data">ENERGY DATA</a>
-            <a href="#why">WHY SAFE ENERGY</a>
-            <a href="#sources">SOURCES</a>
-        </nav>
-
-    </div>
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section id="home" class="hero">
-
-    <div class="hero-background"></div>
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <p class="eyebrow">
-            ENERGY • SUSTAINABILITY • FUTURE
-        </p>
-
-        <h1>
-            IMPORTANCE OF<br>
-            <span>SAFE ENERGY</span>
-        </h1>
-
-        <p class="hero-subtitle">
-            Powering a cleaner, safer and more sustainable future.
-        </p>
-
-        <a href="#data" class="hero-button">
-            EXPLORE ENERGY DATA ↓
-        </a>
-
-        <div class="scroll-text">
-            SCROLL TO EXPLORE
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= ENERGY DATA ================= -->
-
-<section id="data" class="data-section">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <div>
-                <span class="section-number">01 / GLOBAL ENERGY</span>
-
-                <h2>
-                    Energy,<br>
-                    visualized.
-                </h2>
-            </div>
-
-            <p>
-                Explore global energy trends using data from
-                Our World in Data. Discover how renewable,
-                fossil and nuclear energy shape our future.
-            </p>
-
-        </div>
-
-
-        <div class="dashboard">
-
-            <!-- LEFT PANEL -->
-
-            <aside class="dashboard-info">
-
-                <div class="live">
-                    ● LIVE DATA CONNECTION
-                </div>
-
-                <h3>
-                    ENERGY DATA
-                    <span>EXPLORER</span>
-                </h3>
-
-                <p>
-                    Explore how the world's energy system is
-                    changing across renewable sources,
-                    fossil fuels, nuclear power and electricity.
-                </p>
-
-                <div class="source-label">
-                    SOURCE: OUR WORLD IN DATA
-                </div>
-
-                <a
-                    href="https://ourworldindata.org/energy"
-                    target="_blank"
-                    class="source-button"
-                >
-                    VIEW DATA SOURCE ↗
-                </a>
-
-                <small>
-                    Dataset: OWID Energy
-                </small>
-
-            </aside>
-
-
-            <!-- RIGHT DASHBOARD -->
-
-            <div class="dashboard-main">
-
-                <!-- METRICS -->
-
-                <div class="metrics">
-
-                    <div class="metric">
-                        <span>RENEWABLE ENERGY</span>
-                        <strong id="renewableMetric">—</strong>
-                        <small>Latest global value</small>
-                    </div>
-
-                    <div class="metric">
-                        <span>FOSSIL FUELS</span>
-                        <strong id="fossilMetric">—</strong>
-                        <small>Latest global value</small>
-                    </div>
-
-                    <div class="metric">
-                        <span>NUCLEAR ENERGY</span>
-                        <strong id="nuclearMetric">—</strong>
-                        <small>Latest global value</small>
-                    </div>
-
-                    <div class="metric">
-                        <span>DATA YEAR</span>
-                        <strong id="yearMetric">—</strong>
-                        <small>Latest available</small>
-                    </div>
-
-                </div>
-
-
-                <!-- CHARTS -->
-
-                <div class="charts">
-
-
-                    <!-- RENEWABLE VS FOSSIL -->
-
-                    <div class="chart-card renewable-card">
-
-                        <!-- Petroleum background -->
-                        <div class="petroleum-background"></div>
-
-                        <!-- Solar background -->
-                        <div class="solar-background"></div>
-
-                        <div class="chart-header">
-
-                            <div>
-                                <span class="chart-number">01</span>
-
-                                <h3>
-                                    Renewable vs Fossil Energy
-                                </h3>
-                            </div>
-
-                            <span class="unit">
-                                TWh
-                            </span>
-
-                        </div>
-
-
-                        <!-- REQUESTED TEXT -->
-
-                        <p class="renewable-message">
-                            Renewable energy provides a cleaner and more sustainable alternative to fossil fuels. Reducing dependence on fossil energy and increasing renewable energy use can help protect the environment and create a safer energy future.
-                        </p>
-
-
-                        <div class="chart-container">
-                            <canvas id="renewableFossilChart"></canvas>
-                        </div>
-
-                    </div>
-
-
-                    <!-- GLOBAL CONSUMPTION -->
-
-                    <div class="chart-card">
-
-                        <div class="chart-header">
-
-                            <div>
-                                <span class="chart-number">02</span>
-
-                                <h3>
-                                    Global Energy Consumption
-                                </h3>
-                            </div>
-
-                            <span class="unit">
-                                TWh
-                            </span>
-
-                        </div>
-
-                        <div class="chart-container">
-                            <canvas id="consumptionChart"></canvas>
-                        </div>
-
-                    </div>
-
-
-                    <!-- ELECTRICITY GENERATION -->
-
-                    <div class="chart-card full">
-
-                        <div class="chart-header">
-
-                            <div>
-                                <span class="chart-number">03</span>
-
-                                <h3>
-                                    Electricity Generation by Energy Source
-                                </h3>
-                            </div>
-
-                            <span class="unit">
-                                TWh
-                            </span>
-
-                        </div>
-
-                        <div class="chart-container large">
-                            <canvas id="electricityChart"></canvas>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div id="dataStatus">
-                    Connecting to Our World in Data...
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= WHY SAFE ENERGY ================= -->
-
-<section id="why" class="why-section">
-
-    <div class="container">
-
-        <div class="center-title">
-
-            <span class="section-number">
-                02 / WHY IT MATTERS
+            <span class="logo-icon">
+                <i class="fa-solid fa-leaf"></i>
             </span>
 
-            <h2>
-                Why safe energy?
-            </h2>
-
-            <p>
-                A safer energy system is not only about producing
-                power. It is about protecting the environment,
-                communities and future generations.
-            </p>
-
-        </div>
-
-
-        <div class="why-grid">
-
-
-            <div class="why-card">
-
-                <div class="icon">
-                    🌱
-                </div>
-
-                <h3>
-                    Protects the Environment
-                </h3>
-
-                <p>
-                    Cleaner energy can reduce pollution and
-                    lessen pressure on ecosystems and
-                    natural resources.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="icon">
-                    ♻
-                </div>
-
-                <h3>
-                    Reduces Carbon Emissions
-                </h3>
-
-                <p>
-                    Replacing high-carbon energy sources with
-                    low-carbon alternatives can help address
-                    climate change.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Improves Energy Security
-                </h3>
-
-                <p>
-                    A diverse energy mix can make energy systems
-                    more resilient to supply disruptions.
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="icon">
-                    🌍
-                </div>
-
-                <h3>
-                    Supports a Sustainable Future
-                </h3>
-
-                <p>
-                    Investing in cleaner technologies helps
-                    build an energy system for future generations.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= SOURCES ================= -->
-
-<section id="sources" class="sources-section">
-
-    <div class="container sources-box">
-
-        <div>
-
-            <span class="section-number">
-                03 / SOURCES
+            <span>
+                SAFE<span>ENERGY</span>
             </span>
 
-            <h2>
-                Built around transparent data.
-            </h2>
-
-            <p>
-                This website uses energy data from
-                Our World in Data. The dashboard connects
-                directly to public OWID data instead of
-                using invented statistics.
-            </p>
-
-        </div>
-
-        <a
-            href="https://ourworldindata.org/energy"
-            target="_blank"
-            class="hero-button"
-        >
-            OUR WORLD IN DATA ↗
         </a>
 
-    </div>
 
-</section>
+        <nav class="nav-links" id="navLinks">
 
+            <a href="#home" class="active">HOME</a>
 
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="container footer-content">
-
-        <div>
-
-            <h3>
-                IMPORTANCE OF SAFE ENERGY
-            </h3>
-
-            <p>
-                Building a safer and more sustainable energy future.
-            </p>
-
-        </div>
-
-        <div>
-
-            <span>Source</span>
-
-            <a
-                href="https://ourworldindata.org/energy"
-                target="_blank"
-            >
-                Our World in Data – Energy
+            <a href="#energy-data">
+                ENERGY DATA
             </a>
 
+            <a href="#why-safe">
+                WHY SAFE ENERGY
+            </a>
+
+            <a href="#sources">
+                SOURCES
+            </a>
+
+        </nav>
+
+
+        <button class="mobile-menu"
+            id="mobileMenu"
+            aria-label="Open menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+
+                <div class="hero-badge">
+
+                    <i class="fa-solid fa-leaf"></i>
+
+                    ENERGY • PLANET • FUTURE
+
+                </div>
+
+
+                <h1>
+
+                    IMPORTANCE OF
+                    <br>
+
+                    <span>SAFE ENERGY</span>
+
+                </h1>
+
+
+                <p>
+                    Powering a cleaner, safer and more sustainable future.
+                </p>
+
+
+                <a href="#energy-data"
+                    class="hero-button">
+
+                    EXPLORE ENERGY DATA
+
+                    <span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <div class="scroll-indicator">
+
+                <span>
+                    SCROLL TO EXPLORE
+                </span>
+
+                <div class="scroll-line"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ENERGY DATA
+        ====================================================== -->
+
+        <section class="energy-section"
+            id="energy-data">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        DATA-DRIVEN ENERGY
+
+                    </span>
+
+
+                    <h2>
+                        Our World in Data
+                    </h2>
+
+                </div>
+
+
+                <p>
+
+                    Explore global energy trends using
+                    information from the Our World in Data
+                    Energy Data Explorer.
+
+                </p>
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <div class="dashboard">
+
+                <!-- LEFT -->
+
+                <div class="dashboard-intro">
+
+                    <span class="dashboard-number">
+                        01
+                    </span>
+
+
+                    <h3>
+
+                        Understanding
+                        <br>
+
+                        Our Energy System
+
+                    </h3>
+
+
+                    <p>
+
+                        Energy data helps us understand how
+                        the world produces, consumes and
+                        transitions between different
+                        energy sources.
+
+                    </p>
+
+
+                    <a href="https://ourworldindata.org/explorers/energy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="source-button">
+
+                        VIEW DATA SOURCE
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+                </div>
+
+
+                <!-- RIGHT -->
+
+                <div class="data-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <span>
+                                GLOBAL ENERGY INFORMATION
+                            </span>
+
+                            <h3>
+                                ENERGY DATA EXPLORER
+                            </h3>
+
+                        </div>
+
+
+                        <div class="status">
+
+                            <span class="status-dot"></span>
+
+                            OWID DATA
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="data-cards">
+
+                        <div class="data-card">
+
+                            <div class="data-icon renewable-icon">
+
+                                <i class="fa-solid fa-solar-panel"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    RENEWABLE ENERGY
+                                </span>
+
+                                <strong>
+                                    Solar • Wind • Hydro
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="data-card">
+
+                            <div class="data-icon fossil-icon">
+
+                                <i class="fa-solid fa-oil-well"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    FOSSIL FUELS
+                                </span>
+
+                                <strong>
+                                    Coal • Oil • Gas
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="data-card">
+
+                            <div class="data-icon nuclear-icon">
+
+                                <i class="fa-solid fa-atom"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    NUCLEAR ENERGY
+                                </span>
+
+                                <strong>
+                                    Nuclear Power
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="data-card">
+
+                            <div class="data-icon electricity-icon">
+
+                                <i class="fa-solid fa-bolt"></i>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    ELECTRICITY
+                                </span>
+
+                                <strong>
+                                    Global Generation
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 RENEWABLE VS FOSSIL
+            ================================================== -->
+
+            <div class="feature-chart">
+
+                <div class="chart-visual">
+
+                    <!-- Solar energy background -->
+
+                    <div class="chart-background"></div>
+
+                    <div class="chart-overlay"></div>
+
+
+                    <div class="chart-content">
+
+                        <div class="chart-title">
+
+                            <span class="chart-label">
+                                ENERGY TRANSITION
+                            </span>
+
+
+                            <h3>
+                                Renewable vs Fossil Energy
+                            </h3>
+
+
+                            <p>
+                                Global primary energy use by source
+                            </p>
+
+                        </div>
+
+
+                        <div class="chart-wrapper">
+
+                            <canvas id="renewableFossilChart"></canvas>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REQUESTED DESCRIPTION -->
+
+                <div class="renewable-description">
+
+                    <div class="message-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
+
+
+                    <p>
+
+                        Renewable energy provides a cleaner and more sustainable
+                        alternative to fossil fuels. Reducing dependence on fossil
+                        energy and increasing renewable energy use can help protect
+                        the environment and create a safer energy future.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 OTHER CHARTS
+            ================================================== -->
+
+            <div class="chart-grid">
+
+
+                <!-- GLOBAL ENERGY -->
+
+                <article class="chart-card">
+
+                    <div class="chart-card-header">
+
+                        <div>
+
+                            <span>
+                                GLOBAL TREND
+                            </span>
+
+                            <h3>
+                                Global Energy Consumption
+                            </h3>
+
+                        </div>
+
+
+                        <div class="chart-small-icon">
+
+                            <i class="fa-solid fa-globe"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="small-chart">
+
+                        <canvas id="energyConsumptionChart"></canvas>
+
+                    </div>
+
+
+                    <p class="chart-source">
+                        Source: Our World in Data
+                    </p>
+
+                </article>
+
+
+                <!-- ELECTRICITY -->
+
+                <article class="chart-card">
+
+                    <div class="chart-card-header">
+
+                        <div>
+
+                            <span>
+                                ELECTRICITY MIX
+                            </span>
+
+                            <h3>
+                                Electricity Generation
+                            </h3>
+
+                        </div>
+
+
+                        <div class="chart-small-icon">
+
+                            <i class="fa-solid fa-bolt"></i>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="small-chart">
+
+                        <canvas id="electricityChart"></canvas>
+
+                    </div>
+
+
+                    <p class="chart-source">
+                        Source: Our World in Data
+                    </p>
+
+                </article>
+
+            </div>
+
+
+            <div class="data-note">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                <p>
+
+                    Charts retrieve data from Our World in Data's
+                    public Grapher data endpoints. Statistics are
+                    not manually invented or hard-coded.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHY SAFE ENERGY
+        ====================================================== -->
+
+        <section class="why-section"
+            id="why-safe">
+
+            <div class="section-heading centered">
+
+                <span class="eyebrow">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                    WHY IT MATTERS
+
+                </span>
+
+
+                <h2>
+                    Why Safe Energy Matters
+                </h2>
+
+
+                <p>
+
+                    A safer energy system protects people,
+                    nature and future generations.
+
+                </p>
+
+            </div>
+
+
+            <div class="benefits-grid">
+
+
+                <!-- CARD 1 -->
+
+                <article class="benefit-card">
+
+                    <div class="benefit-number">
+                        01
+                    </div>
+
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-tree"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Protects the Environment
+                    </h3>
+
+
+                    <p>
+
+                        Cleaner energy can reduce environmental
+                        pressure and help protect ecosystems,
+                        forests and natural resources.
+
+                    </p>
+
+                </article>
+
+
+                <!-- CARD 2 -->
+
+                <article class="benefit-card">
+
+                    <div class="benefit-number">
+                        02
+                    </div>
+
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-cloud"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Reduces Carbon Emissions
+                    </h3>
+
+
+                    <p>
+
+                        Transitioning toward low-carbon energy
+                        can help reduce emissions associated
+                        with fossil fuel use.
+
+                    </p>
+
+                </article>
+
+
+                <!-- CARD 3 -->
+
+                <article class="benefit-card">
+
+                    <div class="benefit-number">
+                        03
+                    </div>
+
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Improves Energy Security
+                    </h3>
+
+
+                    <p>
+
+                        A diverse energy system can reduce
+                        dependence on a limited number of
+                        energy sources and improve resilience.
+
+                    </p>
+
+                </article>
+
+
+                <!-- CARD 4 -->
+
+                <article class="benefit-card">
+
+                    <div class="benefit-number">
+                        04
+                    </div>
+
+
+                    <div class="benefit-icon">
+
+                        <i class="fa-solid fa-earth-americas"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Supports a Sustainable Future
+                    </h3>
+
+
+                    <p>
+
+                        Investing in cleaner technologies can
+                        help create an energy system designed
+                        for long-term sustainability.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="cta-section">
+
+            <div class="cta-content">
+
+                <span class="eyebrow">
+                    THE FUTURE STARTS NOW
+                </span>
+
+
+                <h2>
+
+                    Energy choices today
+                    <br>
+                    shape tomorrow.
+
+                </h2>
+
+
+                <p>
+
+                    Understanding energy is the first step
+                    toward building a cleaner and safer future.
+
+                </p>
+
+
+                <a href="#sources"
+                    class="cta-button">
+
+                    EXPLORE SOURCES
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer id="sources">
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <a href="#home"
+                    class="logo">
+
+                    <span class="logo-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </span>
+
+
+                    <span>
+
+                        SAFE<span>ENERGY</span>
+
+                    </span>
+
+                </a>
+
+
+                <p>
+                    IMPORTANCE OF SAFE ENERGY
+                </p>
+
+
+                <small>
+                    Building a safer and more sustainable energy future.
+                </small>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    SOURCE
+                </h4>
+
+
+                <a href="https://ourworldindata.org/explorers/energy"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Our World in Data – Energy
+
+                </a>
+
+
+                <a href="https://ourworldindata.org/energy"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    OWID Energy Topic
+
+                </a>
+
+
+                <a href="https://docs.owid.io/projects/etl/api/chart-api/"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    OWID Data API Documentation
+
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>
+                    NAVIGATION
+                </h4>
+
+
+                <a href="#home">
+                    Home
+                </a>
+
+
+                <a href="#energy-data">
+                    Energy Data
+                </a>
+
+
+                <a href="#why-safe">
+                    Why Safe Energy
+                </a>
+
+
+                <a href="#sources">
+                    Sources
+                </a>
+
+            </div>
+
         </div>
 
-    </div>
 
-</footer>
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Safe Energy Project
+            </span>
 
 
-<!-- JavaScript -->
-<script src="script.js"></script>
+            <span>
+                DATA • SUSTAINABILITY • INNOVATION
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 
 </body>
+
 </html>
