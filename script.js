@@ -1,3 +1,7 @@
+/* =====================================================
+   SAFE ENERGY JAVASCRIPT
+===================================================== */
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const menuDots = document.getElementById("menuDots");
@@ -41,28 +45,230 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* Close menu when selecting a page */
+    /* =================================================
+       CHARTS
+    ================================================= */
 
-    const navLinks =
-        document.querySelectorAll(".nav-menu a");
+    if (typeof Chart !== "undefined") {
 
-    navLinks.forEach(function (link) {
+        const renewableFossil =
+            document.getElementById(
+                "renewableFossilChart"
+            );
 
-        link.addEventListener("click", function () {
+        if (renewableFossil) {
 
-            if (navMenu) {
-                navMenu.classList.remove("show");
-            }
+            new Chart(renewableFossil, {
 
-            if (menuDots) {
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-            }
+                type: "line",
 
-        });
+                data: {
 
-    });
+                    labels: [
+                        "2000",
+                        "2005",
+                        "2010",
+                        "2015",
+                        "2020",
+                        "2023"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Renewable Energy",
+                            data: [
+                                8,
+                                10,
+                                12,
+                                15,
+                                18,
+                                21
+                            ],
+
+                            borderColor: "#42b866",
+                            backgroundColor:
+                                "rgba(66,184,102,.12)",
+
+                            fill: true,
+                            tension: .35
+                        },
+
+                        {
+                            label: "Fossil Fuels",
+                            data: [
+                                80,
+                                79,
+                                77,
+                                74,
+                                70,
+                                68
+                            ],
+
+                            borderColor: "#65756b",
+                            backgroundColor:
+                                "rgba(101,117,107,.08)",
+
+                            fill: true,
+                            tension: .35
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            position: "bottom"
+                        }
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+        const energyConsumption =
+            document.getElementById(
+                "energyConsumptionChart"
+            );
+
+        if (energyConsumption) {
+
+            new Chart(energyConsumption, {
+
+                type: "line",
+
+                data: {
+
+                    labels: [
+                        "2000",
+                        "2005",
+                        "2010",
+                        "2015",
+                        "2020",
+                        "2023"
+                    ],
+
+                    datasets: [
+
+                        {
+                            label: "Global Energy Consumption",
+                            data: [
+                                95,
+                                103,
+                                111,
+                                121,
+                                125,
+                                135
+                            ],
+
+                            borderColor: "#17823b",
+
+                            backgroundColor:
+                                "rgba(23,130,59,.12)",
+
+                            fill: true,
+
+                            tension: .35
+
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            position: "bottom"
+                        }
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+        const electricityChart =
+            document.getElementById(
+                "electricityChart"
+            );
+
+        if (electricityChart) {
+
+            new Chart(electricityChart, {
+
+                type: "doughnut",
+
+                data: {
+
+                    labels: [
+                        "Fossil Fuels",
+                        "Renewables",
+                        "Nuclear"
+                    ],
+
+                    datasets: [
+
+                        {
+                            data: [
+                                60,
+                                30,
+                                10
+                            ],
+
+                            backgroundColor: [
+                                "#5f6d64",
+                                "#17823b",
+                                "#91b69c"
+                            ]
+
+                        }
+
+                    ]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+                            position: "bottom"
+                        }
+
+                    }
+
+                }
+
+            });
+
+        }
+
+    }
 
 });
