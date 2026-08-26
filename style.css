@@ -4,7 +4,9 @@
 ===================================================== */
 
 
-/* ================= RESET ================= */
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     margin: 0;
@@ -38,11 +40,16 @@ button {
 }
 
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
 .section-container {
     width: min(1180px, 92%);
     margin: auto;
 }
-
 
 
 /* =====================================================
@@ -58,32 +65,41 @@ button {
 
     z-index: 9999;
 
-    background: rgba(7, 19, 11, 0.90);
+    background: rgba(7, 18, 10, 0.90);
 
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 
     border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s ease;
 }
 
 
 .nav-container {
     width: min(1250px, 92%);
+
     height: 78px;
 
     margin: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
+    position: relative;
 }
 
 
-
-/* ================= LOGO ================= */
+/* =====================================================
+   LOGO
+===================================================== */
 
 .logo {
     display: flex;
+
     align-items: center;
 
     gap: 12px;
@@ -91,6 +107,7 @@ button {
     color: white;
 
     font-size: 15px;
+
     font-weight: 900;
 
     letter-spacing: 1.5px;
@@ -101,24 +118,28 @@ button {
     width: 38px;
     height: 38px;
 
+    border-radius: 50%;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
-
     background: #b9e769;
+
     color: #102015;
 
     font-size: 18px;
 }
 
 
-
-/* ================= MENU ================= */
+/* =====================================================
+   NAV MENU
+===================================================== */
 
 .nav-menu {
     display: flex;
+
     align-items: center;
 
     gap: 4px;
@@ -128,14 +149,15 @@ button {
 .nav-menu a {
     position: relative;
 
-    padding: 10px 13px;
+    padding: 10px 12px;
 
     color: rgba(255,255,255,0.72);
 
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
 
-    letter-spacing: 0.6px;
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
 
     transition: 0.25s ease;
 }
@@ -172,16 +194,13 @@ button {
 }
 
 
-
-/* ================= THREE DOT ================= */
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
 
 .menu-dots {
     width: 44px;
     height: 44px;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
 
     border: 1px solid rgba(255,255,255,0.15);
 
@@ -191,11 +210,24 @@ button {
 
     color: white;
 
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 
     font-size: 20px;
+
+    transition: 0.25s ease;
 }
 
+
+.menu-dots:hover {
+    background: #b9e769;
+
+    color: #102015;
+}
 
 
 /* =====================================================
@@ -207,10 +239,13 @@ button {
 
     min-height: 100vh;
 
-    padding-top: 78px;
+    padding: 150px 0 160px;
 
     display: flex;
-    align-items: center;
+
+    flex-direction: column;
+
+    justify-content: center;
 
     overflow: hidden;
 
@@ -218,29 +253,34 @@ button {
 }
 
 
-
-/* ================= BACKGROUND IMAGE ================= */
+/* =====================================================
+   GREEN ENERGY BACKGROUND IMAGE
+===================================================== */
 
 .hero-bg {
     position: absolute;
 
     inset: 0;
 
-    background-image: url("green-energy.jpeg");
+    z-index: 0;
+
+    background-image:
+        url("green-energy-bg.jpeg");
 
     background-size: cover;
+
     background-position: center;
 
     background-repeat: no-repeat;
 
     transform: scale(1.03);
 
-    z-index: 0;
 }
 
 
-
-/* ================= GREEN OVERLAY ================= */
+/* =====================================================
+   HERO OVERLAY
+===================================================== */
 
 .hero-overlay {
     position: absolute;
@@ -252,55 +292,25 @@ button {
     background:
         linear-gradient(
             120deg,
-            rgba(3,15,8,0.94) 0%,
-            rgba(6,28,14,0.80) 45%,
-            rgba(8,38,18,0.58) 100%
+            rgba(3, 18, 9, 0.94) 0%,
+            rgba(7, 32, 16, 0.82) 45%,
+            rgba(10, 46, 20, 0.62) 100%
         );
 }
 
 
-
-/* ================= GREEN LIGHT ================= */
-
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    width: 600px;
-    height: 600px;
-
-    right: -200px;
-    top: 80px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(185,231,105,0.20),
-            transparent 65%
-        );
-
-    z-index: 2;
-
-    pointer-events: none;
-}
-
-
-
-/* ================= HERO CONTENT ================= */
+/* =====================================================
+   HERO CONTENT
+===================================================== */
 
 .hero-content {
     position: relative;
 
-    z-index: 4;
+    z-index: 2;
 
     width: min(1000px, 92%);
 
-    margin: auto;
-
-    padding-bottom: 180px;
+    margin: 0 auto;
 
     animation: fadeUp 0.8s ease both;
 }
@@ -308,6 +318,7 @@ button {
 
 .hero-tag {
     display: inline-flex;
+
     align-items: center;
 
     gap: 10px;
@@ -318,12 +329,13 @@ button {
 
     border-radius: 30px;
 
-    background: rgba(185,231,105,0.06);
+    background: rgba(185,231,105,0.08);
 
     color: #c8ef82;
 
     font-size: 10px;
-    font-weight: 800;
+
+    font-weight: 900;
 
     letter-spacing: 1.2px;
 }
@@ -337,7 +349,7 @@ button {
 .hero h1 {
     margin-top: 25px;
 
-    max-width: 850px;
+    max-width: 950px;
 
     font-size: clamp(55px, 8vw, 105px);
 
@@ -364,18 +376,23 @@ button {
     color: rgba(255,255,255,0.72);
 
     font-size: 16px;
+
+    line-height: 1.7;
 }
 
 
-
-/* ================= BUTTONS ================= */
+/* =====================================================
+   HERO BUTTONS
+===================================================== */
 
 .hero-buttons {
     display: flex;
 
-    flex-wrap: wrap;
+    align-items: center;
 
     gap: 12px;
+
+    flex-wrap: wrap;
 
     margin-top: 35px;
 }
@@ -384,7 +401,9 @@ button {
 .btn-primary,
 .btn-secondary {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 10px;
@@ -394,11 +413,12 @@ button {
     border-radius: 8px;
 
     font-size: 10px;
+
     font-weight: 900;
 
-    letter-spacing: 0.8px;
+    letter-spacing: 0.7px;
 
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
 
@@ -413,25 +433,28 @@ button {
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 30px rgba(185,231,105,0.25);
+        0 12px 30px rgba(185,231,105,0.22);
 }
 
 
 .btn-secondary {
-    border: 1px solid rgba(255,255,255,0.20);
+    border: 1px solid rgba(255,255,255,0.22);
 
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.07);
 
     color: white;
+
+    backdrop-filter: blur(10px);
 }
 
 
 .btn-secondary:hover {
-    background: rgba(255,255,255,0.12);
+    border-color: #b9e769;
+
+    color: #c8ef82;
 
     transform: translateY(-3px);
 }
-
 
 
 /* =====================================================
@@ -439,74 +462,72 @@ button {
 ===================================================== */
 
 .hero-energy-cards {
-    position: absolute;
+    position: relative;
 
-    z-index: 5;
+    z-index: 2;
 
-    left: 50%;
-    bottom: 55px;
+    width: min(1180px, 92%);
 
-    transform: translateX(-50%);
-
-    width: min(1100px, 92%);
+    margin: 90px auto 0;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 15px;
+
+    animation: fadeUp 1s ease both;
 }
 
 
 .energy-card {
     display: flex;
+
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 
-    padding: 17px 20px;
+    padding: 20px;
 
-    background: rgba(8,24,13,0.72);
+    background: rgba(10, 27, 15, 0.68);
 
     border: 1px solid rgba(255,255,255,0.12);
 
-    border-radius: 16px;
+    border-radius: 17px;
 
     backdrop-filter: blur(12px);
-
-    -webkit-backdrop-filter: blur(12px);
 
     transition: 0.3s ease;
 }
 
 
 .energy-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 
-    border-color: rgba(185,231,105,0.35);
+    border-color: rgba(185,231,105,0.4);
 
-    background: rgba(12,35,18,0.82);
+    background: rgba(16, 40, 21, 0.82);
 }
 
 
 .energy-icon {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
 
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
-
-    background: rgba(185,231,105,0.13);
+    background: rgba(185,231,105,0.12);
 
     color: #b9e769;
 
-    font-size: 17px;
+    border-radius: 13px;
+
+    font-size: 19px;
 }
 
 
@@ -516,19 +537,20 @@ button {
     color: white;
 
     font-size: 12px;
+
+    font-weight: 800;
 }
 
 
 .energy-card span {
     display: block;
 
-    margin-top: 2px;
+    margin-top: 3px;
 
-    color: rgba(255,255,255,0.52);
+    color: rgba(255,255,255,0.55);
 
     font-size: 9px;
 }
-
 
 
 /* =====================================================
@@ -538,33 +560,39 @@ button {
 .scroll-indicator {
     position: absolute;
 
-    z-index: 5;
+    z-index: 2;
+
+    bottom: 25px;
 
     left: 50%;
-    bottom: 15px;
 
     transform: translateX(-50%);
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
-    gap: 5px;
+    gap: 7px;
 
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.52);
 
     font-size: 8px;
 
-    font-weight: 700;
+    font-weight: 800;
 
     letter-spacing: 1.5px;
+
+    animation: bounce 2s infinite;
 }
 
 
 .scroll-indicator i {
-    animation: scrollDown 1.5s infinite;
-}
+    color: #b9e769;
 
+    font-size: 11px;
+}
 
 
 /* =====================================================
@@ -574,16 +602,16 @@ button {
 .home-intro {
     position: relative;
 
-    padding: 110px 0 120px;
+    padding: 120px 0;
 
     background:
-        linear-gradient(
-            180deg,
-            #f5f7f4 0%,
-            #eef3ec 100%
-        );
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(185,231,105,0.10),
+            transparent 25%
+        ),
 
-    overflow: hidden;
+        #f5f7f4;
 }
 
 
@@ -592,22 +620,14 @@ button {
 
     position: absolute;
 
-    width: 400px;
-    height: 400px;
+    top: 0;
+    left: 0;
 
-    top: -200px;
-    right: -150px;
+    width: 100%;
+    height: 1px;
 
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(185,231,105,0.18),
-            transparent 70%
-        );
+    background: #dfe6dc;
 }
-
 
 
 /* =====================================================
@@ -625,6 +645,8 @@ button {
 
 
 .section-label {
+    display: inline-block;
+
     color: #6b8d39;
 
     font-size: 10px;
@@ -661,8 +683,9 @@ button {
     color: #68726b;
 
     font-size: 14px;
-}
 
+    line-height: 1.8;
+}
 
 
 /* =====================================================
@@ -672,37 +695,38 @@ button {
 .home-navigation {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 18px;
 }
 
 
+/* =====================================================
+   HOME NAV CARD
+===================================================== */
+
 .home-nav-card {
     position: relative;
 
-    min-height: 190px;
+    min-height: 210px;
 
-    padding: 25px;
+    padding: 28px;
 
     display: flex;
+
     align-items: flex-start;
 
     gap: 18px;
 
     background: white;
 
-    border: 1px solid #e0e7de;
+    border: 1px solid #e1e7df;
 
     border-radius: 20px;
 
     overflow: hidden;
 
-    box-shadow:
-        0 10px 30px rgba(20,40,25,0.04);
-
-    transition: 0.3s ease;
+    transition: 0.35s ease;
 }
 
 
@@ -711,61 +735,59 @@ button {
 
     position: absolute;
 
-    width: 100px;
-    height: 100px;
+    left: 0;
+    bottom: 0;
 
-    right: -45px;
-    bottom: -45px;
+    width: 100%;
+    height: 3px;
 
-    border-radius: 50%;
+    background: #b9e769;
 
-    background: #edf5e7;
+    transform: scaleX(0);
 
-    transition: 0.3s ease;
+    transform-origin: left;
+
+    transition: 0.35s ease;
 }
 
 
 .home-nav-card:hover {
     transform: translateY(-7px);
 
-    border-color: #c9dbbb;
+    border-color: #d2dfca;
 
     box-shadow:
-        0 20px 40px rgba(20,40,25,0.09);
+        0 20px 45px rgba(20,40,25,0.10);
 }
 
 
 .home-nav-card:hover::before {
-    transform: scale(1.6);
-
-    background: #e5f1da;
+    transform: scaleX(1);
 }
 
 
-
-/* ================= ICON ================= */
+/* =====================================================
+   HOME NAV ICON
+===================================================== */
 
 .home-nav-icon {
-    position: relative;
-
-    z-index: 2;
-
-    width: 52px;
-    height: 52px;
+    width: 55px;
+    height: 55px;
 
     flex-shrink: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    background: #e7f2dc;
+    background: #e7f2da;
 
     color: #679136;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    font-size: 19px;
+    font-size: 20px;
 
     transition: 0.3s ease;
 }
@@ -776,22 +798,21 @@ button {
 
     color: #142019;
 
-    transform: rotate(-5deg);
+    transform: rotate(-4deg);
 }
 
 
-
-/* ================= CONTENT ================= */
+/* =====================================================
+   HOME NAV CONTENT
+===================================================== */
 
 .home-nav-content {
-    position: relative;
-
-    z-index: 2;
+    padding-right: 20px;
 }
 
 
 .home-nav-content > span {
-    color: #a0aa9f;
+    color: #9ba69d;
 
     font-size: 9px;
 
@@ -807,8 +828,6 @@ button {
     font-size: 19px;
 
     font-weight: 900;
-
-    line-height: 1.2;
 }
 
 
@@ -817,26 +836,23 @@ button {
 
     color: #737d75;
 
-    font-size: 11px;
-
-    line-height: 1.5;
+    font-size: 11.5px;
 }
 
 
-
-/* ================= ARROW ================= */
+/* =====================================================
+   HOME NAV ARROW
+===================================================== */
 
 .home-nav-arrow {
     position: absolute;
 
-    z-index: 3;
+    right: 22px;
+    bottom: 22px;
 
-    right: 20px;
-    bottom: 18px;
+    color: #779b4c;
 
-    color: #729342;
-
-    font-size: 13px;
+    font-size: 14px;
 
     transition: 0.3s ease;
 }
@@ -845,75 +861,8 @@ button {
 .home-nav-card:hover .home-nav-arrow {
     transform: translateX(5px);
 
-    color: #4e7029;
+    color: #4d7527;
 }
-
-
-
-/* =====================================================
-   HOME MESSAGE
-===================================================== */
-
-.home-message {
-    margin-top: 35px;
-
-    padding: 28px 30px;
-
-    display: flex;
-    align-items: flex-start;
-
-    gap: 18px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #dcebd2,
-            #e9f2e4
-        );
-
-    border: 1px solid #d1e2c8;
-
-    border-radius: 20px;
-}
-
-
-.home-message-icon {
-    width: 50px;
-    height: 50px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 14px;
-
-    background: #719b3f;
-
-    color: white;
-
-    font-size: 20px;
-}
-
-
-.home-message h3 {
-    font-size: 18px;
-
-    font-weight: 900;
-}
-
-
-.home-message p {
-    margin-top: 5px;
-
-    max-width: 850px;
-
-    color: #68736a;
-
-    font-size: 12px;
-}
-
 
 
 /* =====================================================
@@ -989,7 +938,6 @@ footer {
 }
 
 
-
 /* =====================================================
    ANIMATIONS
 ===================================================== */
@@ -998,34 +946,42 @@ footer {
 
     from {
         opacity: 0;
+
         transform: translateY(25px);
     }
 
     to {
         opacity: 1;
+
         transform: translateY(0);
     }
 
 }
 
 
-@keyframes scrollDown {
+@keyframes bounce {
 
     0%,
+    20%,
+    50%,
+    80%,
     100% {
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
 
-    50% {
-        transform: translateY(5px);
+    40% {
+        transform: translate(-50%, -8px);
+    }
+
+    60% {
+        transform: translate(-50%, -4px);
     }
 
 }
-
 
 
 /* =====================================================
-   TABLET
+   TABLET / SMALL LAPTOP
 ===================================================== */
 
 @media (max-width: 1050px) {
@@ -1035,7 +991,8 @@ footer {
 
         position: absolute;
 
-        top: 68px;
+        top: 70px;
+
         right: 0;
 
         width: 260px;
@@ -1043,6 +1000,7 @@ footer {
         padding: 12px;
 
         flex-direction: column;
+
         align-items: stretch;
 
         background: #101d14;
@@ -1070,7 +1028,7 @@ footer {
 
     .nav-menu a:hover,
     .nav-menu a.active {
-        background: rgba(185,231,105,0.10);
+        background: rgba(185,231,105,0.1);
     }
 
 
@@ -1085,22 +1043,19 @@ footer {
 
 
     .home-navigation {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
 
     .hero-energy-cards {
-        grid-template-columns:
-            repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 
 }
 
 
-
 /* =====================================================
-   MOBILE
+   TABLET
 ===================================================== */
 
 @media (max-width: 750px) {
@@ -1111,76 +1066,33 @@ footer {
 
 
     .hero {
-        min-height: 100vh;
+        min-height: auto;
 
-        padding-top: 70px;
-    }
-
-
-    .hero-content {
-        padding-bottom: 280px;
+        padding: 135px 0 120px;
     }
 
 
     .hero h1 {
-        font-size: clamp(48px, 13vw, 75px);
+        font-size: clamp(50px, 12vw, 75px);
 
         letter-spacing: -3px;
     }
 
 
     .hero p {
-        font-size: 13px;
-    }
-
-
-    .hero-buttons {
-        flex-direction: column;
-
-        align-items: stretch;
-
-        max-width: 280px;
-    }
-
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
+        font-size: 14px;
     }
 
 
     .hero-energy-cards {
-        bottom: 40px;
-
         grid-template-columns: 1fr;
 
-        gap: 8px;
+        margin-top: 60px;
     }
 
 
     .energy-card {
-        padding: 11px 14px;
-    }
-
-
-    .energy-icon {
-        width: 38px;
-        height: 38px;
-    }
-
-
-    .energy-card strong {
-        font-size: 10px;
-    }
-
-
-    .energy-card span {
-        font-size: 8px;
-    }
-
-
-    .scroll-indicator {
-        display: none;
+        padding: 17px;
     }
 
 
@@ -1190,14 +1102,7 @@ footer {
 
 
     .section-heading h2 {
-        font-size: 38px;
-
         letter-spacing: -1px;
-    }
-
-
-    .section-heading p {
-        font-size: 13px;
     }
 
 
@@ -1207,30 +1112,14 @@ footer {
 
 
     .home-nav-card {
-        min-height: 160px;
-    }
-
-
-    .home-message {
-        padding: 22px;
-
-        gap: 13px;
-    }
-
-
-    .home-message-icon {
-        width: 42px;
-        height: 42px;
-
-        font-size: 17px;
+        min-height: 180px;
     }
 
 }
 
 
-
 /* =====================================================
-   SMALL MOBILE
+   MOBILE
 ===================================================== */
 
 @media (max-width: 480px) {
@@ -1241,13 +1130,20 @@ footer {
 
 
     .logo {
-        font-size: 11px;
+        font-size: 12px;
     }
 
 
     .logo-icon {
         width: 34px;
         height: 34px;
+
+        font-size: 15px;
+    }
+
+
+    .hero {
+        padding-top: 125px;
     }
 
 
@@ -1264,19 +1160,74 @@ footer {
 
 
     .hero h1 {
-        font-size: 50px;
+        font-size: 51px;
 
         letter-spacing: -3px;
     }
 
 
+    .hero p {
+        font-size: 13px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+
     .hero-energy-cards {
         width: 90%;
+
+        margin-top: 50px;
+    }
+
+
+    .energy-card strong {
+        font-size: 11px;
+    }
+
+
+    .energy-card span {
+        font-size: 8px;
+    }
+
+
+    .scroll-indicator {
+        display: none;
+    }
+
+
+    .section-heading h2 {
+        font-size: 37px;
+    }
+
+
+    .section-heading p {
+        font-size: 13px;
     }
 
 
     .home-nav-card {
-        padding: 21px;
+        padding: 22px;
+
+        min-height: 175px;
+    }
+
+
+    .home-nav-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 18px;
     }
 
 
@@ -1285,13 +1236,13 @@ footer {
     }
 
 
-    .home-message h3 {
-        font-size: 16px;
+    .home-nav-content p {
+        font-size: 10.5px;
     }
 
 
-    .home-message p {
-        font-size: 11px;
+    footer {
+        padding: 45px 0 25px;
     }
 
 }
