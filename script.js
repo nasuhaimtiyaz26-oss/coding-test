@@ -76,52 +76,74 @@ document.addEventListener("DOMContentLoaded", function () {
        03. REVEAL ANIMATION
     ===================================================== */
 
-    const animatedElements =
-        document.querySelectorAll(
-            ".data-card, " +
-            ".chart-card, " +
-            ".benefit-card, " +
-            ".renewable-type-card, " +
-            ".effect-card, " +
-            ".save-card, " +
-            ".team-card, " +
-            ".research-source-card, " +
-            ".source-detail-card, " +
-            ".home-nav-card, " +
-            ".energy-card"
-        );
+    const animatedElements = document.querySelectorAll(
+        ".data-card, " +
+        ".chart-card, " +
+        ".benefit-card, " +
+        ".renewable-type-card, " +
+        ".effect-card, " +
+        ".save-card, " +
+        ".team-card, " +
+        ".research-source-card, " +
+        ".source-detail-card, " +
+        ".home-nav-card, " +
+        ".energy-card"
+    );
 
+
+    /*
+     * IMPORTANT:
+     * Make cards visible first.
+     * Animation is optional.
+     */
+
+    animatedElements.forEach(function (element) {
+
+        element.classList.remove("reveal");
+        element.classList.add("show");
+
+    });
+
+
+    /*
+     * Add animation only when browser supports it.
+     */
 
     if ("IntersectionObserver" in window) {
 
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
+        animatedElements.forEach(function (element) {
 
-                    entries.forEach(function (entry) {
+            element.classList.remove("show");
+            element.classList.add("reveal");
 
-                        if (entry.isIntersecting) {
+        });
 
-                            entry.target.classList.add("show");
 
-                            observer.unobserve(
-                                entry.target
-                            );
+        const observer = new IntersectionObserver(
+            function (entries) {
 
-                        }
+                entries.forEach(function (entry) {
 
-                    });
+                    if (entry.isIntersecting) {
 
-                },
-                {
-                    threshold: 0.08
-                }
-            );
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.05
+            }
+        );
 
 
         animatedElements.forEach(function (element) {
-
-            element.classList.add("reveal");
 
             observer.observe(element);
 
@@ -131,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         animatedElements.forEach(function (element) {
 
+            element.classList.remove("reveal");
             element.classList.add("show");
 
         });
@@ -142,10 +165,14 @@ document.addEventListener("DOMContentLoaded", function () {
        04. ACTIVE NAVIGATION
     ===================================================== */
 
-    const currentPage =
+    let currentPage =
         window.location.pathname
             .split("/")
-            .pop() || "index.html";
+            .pop();
+
+    if (!currentPage) {
+        currentPage = "index.html";
+    }
 
 
     document
@@ -211,10 +238,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 if (menuDots) {
+
                     menuDots.setAttribute(
                         "aria-expanded",
                         "false"
                     );
+
                 }
 
             }
@@ -227,7 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
        07. ENERGY DATA CHARTS
     ===================================================== */
 
-    if (typeof Chart !== "undefined") {
+    if (
+        typeof Chart !== "undefined" &&
+        document.getElementById("renewableFossilChart")
+    ) {
 
         loadEnergyCharts();
 
@@ -237,16 +269,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =========================================================
-   ENERGY DATA FUNCTION
+   ENERGY DATA
 ========================================================= */
 
 async function loadEnergyCharts() {
 
     try {
-
-        /*
-         * Our World in Data Grapher CSV endpoints
-         */
 
         const renewableURL =
             "https://ourworldindata.org/grapher/share-energy-source-sub.csv";
@@ -257,10 +285,6 @@ async function loadEnergyCharts() {
         const electricityURL =
             "https://ourworldindata.org/grapher/electricity-prod-source-stacked.csv";
 
-
-        /*
-         * Load all datasets together
-         */
 
         const responses = await Promise.all([
             fetch(renewableURL),
@@ -278,19 +302,16 @@ async function loadEnergyCharts() {
         }
 
 
-        const renewableText =
-            await responses[0].text();
+        const [
+            renewableText,
+            primaryEnergyText,
+            electricityText
+        ] = await Promise.all(
+            responses.map(
+                response => response.text()
+            )
+        );
 
-        const primaryEnergyText =
-            await responses[1].text();
-
-        const electricityText =
-            await responses[2].text();
-
-
-        /*
-         * Parse CSV
-         */
 
         const renewableData =
             parseCSV(renewableText);
@@ -302,44 +323,45 @@ async function loadEnergyCharts() {
             parseCSV(electricityText);
 
 
-        /*
-         * Use WORLD data
-         */
-
         const renewableWorld =
             renewableData.filter(
-                row =>
-                    row.Entity === "World"
+                row => row.Entity === "World"
             );
-
 
         const primaryWorld =
             primaryEnergyData.filter(
-                row =>
-                    row.Entity === "World"
+                row => row.Entity === "World"
             );
-
 
         const electricityWorld =
             electricityData.filter(
-                row =>
-                    row.Entity === "World"
+                row => row.Entity === "World"
             );
 
 
-        /*
-         * Create charts
-         */
+        console.log(
+            "Renewable data:",
+            renewableWorld.length
+        );
+
+        console.log(
+            "Primary energy data:",
+            primaryWorld.length
+        );
+
+        console.log(
+            "Electricity data:",
+            electricityWorld.length
+        );
+
 
         createRenewableFossilChart(
             renewableWorld
         );
 
-
         createEnergyConsumptionChart(
             primaryWorld
         );
-
 
         createElectricityChart(
             electricityWorld
@@ -391,7 +413,7 @@ function parseCSV(text) {
                 function (header, index) {
 
                     object[header] =
-                        values[index] || "";
+                        values[index] ?? "";
 
                 }
             );
@@ -449,9 +471,7 @@ function splitCSVLine(line) {
             !insideQuotes
         ) {
 
-            result.push(
-                current
-            );
+            result.push(current);
 
             current = "";
 
@@ -487,10 +507,11 @@ function findColumn(row, keywords) {
             const lower =
                 key.toLowerCase();
 
+
             return keywords.some(
                 keyword =>
                     lower.includes(
-                        keyword
+                        keyword.toLowerCase()
                     )
             );
 
@@ -501,10 +522,29 @@ function findColumn(row, keywords) {
 
 
 /* =========================================================
+   CLEAN NUMBER
+========================================================= */
+
+function cleanNumber(value) {
+
+    const number =
+        Number(
+            String(value)
+                .replace(/,/g, "")
+        );
+
+    return Number.isFinite(number)
+        ? number
+        : null;
+
+}
+
+
+/* =========================================================
    CHART DEFAULTS
 ========================================================= */
 
-function chartDefaults() {
+function chartDefaults(isDark = false) {
 
     return {
 
@@ -520,21 +560,33 @@ function chartDefaults() {
         plugins: {
 
             legend: {
+
                 position: "top",
 
                 labels: {
+
                     usePointStyle: true,
-                    padding: 18
+
+                    padding: 18,
+
+                    color:
+                        isDark
+                            ? "#ffffff"
+                            : "#14231c"
+
                 }
+
             },
 
             tooltip: {
+
                 backgroundColor:
                     "rgba(7,27,18,0.95)",
 
                 padding: 12,
 
                 cornerRadius: 10
+
             }
 
         },
@@ -542,6 +594,13 @@ function chartDefaults() {
         scales: {
 
             x: {
+
+                ticks: {
+                    color:
+                        isDark
+                            ? "rgba(255,255,255,.65)"
+                            : "#64736b"
+                },
 
                 grid: {
                     display: false
@@ -553,9 +612,18 @@ function chartDefaults() {
 
                 beginAtZero: true,
 
+                ticks: {
+                    color:
+                        isDark
+                            ? "rgba(255,255,255,.65)"
+                            : "#64736b"
+                },
+
                 grid: {
                     color:
-                        "rgba(0,0,0,0.06)"
+                        isDark
+                            ? "rgba(255,255,255,.08)"
+                            : "rgba(0,0,0,.06)"
                 }
 
             }
@@ -569,7 +637,6 @@ function chartDefaults() {
 
 /* =========================================================
    GRAPH 1
-   RENEWABLE VS FOSSIL
 ========================================================= */
 
 function createRenewableFossilChart(data) {
@@ -580,27 +647,28 @@ function createRenewableFossilChart(data) {
         );
 
 
-    if (!canvas || data.length === 0) {
+    if (!canvas || !data.length) {
         return;
     }
 
 
+    const keys =
+        Object.keys(data[0]);
+
+
     const renewableColumn =
-        findColumn(
-            data[0],
-            [
-                "renewable",
-                "renewables"
-            ]
+        keys.find(
+            key =>
+                key.toLowerCase()
+                    .includes("renewable")
         );
 
 
     const fossilColumn =
-        findColumn(
-            data[0],
-            [
-                "fossil"
-            ]
+        keys.find(
+            key =>
+                key.toLowerCase()
+                    .includes("fossil")
         );
 
 
@@ -608,6 +676,11 @@ function createRenewableFossilChart(data) {
         !renewableColumn &&
         !fossilColumn
     ) {
+
+        console.error(
+            "Renewable/fossil columns not found.",
+            keys
+        );
 
         return;
 
@@ -624,7 +697,7 @@ function createRenewableFossilChart(data) {
         data.map(
             row =>
                 renewableColumn
-                    ? Number(
+                    ? cleanNumber(
                         row[renewableColumn]
                     )
                     : null
@@ -635,7 +708,7 @@ function createRenewableFossilChart(data) {
         data.map(
             row =>
                 fossilColumn
-                    ? Number(
+                    ? cleanNumber(
                         row[fossilColumn]
                     )
                     : null
@@ -650,7 +723,7 @@ function createRenewableFossilChart(data) {
 
             data: {
 
-                labels: labels,
+                labels,
 
                 datasets: [
 
@@ -691,7 +764,7 @@ function createRenewableFossilChart(data) {
             },
 
             options:
-                chartDefaults()
+                chartDefaults(true)
 
         }
     );
@@ -701,7 +774,6 @@ function createRenewableFossilChart(data) {
 
 /* =========================================================
    GRAPH 2
-   GLOBAL ENERGY CONSUMPTION
 ========================================================= */
 
 function createEnergyConsumptionChart(data) {
@@ -712,7 +784,7 @@ function createEnergyConsumptionChart(data) {
         );
 
 
-    if (!canvas || data.length === 0) {
+    if (!canvas || !data.length) {
         return;
     }
 
@@ -729,7 +801,14 @@ function createEnergyConsumptionChart(data) {
 
 
     if (!valueColumn) {
+
+        console.error(
+            "Primary energy column not found.",
+            Object.keys(data[0])
+        );
+
         return;
+
     }
 
 
@@ -742,7 +821,7 @@ function createEnergyConsumptionChart(data) {
     const values =
         data.map(
             row =>
-                Number(
+                cleanNumber(
                     row[valueColumn]
                 )
         );
@@ -756,7 +835,7 @@ function createEnergyConsumptionChart(data) {
 
             data: {
 
-                labels: labels,
+                labels,
 
                 datasets: [
 
@@ -780,7 +859,7 @@ function createEnergyConsumptionChart(data) {
             },
 
             options:
-                chartDefaults()
+                chartDefaults(false)
 
         }
     );
@@ -790,7 +869,6 @@ function createEnergyConsumptionChart(data) {
 
 /* =========================================================
    GRAPH 3
-   ELECTRICITY GENERATION
 ========================================================= */
 
 function createElectricityChart(data) {
@@ -801,21 +879,13 @@ function createElectricityChart(data) {
         );
 
 
-    if (!canvas || data.length === 0) {
+    if (!canvas || !data.length) {
         return;
     }
 
 
-    const labels =
-        data.map(
-            row => row.Year
-        );
-
-
     const keys =
-        Object.keys(
-            data[0]
-        );
+        Object.keys(data[0]);
 
 
     const renewableColumn =
@@ -855,7 +925,7 @@ function createElectricityChart(data) {
             data:
                 data.map(
                     row =>
-                        Number(
+                        cleanNumber(
                             row[
                                 renewableColumn
                             ]
@@ -883,7 +953,7 @@ function createElectricityChart(data) {
             data:
                 data.map(
                     row =>
-                        Number(
+                        cleanNumber(
                             row[
                                 fossilColumn
                             ]
@@ -911,7 +981,7 @@ function createElectricityChart(data) {
             data:
                 data.map(
                     row =>
-                        Number(
+                        cleanNumber(
                             row[
                                 nuclearColumn
                             ]
@@ -929,8 +999,15 @@ function createElectricityChart(data) {
     }
 
 
-    if (datasets.length === 0) {
+    if (!datasets.length) {
+
+        console.error(
+            "Electricity columns not found.",
+            keys
+        );
+
         return;
+
     }
 
 
@@ -942,14 +1019,17 @@ function createElectricityChart(data) {
 
             data: {
 
-                labels: labels,
+                labels:
+                    data.map(
+                        row => row.Year
+                    ),
 
-                datasets: datasets
+                datasets
 
             },
 
             options:
-                chartDefaults()
+                chartDefaults(false)
 
         }
     );
@@ -970,13 +1050,24 @@ function showChartError() {
         .forEach(
             function (wrapper) {
 
+                if (
+                    wrapper.querySelector(
+                        ".chart-error"
+                    )
+                ) {
+                    return;
+                }
+
+
                 const message =
                     document.createElement(
                         "div"
                     );
 
+
                 message.className =
                     "chart-error";
+
 
                 message.innerHTML = `
                     <i class="fa-solid fa-triangle-exclamation"></i>
@@ -985,6 +1076,7 @@ function showChartError() {
                         Please check your internet connection.
                     </span>
                 `;
+
 
                 wrapper.appendChild(
                     message
