@@ -1,11 +1,27 @@
 /* =========================================================
-   SAFE ENERGY
-   GLOBAL STYLESHEET
-   ========================================================= */
+   SAFE ENERGY — MASTER STYLE.CSS
+   =========================================================
+   TAB / SECTION STRUCTURE
+
+   01. Global Reset
+   02. Navbar
+   03. Shared Page Hero
+   04. Shared Section
+   05. HOME
+   06. ENERGY DATA
+   07. WHY RENEWABLE
+   08. EFFECTS
+   09. WHAT WE CAN DO
+   10. OUR TEAM
+   11. SOURCES
+   12. Footer
+   13. Responsive
+========================================================= */
+
 
 /* =========================================================
-   01. RESET
-   ========================================================= */
+   01. GLOBAL RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -24,109 +40,108 @@ body {
     line-height: 1.6;
 }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 button {
     font-family: inherit;
 }
 
-
-/* =========================================================
-   02. GLOBAL CONTAINER
-   ========================================================= */
+img {
+    max-width: 100%;
+    display: block;
+}
 
 .section-container {
     width: min(1180px, 92%);
-    margin: 0 auto;
+    margin: auto;
 }
 
 
 /* =========================================================
-   03. NAVBAR
-   ========================================================= */
+   02. NAVBAR
+========================================================= */
 
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
     z-index: 1000;
+    width: 100%;
     background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid #e2ebe4;
-    transition: 0.3s ease;
-}
-
-.navbar.scrolled {
-    box-shadow: 0 5px 25px rgba(20, 50, 30, 0.08);
+    border-bottom: 1px solid #dce7df;
+    backdrop-filter: blur(12px);
 }
 
 .nav-container {
-    width: min(1180px, 92%);
-    height: 76px;
+    width: min(1200px, 92%);
+    min-height: 76px;
     margin: auto;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 25px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 10px;
 
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 900;
     letter-spacing: 1px;
-    color: #123d25;
+
+    white-space: nowrap;
 }
 
 .logo-icon {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border-radius: 12px;
-    background: #1f8f4d;
+
+    background: #1d7a46;
     color: white;
 
-    box-shadow: 0 6px 15px rgba(31, 143, 77, 0.25);
+    box-shadow: 0 8px 20px rgba(29, 122, 70, 0.20);
 }
 
 .nav-menu {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
 }
 
 .nav-menu a {
-    padding: 9px 12px;
+    padding: 10px 12px;
 
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
 
     color: #526158;
-    border-radius: 8px;
+
+    border-radius: 9px;
 
     transition: 0.25s ease;
 }
 
-.nav-menu a:hover,
+.nav-menu a:hover {
+    color: #1d7a46;
+    background: #edf7f0;
+}
+
 .nav-menu a.active {
-    color: #178245;
-    background: #edf8f0;
+    color: white;
+    background: #1d7a46;
 }
 
 .menu-dots {
@@ -135,52 +150,49 @@ button {
     width: 42px;
     height: 42px;
 
-    border: 1px solid #dce7df;
+    border: 0;
     border-radius: 10px;
 
-    background: white;
-    color: #183d28;
+    background: #edf7f0;
+    color: #1d7a46;
 
     cursor: pointer;
 }
 
 
 /* =========================================================
-   04. PAGE HERO
-   ========================================================= */
+   03. SHARED PAGE HERO
+========================================================= */
 
 .page-hero {
     position: relative;
     overflow: hidden;
 
-    min-height: 410px;
-    padding: 150px 0 85px;
-
-    display: flex;
-    align-items: center;
+    padding: 110px 0 100px;
 
     background:
         linear-gradient(
-            rgba(8, 39, 22, 0.78),
-            rgba(8, 39, 22, 0.72)
-        ),
-        url("images/green-energy-bg.jpeg");
-
-    background-size: cover;
-    background-position: center;
+            135deg,
+            #eaf6ed 0%,
+            #f7fbf8 55%,
+            #e1f1e6 100%
+        );
 }
 
 .page-hero::after {
     content: "";
+
     position: absolute;
+
     width: 400px;
     height: 400px;
 
-    right: -150px;
+    right: -180px;
     top: -180px;
 
     border-radius: 50%;
-    background: rgba(95, 210, 130, 0.10);
+
+    background: rgba(72, 156, 99, 0.08);
 }
 
 .page-hero .section-container {
@@ -191,348 +203,354 @@ button {
 .section-label {
     display: inline-block;
 
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+
+    color: #237847;
 
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 2px;
-
-    color: #35a962;
-}
-
-.page-hero .section-label {
-    color: #8ce5a9;
 }
 
 .page-hero h1 {
-    max-width: 850px;
+    max-width: 900px;
 
-    font-size: clamp(38px, 6vw, 68px);
+    font-size: clamp(42px, 6vw, 72px);
     line-height: 1.05;
-    font-weight: 900;
-
-    color: white;
     letter-spacing: -2px;
+
+    color: #14221a;
 }
 
 .page-hero h1 span {
-    color: #65d889;
+    display: block;
+    color: #237847;
 }
 
 .page-hero p {
-    max-width: 760px;
+    max-width: 720px;
+
     margin-top: 24px;
 
-    color: #dcebe1;
+    color: #647168;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   04. SHARED SECTION
+========================================================= */
+
+section:not(.page-hero) {
+    padding: 95px 0;
+}
+
+.section-heading {
+    margin-bottom: 55px;
+}
+
+.section-heading.center {
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: clamp(32px, 4vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.section-heading h2 span {
+    color: #237847;
+}
+
+.section-heading p {
+    max-width: 720px;
+    margin: 18px auto 0;
+
+    color: #68746d;
     font-size: 16px;
 }
 
 
 /* =========================================================
-   05. SECTION HEADINGS
-   ========================================================= */
+   05. HOME
+   ---------------------------------------------------------
+   Home-specific cards/classes
+========================================================= */
 
-.section-heading {
-    margin-bottom: 50px;
+.hero {
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(10, 45, 25, 0.58),
+            rgba(10, 45, 25, 0.58)
+        ),
+        url("green-energy-bg.jpeg") center / cover no-repeat;
 }
 
-.section-heading.center {
-    text-align: center;
+.hero-content {
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    color: white;
 }
 
-.section-heading h2 {
-    font-size: clamp(30px, 4vw, 46px);
-    line-height: 1.1;
-    font-weight: 900;
-    letter-spacing: -1.5px;
+.hero-content h1 {
+    font-size: clamp(45px, 7vw, 82px);
+    line-height: 1;
 }
 
-.section-heading h2 span {
-    color: #198c4a;
+.hero-content h1 span {
+    color: #8ee0a9;
 }
 
-.section-heading p {
-    margin-top: 18px;
-    color: #66746b;
+.hero-content p {
+    max-width: 650px;
+    margin-top: 25px;
+    font-size: 18px;
 }
 
-
-/* =========================================================
-   06. COMMON CARD EFFECT
-   ========================================================= */
-
-.energy-card,
-.data-card,
-.chart-card,
-.benefit-card,
-.renewable-type-card,
-.effect-card,
-.save-card,
-.team-card,
-.research-source-card,
-.source-detail-card {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease;
-}
-
-.energy-card:hover,
-.data-card:hover,
-.benefit-card:hover,
-.renewable-type-card:hover,
-.effect-card:hover,
-.save-card:hover,
-.research-source-card:hover,
-.source-detail-card:hover {
-    transform: translateY(-7px);
-}
-
-
-/* =========================================================
-   07. HOME / ENERGY CARDS
-   ========================================================= */
-
-.energy-section {
-    padding: 95px 0;
-}
-
-.energy-cards {
+.home-cards,
+.feature-grid,
+.info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-.energy-card {
-    padding: 32px;
+.home-card,
+.feature-card,
+.info-card {
+    padding: 30px;
 
     background: white;
-    border: 1px solid #e1ebe4;
+
+    border: 1px solid #dce8df;
     border-radius: 20px;
 
-    box-shadow: 0 10px 35px rgba(25, 65, 40, 0.06);
+    box-shadow: 0 15px 35px rgba(31, 70, 44, 0.07);
+
+    transition: 0.3s ease;
 }
 
-.energy-card-icon {
-    width: 58px;
-    height: 58px;
+.home-card:hover,
+.feature-card:hover,
+.info-card:hover {
+    transform: translateY(-7px);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 22px;
-
-    border-radius: 16px;
-    background: #eaf8ef;
-    color: #198c4a;
-
-    font-size: 23px;
-}
-
-.energy-card h3 {
-    margin-bottom: 10px;
-
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.energy-card p {
-    color: #68766e;
-    font-size: 14px;
+    box-shadow: 0 22px 45px rgba(31, 70, 44, 0.13);
 }
 
 
 /* =========================================================
-   08. ENERGY DATA PAGE
-   ========================================================= */
+   06. ENERGY DATA
+   ---------------------------------------------------------
+   ONLY ENERGY DATA CLASSES
+========================================================= */
 
 .energy-section {
-    padding: 90px 0;
+    background: #f4f8f5;
 }
 
 .dashboard {
     padding: 32px;
 
     background: white;
-    border: 1px solid #dfe9e2;
-    border-radius: 24px;
 
-    box-shadow: 0 15px 45px rgba(30, 65, 43, 0.07);
+    border: 1px solid #dce8df;
+    border-radius: 28px;
+
+    box-shadow: 0 20px 50px rgba(25, 70, 42, 0.08);
 }
 
 .dashboard-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 20px;
-    margin-bottom: 30px;
+
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid #e4ebe6;
 }
 
 .dashboard-label {
-    font-size: 10px;
-    font-weight: 800;
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #25804b;
+
+    font-size: 11px;
+    font-weight: 900;
     letter-spacing: 1.5px;
-    color: #278d4e;
 }
 
 .dashboard-header h3 {
-    margin-top: 5px;
     font-size: 28px;
-    font-weight: 900;
 }
 
 .source-badge {
     padding: 10px 15px;
 
     border-radius: 10px;
-    background: #edf8f1;
-    color: #278d4e;
 
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.8px;
+    background: #edf7f0;
+    color: #237847;
+
+    font-size: 11px;
+    font-weight: 900;
 }
-
-
-/* DATA CARDS */
 
 .data-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 18px;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .data-card {
-    min-height: 100px;
-    padding: 18px;
-
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 15px;
 
-    border: 1px solid #e0e9e3;
-    border-radius: 15px;
-    background: #fafcfb;
+    min-height: 100px;
+    padding: 20px;
+
+    background: #f8fbf9;
+
+    border: 1px solid #e0eae3;
+    border-radius: 17px;
+
+    transition: 0.3s ease;
+}
+
+.data-card:hover {
+    transform: translateY(-5px);
+    border-color: #afd1bb;
+    box-shadow: 0 15px 30px rgba(31, 70, 44, 0.08);
 }
 
 .data-icon {
-    flex-shrink: 0;
-
     width: 50px;
     height: 50px;
+
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: 14px;
 
-    font-size: 20px;
+    font-size: 21px;
 }
 
 .data-icon.renewable {
-    background: #e8f8ed;
-    color: #1d9650;
+    background: #e3f4e8;
+    color: #237847;
 }
 
 .data-icon.fossil {
-    background: #f1f1f1;
-    color: #555;
+    background: #ecefed;
+    color: #46534b;
 }
 
 .data-icon.nuclear {
-    background: #f1edfb;
-    color: #7656ad;
+    background: #eee9f8;
+    color: #6d5794;
 }
 
 .data-icon.electricity {
-    background: #fff5d9;
-    color: #bd8a16;
+    background: #fff3d8;
+    color: #ad7b12;
 }
 
 .data-card span {
     display: block;
 
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 
-    font-size: 9px;
-    font-weight: 800;
+    color: #78837c;
+
+    font-size: 10px;
+    font-weight: 900;
     letter-spacing: 1px;
-    color: #7b887f;
 }
 
 .data-card strong {
-    font-size: 13px;
+    font-size: 14px;
 }
 
-
-/* CHART CARDS */
-
 .chart-card {
-    padding: 25px;
     margin-top: 22px;
+    padding: 28px;
 
-    border: 1px solid #e0e8e2;
-    border-radius: 18px;
+    background: #ffffff;
 
-    background: white;
+    border: 1px solid #dce8df;
+    border-radius: 22px;
+
+    box-shadow: 0 10px 30px rgba(31, 70, 44, 0.05);
 }
 
 .chart-card.chart-dark {
-    background: #102b1b;
-    border-color: #193d27;
+    background: #17271e;
     color: white;
+    border-color: #17271e;
 }
 
 .chart-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-
-    margin-bottom: 20px;
+    gap: 20px;
 }
 
 .chart-header span {
-    font-size: 9px;
-    font-weight: 800;
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #318653;
+
+    font-size: 10px;
+    font-weight: 900;
     letter-spacing: 1.5px;
-    color: #2c9653;
 }
 
 .chart-dark .chart-header span {
-    color: #68d88b;
+    color: #8bd8a4;
 }
 
 .chart-header h3 {
-    margin-top: 5px;
-
-    font-size: 21px;
-    font-weight: 800;
+    font-size: 22px;
 }
 
 .chart-header small {
-    color: #7b887f;
+    color: #7b877f;
 }
 
 .chart-dark .chart-header small {
-    color: #abc0b1;
+    color: #b4c0b8;
 }
 
 .chart-header > i {
-    font-size: 23px;
-    color: #238d4c;
+    font-size: 25px;
+    color: #318653;
 }
 
 .chart-wrapper {
     position: relative;
-    height: 320px;
+
+    height: 350px;
+
+    margin-top: 25px;
 }
 
 .dashboard-source {
@@ -551,90 +569,102 @@ button {
 
     border-radius: 10px;
 
-    background: #198c4a;
+    background: #237847;
     color: white;
 
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 900;
 
     transition: 0.25s ease;
 }
 
 .source-button:hover {
-    background: #126b38;
     transform: translateY(-2px);
+    background: #185e36;
 }
 
 
 /* =========================================================
-   09. WHY RENEWABLE PAGE
-   ========================================================= */
+   07. WHY RENEWABLE
+   ---------------------------------------------------------
+   ONLY WHY RENEWABLE CLASSES
+========================================================= */
 
 .why-section {
-    padding: 95px 0;
+    background: #f4f8f5;
 }
 
 .benefits-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 22px;
 }
 
 .benefit-card {
     position: relative;
 
-    padding: 30px 25px;
+    padding: 30px;
+
+    min-height: 330px;
 
     background: white;
-    border: 1px solid #e0e9e3;
-    border-radius: 20px;
 
-    box-shadow: 0 10px 30px rgba(30, 65, 43, 0.05);
+    border: 1px solid #dce8df;
+    border-radius: 22px;
+
+    box-shadow: 0 14px 35px rgba(31, 70, 44, 0.07);
+
+    transition: 0.3s ease;
 }
 
-.benefit-number,
-.effect-number,
-.save-number {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+.benefit-card:hover {
+    transform: translateY(-8px);
 
-    font-size: 11px;
+    border-color: #a9cdb5;
+
+    box-shadow: 0 22px 45px rgba(31, 70, 44, 0.12);
+}
+
+.benefit-number {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: #b9c9be;
+
+    font-size: 13px;
     font-weight: 900;
-    color: #9aa69e;
 }
 
 .benefit-icon {
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 25px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 22px;
+    border-radius: 16px;
 
-    border-radius: 15px;
+    background: #e8f5eb;
+    color: #237847;
 
-    background: #eaf8ef;
-    color: #198c4a;
-
-    font-size: 21px;
+    font-size: 23px;
 }
 
 .benefit-card h3 {
-    margin-bottom: 12px;
-    font-size: 19px;
-    font-weight: 800;
+    margin-bottom: 13px;
+
+    font-size: 20px;
 }
 
 .benefit-card p {
-    font-size: 13px;
-    color: #68766e;
+    color: #68746d;
+    font-size: 14px;
 }
-
-
-/* RENEWABLE TYPES */
 
 .renewable-types {
     margin-top: 100px;
@@ -647,18 +677,26 @@ button {
 }
 
 .renewable-type-card {
-    padding: 28px 22px;
+    padding: 28px;
 
     text-align: center;
 
-    background: #f9fcfa;
-    border: 1px solid #dfe9e2;
-    border-radius: 18px;
+    background: white;
+
+    border: 1px solid #dce8df;
+    border-radius: 20px;
+
+    transition: 0.3s ease;
+}
+
+.renewable-type-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(31, 70, 44, 0.10);
 }
 
 .renewable-type-icon {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
 
     margin: 0 auto 18px;
 
@@ -668,64 +706,108 @@ button {
 
     border-radius: 50%;
 
-    background: #e7f7ec;
-    color: #198c4a;
+    background: #e8f5eb;
+    color: #237847;
 
-    font-size: 22px;
+    font-size: 24px;
 }
 
 .renewable-type-card h3 {
-    margin-bottom: 9px;
-    font-size: 17px;
+    margin-bottom: 10px;
 }
 
 .renewable-type-card p {
-    font-size: 13px;
-    color: #68766e;
+    color: #6b776f;
+    font-size: 14px;
+}
+
+.why-message {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-top: 45px;
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: #e7f4ea;
+    border: 1px solid #cde4d3;
+}
+
+.why-message-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #237847;
+    color: white;
+
+    font-size: 24px;
+}
+
+.why-message h3 {
+    margin-bottom: 6px;
+}
+
+.why-message p {
+    color: #5e6c63;
 }
 
 
 /* =========================================================
-   10. EFFECTS PAGE
-   ========================================================= */
+   08. EFFECTS
+   ---------------------------------------------------------
+   ONLY EFFECTS CLASSES
+========================================================= */
 
 .effects-section {
-    padding: 95px 0;
+    background: #f4f8f5;
 }
 
 .iea-research-panel {
-    padding: 30px;
-    margin-bottom: 35px;
+    padding: 32px;
 
-    background: #102b1b;
-    border-radius: 22px;
+    margin-bottom: 40px;
 
+    background: #18261e;
     color: white;
 
-    box-shadow: 0 15px 40px rgba(18, 58, 33, 0.14);
+    border-radius: 24px;
+
+    box-shadow: 0 20px 45px rgba(17, 37, 25, 0.15);
 }
 
 .iea-panel-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 
-    margin-bottom: 25px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .iea-panel-header span {
-    color: #6fe095;
+    color: #8bd8a4;
 
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1.5px;
 }
 
 .iea-panel-header h3 {
     margin-top: 5px;
-
     font-size: 25px;
-    font-weight: 800;
 }
 
 .iea-badge {
@@ -736,10 +818,10 @@ button {
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #4a7658;
-    border-radius: 14px;
+    border-radius: 15px;
 
-    font-size: 16px;
+    background: #237847;
+
     font-weight: 900;
 }
 
@@ -752,31 +834,30 @@ button {
 .iea-stat {
     padding: 20px;
 
-    border: 1px solid #2a5137;
-    border-radius: 13px;
+    border-radius: 15px;
 
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.07);
 }
 
 .iea-stat strong {
     display: block;
 
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 
-    font-size: 24px;
-    color: #76dc96;
+    font-size: 25px;
+    color: #9be0ae;
 }
 
 .iea-stat span {
-    font-size: 11px;
-    color: #bfd1c4;
+    color: #c2ccc6;
+    font-size: 12px;
 }
 
 .iea-note {
-    margin-top: 22px;
+    margin: 25px 0;
 
+    color: #c0cbc4;
     font-size: 13px;
-    color: #bfd1c4;
 }
 
 .iea-source-button {
@@ -784,131 +865,134 @@ button {
     align-items: center;
     gap: 8px;
 
-    margin-top: 20px;
-    padding: 11px 16px;
+    padding: 12px 17px;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
-    background: #2d9b55;
-    color: white;
+    background: #ffffff;
+    color: #18261e;
 
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 900;
 }
-
-
-/* EFFECT CARDS */
 
 .effects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 22px;
 }
 
 .effect-card {
     position: relative;
 
-    min-height: 310px;
-    padding: 30px 25px;
+    min-height: 350px;
+    padding: 30px;
 
     background: white;
-    border: 1px solid #e0e9e3;
-    border-radius: 20px;
 
-    box-shadow: 0 10px 30px rgba(30, 65, 43, 0.05);
+    border: 1px solid #dce8df;
+    border-radius: 22px;
+
+    box-shadow: 0 14px 35px rgba(31, 70, 44, 0.06);
+
+    transition: 0.3s ease;
+}
+
+.effect-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 22px 45px rgba(31, 70, 44, 0.12);
+}
+
+.effect-number {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: #b9c9be;
+
+    font-size: 13px;
+    font-weight: 900;
 }
 
 .effect-icon {
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 25px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 20px;
+    border-radius: 16px;
 
-    border-radius: 15px;
+    background: #fff0eb;
+    color: #b45b45;
 
-    background: #edf7ef;
-    color: #258e4e;
-
-    font-size: 21px;
+    font-size: 22px;
 }
 
 .effect-card h3 {
     margin-bottom: 13px;
-
     font-size: 20px;
-    line-height: 1.25;
 }
 
 .effect-card p {
-    font-size: 13px;
-    color: #68766e;
+    color: #69756d;
+    font-size: 14px;
 }
 
-.effects-message,
-.why-message,
-.save-message,
-.sources-message {
+.effects-message {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 22px;
 
-    margin-top: 45px;
-    padding: 28px;
+    margin-top: 40px;
+    padding: 30px;
 
-    border: 1px solid #dce9df;
-    border-radius: 18px;
+    background: #e9f5ec;
 
-    background: #f0f8f2;
+    border: 1px solid #cee4d4;
+    border-radius: 20px;
 }
 
-.effects-message-icon,
-.why-message-icon,
-.save-message-icon,
-.sources-message-icon {
-    flex-shrink: 0;
+.effects-message-icon {
+    width: 58px;
+    height: 58px;
 
-    width: 52px;
-    height: 52px;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    background: #dff3e5;
-    color: #198c4a;
+    background: #237847;
+    color: white;
 
-    font-size: 20px;
+    font-size: 22px;
 }
 
-.effects-message h3,
-.why-message h3,
-.save-message h3,
-.sources-message h3 {
-    margin-bottom: 5px;
-    font-size: 19px;
+.effects-message h3 {
+    margin-bottom: 6px;
 }
 
-.effects-message p,
-.why-message p,
-.save-message p,
-.sources-message p {
-    color: #68766e;
-    font-size: 13px;
+.effects-message p {
+    color: #5e6c63;
 }
 
 
 /* =========================================================
-   11. WHAT WE CAN DO PAGE
-   ========================================================= */
+   09. WHAT WE CAN DO
+   ---------------------------------------------------------
+   ONLY SAVE / WHAT-WE-CAN-DO CLASSES
+========================================================= */
 
 .save-section {
-    padding: 95px 0;
+    background: #f4f8f5;
 }
 
 .energystar-panel {
@@ -916,20 +1000,22 @@ button {
     align-items: center;
     gap: 30px;
 
-    padding: 30px;
-    margin-bottom: 35px;
+    padding: 32px;
+    margin-bottom: 42px;
 
-    background: #102b1b;
+    background: #17271e;
     color: white;
 
-    border-radius: 22px;
+    border-radius: 24px;
+
+    box-shadow: 0 20px 45px rgba(17, 37, 25, 0.14);
 }
 
 .energystar-logo {
-    flex-shrink: 0;
+    width: 110px;
+    min-height: 110px;
 
-    width: 105px;
-    height: 105px;
+    flex-shrink: 0;
 
     display: flex;
     flex-direction: column;
@@ -938,32 +1024,35 @@ button {
 
     border-radius: 20px;
 
-    background: #1f8f4d;
+    background: #237847;
 
-    font-size: 30px;
-}
-
-.energystar-logo span {
-    margin-top: 3px;
-    font-size: 14px;
+    font-size: 25px;
     font-weight: 900;
 }
 
+.energystar-logo i {
+    margin-bottom: 8px;
+}
+
 .energystar-content > span {
+    color: #8bd8a4;
+
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 1.5px;
-    color: #72db93;
 }
 
 .energystar-content h3 {
     margin: 5px 0 10px;
-    font-size: 27px;
+
+    font-size: 28px;
 }
 
 .energystar-content p {
-    color: #c3d4c8;
-    font-size: 13px;
+    max-width: 800px;
+
+    color: #c4cec8;
+    font-size: 14px;
 }
 
 .energystar-button {
@@ -974,147 +1063,216 @@ button {
     margin-top: 18px;
     padding: 11px 16px;
 
-    background: #2b9953;
     border-radius: 9px;
 
-    color: white;
-    font-size: 10px;
-    font-weight: 800;
+    background: white;
+    color: #17271e;
+
+    font-size: 11px;
+    font-weight: 900;
 }
-
-
-/* SAVE CARDS */
 
 .save-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 22px;
 }
 
 .save-card {
     position: relative;
 
-    min-height: 285px;
-    padding: 30px 25px;
+    min-height: 330px;
+    padding: 30px;
 
     background: white;
-    border: 1px solid #e0e9e3;
-    border-radius: 20px;
 
-    box-shadow: 0 10px 30px rgba(30, 65, 43, 0.05);
+    border: 1px solid #dce8df;
+    border-radius: 22px;
+
+    box-shadow: 0 14px 35px rgba(31, 70, 44, 0.06);
+
+    transition: 0.3s ease;
+}
+
+.save-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 22px 45px rgba(31, 70, 44, 0.12);
+}
+
+.save-number {
+    position: absolute;
+
+    top: 20px;
+    right: 22px;
+
+    color: #b9c9be;
+
+    font-size: 13px;
+    font-weight: 900;
 }
 
 .save-icon {
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
+
+    margin-bottom: 25px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 20px;
+    border-radius: 16px;
 
-    border-radius: 15px;
+    background: #e8f5eb;
+    color: #237847;
 
-    background: #eaf8ef;
-    color: #198c4a;
-
-    font-size: 21px;
+    font-size: 22px;
 }
 
 .save-card h3 {
-    margin-bottom: 12px;
-
-    font-size: 19px;
-    line-height: 1.25;
+    margin-bottom: 13px;
+    font-size: 20px;
 }
 
 .save-card p {
-    font-size: 13px;
-    color: #68766e;
+    color: #69756d;
+    font-size: 14px;
 }
-
-
-/* SAVE CONCLUSION */
 
 .save-conclusion {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
+    gap: 22px;
 
-    margin-top: 40px;
-    padding: 27px;
+    margin-top: 42px;
+    padding: 30px;
 
-    border: 1px solid #e3e8c8;
-    border-radius: 18px;
+    background: #fff9e9;
 
-    background: #fbfbea;
+    border: 1px solid #efe0ad;
+    border-radius: 20px;
 }
 
 .save-conclusion > i {
-    font-size: 25px;
-    color: #c79b18;
+    font-size: 32px;
+    color: #d19b24;
 }
 
 .save-conclusion h3 {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 
 .save-conclusion p {
-    color: #68766e;
-    font-size: 13px;
+    color: #6c6757;
 }
 
 .text-source-link {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
 
-    margin-top: 12px;
+    margin-top: 13px;
 
-    color: #198c4a;
+    color: #237847;
 
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.save-message {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-top: 40px;
+    padding: 30px;
+
+    background: #e7f4ea;
+
+    border: 1px solid #cde4d3;
+    border-radius: 20px;
+}
+
+.save-message-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #237847;
+    color: white;
+
+    font-size: 22px;
+}
+
+.save-message h3 {
+    margin-bottom: 6px;
+}
+
+.save-message p {
+    color: #5e6c63;
 }
 
 
 /* =========================================================
-   12. OUR TEAM PAGE
-   ========================================================= */
+   10. OUR TEAM
+   ---------------------------------------------------------
+   IMPORTANT:
+   Gambar JPEG dibesarkan supaya muka jelas.
+========================================================= */
 
 .team-section {
-    padding: 95px 0;
+    background: #f4f8f5;
 }
 
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: 28px;
+
+    align-items: stretch;
 }
 
 .team-card {
     overflow: hidden;
 
     background: white;
-    border: 1px solid #dfe9e2;
-    border-radius: 22px;
 
-    box-shadow: 0 12px 35px rgba(30, 65, 43, 0.07);
+    border: 1px solid #dce8df;
+    border-radius: 24px;
+
+    box-shadow: 0 15px 40px rgba(31, 70, 44, 0.08);
+
+    transition: 0.35s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-9px);
+
+    box-shadow: 0 25px 50px rgba(31, 70, 44, 0.15);
 }
 
 
-/*
-   IMPORTANT:
-   Besarkan gambar supaya muka jelas
-*/
+/* -------------------------
+   TEAM PHOTO
+------------------------- */
 
 .team-photo-wrap {
+    position: relative;
+
     width: 100%;
     height: 390px;
 
     overflow: hidden;
-    background: #e7eee9;
+
+    background: #dfe9e2;
 }
 
 .team-photo {
@@ -1131,171 +1289,206 @@ button {
     transform: scale(1.04);
 }
 
+
+/* -------------------------
+   TEAM CONTENT
+------------------------- */
+
 .team-content {
     position: relative;
-    padding: 25px;
+
+    padding: 28px;
 }
 
 .team-number {
-    display: block;
+    display: inline-block;
 
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 
-    font-size: 10px;
+    color: #237847;
+
+    font-size: 12px;
     font-weight: 900;
     letter-spacing: 1px;
-
-    color: #299052;
 }
 
 .team-content h3 {
+    min-height: 55px;
+
     font-size: 19px;
     line-height: 1.25;
-    font-weight: 900;
+
+    color: #17231b;
 }
 
 .team-line {
     width: 45px;
     height: 3px;
 
-    margin: 16px 0;
+    margin: 18px 0;
 
+    background: #237847;
     border-radius: 10px;
-    background: #2b9953;
 }
 
 .team-program {
-    font-size: 10px;
-    font-weight: 800;
+    color: #425148;
+
+    font-size: 11px;
+    font-weight: 900;
     line-height: 1.6;
-    color: #53645a;
+    letter-spacing: 0.4px;
 }
 
 .team-centre {
-    margin-top: 8px;
+    margin-top: 10px;
 
-    font-size: 10px;
+    color: #7a857e;
+
+    font-size: 11px;
     line-height: 1.5;
-    color: #8a958e;
 }
 
+
+/* -------------------------
+   TEAM MESSAGE
+------------------------- */
+
 .team-message-section {
-    padding: 0 0 90px;
+    padding-top: 0 !important;
+
+    background: #f4f8f5;
 }
 
 .team-message {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
 
     padding: 30px;
 
-    border-radius: 18px;
-    background: #eef8f1;
-    border: 1px solid #dce9df;
+    background: #e7f4ea;
+
+    border: 1px solid #cde4d3;
+    border-radius: 20px;
 }
 
 .team-message-icon {
-    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
 
-    width: 55px;
-    height: 55px;
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 15px;
+    border-radius: 16px;
 
-    background: #dff3e5;
-    color: #198c4a;
+    background: #237847;
+    color: white;
 
-    font-size: 21px;
+    font-size: 23px;
 }
 
 .team-message h3 {
-    font-size: 20px;
+    margin-bottom: 6px;
 }
 
 .team-message p {
-    margin-top: 5px;
-
-    font-size: 13px;
-    color: #68766e;
+    color: #5e6c63;
 }
 
 
 /* =========================================================
-   13. SOURCES PAGE
-   ========================================================= */
+   11. SOURCES
+   ---------------------------------------------------------
+   ONLY SOURCES CLASSES
+========================================================= */
 
 .sources-section {
-    padding: 95px 0;
+    background: #f4f8f5;
 }
 
 .sources-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    gap: 24px;
 }
 
 .research-source-card {
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+
     padding: 30px;
 
     background: white;
-    border: 1px solid #e0e9e3;
-    border-radius: 20px;
 
-    box-shadow: 0 10px 30px rgba(30, 65, 43, 0.05);
+    border: 1px solid #dce8df;
+    border-radius: 22px;
+
+    box-shadow: 0 14px 35px rgba(31, 70, 44, 0.07);
+
+    transition: 0.3s ease;
+}
+
+.research-source-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 23px 45px rgba(31, 70, 44, 0.12);
 }
 
 .research-source-icon {
     width: 60px;
     height: 60px;
 
+    margin-bottom: 22px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 22px;
-
     border-radius: 16px;
+
+    font-size: 24px;
+}
+
+.owid-icon {
+    background: #e7f3eb;
+    color: #237847;
+}
+
+.iea-icon {
+    background: #e9eef8;
+    color: #42639a;
+}
+
+.tnb-icon {
+    background: #fff3d9;
+    color: #b17a13;
+}
+
+.research-source-card > span {
+    color: #237847;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.research-source-card h3 {
+    margin: 7px 0 12px;
 
     font-size: 23px;
 }
 
-.owid-icon {
-    background: #eaf2ff;
-    color: #3269a8;
-}
-
-.iea-icon {
-    background: #eeeafa;
-    color: #7252aa;
-}
-
-.tnb-icon {
-    background: #fff4da;
-    color: #b67d12;
-}
-
-.research-source-card > span {
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.3px;
-    color: #2b9251;
-}
-
-.research-source-card h3 {
-    margin: 6px 0 12px;
-
-    font-size: 21px;
-    font-weight: 900;
-}
-
 .research-source-card p {
-    font-size: 13px;
-    color: #68766e;
+    flex-grow: 1;
+
+    color: #68746d;
+    font-size: 14px;
 }
 
 .research-source-card a {
@@ -1303,112 +1496,154 @@ button {
     align-items: center;
     gap: 8px;
 
-    margin-top: 20px;
+    margin-top: 22px;
 
-    color: #198c4a;
+    color: #237847;
 
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 900;
 }
 
-
-/* SOURCE DETAILS */
-
 .source-details {
     display: grid;
-    gap: 16px;
+    gap: 18px;
 
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
 .source-detail-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 22px;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 25px;
 
-    padding: 25px;
+    padding: 28px;
 
     background: white;
-    border: 1px solid #e0e9e3;
-    border-radius: 17px;
+
+    border: 1px solid #dce8df;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 28px rgba(31, 70, 44, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.source-detail-card:hover {
+    transform: translateX(5px);
+    border-color: #afd1bb;
 }
 
 .source-detail-number {
-    flex-shrink: 0;
-
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
+    border-radius: 15px;
 
-    background: #eaf8ef;
-    color: #198c4a;
+    background: #e7f4ea;
+    color: #237847;
 
-    font-size: 12px;
     font-weight: 900;
 }
 
 .source-detail-card span {
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 1.2px;
-    color: #2b9251;
+    color: #237847;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
 }
 
 .source-detail-card h3 {
-    margin: 4px 0 7px;
+    margin: 5px 0 8px;
 
-    font-size: 20px;
+    font-size: 21px;
 }
 
 .source-detail-card p {
-    font-size: 13px;
-    color: #68766e;
+    color: #68746d;
+    font-size: 14px;
 }
 
 .source-detail-card a {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
+    gap: 8px;
 
     margin-top: 12px;
 
-    color: #198c4a;
+    color: #237847;
 
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 900;
 }
 
 .sources-message {
-    margin-top: 35px;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+
+    margin-top: 40px;
+    padding: 30px;
+
+    background: #e8f5eb;
+
+    border: 1px solid #cde4d3;
+    border-radius: 20px;
+}
+
+.sources-message-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #237847;
+    color: white;
+
+    font-size: 22px;
+}
+
+.sources-message h3 {
+    margin-bottom: 6px;
+}
+
+.sources-message p {
+    color: #5e6c63;
 }
 
 
 /* =========================================================
-   14. FOOTER
-   ========================================================= */
+   12. FOOTER
+========================================================= */
 
 footer {
-    padding: 60px 0 30px;
+    padding: 55px 0 25px;
 
-    background: #0d2517;
+    background: #14221a;
     color: white;
 }
 
 .footer-container {
-    width: min(1180px, 92%);
+    width: min(1100px, 92%);
     margin: auto;
 
     text-align: center;
 }
 
 .footer-logo {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 
     font-size: 18px;
@@ -1417,80 +1652,65 @@ footer {
 }
 
 .footer-logo i {
-    color: #65d889;
+    color: #79ce94;
 }
 
 .footer-container > p {
-    margin-top: 10px;
+    margin-top: 12px;
 
-    color: #aec0b4;
-    font-size: 13px;
+    color: #b9c4bd;
+
+    font-size: 14px;
 }
 
 .footer-source {
-    margin-top: 25px;
+    margin-top: 28px;
 
-    color: #82978a;
-    font-size: 11px;
+    color: #89968e;
+
+    font-size: 12px;
 }
 
 .footer-bottom {
-    margin-top: 35px;
+    margin-top: 25px;
     padding-top: 20px;
 
-    border-top: 1px solid #234331;
+    border-top: 1px solid rgba(255,255,255,0.10);
 
-    color: #6e8376;
-    font-size: 10px;
+    color: #718078;
+
+    font-size: 11px;
 }
 
 
 /* =========================================================
-   15. RESPONSIVE TABLET
-   ========================================================= */
+   13. RESPONSIVE
+========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
 
     .nav-menu {
-        position: absolute;
-
-        top: 76px;
-        right: 4%;
-
-        width: 250px;
-
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-
-        padding: 12px;
-
-        background: white;
-        border: 1px solid #dfe8e1;
-        border-radius: 15px;
-
-        box-shadow: 0 15px 40px rgba(20, 50, 30, 0.12);
-    }
-
-    .nav-menu.show {
-        display: flex;
+        gap: 2px;
     }
 
     .nav-menu a {
-        padding: 13px;
+        padding: 9px 8px;
+        font-size: 10px;
     }
 
-    .menu-dots {
-        display: block;
+    .data-cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .energy-cards,
-    .benefits-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .renewable-types-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .data-cards {
+    .iea-panel-content {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1504,62 +1724,62 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .iea-panel-content {
+    .home-cards,
+    .feature-grid,
+    .info-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 
-/* =========================================================
-   16. RESPONSIVE MOBILE
-   ========================================================= */
-
-@media (max-width: 650px) {
+@media (max-width: 780px) {
 
     .nav-container {
-        height: 68px;
-    }
-
-    .logo {
-        font-size: 15px;
-    }
-
-    .logo-icon {
-        width: 36px;
-        height: 36px;
+        min-height: 68px;
     }
 
     .nav-menu {
+        position: absolute;
+
         top: 68px;
+        left: 4%;
+        right: 4%;
+
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 12px;
+
+        background: white;
+
+        border: 1px solid #dce8df;
+        border-radius: 15px;
+
+        box-shadow: 0 20px 40px rgba(31, 70, 44, 0.12);
+    }
+
+    .nav-menu.show {
+        display: flex;
+    }
+
+    .nav-menu a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .page-hero {
-        min-height: 440px;
-        padding: 125px 0 65px;
+        padding: 80px 0 75px;
     }
 
-    .page-hero h1 {
-        font-size: 39px;
-        letter-spacing: -1px;
-    }
-
-    .page-hero p {
-        font-size: 14px;
-    }
-
-    .section-heading h2 {
-        font-size: 31px;
-    }
-
-    .energy-cards,
-    .data-cards,
-    .benefits-grid,
-    .renewable-types-grid,
-    .effects-grid,
-    .save-grid,
-    .team-grid,
-    .sources-grid {
-        grid-template-columns: 1fr;
+    section:not(.page-hero) {
+        padding: 70px 0;
     }
 
     .dashboard {
@@ -1572,36 +1792,75 @@ footer {
     }
 
     .chart-wrapper {
-        height: 250px;
+        height: 280px;
     }
 
-    .iea-research-panel,
-    .energystar-panel {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 23px;
+    .benefits-grid,
+    .effects-grid,
+    .save-grid,
+    .sources-grid,
+    .team-grid,
+    .home-cards,
+    .feature-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
     }
 
-    .iea-panel-content {
-        grid-template-columns: 1fr 1fr;
+    .renewable-types-grid {
+        grid-template-columns: 1fr;
     }
 
     .team-photo-wrap {
-        height: 420px;
+        height: 430px;
+    }
+
+    .energystar-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .energystar-logo {
+        width: 100%;
+    }
+
+    .iea-panel-content {
+        grid-template-columns: 1fr;
     }
 
     .team-message,
     .effects-message,
-    .why-message,
     .save-message,
     .sources-message {
         align-items: flex-start;
     }
 }
 
-@media (max-width: 420px) {
 
-    .iea-panel-content {
+@media (max-width: 520px) {
+
+    .logo {
+        font-size: 14px;
+    }
+
+    .logo-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .page-hero h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+
+    .page-hero p {
+        font-size: 15px;
+    }
+
+    .data-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .source-detail-card {
         grid-template-columns: 1fr;
     }
 
@@ -1609,7 +1868,25 @@ footer {
         height: 390px;
     }
 
-    .page-hero h1 {
-        font-size: 34px;
+    .team-content {
+        padding: 24px;
+    }
+
+    .effect-card,
+    .save-card,
+    .benefit-card {
+        min-height: auto;
+    }
+
+    .chart-card {
+        padding: 20px;
+    }
+
+    .chart-header h3 {
+        font-size: 18px;
+    }
+
+    .chart-wrapper {
+        height: 240px;
     }
 }
