@@ -1,131 +1,188 @@
 /* =========================================================
    SAFE ENERGY
    MASTER JAVASCRIPT
-   ========================================================= */
+========================================================= */
 
 
 /* =========================================================
-   01. NAVIGATION
-   ========================================================= */
+   01. JAVASCRIPT ENABLED
+========================================================= */
+
+document.documentElement.classList.add("js-enabled");
+
+
+/* =========================================================
+   02. DOM READY
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const menuDots = document.getElementById("menuDots");
-    const navMenu = document.getElementById("navMenu");
+
+    /* =====================================================
+       03. MOBILE NAVIGATION
+    ===================================================== */
+
+    const menuDots =
+        document.getElementById("menuDots");
+
+    const navMenu =
+        document.getElementById("navMenu");
+
 
     if (menuDots && navMenu) {
 
-        menuDots.addEventListener("click", function () {
+        menuDots.addEventListener(
+            "click",
+            function (event) {
 
-            const isOpen = navMenu.classList.toggle("open");
+                event.stopPropagation();
 
-            menuDots.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
-        });
-
-
-        /* Close menu after clicking a link */
-
-        navMenu.querySelectorAll("a").forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                navMenu.classList.remove("open");
+                const isOpen =
+                    navMenu.classList.toggle("open");
 
                 menuDots.setAttribute(
                     "aria-expanded",
-                    "false"
+                    isOpen ? "true" : "false"
                 );
 
-            });
-
-        });
-
-    }
-
-
-    /* =====================================================
-       02. NAVBAR SCROLL
-    ===================================================== */
-
-    const navbar = document.getElementById("navbar");
-
-    if (navbar) {
-
-        window.addEventListener("scroll", function () {
-
-            if (window.scrollY > 30) {
-
-                navbar.classList.add("scrolled");
-
-            } else {
-
-                navbar.classList.remove("scrolled");
-
-            }
-
-        });
-
-    }
-
-
-    /* =====================================================
-       03. REVEAL ANIMATION
-    ===================================================== */
-
-    const animatedElements = document.querySelectorAll(
-        ".data-card, " +
-        ".chart-card, " +
-        ".benefit-card, " +
-        ".renewable-type-card, " +
-        ".effect-card, " +
-        ".save-card, " +
-        ".team-card, " +
-        ".research-source-card, " +
-        ".source-detail-card"
-    );
-
-
-    if ("IntersectionObserver" in window) {
-
-        const observer = new IntersectionObserver(
-            function (entries) {
-
-                entries.forEach(function (entry) {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("show");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.08
             }
         );
 
 
-        animatedElements.forEach(function (element) {
+        /* Close menu after selecting a page */
 
-            element.classList.add("reveal");
+        navMenu
+            .querySelectorAll("a")
+            .forEach(function (link) {
 
-            observer.observe(element);
+                link.addEventListener(
+                    "click",
+                    function () {
 
-        });
+                        navMenu.classList.remove("open");
+
+                        menuDots.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            });
 
     }
 
 
     /* =====================================================
-       04. ACTIVE PAGE NAVIGATION
+       04. NAVBAR SCROLL EFFECT
+    ===================================================== */
+
+    const navbar =
+        document.getElementById("navbar");
+
+
+    function updateNavbar() {
+
+        if (!navbar) {
+            return;
+        }
+
+        if (window.scrollY > 30) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    }
+
+
+    updateNavbar();
+
+
+    window.addEventListener(
+        "scroll",
+        updateNavbar,
+        {
+            passive: true
+        }
+    );
+
+
+    /* =====================================================
+       05. REVEAL ANIMATION
+    ===================================================== */
+
+    const animatedElements =
+        document.querySelectorAll(".reveal");
+
+
+    if (
+        animatedElements.length > 0 &&
+        "IntersectionObserver" in window
+    ) {
+
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
+
+                    entries.forEach(
+                        function (entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("show");
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.08
+                }
+            );
+
+
+        animatedElements.forEach(
+            function (element) {
+
+                observer.observe(element);
+
+            }
+        );
+
+
+    } else {
+
+        /* Fallback */
+
+        animatedElements.forEach(
+            function (element) {
+
+                element.classList.add("show");
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       06. ACTIVE NAVIGATION
     ===================================================== */
 
     const currentPage =
@@ -134,15 +191,50 @@ document.addEventListener("DOMContentLoaded", function () {
             .pop() || "index.html";
 
 
-    document.querySelectorAll(".nav-menu a").forEach(
-        function (link) {
+    document
+        .querySelectorAll(".nav-menu a")
+        .forEach(function (link) {
 
             const linkPage =
                 link.getAttribute("href");
 
-            if (linkPage === currentPage) {
+
+            if (
+                linkPage === currentPage
+            ) {
 
                 link.classList.add("active");
+
+            } else {
+
+                link.classList.remove("active");
+
+            }
+
+        });
+
+
+    /* =====================================================
+       07. CLOSE MOBILE MENU OUTSIDE
+    ===================================================== */
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                navMenu &&
+                menuDots &&
+                !navMenu.contains(event.target) &&
+                !menuDots.contains(event.target)
+            ) {
+
+                navMenu.classList.remove("open");
+
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
             }
 
@@ -151,27 +243,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       05. CLOSE MENU WHEN CLICKING OUTSIDE
+       08. ESC KEY CLOSE MENU
     ===================================================== */
 
-    document.addEventListener("click", function (event) {
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-        if (
-            navMenu &&
-            menuDots &&
-            !navMenu.contains(event.target) &&
-            !menuDots.contains(event.target)
-        ) {
+            if (event.key === "Escape") {
 
-            navMenu.classList.remove("open");
+                if (navMenu) {
 
-            menuDots.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+                    navMenu.classList.remove("open");
+
+                }
+
+                if (menuDots) {
+
+                    menuDots.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            }
 
         }
+    );
 
-    });
 
 });
