@@ -1,54 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Safe Energy | Renewable Energy & Sustainability</title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="stylesheet"
-          href="style.css">
-
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
 
 <!-- =====================================================
      NAVBAR
 ===================================================== -->
 
-<nav class="navbar">
+<nav class="navbar" id="navbar">
 
     <div class="nav-container">
 
         <a href="index.html" class="logo">
-
             <div class="logo-icon">
                 <i class="fa-solid fa-leaf"></i>
             </div>
 
-            SAFE ENERGY
-
+            <span>SAFE ENERGY</span>
         </a>
-
 
         <div class="nav-menu" id="navMenu">
 
@@ -82,13 +75,13 @@
 
         </div>
 
-
-        <button class="menu-dots"
-                id="menuDots"
-                aria-label="Open navigation">
-
+        <button
+            class="menu-dots"
+            id="menuDots"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
             <i class="fa-solid fa-ellipsis-vertical"></i>
-
         </button>
 
     </div>
@@ -102,56 +95,36 @@
 
 <section class="hero">
 
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
 
         <div class="hero-badge">
-
             <i class="fa-solid fa-leaf"></i>
-
             POWERING A GREENER FUTURE
-
         </div>
 
-
         <h1>
-
             Energy Today.
-
             <br>
-
-            <span>
-                A Sustainable Tomorrow.
-            </span>
-
+            <span>A Sustainable Tomorrow.</span>
         </h1>
 
-
         <p>
-
             Discover how renewable energy and smarter
             energy choices can create a cleaner, safer
             and more sustainable future.
-
         </p>
-
 
         <div class="hero-buttons">
 
-            <a href="energy-data.html"
-               class="btn-primary">
-
+            <a href="energy-data.html" class="btn-primary">
                 Explore Energy
-
                 <i class="fa-solid fa-arrow-right"></i>
-
             </a>
 
-
-            <a href="what-we-can-do.html"
-               class="btn-secondary">
-
+            <a href="what-we-can-do.html" class="btn-secondary">
                 How To Save Energy
-
             </a>
 
         </div>
@@ -163,71 +136,52 @@
 
     <div class="hero-energy-cards">
 
-
-        <div class="energy-card">
+        <div class="energy-card reveal">
 
             <div class="energy-icon">
-
                 <i class="fa-solid fa-solar-panel"></i>
-
             </div>
 
             <div>
-
-                <strong>
-                    Renewable Energy
-                </strong>
+                <strong>Renewable Energy</strong>
 
                 <span>
                     Cleaner power for tomorrow
                 </span>
-
             </div>
 
         </div>
 
 
-        <div class="energy-card">
+        <div class="energy-card reveal">
 
             <div class="energy-icon">
-
                 <i class="fa-solid fa-bolt"></i>
-
             </div>
 
             <div>
-
-                <strong>
-                    Save Energy
-                </strong>
+                <strong>Save Energy</strong>
 
                 <span>
                     Use energy smarter every day
                 </span>
-
             </div>
 
         </div>
 
 
-        <div class="energy-card">
+        <div class="energy-card reveal">
 
             <div class="energy-icon">
-
                 <i class="fa-solid fa-earth-asia"></i>
-
             </div>
 
             <div>
-
-                <strong>
-                    Protect Our Planet
-                </strong>
+                <strong>Protect Our Planet</strong>
 
                 <span>
                     Small actions, big impact
                 </span>
-
             </div>
 
         </div>
@@ -263,39 +217,35 @@
             </span>
 
             <h2>
-
                 Building A
-
-                <span>
-                    Sustainable Future
-                </span>
-
+                <span>Sustainable Future</span>
             </h2>
 
             <p>
-
                 Explore global energy data, understand
                 the importance of renewable energy,
                 discover the effects of fossil fuel
                 dependence and learn practical ways
                 to save energy.
-
             </p>
 
         </div>
 
 
+        <!-- NAVIGATION CARDS -->
+
         <div class="home-navigation">
 
-
-            <a href="energy-data.html"
-               class="home-nav-card">
+            <a
+                href="energy-data.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>01</span>
 
@@ -314,14 +264,16 @@
             </a>
 
 
-            <a href="why-renewable.html"
-               class="home-nav-card">
+            <a
+                href="why-renewable.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-leaf"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>02</span>
 
@@ -340,14 +292,16 @@
             </a>
 
 
-            <a href="effects.html"
-               class="home-nav-card">
+            <a
+                href="effects.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-earth-americas"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>03</span>
 
@@ -366,14 +320,16 @@
             </a>
 
 
-            <a href="what-we-can-do.html"
-               class="home-nav-card">
+            <a
+                href="what-we-can-do.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-lightbulb"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>04</span>
 
@@ -392,14 +348,16 @@
             </a>
 
 
-            <a href="our-team.html"
-               class="home-nav-card">
+            <a
+                href="our-team.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-people-group"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>05</span>
 
@@ -418,14 +376,16 @@
             </a>
 
 
-            <a href="sources.html"
-               class="home-nav-card">
+            <a
+                href="sources.html"
+                class="home-nav-card reveal"
+            >
 
                 <div class="home-nav-icon">
                     <i class="fa-solid fa-book"></i>
                 </div>
 
-                <div>
+                <div class="home-nav-content">
 
                     <span>06</span>
 
@@ -451,6 +411,51 @@
 
 
 <!-- =====================================================
+     CALL TO ACTION
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="section-container">
+
+        <div class="cta-box">
+
+            <div class="cta-icon">
+                <i class="fa-solid fa-solar-panel"></i>
+            </div>
+
+            <div class="cta-content">
+
+                <span class="section-label">
+                    THE FUTURE OF ENERGY
+                </span>
+
+                <h2>
+                    Choose Cleaner.
+                    <span>Choose Smarter.</span>
+                </h2>
+
+                <p>
+                    Every energy choice we make today
+                    contributes to the world we leave
+                    for tomorrow.
+                </p>
+
+            </div>
+
+            <a href="why-renewable.html" class="btn-primary">
+                Discover Renewable Energy
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
      FOOTER
 ===================================================== -->
 
@@ -460,7 +465,9 @@
 
         <div class="footer-logo">
 
-            <i class="fa-solid fa-leaf"></i>
+            <div class="logo-icon">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
 
             SAFE ENERGY
 
@@ -492,8 +499,11 @@
 </footer>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script src="script.js"></script>
 
 </body>
-
 </html>
