@@ -1,109 +1,46 @@
-# IMPORTANCE OF SAFE ENERGY
+# SAFE ENERGY
 
-A professional environmental energy data visualization website focusing on the importance of safe, sustainable and renewable energy.
+## Renewable Energy & Sustainability Educational Website
 
-## About The Project
+Safe Energy is an educational research website focused on
+renewable energy, global energy trends, environmental effects,
+energy efficiency and practical energy-saving actions.
 
-The **Importance of Safe Energy** project explores the role of renewable energy, energy efficiency and sustainable energy systems in creating a cleaner and safer future.
+---
 
-The website presents global energy data together with research-based information about:
+## Website Pages
 
-- Renewable energy
-- Fossil fuel dependence
-- Global energy consumption
-- Electricity generation
-- Greenhouse gas emissions
-- Energy efficiency
-- Ways to save energy
-- Environmental sustainability
-- Energy security
+The website contains seven main pages:
 
-## Main Features
+1. Home
+2. Energy Data
+3. Why Renewable
+4. Effects
+5. What We Can Do
+6. Our Team
+7. Sources
 
-### 1. Home
-
-A full-screen hero section introducing the importance of safe energy and the purpose of the project.
-
-### 2. Energy Data
-
-Interactive charts are used to visualise global energy trends, including:
-
-- Renewable Energy vs Fossil Fuels
-- Global Energy Consumption
-- Electricity Generation by Energy Source
-
-The energy data is sourced from **Our World in Data**.
-
-### 3. Effects of Fossil Energy Dependence
-
-This section explains environmental and climate-related pressures associated with continued dependence on fossil fuels.
-
-Research reference:
-
-**International Energy Agency (IEA) – Greenhouse Gas Emissions from Energy**
-
-### 4. Ways to Save Energy
-
-This section presents practical energy-efficiency approaches, including:
-
-- Energy-efficient lighting
-- Efficient cooling
-- Reducing standby energy use
-- Improving home energy efficiency
-
-Research reference:
-
-**ENERGY STAR – Smart Home Tips**
-
-### 5. Why Safe Energy?
-
-The website explains four major reasons why safe and sustainable energy matters:
-
-- Protects the Environment
-- Reduces Carbon Emissions
-- Improves Energy Security
-- Supports a Sustainable Future
-
-### 6. Sources
-
-The project provides links to the official research and data sources used.
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Chart.js
-- Font Awesome
-- Google Fonts
-- GitHub Pages
-
-## Data Sources
-
-### Our World in Data
-
-Energy data and visualisations:
-
-https://ourworldindata.org/energy
-
-### International Energy Agency
-
-Greenhouse Gas Emissions from Energy:
-
-https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy
-
-### ENERGY STAR
-
-Smart Home Tips:
-
-https://www.energystar.gov/saveathome
+---
 
 ## Project Structure
 
 ```text
-safe-energy/
+Safe-Energy/
 │
 ├── index.html
+├── energy-data.html
+├── why-renewable.html
+├── effects.html
+├── what-we-can-do.html
+├── our-team.html
+├── sources.html
+│
 ├── style.css
 ├── script.js
-└── README.md
+├── README.md
+│
+└── images/
+    ├── green-energy-bg.jpeg
+    ├── person1.jpeg
+    ├── person2.jpeg
+    └── person3.jpeg
