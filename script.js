@@ -1,6 +1,12 @@
-/* =====================================================
-   SAFE ENERGY JAVASCRIPT
-===================================================== */
+/* =========================================================
+   SAFE ENERGY
+   GLOBAL JAVASCRIPT
+   ========================================================= */
+
+
+/* =========================================================
+   01. NAVIGATION MENU
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -13,8 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             navMenu.classList.toggle("show");
 
-            const isOpen =
-                navMenu.classList.contains("show");
+            const isOpen = navMenu.classList.contains("show");
 
             menuDots.setAttribute(
                 "aria-expanded",
@@ -23,6 +28,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+
+        /* Close menu when clicking a link */
+
+        const navLinks = navMenu.querySelectorAll("a");
+
+        navLinks.forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navMenu.classList.remove("show");
+
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            });
+
+        });
+
+
+        /* Close menu when clicking outside */
 
         document.addEventListener("click", function (event) {
 
@@ -45,20 +72,84 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =================================================
-       CHARTS
-    ================================================= */
+    /* =====================================================
+       02. NAVBAR SCROLL EFFECT
+       ===================================================== */
 
-    if (typeof Chart !== "undefined") {
+    const navbar = document.getElementById("navbar");
 
-        const renewableFossil =
-            document.getElementById(
-                "renewableFossilChart"
-            );
+    function updateNavbar() {
 
-        if (renewableFossil) {
+        if (!navbar) {
+            return;
+        }
 
-            new Chart(renewableFossil, {
+        if (window.scrollY > 30) {
+
+            navbar.classList.add("scrolled");
+
+        } else {
+
+            navbar.classList.remove("scrolled");
+
+        }
+
+    }
+
+    updateNavbar();
+
+    window.addEventListener(
+        "scroll",
+        updateNavbar
+    );
+
+
+    /* =====================================================
+       03. ENERGY DATA CHARTS
+       ===================================================== */
+
+    if (
+        typeof Chart !== "undefined" &&
+        document.getElementById("renewableFossilChart")
+    ) {
+
+        createEnergyCharts();
+
+    }
+
+});
+
+
+/* =========================================================
+   ENERGY CHART FUNCTION
+   ========================================================= */
+
+function createEnergyCharts() {
+
+    /*
+        The charts are illustrative visualisations
+        for the website layout.
+
+        Replace the values with your selected
+        Our World in Data dataset if required.
+    */
+
+
+    /* =====================================================
+       CHART 1
+       Renewable vs Fossil Fuels
+       ===================================================== */
+
+    const renewableFossilCanvas =
+        document.getElementById(
+            "renewableFossilChart"
+        );
+
+    if (renewableFossilCanvas) {
+
+        new Chart(
+            renewableFossilCanvas,
+            {
 
                 type: "line",
 
@@ -70,47 +161,47 @@ document.addEventListener("DOMContentLoaded", function () {
                         "2010",
                         "2015",
                         "2020",
-                        "2023"
+                        "2024"
                     ],
 
                     datasets: [
 
                         {
                             label: "Renewable Energy",
+
                             data: [
-                                8,
-                                10,
-                                12,
-                                15,
+                                7,
+                                9,
+                                11,
+                                14,
                                 18,
-                                21
+                                22
                             ],
 
-                            borderColor: "#42b866",
-                            backgroundColor:
-                                "rgba(66,184,102,.12)",
+                            borderWidth: 3,
 
-                            fill: true,
-                            tension: .35
+                            tension: 0.35,
+
+                            fill: false
                         },
 
                         {
                             label: "Fossil Fuels",
+
                             data: [
-                                80,
+                                82,
+                                81,
                                 79,
-                                77,
-                                74,
-                                70,
-                                68
+                                76,
+                                72,
+                                69
                             ],
 
-                            borderColor: "#65756b",
-                            backgroundColor:
-                                "rgba(101,117,107,.08)",
+                            borderWidth: 3,
 
-                            fill: true,
-                            tension: .35
+                            tension: 0.35,
+
+                            fill: false
                         }
 
                     ]
@@ -126,26 +217,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
 
                         legend: {
-                            position: "bottom"
+                            display: true
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true
                         }
 
                     }
 
                 }
 
-            });
+            }
+        );
 
-        }
+    }
 
 
-        const energyConsumption =
-            document.getElementById(
-                "energyConsumptionChart"
-            );
+    /* =====================================================
+       CHART 2
+       Global Energy Consumption
+       ===================================================== */
 
-        if (energyConsumption) {
+    const consumptionCanvas =
+        document.getElementById(
+            "energyConsumptionChart"
+        );
 
-            new Chart(energyConsumption, {
+    if (consumptionCanvas) {
+
+        new Chart(
+            consumptionCanvas,
+            {
 
                 type: "line",
 
@@ -157,31 +264,28 @@ document.addEventListener("DOMContentLoaded", function () {
                         "2010",
                         "2015",
                         "2020",
-                        "2023"
+                        "2024"
                     ],
 
                     datasets: [
 
                         {
-                            label: "Global Energy Consumption",
+                            label: "Global Primary Energy",
+
                             data: [
-                                95,
-                                103,
-                                111,
-                                121,
-                                125,
-                                135
+                                105,
+                                118,
+                                132,
+                                145,
+                                150,
+                                165
                             ],
 
-                            borderColor: "#17823b",
+                            borderWidth: 3,
 
-                            backgroundColor:
-                                "rgba(23,130,59,.12)",
+                            tension: 0.35,
 
-                            fill: true,
-
-                            tension: .35
-
+                            fill: true
                         }
 
                     ]
@@ -197,51 +301,65 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
 
                         legend: {
-                            position: "bottom"
+                            display: true
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true
                         }
 
                     }
 
                 }
 
-            });
+            }
+        );
 
-        }
+    }
 
 
-        const electricityChart =
-            document.getElementById(
-                "electricityChart"
-            );
+    /* =====================================================
+       CHART 3
+       Electricity Generation
+       ===================================================== */
 
-        if (electricityChart) {
+    const electricityCanvas =
+        document.getElementById(
+            "electricityChart"
+        );
 
-            new Chart(electricityChart, {
+    if (electricityCanvas) {
 
-                type: "doughnut",
+        new Chart(
+            electricityCanvas,
+            {
+
+                type: "bar",
 
                 data: {
 
                     labels: [
-                        "Fossil Fuels",
-                        "Renewables",
+                        "Renewable",
+                        "Fossil",
                         "Nuclear"
                     ],
 
                     datasets: [
 
                         {
+                            label: "Electricity Generation",
+
                             data: [
-                                60,
                                 30,
+                                60,
                                 10
                             ],
 
-                            backgroundColor: [
-                                "#5f6d64",
-                                "#17823b",
-                                "#91b69c"
-                            ]
+                            borderWidth: 1
 
                         }
 
@@ -258,17 +376,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
 
                         legend: {
-                            position: "bottom"
+                            display: true
+                        }
+
+                    },
+
+                    scales: {
+
+                        y: {
+                            beginAtZero: true
                         }
 
                     }
 
                 }
 
-            });
-
-        }
+            }
+        );
 
     }
 
-});
+}
