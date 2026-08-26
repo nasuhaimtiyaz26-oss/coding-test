@@ -1,10 +1,12 @@
 /* =========================================================
    SAFE ENERGY
    MASTER STYLE SHEET
+   FULL VERSION
    ========================================================= */
 
+
 /* =========================================================
-   01. ROOT
+   01. ROOT VARIABLES
    ========================================================= */
 
 :root {
@@ -19,12 +21,17 @@
     --white: #ffffff;
     --off-white: #f5f8f6;
     --light: #eaf1ed;
+
     --text: #14231c;
     --muted: #64736b;
 
     --border: rgba(20, 50, 36, 0.10);
-    --shadow: 0 18px 50px rgba(6, 31, 20, 0.10);
-    --shadow-hover: 0 25px 65px rgba(6, 31, 20, 0.18);
+
+    --shadow:
+        0 18px 50px rgba(6, 31, 20, 0.10);
+
+    --shadow-hover:
+        0 25px 65px rgba(6, 31, 20, 0.18);
 
     --radius-lg: 28px;
     --radius-md: 20px;
@@ -81,7 +88,11 @@ button {
    ========================================================= */
 
 .section-container {
-    width: min(var(--container), calc(100% - 40px));
+    width: min(
+        var(--container),
+        calc(100% - 40px)
+    );
+
     margin: 0 auto;
 }
 
@@ -96,20 +107,28 @@ button {
     z-index: 999;
 
     background: rgba(7, 26, 19, 0.94);
+
     backdrop-filter: blur(18px);
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
 
     transition: 0.3s ease;
 }
 
 .navbar.scrolled {
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.20);
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.20);
 }
 
 .nav-container {
-    width: min(1280px, calc(100% - 40px));
+    width: min(
+        1280px,
+        calc(100% - 40px)
+    );
+
     min-height: 78px;
+
     margin: auto;
 
     display: flex;
@@ -120,17 +139,21 @@ button {
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+   ========================================================= */
 
 .logo {
     display: flex;
     align-items: center;
+
     gap: 11px;
 
     color: white;
 
     font-size: 15px;
     font-weight: 900;
+
     letter-spacing: 1.5px;
 
     flex-shrink: 0;
@@ -145,20 +168,24 @@ button {
 
     border-radius: 12px;
 
-    background: linear-gradient(
-        135deg,
-        var(--green-400),
-        var(--green-600)
-    );
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-400),
+            var(--green-600)
+        );
 
     color: white;
 
     box-shadow:
-        0 8px 25px rgba(35, 155, 91, 0.25);
+        0 8px 25px
+        rgba(35, 155, 91, 0.25);
 }
 
 
-/* NAV MENU */
+/* =========================================================
+   NAV MENU
+   ========================================================= */
 
 .nav-menu {
     display: flex;
@@ -173,10 +200,12 @@ button {
 
     padding: 9px 12px;
 
-    color: rgba(255, 255, 255, 0.68);
+    color:
+        rgba(255, 255, 255, 0.68);
 
     font-size: 11px;
     font-weight: 800;
+
     letter-spacing: 0.5px;
 
     border-radius: 10px;
@@ -187,25 +216,32 @@ button {
 .nav-menu a:hover,
 .nav-menu a.active {
     color: white;
-    background: rgba(255, 255, 255, 0.08);
+
+    background:
+        rgba(255, 255, 255, 0.08);
 }
 
 .nav-menu a.active::after {
     content: "";
 
     position: absolute;
+
     left: 12px;
     right: 12px;
     bottom: 3px;
 
     height: 2px;
 
-    background: var(--green-400);
+    background:
+        var(--green-400);
+
     border-radius: 20px;
 }
 
 
-/* THREE DOT BUTTON */
+/* =========================================================
+   THREE DOT MENU
+   ========================================================= */
 
 .menu-dots {
     width: 43px;
@@ -214,12 +250,17 @@ button {
     display: none;
     place-items: center;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background:
+        rgba(255, 255, 255, 0.06);
 
     color: white;
+
     cursor: pointer;
 
     font-size: 18px;
@@ -250,6 +291,7 @@ button {
         url("images/green-energy-bg.jpeg");
 
     background-size: cover;
+
     background-position: center;
 }
 
@@ -257,6 +299,7 @@ button {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background:
@@ -269,6 +312,7 @@ button {
 
 .page-hero .section-container {
     position: relative;
+
     z-index: 2;
 
     padding: 85px 0;
@@ -277,18 +321,24 @@ button {
 .section-label {
     display: inline-flex;
     align-items: center;
+
     gap: 8px;
 
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 11px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
+
     text-transform: uppercase;
 }
 
 .page-hero .section-label {
-    color: var(--green-300);
+    color:
+        var(--green-300);
 }
 
 .page-hero h1 {
@@ -298,15 +348,21 @@ button {
 
     color: white;
 
-    font-size: clamp(42px, 6vw, 72px);
+    font-size:
+        clamp(42px, 6vw, 72px);
+
     line-height: 1.05;
+
     letter-spacing: -3px;
+
     font-weight: 900;
 }
 
 .page-hero h1 span {
     display: block;
-    color: var(--green-300);
+
+    color:
+        var(--green-300);
 }
 
 .page-hero p {
@@ -314,14 +370,15 @@ button {
 
     margin-top: 22px;
 
-    color: rgba(255, 255, 255, 0.72);
+    color:
+        rgba(255, 255, 255, 0.72);
 
     font-size: 16px;
 }
 
 
 /* =========================================================
-   06. GLOBAL SECTION HEADING
+   06. GLOBAL SECTIONS
    ========================================================= */
 
 section:not(.page-hero) {
@@ -334,6 +391,7 @@ section:not(.page-hero) {
 
 .section-heading.center {
     max-width: 800px;
+
     margin-left: auto;
     margin-right: auto;
 
@@ -343,28 +401,33 @@ section:not(.page-hero) {
 .section-heading h2 {
     margin-top: 10px;
 
-    font-size: clamp(32px, 4vw, 48px);
+    font-size:
+        clamp(32px, 4vw, 48px);
+
     line-height: 1.12;
+
     letter-spacing: -2px;
 
     font-weight: 900;
 }
 
 .section-heading h2 span {
-    color: var(--green-500);
+    color:
+        var(--green-500);
 }
 
 .section-heading p {
     margin-top: 17px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 15px;
 }
 
 
 /* =========================================================
-   07. GLOBAL CARD EFFECT
+   07. UNIVERSAL CARD EFFECT
    ========================================================= */
 
 .data-card,
@@ -376,13 +439,7 @@ section:not(.page-hero) {
 .team-card,
 .research-source-card,
 .source-detail-card,
-.iea-research-panel,
-.energystar-panel,
-.effects-message,
-.save-message,
-.why-message,
-.sources-message,
-.team-message {
+.home-nav-card {
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
@@ -396,9 +453,12 @@ section:not(.page-hero) {
 .save-card:hover,
 .team-card:hover,
 .research-source-card:hover,
-.source-detail-card:hover {
+.source-detail-card:hover,
+.home-nav-card:hover {
     transform: translateY(-7px);
-    box-shadow: var(--shadow-hover);
+
+    box-shadow:
+        var(--shadow-hover);
 }
 
 
@@ -407,7 +467,8 @@ section:not(.page-hero) {
    ========================================================= */
 
 .energy-section {
-    background: var(--off-white);
+    background:
+        var(--off-white);
 }
 
 .dashboard {
@@ -417,13 +478,18 @@ section:not(.page-hero) {
 
     background: white;
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 }
 
 
-/* DASHBOARD HEADER */
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
 
 .dashboard-header {
     display: flex;
@@ -436,10 +502,13 @@ section:not(.page-hero) {
 }
 
 .dashboard-label {
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
@@ -447,29 +516,36 @@ section:not(.page-hero) {
     margin-top: 5px;
 
     font-size: 26px;
+
     font-weight: 900;
 }
 
 .source-badge {
     display: inline-flex;
     align-items: center;
+
     gap: 8px;
 
     padding: 11px 15px;
 
     border-radius: 12px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
     color: white;
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 1px;
 }
 
 
-/* DATA CARDS */
+/* =========================================================
+   DATA CARDS
+   ========================================================= */
 
 .data-cards {
     display: grid;
@@ -492,10 +568,14 @@ section:not(.page-hero) {
 
     padding: 20px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
+
     border-radius: 18px;
 
-    background: #fbfdfc;
+    background:
+        #fbfdfc;
 }
 
 .data-icon {
@@ -513,32 +593,47 @@ section:not(.page-hero) {
 }
 
 .data-icon.renewable {
-    background: rgba(35, 155, 91, 0.12);
-    color: var(--green-500);
+    background:
+        rgba(35, 155, 91, 0.12);
+
+    color:
+        var(--green-500);
 }
 
 .data-icon.fossil {
-    background: rgba(80, 80, 80, 0.10);
-    color: #555;
+    background:
+        rgba(80, 80, 80, 0.10);
+
+    color:
+        #555;
 }
 
 .data-icon.nuclear {
-    background: rgba(60, 100, 180, 0.10);
-    color: #426ab1;
+    background:
+        rgba(60, 100, 180, 0.10);
+
+    color:
+        #426ab1;
 }
 
 .data-icon.electricity {
-    background: rgba(235, 180, 30, 0.14);
-    color: #b98500;
+    background:
+        rgba(235, 180, 30, 0.14);
+
+    color:
+        #b98500;
 }
 
 .data-card span {
     display: block;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 9px;
+
     font-weight: 900;
+
     letter-spacing: 1px;
 }
 
@@ -551,7 +646,9 @@ section:not(.page-hero) {
 }
 
 
-/* CHART CARDS */
+/* =========================================================
+   CHART CARDS
+   ========================================================= */
 
 .chart-card {
     margin-top: 20px;
@@ -562,9 +659,13 @@ section:not(.page-hero) {
 
     background: white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: 0 10px 35px rgba(5, 30, 18, 0.06);
+    box-shadow:
+        0 10px 35px
+        rgba(5, 30, 18, 0.06);
 }
 
 .chart-card.chart-dark {
@@ -583,27 +684,33 @@ section:not(.page-hero) {
 .chart-header {
     display: flex;
     align-items: flex-start;
+
     justify-content: space-between;
 
     gap: 20px;
 }
 
 .chart-header span {
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 1.8px;
 }
 
 .chart-dark .chart-header span {
-    color: var(--green-300);
+    color:
+        var(--green-300);
 }
 
 .chart-header h3 {
     margin-top: 6px;
 
     font-size: 22px;
+
     font-weight: 900;
 }
 
@@ -612,18 +719,43 @@ section:not(.page-hero) {
 
     margin-top: 4px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 12px;
 }
 
 .chart-dark .chart-header small {
-    color: rgba(255, 255, 255, 0.55);
+    color:
+        rgba(255, 255, 255, 0.55);
 }
 
 .chart-header > i {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background:
+        rgba(35, 155, 91, 0.10);
+
+    color:
+        var(--green-500);
+
     font-size: 22px;
-    color: var(--green-500);
+}
+
+.chart-dark .chart-header > i {
+    background:
+        rgba(126, 226, 160, 0.10);
+
+    color:
+        var(--green-300);
 }
 
 .chart-wrapper {
@@ -634,8 +766,22 @@ section:not(.page-hero) {
     margin-top: 25px;
 }
 
+.chart-wrapper canvas {
+    display: block;
+
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   SOURCE BUTTON
+   ========================================================= */
+
 .dashboard-source {
     display: flex;
+
     justify-content: center;
 
     margin-top: 30px;
@@ -645,7 +791,9 @@ section:not(.page-hero) {
 .iea-source-button,
 .energystar-button {
     display: inline-flex;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 9px;
@@ -654,12 +802,15 @@ section:not(.page-hero) {
 
     border-radius: 12px;
 
-    background: var(--green-600);
+    background:
+        var(--green-600);
 
     color: white;
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 0.8px;
 
     transition: 0.25s ease;
@@ -668,13 +819,16 @@ section:not(.page-hero) {
 .source-button:hover,
 .iea-source-button:hover,
 .energystar-button:hover {
-    background: var(--green-500);
-    transform: translateY(-2px);
+    background:
+        var(--green-500);
+
+    transform:
+        translateY(-2px);
 }
 
 
 /* =========================================================
-   09. WHY RENEWABLE PAGE
+   09. WHY RENEWABLE
    ========================================================= */
 
 .why-section {
@@ -706,9 +860,12 @@ section:not(.page-hero) {
             #f4faf6
         );
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 }
 
 .benefit-number,
@@ -719,10 +876,13 @@ section:not(.page-hero) {
     top: 22px;
     right: 24px;
 
-    color: rgba(35, 155, 91, 0.35);
+    color:
+        rgba(35, 155, 91, 0.35);
 
     font-size: 12px;
+
     font-weight: 900;
+
     letter-spacing: 1px;
 }
 
@@ -739,9 +899,11 @@ section:not(.page-hero) {
 
     border-radius: 18px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 23px;
 }
@@ -752,7 +914,9 @@ section:not(.page-hero) {
     margin-top: 23px;
 
     font-size: 20px;
+
     line-height: 1.25;
+
     font-weight: 900;
 }
 
@@ -761,14 +925,18 @@ section:not(.page-hero) {
 .save-card p {
     margin-top: 13px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 13px;
+
     line-height: 1.75;
 }
 
 
-/* RENEWABLE TYPES */
+/* =========================================================
+   RENEWABLE TYPES
+   ========================================================= */
 
 .renewable-types {
     margin-top: 100px;
@@ -788,9 +956,12 @@ section:not(.page-hero) {
 
     border-radius: 22px;
 
-    background: var(--off-white);
+    background:
+        var(--off-white);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 }
 
 .renewable-type-icon {
@@ -802,9 +973,11 @@ section:not(.page-hero) {
 
     border-radius: 15px;
 
-    background: rgba(35, 155, 91, 0.12);
+    background:
+        rgba(35, 155, 91, 0.12);
 
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 21px;
 }
@@ -813,19 +986,23 @@ section:not(.page-hero) {
     margin-top: 20px;
 
     font-size: 18px;
+
     font-weight: 900;
 }
 
 .renewable-type-card p {
     margin-top: 10px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 13px;
 }
 
 
-/* WHY MESSAGE */
+/* =========================================================
+   WHY MESSAGE
+   ========================================================= */
 
 .why-message {
     display: flex;
@@ -839,7 +1016,8 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
     color: white;
 }
@@ -855,22 +1033,26 @@ section:not(.page-hero) {
 
     border-radius: 18px;
 
-    background: rgba(126, 226, 160, 0.12);
+    background:
+        rgba(126, 226, 160, 0.12);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 23px;
 }
 
 .why-message h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .why-message p {
     margin-top: 5px;
 
-    color: rgba(255, 255, 255, 0.65);
+    color:
+        rgba(255, 255, 255, 0.65);
 
     font-size: 13px;
 }
@@ -881,11 +1063,14 @@ section:not(.page-hero) {
    ========================================================= */
 
 .effects-section {
-    background: var(--off-white);
+    background:
+        var(--off-white);
 }
 
 
-/* IEA PANEL */
+/* =========================================================
+   IEA PANEL
+   ========================================================= */
 
 .iea-research-panel {
     padding: 32px;
@@ -902,22 +1087,28 @@ section:not(.page-hero) {
     color: white;
 
     box-shadow:
-        0 20px 55px rgba(4, 28, 17, 0.20);
+        0 20px 55px
+        rgba(4, 28, 17, 0.20);
 }
 
 .iea-panel-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
 }
 
 .iea-panel-header span {
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
@@ -925,6 +1116,7 @@ section:not(.page-hero) {
     margin-top: 7px;
 
     font-size: 25px;
+
     font-weight: 900;
 }
 
@@ -939,7 +1131,8 @@ section:not(.page-hero) {
 
     background: white;
 
-    color: var(--green-900);
+    color:
+        var(--green-900);
 
     font-weight: 900;
 }
@@ -960,15 +1153,19 @@ section:not(.page-hero) {
 
     border-radius: 16px;
 
-    background: rgba(255, 255, 255, 0.06);
+    background:
+        rgba(255, 255, 255, 0.06);
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 }
 
 .iea-stat strong {
     display: block;
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 23px;
 }
@@ -978,7 +1175,8 @@ section:not(.page-hero) {
 
     margin-top: 4px;
 
-    color: rgba(255, 255, 255, 0.60);
+    color:
+        rgba(255, 255, 255, 0.60);
 
     font-size: 11px;
 }
@@ -988,7 +1186,8 @@ section:not(.page-hero) {
 
     margin-top: 25px;
 
-    color: rgba(255, 255, 255, 0.62);
+    color:
+        rgba(255, 255, 255, 0.62);
 
     font-size: 12px;
 }
@@ -998,7 +1197,9 @@ section:not(.page-hero) {
 }
 
 
-/* EFFECT CARDS */
+/* =========================================================
+   EFFECT CARDS
+   ========================================================= */
 
 .effects-grid {
     display: grid;
@@ -1022,37 +1223,54 @@ section:not(.page-hero) {
 
     background: white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 }
 
-.effect-card:nth-child(1) .effect-icon,
-.effect-card:nth-child(5) .effect-icon {
-    background: #17251f;
+.effect-card:nth-child(1)
+.effect-icon,
+.effect-card:nth-child(5)
+.effect-icon {
+    background:
+        #17251f;
 }
 
-.effect-card:nth-child(2) .effect-icon {
-    background: #243d2d;
+.effect-card:nth-child(2)
+.effect-icon {
+    background:
+        #243d2d;
 }
 
-.effect-card:nth-child(3) .effect-icon {
-    background: #30352b;
+.effect-card:nth-child(3)
+.effect-icon {
+    background:
+        #30352b;
 }
 
-.effect-card:nth-child(4) .effect-icon {
-    background: #183a2b;
+.effect-card:nth-child(4)
+.effect-icon {
+    background:
+        #183a2b;
 }
 
-.effect-card:nth-child(6) .effect-icon {
-    background: #19352a;
+.effect-card:nth-child(6)
+.effect-icon {
+    background:
+        #19352a;
 }
 
 
-/* EFFECT MESSAGE */
+/* =========================================================
+   EFFECT MESSAGE
+   ========================================================= */
 
 .effects-message {
     display: flex;
+
     align-items: center;
 
     gap: 22px;
@@ -1065,9 +1283,12 @@ section:not(.page-hero) {
 
     background: white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 }
 
 .effects-message-icon {
@@ -1081,27 +1302,31 @@ section:not(.page-hero) {
 
     border-radius: 17px;
 
-    background: rgba(235, 180, 30, 0.14);
+    background:
+        rgba(235, 180, 30, 0.14);
 
-    color: #b98500;
+    color:
+        #b98500;
 }
 
 .effects-message h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .effects-message p {
     margin-top: 5px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 13px;
 }
 
 
 /* =========================================================
-   11. WHAT WE CAN DO PAGE
+   11. WHAT WE CAN DO
    ========================================================= */
 
 .save-section {
@@ -1109,12 +1334,15 @@ section:not(.page-hero) {
 }
 
 
-/* TNB PANEL */
+/* =========================================================
+   ENERGY STAR PANEL
+   ========================================================= */
 
 .energystar-panel {
     display: grid;
 
-    grid-template-columns: 180px 1fr;
+    grid-template-columns:
+        180px 1fr;
 
     gap: 35px;
 
@@ -1132,39 +1360,50 @@ section:not(.page-hero) {
     color: white;
 
     box-shadow:
-        0 20px 55px rgba(4, 28, 17, 0.18);
+        0 20px 55px
+        rgba(4, 28, 17, 0.18);
 }
 
 .energystar-logo {
     min-height: 150px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
 
     gap: 10px;
 
     border-radius: 22px;
 
-    background: rgba(255, 255, 255, 0.07);
+    background:
+        rgba(255, 255, 255, 0.07);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 32px;
 }
 
 .energystar-logo span {
     font-size: 18px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
 .energystar-content > span {
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
@@ -1172,6 +1411,7 @@ section:not(.page-hero) {
     margin-top: 8px;
 
     font-size: 27px;
+
     font-weight: 900;
 }
 
@@ -1180,7 +1420,8 @@ section:not(.page-hero) {
 
     margin-top: 12px;
 
-    color: rgba(255, 255, 255, 0.65);
+    color:
+        rgba(255, 255, 255, 0.65);
 
     font-size: 13px;
 }
@@ -1190,7 +1431,9 @@ section:not(.page-hero) {
 }
 
 
-/* SAVE CARDS */
+/* =========================================================
+   SAVE CARDS
+   ========================================================= */
 
 .save-grid {
     display: grid;
@@ -1212,11 +1455,15 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: var(--off-white);
+    background:
+        var(--off-white);
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 }
 
 .save-card:hover {
@@ -1225,6 +1472,7 @@ section:not(.page-hero) {
 
 .save-conclusion {
     display: flex;
+
     align-items: flex-start;
 
     gap: 20px;
@@ -1235,45 +1483,56 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: #f4f9f5;
+    background:
+        #f4f9f5;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 }
 
 .save-conclusion > i {
     font-size: 27px;
-    color: #c99a13;
+
+    color:
+        #c99a13;
 }
 
 .save-conclusion h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .save-conclusion p {
     margin-top: 6px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 13px;
 }
 
 .text-source-link {
     display: inline-flex;
+
     align-items: center;
 
     gap: 8px;
 
     margin-top: 12px;
 
-    color: var(--green-600);
+    color:
+        var(--green-600);
 
     font-size: 10px;
+
     font-weight: 900;
 }
 
 .save-message {
     display: flex;
+
     align-items: center;
 
     gap: 20px;
@@ -1284,7 +1543,8 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
     color: white;
 }
@@ -1300,20 +1560,24 @@ section:not(.page-hero) {
 
     border-radius: 17px;
 
-    background: rgba(126, 226, 160, 0.12);
+    background:
+        rgba(126, 226, 160, 0.12);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 }
 
 .save-message h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .save-message p {
     margin-top: 5px;
 
-    color: rgba(255, 255, 255, 0.62);
+    color:
+        rgba(255, 255, 255, 0.62);
 
     font-size: 13px;
 }
@@ -1324,7 +1588,8 @@ section:not(.page-hero) {
    ========================================================= */
 
 .team-section {
-    background: white;
+    background:
+        white;
 }
 
 .team-grid {
@@ -1337,22 +1602,32 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM CARD */
+/* =========================================================
+   TEAM CARD
+   ========================================================= */
 
 .team-card {
     overflow: hidden;
 
     border-radius: 26px;
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
+
+    position: relative;
 }
 
 
-/* LARGE PHOTO */
+/* =========================================================
+   TEAM PHOTO
+   ========================================================= */
 
 .team-photo-wrap {
     position: relative;
@@ -1376,17 +1651,24 @@ section:not(.page-hero) {
     height: 100%;
 
     object-fit: cover;
-    object-position: center top;
 
-    transition: transform 0.5s ease;
+    object-position:
+        center top;
+
+    transition:
+        transform 0.5s ease;
 }
 
-.team-card:hover .team-photo {
-    transform: scale(1.045);
+.team-card:hover
+.team-photo {
+    transform:
+        scale(1.045);
 }
 
 
-/* TEAM CONTENT */
+/* =========================================================
+   TEAM CONTENT
+   ========================================================= */
 
 .team-content {
     position: relative;
@@ -1397,10 +1679,13 @@ section:not(.page-hero) {
 .team-number {
     display: inline-block;
 
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 11px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
@@ -1408,6 +1693,7 @@ section:not(.page-hero) {
     margin-top: 10px;
 
     font-size: 20px;
+
     line-height: 1.3;
 
     font-weight: 900;
@@ -1415,20 +1701,25 @@ section:not(.page-hero) {
 
 .team-line {
     width: 45px;
+
     height: 3px;
 
     margin: 17px 0;
 
     border-radius: 20px;
 
-    background: var(--green-500);
+    background:
+        var(--green-500);
 }
 
 .team-program {
-    color: var(--text);
+    color:
+        var(--text);
 
     font-size: 10px;
+
     font-weight: 900;
+
     line-height: 1.7;
 
     letter-spacing: 0.4px;
@@ -1437,17 +1728,22 @@ section:not(.page-hero) {
 .team-centre {
     margin-top: 9px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 10px;
+
     line-height: 1.5;
 }
 
 
-/* TEAM MESSAGE */
+/* =========================================================
+   TEAM MESSAGE
+   ========================================================= */
 
 .team-message {
     display: flex;
+
     align-items: center;
 
     gap: 20px;
@@ -1458,7 +1754,8 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
     color: white;
 }
@@ -1474,22 +1771,26 @@ section:not(.page-hero) {
 
     border-radius: 18px;
 
-    background: rgba(126, 226, 160, 0.12);
+    background:
+        rgba(126, 226, 160, 0.12);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 23px;
 }
 
 .team-message h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .team-message p {
     margin-top: 5px;
 
-    color: rgba(255, 255, 255, 0.62);
+    color:
+        rgba(255, 255, 255, 0.62);
 
     font-size: 13px;
 }
@@ -1500,7 +1801,8 @@ section:not(.page-hero) {
    ========================================================= */
 
 .sources-section {
-    background: var(--off-white);
+    background:
+        var(--off-white);
 }
 
 .sources-grid {
@@ -1513,23 +1815,30 @@ section:not(.page-hero) {
 }
 
 
-/* RESEARCH SOURCE CARDS */
+/* =========================================================
+   RESEARCH SOURCE CARDS
+   ========================================================= */
 
 .research-source-card {
     min-height: 390px;
 
     display: flex;
+
     flex-direction: column;
 
     padding: 30px;
 
     border-radius: 25px;
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 }
 
 .research-source-icon {
@@ -1547,25 +1856,37 @@ section:not(.page-hero) {
 }
 
 .owid-icon {
-    background: rgba(35, 155, 91, 0.12);
-    color: var(--green-500);
+    background:
+        rgba(35, 155, 91, 0.12);
+
+    color:
+        var(--green-500);
 }
 
 .iea-icon {
-    background: rgba(45, 90, 170, 0.10);
-    color: #426ab1;
+    background:
+        rgba(45, 90, 170, 0.10);
+
+    color:
+        #426ab1;
 }
 
 .tnb-icon {
-    background: rgba(230, 180, 30, 0.14);
-    color: #bd8d00;
+    background:
+        rgba(230, 180, 30, 0.14);
+
+    color:
+        #bd8d00;
 }
 
 .research-source-card > span {
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 9px;
+
     font-weight: 900;
+
     letter-spacing: 1.5px;
 }
 
@@ -1573,37 +1894,48 @@ section:not(.page-hero) {
     margin-top: 7px;
 
     font-size: 22px;
+
     line-height: 1.2;
+
     font-weight: 900;
 }
 
 .research-source-card p {
     margin-top: 12px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 13px;
+
     line-height: 1.75;
 }
 
 .research-source-card a {
     display: inline-flex;
+
     align-items: center;
 
     gap: 8px;
 
     margin-top: auto;
+
     padding-top: 22px;
 
-    color: var(--green-600);
+    color:
+        var(--green-600);
 
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 0.5px;
 }
 
 
-/* SOURCE DETAILS */
+/* =========================================================
+   SOURCE DETAILS
+   ========================================================= */
 
 .source-details {
     display: grid;
@@ -1616,7 +1948,8 @@ section:not(.page-hero) {
 .source-detail-card {
     display: grid;
 
-    grid-template-columns: 70px 1fr;
+    grid-template-columns:
+        70px 1fr;
 
     gap: 22px;
 
@@ -1624,11 +1957,16 @@ section:not(.page-hero) {
 
     border-radius: 20px;
 
-    background: white;
+    background:
+        white;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        var(--border);
 
-    box-shadow: 0 10px 30px rgba(5, 30, 18, 0.05);
+    box-shadow:
+        0 10px 30px
+        rgba(5, 30, 18, 0.05);
 }
 
 .source-detail-number {
@@ -1640,19 +1978,25 @@ section:not(.page-hero) {
 
     border-radius: 17px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 12px;
+
     font-weight: 900;
 }
 
 .source-detail-card span {
-    color: var(--green-500);
+    color:
+        var(--green-500);
 
     font-size: 9px;
+
     font-weight: 900;
+
     letter-spacing: 1.5px;
 }
 
@@ -1660,36 +2004,44 @@ section:not(.page-hero) {
     margin-top: 5px;
 
     font-size: 19px;
+
     font-weight: 900;
 }
 
 .source-detail-card p {
     margin-top: 5px;
 
-    color: var(--muted);
+    color:
+        var(--muted);
 
     font-size: 12px;
 }
 
 .source-detail-card a {
     display: inline-flex;
+
     align-items: center;
 
     gap: 7px;
 
     margin-top: 10px;
 
-    color: var(--green-600);
+    color:
+        var(--green-600);
 
     font-size: 10px;
+
     font-weight: 900;
 }
 
 
-/* SOURCES MESSAGE */
+/* =========================================================
+   SOURCES MESSAGE
+   ========================================================= */
 
 .sources-message {
     display: flex;
+
     align-items: center;
 
     gap: 20px;
@@ -1700,7 +2052,8 @@ section:not(.page-hero) {
 
     border-radius: 24px;
 
-    background: var(--green-900);
+    background:
+        var(--green-900);
 
     color: white;
 }
@@ -1716,41 +2069,259 @@ section:not(.page-hero) {
 
     border-radius: 17px;
 
-    background: rgba(126, 226, 160, 0.12);
+    background:
+        rgba(126, 226, 160, 0.12);
 
-    color: var(--green-300);
+    color:
+        var(--green-300);
 
     font-size: 22px;
 }
 
 .sources-message h3 {
     font-size: 20px;
+
     font-weight: 900;
 }
 
 .sources-message p {
     margin-top: 5px;
 
-    color: rgba(255, 255, 255, 0.62);
+    color:
+        rgba(255, 255, 255, 0.62);
 
     font-size: 13px;
 }
 
 
 /* =========================================================
-   14. FOOTER
+   14. HOMEPAGE NAVIGATION CARDS
+   ========================================================= */
+
+.home-navigation {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 40px;
+}
+
+.home-nav-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    min-height: 145px;
+
+    padding: 25px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 22px;
+
+    background:
+        white;
+
+    box-shadow:
+        var(--shadow);
+
+    color:
+        var(--text);
+
+    text-decoration: none;
+}
+
+.home-nav-icon {
+    width: 55px;
+    height: 55px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 16px;
+
+    background:
+        rgba(35, 155, 91, 0.10);
+
+    color:
+        var(--green-500);
+
+    font-size: 20px;
+}
+
+.home-nav-card > div:nth-child(2) {
+    min-width: 0;
+}
+
+.home-nav-card span {
+    color:
+        var(--green-500);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.home-nav-card h3 {
+    margin-top: 3px;
+
+    font-size: 17px;
+
+    font-weight: 900;
+}
+
+.home-nav-card p {
+    margin-top: 4px;
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.home-nav-arrow {
+    margin-left: auto;
+
+    flex-shrink: 0;
+
+    color:
+        var(--green-500);
+
+    transition:
+        transform 0.25s ease;
+}
+
+.home-nav-card:hover
+.home-nav-arrow {
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   15. HERO ENERGY CARDS
+   ========================================================= */
+
+.hero-energy-cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 45px;
+}
+
+.energy-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 18px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    backdrop-filter:
+        blur(12px);
+
+    color: white;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.energy-card:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        rgba(255, 255, 255, 0.13);
+}
+
+.energy-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(126, 226, 160, 0.12);
+
+    color:
+        var(--green-300);
+}
+
+.energy-card strong {
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+.energy-card span {
+    display: block;
+
+    margin-top: 2px;
+
+    color:
+        rgba(255, 255, 255, 0.60);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   16. FOOTER
    ========================================================= */
 
 footer {
-    padding: 55px 0 30px;
+    padding:
+        55px 0 30px;
 
-    background: #04130d;
+    background:
+        #04130d;
 
     color: white;
 }
 
 .footer-container {
-    width: min(var(--container), calc(100% - 40px));
+    width: min(
+        var(--container),
+        calc(100% - 40px)
+    );
+
     margin: auto;
 
     text-align: center;
@@ -1758,23 +2329,28 @@ footer {
 
 .footer-logo {
     display: inline-flex;
+
     align-items: center;
 
     gap: 9px;
 
     font-size: 15px;
+
     font-weight: 900;
+
     letter-spacing: 1.5px;
 }
 
 .footer-logo i {
-    color: var(--green-300);
+    color:
+        var(--green-300);
 }
 
 .footer-container > p {
     margin-top: 10px;
 
-    color: rgba(255, 255, 255, 0.50);
+    color:
+        rgba(255, 255, 255, 0.50);
 
     font-size: 12px;
 }
@@ -1784,9 +2360,12 @@ footer {
 
     padding-top: 20px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
-    color: rgba(255, 255, 255, 0.42);
+    color:
+        rgba(255, 255, 255, 0.42);
 
     font-size: 10px;
 }
@@ -1794,38 +2373,72 @@ footer {
 .footer-bottom {
     margin-top: 20px;
 
-    color: rgba(255, 255, 255, 0.28);
+    color:
+        rgba(255, 255, 255, 0.28);
 
     font-size: 10px;
 }
 
 
 /* =========================================================
-   15. RESPONSIVE TABLET
+   17. REVEAL ANIMATION
+   ========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================================
+   18. TABLET RESPONSIVE
    ========================================================= */
 
 @media (max-width: 1050px) {
+
+    /* NAVIGATION */
 
     .nav-menu {
         position: absolute;
 
         top: 78px;
+
         left: 20px;
         right: 20px;
 
         display: none;
 
         flex-direction: column;
+
         align-items: stretch;
 
         padding: 12px;
 
-        background: rgba(7, 26, 19, 0.98);
+        background:
+            rgba(7, 26, 19, 0.98);
 
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border:
+            1px solid
+            rgba(255, 255, 255, 0.08);
+
         border-radius: 18px;
 
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        box-shadow:
+            0 20px 50px
+            rgba(0, 0, 0, 0.25);
     }
 
     .nav-menu.open {
@@ -1840,91 +2453,158 @@ footer {
         display: grid;
     }
 
+
+    /* ENERGY DATA */
+
     .data-cards {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
+
+    /* WHY RENEWABLE */
+
     .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .renewable-types-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
+
+
+    /* EFFECTS */
 
     .effects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
+
+
+    /* WHAT WE CAN DO */
 
     .save-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
+
+
+    /* TEAM */
 
     .team-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
+
+
+    /* SOURCES */
 
     .sources-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
+
+    /* IEA */
+
     .iea-panel-content {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* HOMEPAGE */
+
+    .home-navigation,
+    .hero-energy-cards {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 }
 
 
 /* =========================================================
-   16. RESPONSIVE MOBILE
+   19. MOBILE RESPONSIVE
    ========================================================= */
 
 @media (max-width: 700px) {
 
     .section-container {
-        width: min(
-            var(--container),
-            calc(100% - 28px)
-        );
+        width:
+            min(
+                var(--container),
+                calc(100% - 28px)
+            );
     }
+
 
     section:not(.page-hero) {
-        padding: 70px 0;
+        padding:
+            70px 0;
     }
 
+
+    /* HERO */
+
     .page-hero {
-        min-height: 390px;
+        min-height:
+            390px;
     }
 
     .page-hero .section-container {
-        padding: 70px 0;
+        padding:
+            70px 0;
     }
 
     .page-hero h1 {
-        font-size: 43px;
-        letter-spacing: -2px;
+        font-size:
+            43px;
+
+        letter-spacing:
+            -2px;
     }
 
     .page-hero p {
-        font-size: 14px;
+        font-size:
+            14px;
     }
 
+
+    /* SECTION HEADING */
+
     .section-heading {
-        margin-bottom: 38px;
+        margin-bottom:
+            38px;
     }
 
     .section-heading h2 {
-        font-size: 34px;
+        font-size:
+            34px;
     }
 
+
+    /* DASHBOARD */
+
     .dashboard {
-        padding: 20px;
-        border-radius: 22px;
+        padding:
+            20px;
+
+        border-radius:
+            22px;
     }
 
     .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
     }
+
+
+    /* ALL GRIDS */
 
     .data-cards,
     .benefits-grid,
@@ -1933,50 +2613,80 @@ footer {
     .save-grid,
     .team-grid,
     .sources-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
+
+    /* CHART */
+
     .chart-card {
-        padding: 20px;
+        padding:
+            20px;
     }
 
     .chart-wrapper {
-        height: 280px;
+        height:
+            280px;
     }
 
+
+    /* IEA */
+
     .iea-research-panel {
-        padding: 23px;
+        padding:
+            23px;
     }
 
     .iea-panel-header {
-        align-items: flex-start;
+        align-items:
+            flex-start;
     }
 
     .iea-panel-header h3 {
-        font-size: 20px;
+        font-size:
+            20px;
     }
 
     .iea-panel-content {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
-    .energystar-panel {
-        grid-template-columns: 1fr;
 
-        padding: 23px;
+    /* ENERGY STAR */
+
+    .energystar-panel {
+        grid-template-columns:
+            1fr;
+
+        padding:
+            23px;
     }
 
     .energystar-logo {
-        min-height: 120px;
+        min-height:
+            120px;
     }
+
+
+    /* TEAM */
 
     .team-photo-wrap {
-        height: 470px;
+        height:
+            470px;
     }
 
+
+    /* SOURCE DETAILS */
+
     .source-detail-card {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
+
+
+    /* MESSAGE BOXES */
 
     .why-message,
     .effects-message,
@@ -1984,243 +2694,237 @@ footer {
     .team-message,
     .sources-message,
     .save-conclusion {
-        align-items: flex-start;
+        align-items:
+            flex-start;
+    }
+
+
+    /* HOMEPAGE */
+
+    .home-navigation,
+    .hero-energy-cards {
+        grid-template-columns:
+            1fr;
+    }
+
+    .home-nav-card {
+        min-height:
+            125px;
     }
 }
 
 
 /* =========================================================
-   17. SMALL MOBILE
+   20. SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 430px) {
 
     .nav-container {
-        width: calc(100% - 28px);
+        width:
+            calc(100% - 28px);
     }
 
     .logo {
-        font-size: 13px;
+        font-size:
+            13px;
     }
 
     .logo-icon {
-        width: 36px;
-        height: 36px;
+        width:
+            36px;
+
+        height:
+            36px;
     }
 
     .page-hero h1 {
-        font-size: 37px;
+        font-size:
+            37px;
     }
 
     .data-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .iea-panel-content {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .team-photo-wrap {
-        height: 430px;
-    }
-}
-
-
-/* =========================================================
-   18. SIMPLE REVEAL ANIMATION
-   ========================================================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-}
-
-.reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-/* =========================================================
-   19. HOMEPAGE CARDS + HERO ENERGY CARDS
-   Added without removing the original styles above.
-   ========================================================= */
-
-.home-navigation {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-    margin-top: 40px;
-}
-
-.home-nav-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    min-height: 145px;
-    padding: 25px;
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    background: white;
-    box-shadow: var(--shadow);
-    color: var(--dark);
-    text-decoration: none;
-    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-}
-
-.home-nav-card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(35,155,91,.25);
-    box-shadow: var(--shadow-hover);
-}
-
-.home-nav-icon {
-    width: 55px;
-    height: 55px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 16px;
-    background: rgba(35,155,91,.10);
-    color: var(--green-500);
-    font-size: 20px;
-}
-
-.home-nav-card > div:nth-child(2) {
-    min-width: 0;
-}
-
-.home-nav-card span {
-    color: var(--green-500);
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-}
-
-.home-nav-card h3 {
-    margin-top: 3px;
-    font-size: 17px;
-    font-weight: 900;
-}
-
-.home-nav-card p {
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
-}
-
-.home-nav-arrow {
-    margin-left: auto;
-    flex-shrink: 0;
-    color: var(--green-500);
-    transition: transform .25s ease;
-}
-
-.home-nav-card:hover .home-nav-arrow {
-    transform: translateX(5px);
-}
-
-.hero-energy-cards {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
-    margin-top: 45px;
-}
-
-.energy-card {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 18px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 18px;
-    background: rgba(255,255,255,.08);
-    backdrop-filter: blur(12px);
-    color: white;
-    transition: transform .3s ease, background .3s ease;
-}
-
-.energy-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,.13);
-}
-
-.energy-icon {
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 13px;
-    background: rgba(126,226,160,.12);
-    color: var(--green-300);
-}
-
-.energy-card strong {
-    display: block;
-    font-size: 12px;
-    font-weight: 900;
-}
-
-.energy-card span {
-    display: block;
-    margin-top: 2px;
-    color: rgba(255,255,255,.60);
-    font-size: 10px;
-}
-
-/* =========================================================
-   20. CHART CANVAS SAFETY
-   ========================================================= */
-
-.chart-wrapper canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.chart-header > i {
-    width: 48px;
-    height: 48px;
-    display: grid;
-    place-items: center;
-    border-radius: 14px;
-    background: rgba(35,155,91,.10);
-    color: var(--green-500);
-    flex-shrink: 0;
-}
-
-.chart-dark .chart-header > i {
-    background: rgba(126,226,160,.10);
-    color: var(--green-300);
-}
-
-/* =========================================================
-   21. EXTRA RESPONSIVE FIXES
-   ========================================================= */
-
-@media (max-width: 1050px) {
-    .home-navigation,
-    .hero-energy-cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    .home-navigation,
-    .hero-energy-cards {
-        grid-template-columns: 1fr;
+        height:
+            430px;
     }
 
-    .home-nav-card {
-        min-height: 125px;
+    .team-content {
+        padding:
+            23px;
+    }
+
+    .team-content h3 {
+        font-size:
+            18px;
+    }
+
+    .chart-header h3 {
+        font-size:
+            18px;
     }
 
     .chart-wrapper {
-        height: 280px;
+        height:
+            250px;
     }
 }
+
+
+/* =========================================================
+   21. EXTRA CARD POLISH
+   ========================================================= */
+
+/* Smooth border effect */
+
+.data-card:hover,
+.benefit-card:hover,
+.renewable-type-card:hover,
+.effect-card:hover,
+.save-card:hover,
+.team-card:hover,
+.research-source-card:hover,
+.source-detail-card:hover,
+.home-nav-card:hover {
+
+    border-color:
+        rgba(35, 155, 91, 0.22);
+}
+
+
+/* Make cards look clickable */
+
+.home-nav-card,
+.data-card,
+.benefit-card,
+.renewable-type-card,
+.effect-card,
+.save-card,
+.team-card,
+.research-source-card,
+.source-detail-card {
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/* =========================================================
+   22. TEAM IMAGE FALLBACK
+   ========================================================= */
+
+.team-photo-wrap::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(7, 26, 19, 0.08),
+            transparent 35%
+        );
+}
+
+
+/* =========================================================
+   23. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible {
+    outline:
+        3px solid
+        var(--green-400);
+
+    outline-offset:
+        3px;
+}
+
+
+/* =========================================================
+   24. PREVENT OVERFLOW
+   ========================================================= */
+
+.dashboard,
+.chart-card,
+.team-card,
+.benefit-card,
+.effect-card,
+.save-card,
+.research-source-card,
+.source-detail-card,
+.home-nav-card {
+    max-width:
+        100%;
+}
+
+
+/* =========================================================
+   25. FINAL MOBILE FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        width:
+            100%;
+    }
+
+    .data-card {
+        min-height:
+            95px;
+    }
+
+    .data-icon {
+        width:
+            48px;
+
+        height:
+            48px;
+    }
+
+    .chart-header {
+        gap:
+            12px;
+    }
+
+    .chart-header > i {
+        width:
+            42px;
+
+        height:
+            42px;
+
+        font-size:
+            18px;
+    }
+
+    .team-card {
+        width:
+            100%;
+    }
+
+    .team-photo {
+        object-position:
+            center top;
+    }
+}
+
+
+/* =========================================================
+   END OF SAFE ENERGY MASTER CSS
+   ========================================================= */
