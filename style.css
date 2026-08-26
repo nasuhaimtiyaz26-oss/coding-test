@@ -6,7 +6,7 @@
 
 
 /* =========================================================
-   01. ROOT VARIABLES
+   01. ROOT
    ========================================================= */
 
 :root {
@@ -189,6 +189,7 @@ button {
 
 .nav-menu {
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -204,6 +205,7 @@ button {
         rgba(255, 255, 255, 0.68);
 
     font-size: 11px;
+
     font-weight: 800;
 
     letter-spacing: 0.5px;
@@ -248,6 +250,7 @@ button {
     height: 43px;
 
     display: none;
+
     place-items: center;
 
     border:
@@ -320,6 +323,7 @@ button {
 
 .section-label {
     display: inline-flex;
+
     align-items: center;
 
     gap: 8px;
@@ -378,7 +382,7 @@ button {
 
 
 /* =========================================================
-   06. GLOBAL SECTIONS
+   06. GLOBAL SECTION
    ========================================================= */
 
 section:not(.page-hero) {
@@ -427,7 +431,7 @@ section:not(.page-hero) {
 
 
 /* =========================================================
-   07. UNIVERSAL CARD EFFECT
+   07. GLOBAL CARD EFFECT
    ========================================================= */
 
 .data-card,
@@ -439,6 +443,13 @@ section:not(.page-hero) {
 .team-card,
 .research-source-card,
 .source-detail-card,
+.iea-research-panel,
+.energystar-panel,
+.effects-message,
+.save-message,
+.why-message,
+.sources-message,
+.team-message,
 .home-nav-card {
     transition:
         transform 0.3s ease,
@@ -455,7 +466,8 @@ section:not(.page-hero) {
 .research-source-card:hover,
 .source-detail-card:hover,
 .home-nav-card:hover {
-    transform: translateY(-7px);
+    transform:
+        translateY(-7px);
 
     box-shadow:
         var(--shadow-hover);
@@ -487,13 +499,13 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   DASHBOARD HEADER
-   ========================================================= */
+/* DASHBOARD HEADER */
 
 .dashboard-header {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -522,6 +534,7 @@ section:not(.page-hero) {
 
 .source-badge {
     display: inline-flex;
+
     align-items: center;
 
     gap: 8px;
@@ -562,6 +575,7 @@ section:not(.page-hero) {
     min-height: 105px;
 
     display: flex;
+
     align-items: center;
 
     gap: 15px;
@@ -585,6 +599,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 15px;
@@ -683,6 +698,7 @@ section:not(.page-hero) {
 
 .chart-header {
     display: flex;
+
     align-items: flex-start;
 
     justify-content: space-between;
@@ -735,6 +751,7 @@ section:not(.page-hero) {
     height: 48px;
 
     display: grid;
+
     place-items: center;
 
     flex-shrink: 0;
@@ -747,7 +764,7 @@ section:not(.page-hero) {
     color:
         var(--green-500);
 
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .chart-dark .chart-header > i {
@@ -774,11 +791,6 @@ section:not(.page-hero) {
     height: 100% !important;
 }
 
-
-/* =========================================================
-   SOURCE BUTTON
-   ========================================================= */
-
 .dashboard-source {
     display: flex;
 
@@ -786,6 +798,11 @@ section:not(.page-hero) {
 
     margin-top: 30px;
 }
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .source-button,
 .iea-source-button,
@@ -874,6 +891,7 @@ section:not(.page-hero) {
     position: absolute;
 
     top: 22px;
+
     right: 24px;
 
     color:
@@ -893,6 +911,7 @@ section:not(.page-hero) {
     height: 60px;
 
     display: grid;
+
     place-items: center;
 
     margin-top: 25px;
@@ -969,6 +988,7 @@ section:not(.page-hero) {
     height: 54px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 15px;
@@ -1000,12 +1020,11 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   WHY MESSAGE
-   ========================================================= */
+/* WHY MESSAGE */
 
 .why-message {
     display: flex;
+
     align-items: center;
 
     gap: 22px;
@@ -1029,6 +1048,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 18px;
@@ -1068,9 +1088,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   IEA PANEL
-   ========================================================= */
+/* IEA PANEL */
 
 .iea-research-panel {
     padding: 32px;
@@ -1125,6 +1143,7 @@ section:not(.page-hero) {
     height: 62px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 18px;
@@ -1197,9 +1216,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   EFFECT CARDS
-   ========================================================= */
+/* EFFECT CARDS */
 
 .effects-grid {
     display: grid;
@@ -1235,38 +1252,31 @@ section:not(.page-hero) {
 .effect-icon,
 .effect-card:nth-child(5)
 .effect-icon {
-    background:
-        #17251f;
+    background: #17251f;
 }
 
 .effect-card:nth-child(2)
 .effect-icon {
-    background:
-        #243d2d;
+    background: #243d2d;
 }
 
 .effect-card:nth-child(3)
 .effect-icon {
-    background:
-        #30352b;
+    background: #30352b;
 }
 
 .effect-card:nth-child(4)
 .effect-icon {
-    background:
-        #183a2b;
+    background: #183a2b;
 }
 
 .effect-card:nth-child(6)
 .effect-icon {
-    background:
-        #19352a;
+    background: #19352a;
 }
 
 
-/* =========================================================
-   EFFECT MESSAGE
-   ========================================================= */
+/* EFFECT MESSAGE */
 
 .effects-message {
     display: flex;
@@ -1298,6 +1308,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 17px;
@@ -1332,11 +1343,6 @@ section:not(.page-hero) {
 .save-section {
     background: white;
 }
-
-
-/* =========================================================
-   ENERGY STAR PANEL
-   ========================================================= */
 
 .energystar-panel {
     display: grid;
@@ -1431,9 +1437,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   SAVE CARDS
-   ========================================================= */
+/* SAVE CARDS */
 
 .save-grid {
     display: grid;
@@ -1556,6 +1560,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 17px;
@@ -1588,9 +1593,11 @@ section:not(.page-hero) {
    ========================================================= */
 
 .team-section {
-    background:
-        white;
+    background: white;
 }
+
+
+/* TEAM GRID */
 
 .team-grid {
     display: grid;
@@ -1602,17 +1609,16 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   TEAM CARD
-   ========================================================= */
+/* TEAM CARD */
 
 .team-card {
+    position: relative;
+
     overflow: hidden;
 
     border-radius: 26px;
 
-    background:
-        white;
+    background: white;
 
     border:
         1px solid
@@ -1620,14 +1626,18 @@ section:not(.page-hero) {
 
     box-shadow:
         var(--shadow);
+}
 
-    position: relative;
+.team-card:hover {
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        var(--shadow-hover);
 }
 
 
-/* =========================================================
-   TEAM PHOTO
-   ========================================================= */
+/* TEAM PHOTO */
 
 .team-photo-wrap {
     position: relative;
@@ -1652,23 +1662,43 @@ section:not(.page-hero) {
 
     object-fit: cover;
 
-    object-position:
-        center top;
+    object-position: center top;
 
     transition:
         transform 0.5s ease;
 }
 
-.team-card:hover
-.team-photo {
+.team-card:hover .team-photo {
     transform:
         scale(1.045);
 }
 
 
-/* =========================================================
-   TEAM CONTENT
-   ========================================================= */
+/* TEAM PHOTO OVERLAY */
+
+.team-photo-wrap::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 35%;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(7, 26, 19, 0.35),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* TEAM CONTENT */
 
 .team-content {
     position: relative;
@@ -1691,6 +1721,9 @@ section:not(.page-hero) {
 
 .team-content h3 {
     margin-top: 10px;
+
+    color:
+        var(--text);
 
     font-size: 20px;
 
@@ -1737,9 +1770,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   TEAM MESSAGE
-   ========================================================= */
+/* TEAM MESSAGE */
 
 .team-message {
     display: flex;
@@ -1767,6 +1798,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 18px;
@@ -1815,9 +1847,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   RESEARCH SOURCE CARDS
-   ========================================================= */
+/* SOURCE CARDS */
 
 .research-source-card {
     min-height: 390px;
@@ -1830,8 +1860,7 @@ section:not(.page-hero) {
 
     border-radius: 25px;
 
-    background:
-        white;
+    background: white;
 
     border:
         1px solid
@@ -1846,6 +1875,7 @@ section:not(.page-hero) {
     height: 60px;
 
     display: grid;
+
     place-items: center;
 
     margin-bottom: 23px;
@@ -1933,9 +1963,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   SOURCE DETAILS
-   ========================================================= */
+/* SOURCE DETAILS */
 
 .source-details {
     display: grid;
@@ -1957,8 +1985,7 @@ section:not(.page-hero) {
 
     border-radius: 20px;
 
-    background:
-        white;
+    background: white;
 
     border:
         1px solid
@@ -1974,6 +2001,7 @@ section:not(.page-hero) {
     height: 60px;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 17px;
@@ -2035,9 +2063,7 @@ section:not(.page-hero) {
 }
 
 
-/* =========================================================
-   SOURCES MESSAGE
-   ========================================================= */
+/* SOURCES MESSAGE */
 
 .sources-message {
     display: flex;
@@ -2065,6 +2091,7 @@ section:not(.page-hero) {
     flex-shrink: 0;
 
     display: grid;
+
     place-items: center;
 
     border-radius: 17px;
@@ -2095,7 +2122,7 @@ section:not(.page-hero) {
 
 
 /* =========================================================
-   14. HOMEPAGE NAVIGATION CARDS
+   14. HOME PAGE NAVIGATION CARDS
    ========================================================= */
 
 .home-navigation {
@@ -2104,10 +2131,13 @@ section:not(.page-hero) {
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 18px;
+    gap: 20px;
 
     margin-top: 40px;
 }
+
+
+/* MAIN CARD */
 
 .home-nav-card {
     position: relative;
@@ -2116,55 +2146,128 @@ section:not(.page-hero) {
 
     align-items: center;
 
-    gap: 16px;
+    gap: 18px;
 
-    min-height: 145px;
+    min-height: 150px;
 
     padding: 25px;
 
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
-
     background:
-        white;
-
-    box-shadow:
-        var(--shadow);
+        #ffffff !important;
 
     color:
         var(--text);
 
+    border:
+        1px solid
+        rgba(20, 50, 36, 0.10);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(6, 31, 20, 0.10);
+
     text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.home-nav-icon {
-    width: 55px;
-    height: 55px;
 
-    flex-shrink: 0;
+/* TOP GREEN LINE */
 
-    display: grid;
-    place-items: center;
+.home-nav-card::before {
+    content: "";
 
-    border-radius: 16px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 4px;
 
     background:
-        rgba(35, 155, 91, 0.10);
+        linear-gradient(
+            90deg,
+            var(--green-500),
+            var(--green-300)
+        );
+}
+
+
+/* HOVER */
+
+.home-nav-card:hover {
+    transform:
+        translateY(-8px);
+
+    background:
+        #ffffff !important;
+
+    border-color:
+        rgba(35, 155, 91, 0.25);
+
+    box-shadow:
+        0 25px 65px
+        rgba(6, 31, 20, 0.18);
+}
+
+
+/* ICON */
+
+.home-nav-icon {
+    width: 58px;
+    height: 58px;
+
+    min-width: 58px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 17px;
+
+    background:
+        rgba(35, 155, 91, 0.12);
 
     color:
         var(--green-500);
 
-    font-size: 20px;
+    font-size: 21px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
 }
+
+.home-nav-card:hover .home-nav-icon {
+    background:
+        var(--green-500);
+
+    color: white;
+
+    transform:
+        scale(1.05);
+}
+
+
+/* CONTENT */
 
 .home-nav-card > div:nth-child(2) {
     min-width: 0;
 }
 
 .home-nav-card span {
+    display: block;
+
     color:
         var(--green-500);
 
@@ -2176,15 +2279,20 @@ section:not(.page-hero) {
 }
 
 .home-nav-card h3 {
-    margin-top: 3px;
+    margin-top: 4px;
 
-    font-size: 17px;
+    color:
+        var(--text);
+
+    font-size: 18px;
+
+    line-height: 1.25;
 
     font-weight: 900;
 }
 
 .home-nav-card p {
-    margin-top: 4px;
+    margin-top: 5px;
 
     color:
         var(--muted);
@@ -2194,27 +2302,48 @@ section:not(.page-hero) {
     line-height: 1.5;
 }
 
+
+/* ARROW */
+
 .home-nav-arrow {
     margin-left: auto;
 
     flex-shrink: 0;
 
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(35, 155, 91, 0.08);
+
     color:
         var(--green-500);
 
     transition:
-        transform 0.25s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
 }
 
-.home-nav-card:hover
-.home-nav-arrow {
+.home-nav-card:hover .home-nav-arrow {
     transform:
         translateX(5px);
+
+    background:
+        var(--green-500);
+
+    color: white;
 }
 
 
 /* =========================================================
-   15. HERO ENERGY CARDS
+   15. HOME HERO ENERGY CARDS
    ========================================================= */
 
 .hero-energy-cards {
@@ -2235,55 +2364,69 @@ section:not(.page-hero) {
 
     gap: 13px;
 
-    padding: 18px;
+    padding: 20px;
+
+    min-height: 90px;
+
+    background:
+        rgba(255, 255, 255, 0.10);
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.12);
+        rgba(255, 255, 255, 0.15);
 
     border-radius: 18px;
 
-    background:
-        rgba(255, 255, 255, 0.08);
-
-    backdrop-filter:
-        blur(12px);
+    backdrop-filter: blur(12px);
 
     color: white;
 
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.12);
+
     transition:
         transform 0.3s ease,
-        background 0.3s ease;
+        background 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .energy-card:hover {
     transform:
-        translateY(-5px);
+        translateY(-6px);
 
     background:
-        rgba(255, 255, 255, 0.13);
+        rgba(255, 255, 255, 0.16);
+
+    border-color:
+        rgba(126, 226, 160, 0.35);
 }
 
 .energy-icon {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
 
-    flex-shrink: 0;
+    min-width: 48px;
 
     display: grid;
+
     place-items: center;
 
-    border-radius: 13px;
+    border-radius: 14px;
 
     background:
-        rgba(126, 226, 160, 0.12);
+        rgba(126, 226, 160, 0.15);
 
     color:
         var(--green-300);
+
+    font-size: 19px;
 }
 
 .energy-card strong {
     display: block;
+
+    color: white;
 
     font-size: 12px;
 
@@ -2293,10 +2436,10 @@ section:not(.page-hero) {
 .energy-card span {
     display: block;
 
-    margin-top: 2px;
+    margin-top: 3px;
 
     color:
-        rgba(255, 255, 255, 0.60);
+        rgba(255, 255, 255, 0.65);
 
     font-size: 10px;
 }
@@ -2307,8 +2450,7 @@ section:not(.page-hero) {
    ========================================================= */
 
 footer {
-    padding:
-        55px 0 30px;
+    padding: 55px 0 30px;
 
     background:
         #04130d;
@@ -2381,7 +2523,44 @@ footer {
 
 
 /* =========================================================
-   17. REVEAL ANIMATION
+   17. CHART ERROR
+   ========================================================= */
+
+.chart-error {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    color:
+        var(--muted);
+
+    font-size: 13px;
+}
+
+.chart-error i {
+    font-size: 28px;
+
+    color:
+        #b98500;
+}
+
+
+/* =========================================================
+   18. REVEAL ANIMATION
    ========================================================= */
 
 .reveal {
@@ -2404,12 +2583,10 @@ footer {
 
 
 /* =========================================================
-   18. TABLET RESPONSIVE
+   19. TABLET
    ========================================================= */
 
 @media (max-width: 1050px) {
-
-    /* NAVIGATION */
 
     .nav-menu {
         position: absolute;
@@ -2462,7 +2639,7 @@ footer {
     }
 
 
-    /* WHY RENEWABLE */
+    /* WHY */
 
     .benefits-grid {
         grid-template-columns:
@@ -2483,7 +2660,7 @@ footer {
     }
 
 
-    /* WHAT WE CAN DO */
+    /* SAVE */
 
     .save-grid {
         grid-template-columns:
@@ -2515,96 +2692,83 @@ footer {
     }
 
 
-    /* HOMEPAGE */
+    /* HOME */
 
     .home-navigation,
     .hero-energy-cards {
         grid-template-columns:
             repeat(2, minmax(0, 1fr));
     }
+
 }
 
 
 /* =========================================================
-   19. MOBILE RESPONSIVE
+   20. MOBILE
    ========================================================= */
 
 @media (max-width: 700px) {
 
     .section-container {
-        width:
-            min(
-                var(--container),
-                calc(100% - 28px)
-            );
+        width: min(
+            var(--container),
+            calc(100% - 28px)
+        );
     }
 
-
     section:not(.page-hero) {
-        padding:
-            70px 0;
+        padding: 70px 0;
     }
 
 
     /* HERO */
 
     .page-hero {
-        min-height:
-            390px;
+        min-height: 390px;
     }
 
     .page-hero .section-container {
-        padding:
-            70px 0;
+        padding: 70px 0;
     }
 
     .page-hero h1 {
-        font-size:
-            43px;
+        font-size: 43px;
 
-        letter-spacing:
-            -2px;
+        letter-spacing: -2px;
     }
 
     .page-hero p {
-        font-size:
-            14px;
+        font-size: 14px;
     }
 
 
-    /* SECTION HEADING */
+    /* HEADINGS */
 
     .section-heading {
-        margin-bottom:
-            38px;
+        margin-bottom: 38px;
     }
 
     .section-heading h2 {
-        font-size:
-            34px;
+        font-size: 34px;
     }
 
 
     /* DASHBOARD */
 
     .dashboard {
-        padding:
-            20px;
+        padding: 20px;
 
-        border-radius:
-            22px;
+        border-radius: 22px;
     }
 
     .dashboard-header {
-        flex-direction:
-            column;
+        flex-direction: column;
 
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
 
-    /* ALL GRIDS */
+    /* GRIDS */
 
     .data-cards,
     .benefits-grid,
@@ -2612,40 +2776,36 @@ footer {
     .effects-grid,
     .save-grid,
     .team-grid,
-    .sources-grid {
-        grid-template-columns:
-            1fr;
+    .sources-grid,
+    .home-navigation,
+    .hero-energy-cards {
+        grid-template-columns: 1fr;
     }
 
 
     /* CHART */
 
     .chart-card {
-        padding:
-            20px;
+        padding: 20px;
     }
 
     .chart-wrapper {
-        height:
-            280px;
+        height: 280px;
     }
 
 
     /* IEA */
 
     .iea-research-panel {
-        padding:
-            23px;
+        padding: 23px;
     }
 
     .iea-panel-header {
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
     .iea-panel-header h3 {
-        font-size:
-            20px;
+        font-size: 20px;
     }
 
     .iea-panel-content {
@@ -2657,32 +2817,27 @@ footer {
     /* ENERGY STAR */
 
     .energystar-panel {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
 
-        padding:
-            23px;
+        padding: 23px;
     }
 
     .energystar-logo {
-        min-height:
-            120px;
+        min-height: 120px;
     }
 
 
     /* TEAM */
 
     .team-photo-wrap {
-        height:
-            470px;
+        height: 470px;
     }
 
 
-    /* SOURCE DETAILS */
+    /* SOURCES */
 
     .source-detail-card {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
 
@@ -2694,28 +2849,21 @@ footer {
     .team-message,
     .sources-message,
     .save-conclusion {
-        align-items:
-            flex-start;
+        align-items: flex-start;
     }
 
 
-    /* HOMEPAGE */
-
-    .home-navigation,
-    .hero-energy-cards {
-        grid-template-columns:
-            1fr;
-    }
+    /* HOME CARD */
 
     .home-nav-card {
-        min-height:
-            125px;
+        min-height: 130px;
     }
+
 }
 
 
 /* =========================================================
-   20. SMALL MOBILE
+   21. SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 430px) {
@@ -2726,202 +2874,45 @@ footer {
     }
 
     .logo {
-        font-size:
-            13px;
+        font-size: 13px;
     }
 
     .logo-icon {
-        width:
-            36px;
-
-        height:
-            36px;
+        width: 36px;
+        height: 36px;
     }
 
     .page-hero h1 {
-        font-size:
-            37px;
+        font-size: 37px;
     }
 
     .data-cards {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .iea-panel-content {
-        grid-template-columns:
-            1fr;
+        grid-template-columns: 1fr;
     }
 
     .team-photo-wrap {
-        height:
-            430px;
+        height: 430px;
     }
 
-    .team-content {
-        padding:
-            23px;
+    .home-nav-card {
+        padding: 20px;
     }
 
-    .team-content h3 {
-        font-size:
-            18px;
+    .home-nav-icon {
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
     }
 
-    .chart-header h3 {
-        font-size:
-            18px;
+    .home-nav-card h3 {
+        font-size: 16px;
     }
 
-    .chart-wrapper {
-        height:
-            250px;
-    }
-}
-
-
-/* =========================================================
-   21. EXTRA CARD POLISH
-   ========================================================= */
-
-/* Smooth border effect */
-
-.data-card:hover,
-.benefit-card:hover,
-.renewable-type-card:hover,
-.effect-card:hover,
-.save-card:hover,
-.team-card:hover,
-.research-source-card:hover,
-.source-detail-card:hover,
-.home-nav-card:hover {
-
-    border-color:
-        rgba(35, 155, 91, 0.22);
-}
-
-
-/* Make cards look clickable */
-
-.home-nav-card,
-.data-card,
-.benefit-card,
-.renewable-type-card,
-.effect-card,
-.save-card,
-.team-card,
-.research-source-card,
-.source-detail-card {
-
-    -webkit-tap-highlight-color:
-        transparent;
-}
-
-
-/* =========================================================
-   22. TEAM IMAGE FALLBACK
-   ========================================================= */
-
-.team-photo-wrap::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(7, 26, 19, 0.08),
-            transparent 35%
-        );
-}
-
-
-/* =========================================================
-   23. ACCESSIBILITY
-   ========================================================= */
-
-a:focus-visible,
-button:focus-visible {
-    outline:
-        3px solid
-        var(--green-400);
-
-    outline-offset:
-        3px;
-}
-
-
-/* =========================================================
-   24. PREVENT OVERFLOW
-   ========================================================= */
-
-.dashboard,
-.chart-card,
-.team-card,
-.benefit-card,
-.effect-card,
-.save-card,
-.research-source-card,
-.source-detail-card,
-.home-nav-card {
-    max-width:
-        100%;
-}
-
-
-/* =========================================================
-   25. FINAL MOBILE FIX
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .dashboard {
-        width:
-            100%;
-    }
-
-    .data-card {
-        min-height:
-            95px;
-    }
-
-    .data-icon {
-        width:
-            48px;
-
-        height:
-            48px;
-    }
-
-    .chart-header {
-        gap:
-            12px;
-    }
-
-    .chart-header > i {
-        width:
-            42px;
-
-        height:
-            42px;
-
-        font-size:
-            18px;
-    }
-
-    .team-card {
-        width:
-            100%;
-    }
-
-    .team-photo {
-        object-position:
-            center top;
-    }
 }
 
 
