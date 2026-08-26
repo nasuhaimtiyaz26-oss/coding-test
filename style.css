@@ -1,7 +1,14 @@
-/* =========================================================
+/* =====================================================
    SAFE ENERGY
-   COMPLETE GLOBAL STYLE
-========================================================= */
+   GLOBAL STYLE SHEET
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     margin: 0;
@@ -15,15 +22,14 @@ html {
 
 body {
     font-family: "Inter", sans-serif;
-    background: #f4f7f2;
-    color: #172219;
-    line-height: 1.6;
-    overflow-x: hidden;
+    background: #f4f8f5;
+    color: #17221b;
+    line-height: 1.7;
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 img {
@@ -31,203 +37,176 @@ img {
     display: block;
 }
 
-button {
-    font-family: inherit;
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root {
+    --green: #17823b;
+    --green-dark: #0d5428;
+    --green-light: #e9f7ed;
+
+    --dark: #102016;
+    --text: #25352b;
+    --muted: #6b786f;
+
+    --white: #ffffff;
+    --border: #dce8df;
+
+    --shadow:
+        0 15px 40px rgba(18, 56, 31, 0.10);
+
+    --radius: 22px;
 }
 
-section {
-    position: relative;
-}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .section-container {
-    width: min(1180px, 92%);
+    width: min(1180px, calc(100% - 40px));
     margin: auto;
 }
 
 
-/* =========================================================
+/* =====================================================
    NAVBAR
-========================================================= */
+===================================================== */
 
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
+    z-index: 1000;
 
-    width: 100%;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
 
-    z-index: 9999;
-
-    background: rgba(7, 18, 10, 0.94);
-
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid var(--border);
 }
 
 .nav-container {
-    width: min(1250px, 92%);
-    height: 76px;
-
+    width: min(1200px, calc(100% - 40px));
+    min-height: 76px;
     margin: auto;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 20px;
 }
 
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* LOGO */
 
 .logo {
     display: flex;
     align-items: center;
     gap: 11px;
 
-    color: white;
-
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 900;
+    letter-spacing: 1px;
 
-    letter-spacing: 1.5px;
+    color: var(--dark);
 }
 
 .logo-icon {
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 
-    background: #b9e769;
+    border-radius: 12px;
 
-    color: #102015;
+    background: var(--green);
+    color: white;
 
-    border-radius: 50%;
-
-    font-size: 18px;
+    box-shadow: 0 8px 18px rgba(23, 130, 59, .20);
 }
 
 
-/* =========================================================
-   NAV MENU
-========================================================= */
+/* MENU */
 
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
 }
 
 .nav-menu a {
-    position: relative;
+    padding: 9px 12px;
 
-    padding: 10px 12px;
+    border-radius: 9px;
 
-    color: rgba(255,255,255,0.72);
-
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 800;
+    letter-spacing: .4px;
 
-    letter-spacing: 0.5px;
+    color: #5d6961;
 
-    transition: 0.25s ease;
+    transition: .25s ease;
 }
 
-.nav-menu a:hover,
+.nav-menu a:hover {
+    color: var(--green);
+    background: var(--green-light);
+}
+
 .nav-menu a.active {
-    color: #c8ef82;
-}
-
-.nav-menu a::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: 3px;
-    left: 50%;
-
-    width: 0;
-    height: 2px;
-
-    background: #b9e769;
-
-    transform: translateX(-50%);
-
-    transition: 0.25s ease;
-}
-
-.nav-menu a:hover::after,
-.nav-menu a.active::after {
-    width: 55%;
+    color: var(--green);
+    background: var(--green-light);
 }
 
 
-/* =========================================================
-   MOBILE MENU BUTTON
-========================================================= */
+/* THREE DOT */
 
 .menu-dots {
-    display: none;
-
     width: 42px;
     height: 42px;
 
-    align-items: center;
-    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 12px;
 
-    border: 1px solid rgba(255,255,255,0.15);
-
-    border-radius: 10px;
-
-    background: rgba(255,255,255,0.06);
-
-    color: white;
+    background: white;
+    color: var(--green);
 
     cursor: pointer;
 
-    font-size: 18px;
+    display: none;
 }
 
 
-/* =========================================================
-   HOME HERO
-========================================================= */
+/* =====================================================
+   PAGE HERO
+===================================================== */
 
-.hero {
-    min-height: 100vh;
-
+.page-hero {
     position: relative;
 
-    display: flex;
-    align-items: center;
+    padding: 110px 0 100px;
 
     overflow: hidden;
 
-    color: white;
-
     background:
         linear-gradient(
-            110deg,
-            rgba(4,18,9,0.92),
-            rgba(11,45,22,0.78),
-            rgba(8,29,15,0.65)
+            90deg,
+            rgba(7, 38, 18, .91),
+            rgba(11, 72, 34, .78)
         ),
         url("images/green-energy-bg.jpeg");
 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    color: white;
 }
 
-
-/* extra dark overlay */
-
-.hero::before {
+.page-hero::after {
     content: "";
 
     position: absolute;
@@ -235,706 +214,138 @@ section {
 
     background:
         radial-gradient(
-            circle at 75% 35%,
-            rgba(185,231,105,0.18),
-            transparent 32%
+            circle at 80% 30%,
+            rgba(100, 220, 130, .18),
+            transparent 35%
         );
+
+    pointer-events: none;
 }
 
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
-
-.hero-content {
+.page-hero .section-container {
     position: relative;
-
-    z-index: 3;
-
-    width: min(1000px, 92%);
-
-    margin: auto;
-
-    padding-top: 70px;
-
-    animation: fadeUp 0.8s ease both;
+    z-index: 2;
 }
 
-.hero-badge,
-.hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
+.section-label {
+    display: inline-block;
 
-    padding: 9px 14px;
+    margin-bottom: 16px;
 
-    border: 1px solid rgba(185,231,105,0.35);
+    color: var(--green);
 
-    border-radius: 30px;
-
-    background: rgba(185,231,105,0.08);
-
-    color: #c8ef82;
-
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 900;
-
-    letter-spacing: 1.2px;
-}
-
-.hero h1 {
-    margin-top: 25px;
-
-    max-width: 1000px;
-
-    font-size: clamp(48px, 7vw, 88px);
-
-    line-height: 0.98;
-
-    font-weight: 900;
-
-    letter-spacing: -4px;
-}
-
-.hero h1 span {
-    color: #b9e769;
-}
-
-.hero p {
-    max-width: 650px;
-
-    margin-top: 25px;
-
-    color: rgba(255,255,255,0.73);
-
-    font-size: 16px;
-}
-
-
-/* =========================================================
-   HERO BUTTONS
-========================================================= */
-
-.hero-buttons {
-    display: flex;
-    gap: 12px;
-
-    margin-top: 32px;
-
-    flex-wrap: wrap;
-}
-
-.btn-primary,
-.hero-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 14px 20px;
-
-    background: #b9e769;
-
-    color: #102015;
-
-    border-radius: 8px;
-
-    font-size: 10px;
-    font-weight: 900;
-
-    transition: 0.25s ease;
-}
-
-.btn-primary:hover,
-.hero-button:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 30px rgba(185,231,105,0.25);
-}
-
-.btn-secondary {
-    display: inline-flex;
-    align-items: center;
-
-    padding: 14px 20px;
-
-    border: 1px solid rgba(255,255,255,0.2);
-
-    background: rgba(255,255,255,0.07);
-
-    color: white;
-
-    border-radius: 8px;
-
-    font-size: 10px;
-    font-weight: 800;
-
-    transition: 0.25s ease;
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,0.14);
-}
-
-
-/* =========================================================
-   HOME ENERGY CARDS
-========================================================= */
-
-.hero-energy-cards {
-    position: absolute;
-
-    z-index: 3;
-
-    left: 50%;
-    bottom: 55px;
-
-    transform: translateX(-50%);
-
-    width: min(1100px, 90%);
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 15px;
-}
-
-.energy-card {
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
-
-    padding: 18px;
-
-    border: 1px solid rgba(255,255,255,0.13);
-
-    border-radius: 16px;
-
-    background: rgba(5,20,10,0.62);
-
-    backdrop-filter: blur(12px);
-
-    transition: 0.3s ease;
-}
-
-.energy-card:hover {
-    transform: translateY(-6px);
-
-    border-color: rgba(185,231,105,0.35);
-
-    background: rgba(11,38,19,0.78);
-}
-
-.energy-icon {
-    width: 46px;
-    height: 46px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(185,231,105,0.13);
-
-    color: #b9e769;
-
-    border-radius: 13px;
-
-    font-size: 19px;
-}
-
-.energy-card strong {
-    display: block;
-
-    color: white;
-
-    font-size: 12px;
-}
-
-.energy-card span {
-    display: block;
-
-    margin-top: 3px;
-
-    color: rgba(255,255,255,0.52);
-
-    font-size: 9px;
-}
-
-
-/* =========================================================
-   SCROLL
-========================================================= */
-
-.scroll-indicator {
-    position: absolute;
-
-    z-index: 4;
-
-    left: 50%;
-    bottom: 18px;
-
-    transform: translateX(-50%);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 5px;
-
-    color: rgba(255,255,255,0.5);
-
-    font-size: 8px;
 
     letter-spacing: 1.5px;
 }
 
+.page-hero .section-label {
+    color: #9ce4b0;
+}
 
-/* =========================================================
-   HOME INTRO
-========================================================= */
+.page-hero h1 {
+    max-width: 850px;
 
-.home-intro {
-    padding: 110px 0;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.05;
 
-    background: #f7faf5;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.page-hero h1 span {
+    display: block;
+    color: #8ee4a5;
+}
+
+.page-hero p {
+    max-width: 720px;
+
+    margin-top: 25px;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
+
+.energy-section,
+.why-section,
+.effects-section,
+.save-section,
+.sources-section,
+.team-section {
+    padding: 100px 0;
 }
 
 .section-heading {
-    margin-bottom: 50px;
+    margin-bottom: 55px;
 }
 
 .section-heading.center {
     text-align: center;
 }
 
-.section-label {
-    display: inline-block;
-
-    color: #6b913b;
-
-    font-size: 9px;
-    font-weight: 900;
-
-    letter-spacing: 2px;
-}
-
 .section-heading h2 {
-    margin-top: 12px;
-
-    font-size: clamp(35px, 5vw, 58px);
-
-    line-height: 1.05;
-
-    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
 
     letter-spacing: -2px;
+
+    color: var(--dark);
 }
 
 .section-heading h2 span {
-    color: #719b37;
+    color: var(--green);
 }
 
 .section-heading p {
-    max-width: 700px;
-
+    max-width: 720px;
     margin: 18px auto 0;
 
-    color: #69746c;
-
-    font-size: 14px;
+    color: var(--muted);
 }
 
 
-/* =========================================================
-   HOME NAVIGATION CARDS
-========================================================= */
+/* =====================================================
+   UNIVERSAL CARDS
+===================================================== */
 
-.home-navigation {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-.home-nav-card {
-    position: relative;
-
-    display: flex;
-    align-items: center;
-
-    gap: 18px;
-
-    min-height: 145px;
-
-    padding: 25px;
-
-    background: white;
-
-    border: 1px solid #e0e8dc;
-
-    border-radius: 20px;
-
-    box-shadow: 0 8px 25px rgba(20,40,25,0.05);
-
-    transition: 0.3s ease;
-
-    overflow: hidden;
-}
-
-.home-nav-card::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 4px;
-
-    background: #b9e769;
-
-    transform: scaleY(0);
-
-    transform-origin: bottom;
-
-    transition: 0.3s ease;
-}
-
-.home-nav-card:hover {
-    transform: translateY(-6px);
-
-    box-shadow:
-        0 18px 35px rgba(20,40,25,0.1);
-}
-
-.home-nav-card:hover::before {
-    transform: scaleY(1);
-}
-
-.home-nav-icon {
-    width: 58px;
-    height: 58px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #e8f2df;
-
-    color: #69933a;
-
-    border-radius: 16px;
-
-    font-size: 21px;
-}
-
-.home-nav-card span {
-    color: #91a08f;
-
-    font-size: 9px;
-    font-weight: 900;
-}
-
-.home-nav-card h3 {
-    margin-top: 3px;
-
-    font-size: 20px;
-}
-
-.home-nav-card p {
-    margin-top: 4px;
-
-    color: #788179;
-
-    font-size: 11px;
-}
-
-.home-nav-arrow {
-    margin-left: auto;
-
-    color: #79994b;
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   PAGE HERO
-========================================================= */
-
-.page-hero {
-    padding: 155px 0 90px;
-
-    color: white;
-
-    text-align: center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #07130a,
-            #18361f
-        );
-}
-
-.page-hero .section-container {
-    max-width: 900px;
-}
-
-.page-hero h1 {
-    margin-top: 18px;
-
-    font-size: clamp(43px, 6vw, 75px);
-
-    line-height: 1;
-
-    font-weight: 900;
-
-    letter-spacing: -3px;
-}
-
-.page-hero h1 span {
-    color: #b9e769;
-}
-
-.page-hero p {
-    max-width: 720px;
-
-    margin: 22px auto 0;
-
-    color: rgba(255,255,255,0.67);
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   ALL PAGE SECTIONS
-========================================================= */
-
-.energy-section,
-.why-section,
-.effects-section,
-.save-section,
-.team-section,
-.sources-section {
-    padding: 100px 0;
-
-    background: #f4f7f2;
-}
-
-.energy-section:nth-child(even),
-.effects-section:nth-child(even),
-.team-section:nth-child(even) {
-    background: #edf2eb;
-}
-
-
-/* =========================================================
-   GENERAL CARDS
-========================================================= */
-
-.card-grid,
-.benefits-grid,
-.effects-grid,
-.save-grid,
-.sources-grid,
-.source-details,
-.team-grid,
-.renewable-types-grid {
-    display: grid;
-
-    gap: 20px;
-}
-
-
-/* 3 columns */
-
-.benefits-grid,
-.effects-grid,
-.save-grid,
-.sources-grid,
-.source-details {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-
-/* 4 columns */
-
-.renewable-types-grid {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-
-/* =========================================================
-   BENEFIT CARD
-========================================================= */
-
-.benefit-card,
 .effect-card,
+.benefit-card,
+.renewable-type-card,
 .save-card,
-.research-source-card {
-    position: relative;
-
-    padding: 30px;
-
-    min-height: 280px;
-
-    background: white;
-
-    border: 1px solid #e0e7dd;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 8px 25px rgba(20,40,25,0.05);
-
-    transition: 0.3s ease;
-
-    overflow: hidden;
-}
-
-.benefit-card:hover,
-.effect-card:hover,
-.save-card:hover,
-.research-source-card:hover {
-    transform: translateY(-7px);
-
-    box-shadow:
-        0 20px 40px rgba(20,40,25,0.1);
-}
-
-.benefit-number,
-.effect-number,
-.save-number {
-    position: absolute;
-
-    top: 20px;
-    right: 22px;
-
-    color: #d9e0d6;
-
-    font-size: 13px;
-
-    font-weight: 900;
-}
-
-.benefit-icon,
-.effect-icon,
-.save-icon,
-.research-source-icon {
-    width: 57px;
-    height: 57px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 22px;
-
-    background: #e7f1de;
-
-    color: #6b9339;
-
-    border-radius: 15px;
-
-    font-size: 21px;
-}
-
-.benefit-card h3,
-.effect-card h3,
-.save-card h3,
-.research-source-card h3 {
-    margin-bottom: 10px;
-
-    font-size: 19px;
-
-    line-height: 1.25;
-}
-
-.benefit-card p,
-.effect-card p,
-.save-card p,
-.research-source-card p {
-    color: #717b73;
-
-    font-size: 12px;
+.research-source-card,
+.source-detail-card,
+.team-card,
+.data-card,
+.chart-card,
+.dashboard,
+.iea-research-panel,
+.energystar-panel,
+.effects-message,
+.why-message,
+.save-message,
+.save-conclusion,
+.sources-message {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
 
-/* =========================================================
-   DARK CARDS
-========================================================= */
-
-.renewable-type-card {
-    padding: 27px;
-
-    min-height: 230px;
-
-    background: #17281c;
-
-    color: white;
-
-    border-radius: 18px;
-
-    transition: 0.3s ease;
-}
-
-.renewable-type-card:hover {
-    transform: translateY(-6px);
-}
-
-.renewable-type-icon {
-    width: 50px;
-    height: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 18px;
-
-    background: rgba(185,231,105,0.12);
-
-    color: #b9e769;
-
-    border-radius: 13px;
-}
-
-.renewable-type-card h3 {
-    margin-bottom: 9px;
-
-    font-size: 18px;
-}
-
-.renewable-type-card p {
-    color: rgba(255,255,255,0.6);
-
-    font-size: 11px;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
+/* =====================================================
+   ENERGY DATA
+===================================================== */
 
 .dashboard {
-    padding: 28px;
-
     background: white;
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 15px 45px rgba(20,40,25,0.08);
+    padding: 32px;
 }
 
 .dashboard-header {
@@ -942,91 +353,91 @@ section {
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 25px;
+    gap: 20px;
+
+    margin-bottom: 28px;
 }
 
 .dashboard-label {
-    color: #7b897d;
+    color: var(--green);
 
-    font-size: 9px;
+    font-size: 11px;
     font-weight: 900;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
 }
 
 .dashboard-header h3 {
     margin-top: 5px;
 
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .source-badge {
-    padding: 8px 11px;
+    padding: 10px 15px;
 
-    background: #edf4e8;
+    border-radius: 100px;
 
-    color: #587932;
+    background: var(--green-light);
+    color: var(--green);
 
-    border-radius: 8px;
-
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 900;
 }
 
 
-/* =========================================================
-   DATA CARDS
-========================================================= */
+/* DATA CARDS */
 
 .data-cards {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 16px;
+
+    margin-bottom: 25px;
 }
 
 .data-card {
+    padding: 20px;
+
     display: flex;
     align-items: center;
+    gap: 15px;
 
-    gap: 12px;
+    background: #fff;
 
-    padding: 18px;
+    transition: .25s ease;
+}
 
-    background: #f5f8f3;
-
-    border: 1px solid #e3eae0;
-
-    border-radius: 15px;
+.data-card:hover {
+    transform: translateY(-5px);
 }
 
 .data-icon {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
 
     flex-shrink: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 
-    background: #e6f1dc;
+    border-radius: 15px;
 
-    color: #68913b;
+    background: var(--green-light);
+    color: var(--green);
 
-    border-radius: 12px;
+    font-size: 20px;
 }
 
 .data-card span {
     display: block;
 
-    color: #879187;
-
-    font-size: 8px;
-
+    font-size: 9px;
     font-weight: 900;
+
+    color: var(--muted);
 }
 
 .data-card strong {
@@ -1034,156 +445,416 @@ section {
 
     margin-top: 3px;
 
-    font-size: 13px;
+    font-size: 14px;
 }
 
 
-/* =========================================================
-   CHART
-========================================================= */
+/* CHART */
 
 .chart-card {
-    margin-top: 20px;
+    margin-top: 22px;
 
-    padding: 25px;
+    padding: 28px;
 
     background: white;
-
-    border: 1px solid #e1e8df;
-
-    border-radius: 20px;
 }
 
 .chart-dark {
-    background: #14251a;
-
+    background: #12291b;
     color: white;
-
-    border: none;
 }
 
 .chart-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
     gap: 20px;
 }
 
 .chart-header span {
-    color: #819084;
-
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 900;
-
     letter-spacing: 1.3px;
+
+    color: var(--green);
 }
 
 .chart-dark .chart-header span {
-    color: #a9c48b;
+    color: #8ee4a5;
 }
 
 .chart-header h3 {
-    margin-top: 6px;
+    margin-top: 5px;
+    font-size: 22px;
+}
 
-    font-size: 21px;
+.chart-header small {
+    display: block;
+    margin-top: 3px;
+
+    color: var(--muted);
+}
+
+.chart-dark .chart-header small {
+    color: #b6c8bc;
+}
+
+.chart-header > i {
+    font-size: 25px;
+    color: var(--green);
 }
 
 .chart-wrapper {
-    height: 340px;
+    height: 360px;
+    margin-top: 25px;
+    position: relative;
+}
 
-    margin-top: 20px;
+.dashboard-source {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.source-button,
+.energystar-button,
+.iea-source-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    background: var(--green);
+    color: white;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    transition: .25s ease;
+}
+
+.source-button:hover,
+.energystar-button:hover,
+.iea-source-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
 }
 
 
-/* =========================================================
-   INFORMATION MESSAGE
-========================================================= */
+/* =====================================================
+   BENEFITS
+===================================================== */
+
+.benefits-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.benefit-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: white;
+
+    overflow: hidden;
+
+    transition: .3s ease;
+}
+
+.benefit-card:hover,
+.effect-card:hover,
+.save-card:hover,
+.renewable-type-card:hover,
+.research-source-card:hover {
+    transform: translateY(-7px);
+    box-shadow:
+        0 22px 50px rgba(18, 56, 31, .15);
+}
+
+.benefit-number,
+.effect-number,
+.save-number {
+    position: absolute;
+
+    top: 22px;
+    right: 25px;
+
+    font-size: 12px;
+    font-weight: 900;
+
+    color: #b8c9bd;
+}
+
+.benefit-icon,
+.effect-icon,
+.save-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 22px;
+
+    border-radius: 18px;
+
+    background: var(--green-light);
+    color: var(--green);
+
+    font-size: 23px;
+}
+
+.benefit-card h3,
+.effect-card h3,
+.save-card h3 {
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.benefit-card p,
+.effect-card p,
+.save-card p,
+.renewable-type-card p,
+.research-source-card p,
+.source-detail-card p {
+    margin-top: 13px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   RENEWABLE TYPES
+===================================================== */
+
+.renewable-types {
+    margin-top: 100px;
+}
+
+.renewable-types-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.renewable-type-card {
+    padding: 30px;
+
+    text-align: center;
+
+    background: white;
+}
+
+.renewable-type-icon {
+    width: 65px;
+    height: 65px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: var(--green-light);
+    color: var(--green);
+
+    font-size: 25px;
+}
+
+.renewable-type-card h3 {
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   EFFECTS
+===================================================== */
+
+.iea-research-panel {
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    background: #10251a;
+    color: white;
+
+    border-color: #244e32;
+}
+
+.iea-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.iea-panel-header span {
+    color: #8ee4a5;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.3px;
+}
+
+.iea-panel-header h3 {
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.iea-badge {
+    padding: 13px 17px;
+
+    border-radius: 12px;
+
+    background: white;
+    color: #10251a;
+
+    font-weight: 900;
+}
+
+.iea-panel-content {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin: 30px 0;
+}
+
+.iea-stat {
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.07);
+}
+
+.iea-stat strong {
+    display: block;
+
+    font-size: 25px;
+    color: #8ee4a5;
+}
+
+.iea-stat span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #c5d3c9;
+
+    font-size: 12px;
+}
+
+.iea-note {
+    color: #bdcabe;
+    font-size: 13px;
+}
+
+.effects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.effect-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: white;
+
+    transition: .3s ease;
+}
 
 .effects-message,
 .why-message,
 .save-message,
-.sources-message,
-.team-message,
-.save-conclusion {
+.sources-message {
+    margin-top: 35px;
+
+    padding: 28px 32px;
+
     display: flex;
     align-items: flex-start;
+    gap: 20px;
 
-    gap: 18px;
-
-    margin-top: 40px;
-
-    padding: 25px;
-
-    background: #dfead6;
-
-    border-radius: 18px;
+    background: #eaf7ed;
 }
 
 .effects-message-icon,
 .why-message-icon,
 .save-message-icon,
-.sources-message-icon,
-.team-message-icon,
-.save-conclusion > i {
-    width: 48px;
-    height: 48px;
+.sources-message-icon {
+    width: 55px;
+    height: 55px;
 
     flex-shrink: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 
-    background: #71993f;
+    border-radius: 16px;
 
+    background: var(--green);
     color: white;
 
-    border-radius: 13px;
+    font-size: 20px;
 }
 
 .effects-message h3,
 .why-message h3,
 .save-message h3,
-.sources-message h3,
-.team-message h3,
-.save-conclusion h3 {
-    margin-bottom: 5px;
-
-    font-size: 18px;
+.sources-message h3 {
+    font-size: 20px;
 }
 
 .effects-message p,
 .why-message p,
 .save-message p,
-.sources-message p,
-.team-message p,
-.save-conclusion p {
-    color: #657067;
+.sources-message p {
+    margin-top: 6px;
 
-    font-size: 12px;
+    color: var(--muted);
+    font-size: 14px;
 }
 
 
-/* =========================================================
-   TNB / ENERGY PANEL
-========================================================= */
+/* =====================================================
+   WHAT WE CAN DO
+===================================================== */
 
 .energystar-panel {
     display: flex;
     align-items: center;
-
     gap: 30px;
 
-    padding: 32px;
+    padding: 35px;
 
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 
-    background: #17281c;
-
+    background: #10251a;
     color: white;
 
-    border-radius: 22px;
+    border-color: #244e32;
 }
 
 .energystar-logo {
@@ -1193,118 +864,242 @@ section {
     flex-shrink: 0;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    background: #b9e769;
+    border-radius: 25px;
 
-    color: #152217;
+    background: white;
+    color: var(--green);
 
-    border-radius: 20px;
+    font-size: 35px;
+}
 
-    font-size: 25px;
-
+.energystar-logo span {
+    font-size: 20px;
     font-weight: 900;
-
-    text-align: center;
-}
-
-.energystar-content h3 {
-    margin-top: 5px;
-
-    font-size: 26px;
-}
-
-.energystar-content p {
-    max-width: 800px;
-
-    margin-top: 8px;
-
-    color: rgba(255,255,255,0.62);
-
-    font-size: 12px;
 }
 
 .energystar-content > span {
-    color: #b9e769;
+    color: #8ee4a5;
 
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 900;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
 }
 
-.energystar-button {
+.energystar-content h3 {
+    margin: 5px 0;
+
+    font-size: 28px;
+}
+
+.energystar-content p {
+    margin-bottom: 20px;
+
+    color: #c3d0c7;
+    font-size: 14px;
+}
+
+.save-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.save-card {
+    position: relative;
+
+    padding: 30px;
+
+    background: white;
+
+    transition: .3s ease;
+}
+
+.save-conclusion {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    padding: 30px;
+
+    margin-top: 30px;
+
+    background: white;
+}
+
+.save-conclusion > i {
+    font-size: 30px;
+    color: #f3b400;
+}
+
+.save-conclusion h3 {
+    font-size: 21px;
+}
+
+.text-source-link {
+    display: inline-flex;
+
+    margin-top: 15px;
+
+    color: var(--green);
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   SOURCES
+===================================================== */
+
+.sources-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+.research-source-card {
+    padding: 32px;
+
+    background: white;
+
+    transition: .3s ease;
+}
+
+.research-source-icon {
+    width: 62px;
+    height: 62px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 20px;
+
+    border-radius: 17px;
+
+    background: var(--green-light);
+    color: var(--green);
+
+    font-size: 24px;
+}
+
+.research-source-card > span {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    color: var(--green);
+}
+
+.research-source-card h3 {
+    margin-top: 5px;
+
+    font-size: 23px;
+}
+
+.research-source-card a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
 
-    margin-top: 18px;
+    margin-top: 22px;
 
-    padding: 11px 16px;
+    color: var(--green);
 
-    background: #b9e769;
+    font-size: 11px;
+    font-weight: 900;
+}
 
-    color: #152217;
+.source-details {
+    margin-top: 40px;
 
-    border-radius: 7px;
+    display: grid;
 
-    font-size: 9px;
+    gap: 18px;
+}
 
+.source-detail-card {
+    display: flex;
+    gap: 25px;
+
+    padding: 28px;
+
+    background: white;
+}
+
+.source-detail-number {
+    font-size: 13px;
+    font-weight: 900;
+
+    color: var(--green);
+}
+
+.source-detail-card span {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    color: var(--green);
+}
+
+.source-detail-card h3 {
+    margin-top: 3px;
+}
+
+.source-detail-card a {
+    display: inline-flex;
+    gap: 8px;
+
+    margin-top: 12px;
+
+    color: var(--green);
+
+    font-size: 11px;
     font-weight: 900;
 }
 
 
-/* =========================================================
-   TEAM
-========================================================= */
-
-.team-section {
-    padding: 100px 0;
-}
+/* =====================================================
+   OUR TEAM
+===================================================== */
 
 .team-grid {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 25px;
 }
-
-
-/* IMPORTANT:
-   TEAM IMAGE BIGGER
-*/
 
 .team-card {
     overflow: hidden;
 
     background: white;
 
-    border: 1px solid #dfe7dc;
-
-    border-radius: 22px;
-
-    box-shadow:
-        0 10px 35px rgba(20,40,25,0.07);
-
-    transition: 0.3s ease;
+    transition: .3s ease;
 }
 
 .team-card:hover {
-    transform: translateY(-8px);
-
-    box-shadow:
-        0 22px 45px rgba(20,40,25,0.13);
+    transform: translateY(-7px);
 }
 
 .team-photo-wrap {
     width: 100%;
-
-    height: 430px;
+    height: 390px;
 
     overflow: hidden;
 
-    background: #dce5d8;
+    background: #dfece2;
 }
 
 .team-photo {
@@ -1312,14 +1107,13 @@ section {
     height: 100%;
 
     object-fit: cover;
-
     object-position: center top;
 
-    transition: 0.4s ease;
+    transition: transform .5s ease;
 }
 
 .team-card:hover .team-photo {
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 
 .team-content {
@@ -1331,180 +1125,71 @@ section {
 .team-number {
     position: absolute;
 
-    top: 20px;
-    right: 22px;
+    top: 25px;
+    right: 28px;
 
-    color: #d7ded4;
+    color: #b4c3b9;
 
-    font-size: 14px;
-
+    font-size: 12px;
     font-weight: 900;
 }
 
 .team-content h3 {
-    padding-right: 30px;
+    padding-right: 35px;
 
     font-size: 19px;
-
-    line-height: 1.3;
-
-    font-weight: 900;
+    line-height: 1.35;
 }
 
 .team-line {
     width: 45px;
     height: 3px;
 
-    margin: 17px 0;
+    margin: 18px 0;
 
-    background: #b9e769;
-
-    border-radius: 10px;
+    background: var(--green);
 }
 
 .team-program {
-    color: #5c8035;
+    color: var(--green);
 
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 900;
 
-    line-height: 1.5;
+    letter-spacing: .5px;
 }
 
 .team-centre {
-    margin-top: 9px;
+    margin-top: 7px;
 
-    color: #7c867e;
+    color: var(--muted);
 
-    font-size: 9px;
-
-    font-weight: 600;
+    font-size: 11px;
 }
 
-
-/* =========================================================
-   TEAM MESSAGE
-========================================================= */
-
-.team-message-section {
-    padding: 0 0 100px;
-
-    background: #edf2eb;
-}
-
-
-/* =========================================================
-   SOURCES
-========================================================= */
-
-.research-source-icon {
-    margin-bottom: 20px;
-}
-
-.owid-icon {
-    background: #e3f0d9;
-    color: #628c36;
-}
-
-.iea-icon {
-    background: #e3eaee;
-    color: #5c7480;
-}
-
-.tnb-icon,
-.star-icon {
-    background: #f0efd9;
-    color: #867b31;
-}
-
-.research-source-card > span {
-    color: #7d897f;
-
-    font-size: 9px;
-
-    font-weight: 900;
-
-    letter-spacing: 1.3px;
-}
-
-.research-source-card > a,
-.source-detail-card a,
-.text-source-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    margin-top: 17px;
-
-    color: #638b37;
-
-    font-size: 9px;
-
-    font-weight: 900;
-}
-
-
-/* =========================================================
-   SOURCE DETAILS
-========================================================= */
-
-.source-detail-card {
+.team-message {
     display: flex;
     align-items: flex-start;
+    gap: 20px;
 
-    gap: 15px;
+    padding: 30px;
 
-    padding: 23px;
+    border-radius: var(--radius);
 
-    background: #eaf0e7;
-
-    border-radius: 18px;
-
-    border: 1px solid #dfe7dc;
-}
-
-.source-detail-number {
-    color: #71934d;
-
-    font-size: 13px;
-
-    font-weight: 900;
-}
-
-.source-detail-card span {
-    color: #7c887e;
-
-    font-size: 8px;
-
-    font-weight: 900;
-
-    letter-spacing: 1px;
-}
-
-.source-detail-card h3 {
-    margin-top: 4px;
-
-    font-size: 17px;
-}
-
-.source-detail-card p {
-    margin-top: 6px;
-
-    color: #6d766f;
-
-    font-size: 10px;
+    background: #eaf7ed;
 }
 
 
-/* =========================================================
+/* =====================================================
    FOOTER
-========================================================= */
+===================================================== */
 
 footer {
-    padding: 50px 0 25px;
+    margin-top: 0;
 
-    background: #09130c;
+    padding: 55px 20px 30px;
+
+    background: #0d1d13;
 
     color: white;
 
@@ -1512,79 +1197,52 @@ footer {
 }
 
 .footer-container {
-    width: min(900px, 92%);
-
+    width: min(900px, 100%);
     margin: auto;
 }
 
 .footer-logo {
     display: inline-flex;
     align-items: center;
+    gap: 10px;
 
-    gap: 9px;
-
-    font-size: 17px;
-
+    font-size: 20px;
     font-weight: 900;
-
-    letter-spacing: 1.5px;
 }
 
 .footer-logo i {
-    color: #b9e769;
+    color: #8ee4a5;
 }
 
 .footer-container > p {
-    margin-top: 10px;
+    margin-top: 8px;
 
-    color: rgba(255,255,255,0.5);
-
-    font-size: 11px;
+    color: #b8c8bd;
 }
 
 .footer-source {
     margin-top: 22px;
 
-    color: rgba(255,255,255,0.38);
+    color: #9eafa3;
 
-    font-size: 9px;
+    font-size: 12px;
 }
 
 .footer-bottom {
     margin-top: 30px;
+    padding-top: 20px;
 
-    padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,.1);
 
-    border-top: 1px solid rgba(255,255,255,0.08);
+    color: #829188;
 
-    color: rgba(255,255,255,0.28);
-
-    font-size: 9px;
+    font-size: 11px;
 }
 
 
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
 @media (max-width: 1050px) {
 
@@ -1593,23 +1251,21 @@ footer {
 
         position: absolute;
 
-        top: 70px;
-        right: 4%;
+        top: 76px;
+        left: 20px;
+        right: 20px;
 
-        width: 260px;
-
-        padding: 12px;
+        padding: 15px;
 
         flex-direction: column;
         align-items: stretch;
 
-        background: #101d14;
+        background: white;
 
-        border-radius: 15px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
 
-        border: 1px solid rgba(255,255,255,0.08);
-
-        box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        box-shadow: var(--shadow);
     }
 
     .nav-menu.show {
@@ -1618,247 +1274,135 @@ footer {
 
     .nav-menu a {
         padding: 13px 15px;
-
-        border-radius: 8px;
-    }
-
-    .nav-menu a:hover,
-    .nav-menu a.active {
-        background: rgba(185,231,105,0.1);
-    }
-
-    .nav-menu a::after {
-        display: none;
     }
 
     .menu-dots {
-        display: flex;
+        display: grid;
+        place-items: center;
     }
 
+    .benefits-grid,
     .renewable-types-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .effects-grid,
+    .save-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .data-cards {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sources-grid {
+        grid-template-columns: 1fr;
     }
 
     .team-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .team-card:last-child {
-        grid-column: 1 / -1;
-
-        max-width: 500px;
-
-        margin: auto;
-
-        width: 100%;
+    .iea-panel-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 
-/* =========================================================
-   MOBILE TABLET
-========================================================= */
+@media (max-width: 700px) {
 
-@media (max-width: 750px) {
-
-    .hero {
-        min-height: 1050px;
-
-        align-items: flex-start;
-    }
-
-    .hero-content {
-        padding-top: 145px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-
-        letter-spacing: -3px;
-    }
-
-    .hero-energy-cards {
-        position: absolute;
-
-        bottom: 65px;
-
-        grid-template-columns: 1fr;
-
-        width: 90%;
-    }
-
-    .energy-card {
-        padding: 14px;
-    }
-
-    .home-navigation {
-        grid-template-columns: 1fr;
-    }
-
-    .benefits-grid,
-    .effects-grid,
-    .save-grid,
-    .sources-grid,
-    .source-details,
-    .team-grid,
-    .renewable-types-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .team-card:last-child {
-        grid-column: auto;
-
-        max-width: none;
-    }
-
-    .team-photo-wrap {
-        height: 430px;
-    }
-
-    .data-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .dashboard-header {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .chart-wrapper {
-        height: 280px;
-    }
-
-    .energystar-panel {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-    .energystar-logo {
-        width: 100%;
-        height: 100px;
+    .section-container {
+        width: min(100% - 28px, 1180px);
     }
 
     .page-hero {
-        padding: 135px 0 75px;
+        padding: 80px 0;
+    }
+
+    .page-hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
     }
 
     .energy-section,
     .why-section,
     .effects-section,
     .save-section,
-    .team-section,
     .sources-section,
-    .home-intro {
-        padding: 75px 0;
-    }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .nav-container {
-        width: 90%;
+    .team-section {
+        padding: 70px 0;
     }
 
-    .logo {
-        font-size: 11px;
+    .benefits-grid,
+    .renewable-types-grid,
+    .effects-grid,
+    .save-grid,
+    .data-cards,
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 
-    .logo-icon {
-        width: 34px;
-        height: 34px;
-    }
-
-    .hero {
-        min-height: 1020px;
-    }
-
-    .hero h1 {
-        font-size: 45px;
-
-        letter-spacing: -2px;
-    }
-
-    .hero p {
-        font-size: 13px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        justify-content: center;
-    }
-
-    .hero-energy-cards {
-        bottom: 55px;
-    }
-
-    .section-heading h2 {
-        font-size: 36px;
-    }
-
-    .home-nav-card {
-        min-height: 130px;
-
+    .dashboard {
         padding: 20px;
     }
 
-    .home-nav-icon {
-        width: 48px;
-        height: 48px;
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .benefit-card,
-    .effect-card,
-    .save-card,
-    .research-source-card {
-        padding: 24px;
+    .chart-card {
+        padding: 20px;
+    }
+
+    .chart-wrapper {
+        height: 280px;
+    }
+
+    .iea-panel-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .energystar-panel {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .team-photo-wrap {
-        height: 380px;
-    }
-
-    .team-content {
-        padding: 24px;
-    }
-
-    .team-content h3 {
-        font-size: 17px;
+        height: 460px;
     }
 
     .effects-message,
     .why-message,
     .save-message,
     .sources-message,
-    .team-message,
-    .save-conclusion {
-        padding: 20px;
+    .save-conclusion,
+    .team-message {
+        flex-direction: column;
+    }
+}
 
-        gap: 12px;
+
+@media (max-width: 450px) {
+
+    .logo {
+        font-size: 15px;
     }
 
-    .chart-card {
-        padding: 18px;
+    .logo-icon {
+        width: 36px;
+        height: 36px;
     }
 
-    .chart-wrapper {
-        height: 240px;
+    .page-hero h1 {
+        font-size: 37px;
     }
 
+    .iea-panel-content {
+        grid-template-columns: 1fr;
+    }
+
+    .team-photo-wrap {
+        height: 430px;
+    }
 }
