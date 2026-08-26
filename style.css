@@ -1,7 +1,7 @@
 /* =========================================================
    SAFE ENERGY
    MASTER STYLE SHEET
-   FULL VERSION
+   FULL REPLACEMENT VERSION
    ========================================================= */
 
 
@@ -73,8 +73,15 @@ a {
     text-decoration: none;
 }
 
-button {
+button,
+input,
+select,
+textarea {
     font-family: inherit;
+}
+
+button {
+    border: none;
 }
 
 ::selection {
@@ -109,9 +116,11 @@ button {
     background: rgba(7, 26, 19, 0.94);
 
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
     border-bottom:
-        1px solid rgba(255, 255, 255, 0.08);
+        1px solid
+        rgba(255, 255, 255, 0.08);
 
     transition: 0.3s ease;
 }
@@ -267,6 +276,13 @@ button {
     cursor: pointer;
 
     font-size: 18px;
+
+    transition: 0.25s ease;
+}
+
+.menu-dots:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
 }
 
 
@@ -311,6 +327,29 @@ button {
             rgba(66, 201, 120, 0.18),
             transparent 30%
         );
+
+    pointer-events: none;
+}
+
+.page-hero::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 120px;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(7, 26, 19, 0.25),
+            transparent
+        );
+
+    pointer-events: none;
 }
 
 .page-hero .section-container {
@@ -431,8 +470,14 @@ section:not(.page-hero) {
 
 
 /* =========================================================
-   07. GLOBAL CARD EFFECT
+   07. GLOBAL CARD SYSTEM
    ========================================================= */
+
+/*
+   Semua card menggunakan sistem yang sama.
+   Ini penting supaya card muncul konsisten
+   pada SEMUA page.
+*/
 
 .data-card,
 .chart-card,
@@ -450,12 +495,19 @@ section:not(.page-hero) {
 .why-message,
 .sources-message,
 .team-message,
-.home-nav-card {
+.home-nav-card,
+.save-conclusion {
+
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
         border-color 0.3s ease;
 }
+
+
+/* =========================================================
+   UNIVERSAL CARD HOVER
+   ========================================================= */
 
 .data-card:hover,
 .benefit-card:hover,
@@ -466,6 +518,7 @@ section:not(.page-hero) {
 .research-source-card:hover,
 .source-detail-card:hover,
 .home-nav-card:hover {
+
     transform:
         translateY(-7px);
 
@@ -484,6 +537,8 @@ section:not(.page-hero) {
 }
 
 .dashboard {
+    position: relative;
+
     padding: 35px;
 
     border-radius: 30px;
@@ -499,7 +554,9 @@ section:not(.page-hero) {
 }
 
 
-/* DASHBOARD HEADER */
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
 
 .dashboard-header {
     display: flex;
@@ -557,7 +614,7 @@ section:not(.page-hero) {
 
 
 /* =========================================================
-   DATA CARDS
+   DATA STATISTIC CARDS
    ========================================================= */
 
 .data-cards {
@@ -572,6 +629,8 @@ section:not(.page-hero) {
 }
 
 .data-card {
+    position: relative;
+
     min-height: 105px;
 
     display: flex;
@@ -589,7 +648,36 @@ section:not(.page-hero) {
     border-radius: 18px;
 
     background:
-        #fbfdfc;
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fbf9
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(6, 31, 20, 0.05);
+
+    overflow: hidden;
+}
+
+.data-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: -25px;
+    bottom: -30px;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(35, 155, 91, 0.04);
+
+    pointer-events: none;
 }
 
 .data-icon {
@@ -666,6 +754,8 @@ section:not(.page-hero) {
    ========================================================= */
 
 .chart-card {
+    position: relative;
+
     margin-top: 20px;
 
     padding: 28px;
@@ -681,6 +771,14 @@ section:not(.page-hero) {
     box-shadow:
         0 10px 35px
         rgba(5, 30, 18, 0.06);
+}
+
+.chart-card:hover {
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        var(--shadow-hover);
 }
 
 .chart-card.chart-dark {
@@ -778,6 +876,8 @@ section:not(.page-hero) {
 .chart-wrapper {
     position: relative;
 
+    width: 100%;
+
     height: 360px;
 
     margin-top: 25px;
@@ -831,6 +931,8 @@ section:not(.page-hero) {
     letter-spacing: 0.8px;
 
     transition: 0.25s ease;
+
+    cursor: pointer;
 }
 
 .source-button:hover,
@@ -841,6 +943,10 @@ section:not(.page-hero) {
 
     transform:
         translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(35, 155, 91, 0.22);
 }
 
 
@@ -883,6 +989,32 @@ section:not(.page-hero) {
 
     box-shadow:
         var(--shadow);
+
+    overflow: hidden;
+}
+
+.benefit-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -65px;
+    bottom: -65px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(35, 155, 91, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.benefit-card:hover::after {
+    transform:
+        scale(1.25);
 }
 
 .benefit-number,
@@ -925,6 +1057,17 @@ section:not(.page-hero) {
         var(--green-300);
 
     font-size: 23px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.benefit-card:hover .benefit-icon,
+.effect-card:hover .effect-icon,
+.save-card:hover .save-icon {
+    transform:
+        scale(1.06);
 }
 
 .benefit-card h3,
@@ -971,6 +1114,8 @@ section:not(.page-hero) {
 }
 
 .renewable-type-card {
+    position: relative;
+
     padding: 30px;
 
     border-radius: 22px;
@@ -981,6 +1126,40 @@ section:not(.page-hero) {
     border:
         1px solid
         var(--border);
+
+    overflow: hidden;
+}
+
+.renewable-type-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green-500),
+            var(--green-300)
+        );
+
+    transform:
+        scaleX(0);
+
+    transform-origin: left;
+
+    transition: 0.3s ease;
+}
+
+.renewable-type-card:hover::before {
+    transform:
+        scaleX(1);
 }
 
 .renewable-type-icon {
@@ -1020,7 +1199,9 @@ section:not(.page-hero) {
 }
 
 
-/* WHY MESSAGE */
+/* =========================================================
+   WHY MESSAGE
+   ========================================================= */
 
 .why-message {
     display: flex;
@@ -1039,6 +1220,10 @@ section:not(.page-hero) {
         var(--green-900);
 
     color: white;
+
+    box-shadow:
+        0 20px 50px
+        rgba(4, 28, 17, 0.15);
 }
 
 .why-message-icon {
@@ -1088,7 +1273,9 @@ section:not(.page-hero) {
 }
 
 
-/* IEA PANEL */
+/* =========================================================
+   IEA PANEL
+   ========================================================= */
 
 .iea-research-panel {
     padding: 32px;
@@ -1146,6 +1333,8 @@ section:not(.page-hero) {
 
     place-items: center;
 
+    flex-shrink: 0;
+
     border-radius: 18px;
 
     background: white;
@@ -1178,6 +1367,16 @@ section:not(.page-hero) {
     border:
         1px solid
         rgba(255, 255, 255, 0.08);
+
+    transition: 0.25s ease;
+}
+
+.iea-stat:hover {
+    background:
+        rgba(255, 255, 255, 0.10);
+
+    transform:
+        translateY(-3px);
 }
 
 .iea-stat strong {
@@ -1216,7 +1415,9 @@ section:not(.page-hero) {
 }
 
 
-/* EFFECT CARDS */
+/* =========================================================
+   EFFECT CARDS
+   ========================================================= */
 
 .effects-grid {
     display: grid;
@@ -1246,37 +1447,60 @@ section:not(.page-hero) {
 
     box-shadow:
         var(--shadow);
+
+    overflow: hidden;
 }
 
-.effect-card:nth-child(1)
-.effect-icon,
-.effect-card:nth-child(5)
-.effect-icon {
+.effect-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: -55px;
+    bottom: -55px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(35, 155, 91, 0.04);
+
+    pointer-events: none;
+}
+
+
+/*
+   FIXED SELECTORS
+   Original selectors were missing ">".
+*/
+
+.effect-card:nth-child(1) > .effect-icon,
+.effect-card:nth-child(5) > .effect-icon {
     background: #17251f;
 }
 
-.effect-card:nth-child(2)
-.effect-icon {
+.effect-card:nth-child(2) > .effect-icon {
     background: #243d2d;
 }
 
-.effect-card:nth-child(3)
-.effect-icon {
+.effect-card:nth-child(3) > .effect-icon {
     background: #30352b;
 }
 
-.effect-card:nth-child(4)
-.effect-icon {
+.effect-card:nth-child(4) > .effect-icon {
     background: #183a2b;
 }
 
-.effect-card:nth-child(6)
-.effect-icon {
+.effect-card:nth-child(6) > .effect-icon {
     background: #19352a;
 }
 
 
-/* EFFECT MESSAGE */
+/* =========================================================
+   EFFECT MESSAGE
+   ========================================================= */
 
 .effects-message {
     display: flex;
@@ -1437,7 +1661,9 @@ section:not(.page-hero) {
 }
 
 
-/* SAVE CARDS */
+/* =========================================================
+   SAVE CARDS
+   ========================================================= */
 
 .save-grid {
     display: grid;
@@ -1468,6 +1694,8 @@ section:not(.page-hero) {
 
     box-shadow:
         var(--shadow);
+
+    overflow: hidden;
 }
 
 .save-card:hover {
@@ -1532,6 +1760,16 @@ section:not(.page-hero) {
     font-size: 10px;
 
     font-weight: 900;
+
+    transition: 0.2s ease;
+}
+
+.text-source-link:hover {
+    color:
+        var(--green-500);
+
+    transform:
+        translateX(3px);
 }
 
 .save-message {
@@ -1597,7 +1835,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM GRID */
+/* =========================================================
+   TEAM GRID
+   ========================================================= */
 
 .team-grid {
     display: grid;
@@ -1609,7 +1849,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM CARD */
+/* =========================================================
+   TEAM CARD
+   ========================================================= */
 
 .team-card {
     position: relative;
@@ -1637,7 +1879,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM PHOTO */
+/* =========================================================
+   TEAM PHOTO
+   ========================================================= */
 
 .team-photo-wrap {
     position: relative;
@@ -1674,7 +1918,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM PHOTO OVERLAY */
+/* =========================================================
+   TEAM PHOTO OVERLAY
+   ========================================================= */
 
 .team-photo-wrap::after {
     content: "";
@@ -1698,7 +1944,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM CONTENT */
+/* =========================================================
+   TEAM CONTENT
+   ========================================================= */
 
 .team-content {
     position: relative;
@@ -1770,7 +2018,9 @@ section:not(.page-hero) {
 }
 
 
-/* TEAM MESSAGE */
+/* =========================================================
+   TEAM MESSAGE
+   ========================================================= */
 
 .team-message {
     display: flex;
@@ -1847,7 +2097,9 @@ section:not(.page-hero) {
 }
 
 
-/* SOURCE CARDS */
+/* =========================================================
+   SOURCE CARDS
+   ========================================================= */
 
 .research-source-card {
     min-height: 390px;
@@ -1868,6 +2120,16 @@ section:not(.page-hero) {
 
     box-shadow:
         var(--shadow);
+
+    overflow: hidden;
+}
+
+.research-source-card:hover {
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-hover);
 }
 
 .research-source-icon {
@@ -1960,10 +2222,22 @@ section:not(.page-hero) {
     font-weight: 900;
 
     letter-spacing: 0.5px;
+
+    transition: 0.2s ease;
+}
+
+.research-source-card a:hover {
+    color:
+        var(--green-500);
+
+    transform:
+        translateX(3px);
 }
 
 
-/* SOURCE DETAILS */
+/* =========================================================
+   SOURCE DETAILS
+   ========================================================= */
 
 .source-details {
     display: grid;
@@ -1994,6 +2268,14 @@ section:not(.page-hero) {
     box-shadow:
         0 10px 30px
         rgba(5, 30, 18, 0.05);
+}
+
+.source-detail-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        var(--shadow-hover);
 }
 
 .source-detail-number {
@@ -2063,7 +2345,9 @@ section:not(.page-hero) {
 }
 
 
-/* SOURCES MESSAGE */
+/* =========================================================
+   SOURCES MESSAGE
+   ========================================================= */
 
 .sources-message {
     display: flex;
@@ -2137,7 +2421,9 @@ section:not(.page-hero) {
 }
 
 
-/* MAIN CARD */
+/* =========================================================
+   MAIN HOME CARD
+   ========================================================= */
 
 .home-nav-card {
     position: relative;
@@ -2179,7 +2465,9 @@ section:not(.page-hero) {
 }
 
 
-/* TOP GREEN LINE */
+/* =========================================================
+   TOP GREEN LINE
+   ========================================================= */
 
 .home-nav-card::before {
     content: "";
@@ -2199,10 +2487,24 @@ section:not(.page-hero) {
             var(--green-500),
             var(--green-300)
         );
+
+    transform:
+        scaleX(0);
+
+    transform-origin: left;
+
+    transition: 0.3s ease;
+}
+
+.home-nav-card:hover::before {
+    transform:
+        scaleX(1);
 }
 
 
-/* HOVER */
+/* =========================================================
+   HOVER
+   ========================================================= */
 
 .home-nav-card:hover {
     transform:
@@ -2220,7 +2522,9 @@ section:not(.page-hero) {
 }
 
 
-/* ICON */
+/* =========================================================
+   HOME ICON
+   ========================================================= */
 
 .home-nav-icon {
     width: 58px;
@@ -2259,7 +2563,9 @@ section:not(.page-hero) {
 }
 
 
-/* CONTENT */
+/* =========================================================
+   CONTENT
+   ========================================================= */
 
 .home-nav-card > div:nth-child(2) {
     min-width: 0;
@@ -2303,7 +2609,9 @@ section:not(.page-hero) {
 }
 
 
-/* ARROW */
+/* =========================================================
+   ARROW
+   ========================================================= */
 
 .home-nav-arrow {
     margin-left: auto;
@@ -2378,6 +2686,7 @@ section:not(.page-hero) {
     border-radius: 18px;
 
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     color: white;
 
@@ -2911,6 +3220,42 @@ footer {
 
     .home-nav-card h3 {
         font-size: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   22. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible {
+    outline:
+        3px solid
+        var(--green-300);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   23. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 
 }
