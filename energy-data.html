@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Energy Data | Safe Energy
+    </title>
+
+
+    <!-- Google Font -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+
+    <!-- Chart.js -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav
+    class="navbar"
+    id="navbar">
+
+    <div class="nav-container">
+
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-leaf"></i>
+
+            </div>
+
+            SAFE ENERGY
+
+        </a>
+
+
+
+        <!-- THREE DOT MENU -->
+
+        <div
+            class="nav-menu"
+            id="navMenu">
+
+
+            <a href="index.html">
+                HOME
+            </a>
+
+
+            <a href="energy-data.html"
+               class="active">
+                ENERGY DATA
+            </a>
+
+
+            <a href="why-renewable.html">
+                WHY RENEWABLE
+            </a>
+
+
+            <a href="effects.html">
+                EFFECTS
+            </a>
+
+
+            <a href="what-we-can-do.html">
+                WHAT WE CAN DO
+            </a>
+
+
+            <a href="our-team.html">
+                OUR TEAM
+            </a>
+
+
+            <a href="sources.html">
+                SOURCES
+            </a>
+
+        </div>
+
+
+        <button
+            class="menu-dots"
+            id="menuDots"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
+            <i
+                class="fa-solid fa-ellipsis-vertical">
+            </i>
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-hero">
+
+    <div class="section-container">
+
+        <span class="section-label">
+
+            GLOBAL ENERGY DATA
+
+        </span>
+
+
+        <h1>
+
+            The Global
+
+            <span>
+                Energy Picture
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Explore global energy trends using data
+            from Our World in Data. The charts show
+            how renewable energy, fossil fuels and
+            electricity generation have changed over time.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ENERGY DATA
+===================================================== -->
+
+<section class="energy-section">
+
+    <div class="section-container">
+
+
+        <!-- DASHBOARD -->
+
+        <div class="dashboard">
+
+
+            <!-- DASHBOARD HEADER -->
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <span class="dashboard-label">
+
+                        ENERGY RESEARCH DASHBOARD
+
+                    </span>
+
+
+                    <h3>
+
+                        Global Energy Trends
+
+                    </h3>
+
+                </div>
+
+
+                <div class="source-badge">
+
+                    <i
+                        class="fa-solid fa-database">
+                    </i>
+
+                    OUR WORLD IN DATA
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DATA CARDS
+            ================================================= -->
+
+            <div class="data-cards">
+
+
+                <!-- RENEWABLE -->
+
+                <div class="data-card">
+
+                    <div
+                        class="data-icon renewable">
+
+                        <i
+                            class="fa-solid fa-leaf">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            RENEWABLE
+                        </span>
+
+                        <strong>
+                            Clean Energy
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FOSSIL -->
+
+                <div class="data-card">
+
+                    <div
+                        class="data-icon fossil">
+
+                        <i
+                            class="fa-solid fa-industry">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            FOSSIL FUELS
+                        </span>
+
+                        <strong>
+                            Carbon Intensive
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- NUCLEAR -->
+
+                <div class="data-card">
+
+                    <div
+                        class="data-icon nuclear">
+
+                        <i
+                            class="fa-solid fa-atom">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            NUCLEAR
+                        </span>
+
+                        <strong>
+                            Low-Carbon
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ELECTRICITY -->
+
+                <div class="data-card">
+
+                    <div
+                        class="data-icon electricity">
+
+                        <i
+                            class="fa-solid fa-bolt">
+                        </i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            ELECTRICITY
+                        </span>
+
+                        <strong>
+                            Global Generation
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GRAPH 1
+            ================================================= -->
+
+            <div class="chart-card chart-dark">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            ENERGY TRANSITION
+                        </span>
+
+
+                        <h3>
+                            Renewable Energy vs Fossil Fuels
+                        </h3>
+
+
+                        <small>
+                            Global primary energy trends
+                        </small>
+
+                    </div>
+
+
+                    <i
+                        class="fa-solid fa-chart-line">
+                    </i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="renewableFossilChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GRAPH 2
+            ================================================= -->
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            GLOBAL CONSUMPTION
+                        </span>
+
+
+                        <h3>
+                            Global Energy Consumption
+                        </h3>
+
+
+                        <small>
+                            Primary energy use over time
+                        </small>
+
+                    </div>
+
+
+                    <i
+                        class="fa-solid fa-chart-area">
+                    </i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="energyConsumptionChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GRAPH 3
+            ================================================= -->
+
+            <div class="chart-card">
+
+                <div class="chart-header">
+
+                    <div>
+
+                        <span>
+                            ELECTRICITY GENERATION
+                        </span>
+
+
+                        <h3>
+                            How Electricity Is Generated
+                        </h3>
+
+
+                        <small>
+                            Renewable, fossil and nuclear electricity
+                        </small>
+
+                    </div>
+
+
+                    <i
+                        class="fa-solid fa-bolt">
+                    </i>
+
+                </div>
+
+
+                <div class="chart-wrapper">
+
+                    <canvas
+                        id="electricityChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SOURCE BUTTON -->
+
+            <div class="dashboard-source">
+
+                <a
+                    href="https://ourworldindata.org/energy"
+                    target="_blank"
+                    class="source-button">
+
+                    <i
+                        class="fa-solid fa-arrow-up-right-from-square">
+                    </i>
+
+                    VIEW OUR WORLD IN DATA
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-logo">
+
+            <i
+                class="fa-solid fa-leaf">
+            </i>
+
+            SAFE ENERGY
+
+        </div>
+
+
+        <p>
+
+            Understanding energy.
+            Protecting the future.
+
+        </p>
+
+
+        <div class="footer-source">
+
+            Research sources:
+
+            Our World in Data •
+
+            International Energy Agency •
+
+            ENERGY STAR
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 Safe Energy.
+
+            Educational Research Website.
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
