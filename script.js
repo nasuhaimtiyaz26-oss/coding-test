@@ -1,11 +1,11 @@
 /* =========================================================
    SAFE ENERGY
-   GLOBAL JAVASCRIPT
+   MASTER JAVASCRIPT
    ========================================================= */
 
 
 /* =========================================================
-   01. NAVIGATION MENU
+   01. NAVIGATION
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,27 +17,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         menuDots.addEventListener("click", function () {
 
-            navMenu.classList.toggle("show");
-
-            const isOpen = navMenu.classList.contains("show");
+            const isOpen = navMenu.classList.toggle("open");
 
             menuDots.setAttribute(
                 "aria-expanded",
-                isOpen
+                isOpen ? "true" : "false"
             );
 
         });
 
 
-        /* Close menu when clicking a link */
+        /* Close menu after clicking a link */
 
-        const navLinks = navMenu.querySelectorAll("a");
-
-        navLinks.forEach(function (link) {
+        navMenu.querySelectorAll("a").forEach(function (link) {
 
             link.addEventListener("click", function () {
 
-                navMenu.classList.remove("show");
+                navMenu.classList.remove("open");
 
                 menuDots.setAttribute(
                     "aria-expanded",
@@ -48,22 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+    }
 
-        /* Close menu when clicking outside */
 
-        document.addEventListener("click", function (event) {
+    /* =====================================================
+       02. NAVBAR SCROLL
+    ===================================================== */
 
-            if (
-                !navMenu.contains(event.target) &&
-                !menuDots.contains(event.target)
-            ) {
+    const navbar = document.getElementById("navbar");
 
-                navMenu.classList.remove("show");
+    if (navbar) {
 
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 30) {
+
+                navbar.classList.add("scrolled");
+
+            } else {
+
+                navbar.classList.remove("scrolled");
 
             }
 
@@ -73,327 +73,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       02. NAVBAR SCROLL EFFECT
-       ===================================================== */
+       03. REVEAL ANIMATION
+    ===================================================== */
 
-    const navbar = document.getElementById("navbar");
+    const animatedElements = document.querySelectorAll(
+        ".data-card, " +
+        ".chart-card, " +
+        ".benefit-card, " +
+        ".renewable-type-card, " +
+        ".effect-card, " +
+        ".save-card, " +
+        ".team-card, " +
+        ".research-source-card, " +
+        ".source-detail-card"
+    );
 
-    function updateNavbar() {
 
-        if (!navbar) {
-            return;
-        }
+    if ("IntersectionObserver" in window) {
 
-        if (window.scrollY > 30) {
+        const observer = new IntersectionObserver(
+            function (entries) {
 
-            navbar.classList.add("scrolled");
+                entries.forEach(function (entry) {
 
-        } else {
+                    if (entry.isIntersecting) {
 
-            navbar.classList.remove("scrolled");
+                        entry.target.classList.add("show");
 
-        }
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+
+        animatedElements.forEach(function (element) {
+
+            element.classList.add("reveal");
+
+            observer.observe(element);
+
+        });
 
     }
 
-    updateNavbar();
 
-    window.addEventListener(
-        "scroll",
-        updateNavbar
+    /* =====================================================
+       04. ACTIVE PAGE NAVIGATION
+    ===================================================== */
+
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop() || "index.html";
+
+
+    document.querySelectorAll(".nav-menu a").forEach(
+        function (link) {
+
+            const linkPage =
+                link.getAttribute("href");
+
+            if (linkPage === currentPage) {
+
+                link.classList.add("active");
+
+            }
+
+        }
     );
 
 
     /* =====================================================
-       03. ENERGY DATA CHARTS
-       ===================================================== */
+       05. CLOSE MENU WHEN CLICKING OUTSIDE
+    ===================================================== */
 
-    if (
-        typeof Chart !== "undefined" &&
-        document.getElementById("renewableFossilChart")
-    ) {
+    document.addEventListener("click", function (event) {
 
-        createEnergyCharts();
+        if (
+            navMenu &&
+            menuDots &&
+            !navMenu.contains(event.target) &&
+            !menuDots.contains(event.target)
+        ) {
 
-    }
+            navMenu.classList.remove("open");
+
+            menuDots.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    });
 
 });
-
-
-/* =========================================================
-   ENERGY CHART FUNCTION
-   ========================================================= */
-
-function createEnergyCharts() {
-
-    /*
-        The charts are illustrative visualisations
-        for the website layout.
-
-        Replace the values with your selected
-        Our World in Data dataset if required.
-    */
-
-
-    /* =====================================================
-       CHART 1
-       Renewable vs Fossil Fuels
-       ===================================================== */
-
-    const renewableFossilCanvas =
-        document.getElementById(
-            "renewableFossilChart"
-        );
-
-    if (renewableFossilCanvas) {
-
-        new Chart(
-            renewableFossilCanvas,
-            {
-
-                type: "line",
-
-                data: {
-
-                    labels: [
-                        "2000",
-                        "2005",
-                        "2010",
-                        "2015",
-                        "2020",
-                        "2024"
-                    ],
-
-                    datasets: [
-
-                        {
-                            label: "Renewable Energy",
-
-                            data: [
-                                7,
-                                9,
-                                11,
-                                14,
-                                18,
-                                22
-                            ],
-
-                            borderWidth: 3,
-
-                            tension: 0.35,
-
-                            fill: false
-                        },
-
-                        {
-                            label: "Fossil Fuels",
-
-                            data: [
-                                82,
-                                81,
-                                79,
-                                76,
-                                72,
-                                69
-                            ],
-
-                            borderWidth: 3,
-
-                            tension: 0.35,
-
-                            fill: false
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    maintainAspectRatio: false,
-
-                    plugins: {
-
-                        legend: {
-                            display: true
-                        }
-
-                    },
-
-                    scales: {
-
-                        y: {
-                            beginAtZero: true
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CHART 2
-       Global Energy Consumption
-       ===================================================== */
-
-    const consumptionCanvas =
-        document.getElementById(
-            "energyConsumptionChart"
-        );
-
-    if (consumptionCanvas) {
-
-        new Chart(
-            consumptionCanvas,
-            {
-
-                type: "line",
-
-                data: {
-
-                    labels: [
-                        "2000",
-                        "2005",
-                        "2010",
-                        "2015",
-                        "2020",
-                        "2024"
-                    ],
-
-                    datasets: [
-
-                        {
-                            label: "Global Primary Energy",
-
-                            data: [
-                                105,
-                                118,
-                                132,
-                                145,
-                                150,
-                                165
-                            ],
-
-                            borderWidth: 3,
-
-                            tension: 0.35,
-
-                            fill: true
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    maintainAspectRatio: false,
-
-                    plugins: {
-
-                        legend: {
-                            display: true
-                        }
-
-                    },
-
-                    scales: {
-
-                        y: {
-                            beginAtZero: true
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       CHART 3
-       Electricity Generation
-       ===================================================== */
-
-    const electricityCanvas =
-        document.getElementById(
-            "electricityChart"
-        );
-
-    if (electricityCanvas) {
-
-        new Chart(
-            electricityCanvas,
-            {
-
-                type: "bar",
-
-                data: {
-
-                    labels: [
-                        "Renewable",
-                        "Fossil",
-                        "Nuclear"
-                    ],
-
-                    datasets: [
-
-                        {
-                            label: "Electricity Generation",
-
-                            data: [
-                                30,
-                                60,
-                                10
-                            ],
-
-                            borderWidth: 1
-
-                        }
-
-                    ]
-
-                },
-
-                options: {
-
-                    responsive: true,
-
-                    maintainAspectRatio: false,
-
-                    plugins: {
-
-                        legend: {
-                            display: true
-                        }
-
-                    },
-
-                    scales: {
-
-                        y: {
-                            beginAtZero: true
-                        }
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-}
