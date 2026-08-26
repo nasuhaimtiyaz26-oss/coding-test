@@ -1,6 +1,6 @@
 /* =====================================================
    SAFE ENERGY
-   STABLE SCRIPT.JS
+   SCRIPT.JS
    OWID + CHART.JS
 ===================================================== */
 
@@ -13,7 +13,7 @@ const OWID = "https://ourworldindata.org/grapher/";
 
 
 /* =====================================================
-   MOBILE NAVIGATION
+   DOM READY
 ===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.getElementById("navLinks");
     const navbar = document.getElementById("navbar");
 
+
+    /* =================================================
+       MOBILE NAVIGATION
+    ================================================= */
 
     if (mobileMenu && navLinks) {
 
@@ -46,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
+        /* Close mobile menu after clicking a link */
+
         document.querySelectorAll(".nav-links a").forEach(link => {
 
             link.addEventListener("click", () => {
@@ -54,8 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const icon = mobileMenu.querySelector("i");
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+                if (icon) {
+
+                    icon.classList.remove("fa-xmark");
+                    icon.classList.add("fa-bars");
+
+                }
 
             });
 
@@ -90,13 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ================================================= */
 
     renewableFossilChart();
-
     energyConsumptionChart();
-
     electricityChart();
 
 });
-
 
 
 /* =====================================================
@@ -113,13 +120,9 @@ async function getOWIDData(slug, query = "") {
             ".csv" +
             query;
 
-
         console.log("Loading OWID:", url);
 
-
-        const response =
-            await fetch(url);
-
+        const response = await fetch(url);
 
         if (!response.ok) {
 
@@ -129,10 +132,7 @@ async function getOWIDData(slug, query = "") {
 
         }
 
-
-        const text =
-            await response.text();
-
+        const text = await response.text();
 
         return parseCSV(text);
 
@@ -152,7 +152,6 @@ async function getOWIDData(slug, query = "") {
 }
 
 
-
 /* =====================================================
    CSV PARSER
 ===================================================== */
@@ -162,18 +161,17 @@ function parseCSV(text) {
     const rows = [];
 
     let currentRow = [];
-
     let currentValue = "";
-
     let insideQuotes = false;
 
 
     for (let i = 0; i < text.length; i++) {
 
         const char = text[i];
-
         const nextChar = text[i + 1];
 
+
+        /* Handle escaped quotes */
 
         if (
             char === '"' &&
@@ -187,12 +185,17 @@ function parseCSV(text) {
 
         }
 
+
+        /* Start / end quote */
+
         else if (char === '"') {
 
-            insideQuotes =
-                !insideQuotes;
+            insideQuotes = !insideQuotes;
 
         }
+
+
+        /* New column */
 
         else if (
             char === "," &&
@@ -204,6 +207,9 @@ function parseCSV(text) {
             currentValue = "";
 
         }
+
+
+        /* New row */
 
         else if (
             (char === "\n" || char === "\r") &&
@@ -222,9 +228,10 @@ function parseCSV(text) {
             }
 
             currentRow = [];
-
             currentValue = "";
 
+
+            /* Handle Windows CRLF */
 
             if (
                 char === "\r" &&
@@ -237,6 +244,9 @@ function parseCSV(text) {
 
         }
 
+
+        /* Normal character */
+
         else {
 
             currentValue += char;
@@ -245,6 +255,8 @@ function parseCSV(text) {
 
     }
 
+
+    /* Add final row */
 
     if (
         currentValue !== "" ||
@@ -258,12 +270,16 @@ function parseCSV(text) {
     }
 
 
+    /* Need at least header + one row */
+
     if (rows.length < 2) {
 
         return [];
 
     }
 
+
+    /* Create objects from CSV */
 
     const headers =
         rows[0].map(
@@ -288,7 +304,6 @@ function parseCSV(text) {
                 }
             );
 
-
             return object;
 
         });
@@ -296,9 +311,8 @@ function parseCSV(text) {
 }
 
 
-
 /* =====================================================
-   WORLD DATA
+   GET WORLD DATA
 ===================================================== */
 
 function getWorldData(data) {
@@ -315,9 +329,8 @@ function getWorldData(data) {
 }
 
 
-
 /* =====================================================
-   NUMBER CHECK
+   NUMBER VALIDATION
 ===================================================== */
 
 function validNumber(value) {
@@ -330,7 +343,6 @@ function validNumber(value) {
     );
 
 }
-
 
 
 /* =====================================================
@@ -346,7 +358,6 @@ if (typeof Chart !== "undefined") {
         1200;
 
 }
-
 
 
 /* =====================================================
@@ -373,6 +384,8 @@ async function renewableFossilChart() {
     }
 
 
+    /* Load OWID data */
+
     const data =
         await getOWIDData(
             "primary-energy-from-fossil-nuclear-renewables"
@@ -393,6 +406,8 @@ async function renewableFossilChart() {
 
     }
 
+
+    /* Find available columns */
 
     const columns =
         Object.keys(world[0]);
@@ -432,6 +447,8 @@ async function renewableFossilChart() {
     }
 
 
+    /* Filter valid data */
+
     const filtered =
         world
             .filter(row => {
@@ -465,10 +482,11 @@ async function renewableFossilChart() {
     }
 
 
+    /* Create Chart */
+
     new Chart(canvas, {
 
         type: "line",
-
 
         data: {
 
@@ -477,11 +495,9 @@ async function renewableFossilChart() {
                     row => row.Year
                 ),
 
-
             datasets: [
 
                 {
-
                     label:
                         "Renewable Energy",
 
@@ -510,12 +526,10 @@ async function renewableFossilChart() {
                     pointRadius: 0,
 
                     pointHoverRadius: 5
-
                 },
 
 
                 {
-
                     label:
                         "Fossil Fuels",
 
@@ -544,7 +558,6 @@ async function renewableFossilChart() {
                     pointRadius: 0,
 
                     pointHoverRadius: 5
-
                 }
 
             ]
@@ -649,7 +662,6 @@ async function renewableFossilChart() {
 }
 
 
-
 /* =====================================================
    GRAPH 2
    GLOBAL ENERGY CONSUMPTION
@@ -658,10 +670,10 @@ async function renewableFossilChart() {
 /*
    OWID Energy Mix dataset.
 
-   metric=total
-   source=total
+   metric = total
+   source = total
 
-   This gives global PRIMARY ENERGY USE
+   Global primary energy use
    measured in TWh.
 */
 
@@ -716,10 +728,7 @@ async function energyConsumptionChart() {
     );
 
 
-    /*
-       Find Total energy supply / primary
-       energy column.
-    */
+    /* Find energy column */
 
     const energyColumn =
         columns.find(column => {
@@ -765,6 +774,8 @@ async function energyConsumptionChart() {
     );
 
 
+    /* Filter valid data */
+
     const filtered =
         world
             .filter(row => {
@@ -795,10 +806,11 @@ async function energyConsumptionChart() {
     }
 
 
+    /* Create Chart */
+
     new Chart(canvas, {
 
         type: "line",
-
 
         data: {
 
@@ -807,11 +819,9 @@ async function energyConsumptionChart() {
                     row => row.Year
                 ),
 
-
             datasets: [
 
                 {
-
                     label:
                         "Global Energy Consumption",
 
@@ -840,7 +850,6 @@ async function energyConsumptionChart() {
                     pointRadius: 0,
 
                     pointHoverRadius: 5
-
                 }
 
             ]
@@ -885,27 +894,26 @@ async function energyConsumptionChart() {
 
                     callbacks: {
 
-                        label:
-                            context => {
+                        label: context => {
 
-                                return (
+                            return (
 
-                                    "Energy: " +
+                                "Energy: " +
 
-                                    Number(
-                                        context.parsed.y
-                                    ).toLocaleString(
-                                        undefined,
-                                        {
-                                            maximumFractionDigits: 1
-                                        }
-                                    ) +
+                                Number(
+                                    context.parsed.y
+                                ).toLocaleString(
+                                    undefined,
+                                    {
+                                        maximumFractionDigits: 1
+                                    }
+                                ) +
 
-                                    " TWh"
+                                " TWh"
 
-                                );
+                            );
 
-                            }
+                        }
 
                     }
 
@@ -995,7 +1003,6 @@ async function energyConsumptionChart() {
 }
 
 
-
 /* =====================================================
    GRAPH 3
    ELECTRICITY GENERATION
@@ -1051,6 +1058,8 @@ async function electricityChart() {
     );
 
 
+    /* Find required columns */
+
     const fossilColumn =
         columns.find(column =>
             column.toLowerCase()
@@ -1086,6 +1095,8 @@ async function electricityChart() {
 
     }
 
+
+    /* Filter valid data */
 
     const filtered =
         world
@@ -1128,10 +1139,11 @@ async function electricityChart() {
     }
 
 
+    /* Create Chart */
+
     new Chart(canvas, {
 
         type: "line",
-
 
         data: {
 
@@ -1140,11 +1152,9 @@ async function electricityChart() {
                     row => row.Year
                 ),
 
-
             datasets: [
 
                 {
-
                     label:
                         "Renewable Energy",
 
@@ -1173,7 +1183,6 @@ async function electricityChart() {
 
 
                 {
-
                     label:
                         "Fossil Fuels",
 
@@ -1202,7 +1211,6 @@ async function electricityChart() {
 
 
                 {
-
                     label:
                         "Nuclear Energy",
 
@@ -1279,29 +1287,28 @@ async function electricityChart() {
 
                     callbacks: {
 
-                        label:
-                            context => {
+                        label: context => {
 
-                                return (
+                            return (
 
-                                    context.dataset.label +
+                                context.dataset.label +
 
-                                    ": " +
+                                ": " +
 
-                                    Number(
-                                        context.parsed.y
-                                    ).toLocaleString(
-                                        undefined,
-                                        {
-                                            maximumFractionDigits: 1
-                                        }
-                                    ) +
+                                Number(
+                                    context.parsed.y
+                                ).toLocaleString(
+                                    undefined,
+                                    {
+                                        maximumFractionDigits: 1
+                                    }
+                                ) +
 
-                                    " TWh"
+                                " TWh"
 
-                                );
+                            );
 
-                            }
+                        }
 
                     }
 
