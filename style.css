@@ -1,12 +1,371 @@
 /* =========================================================
    SAFE ENERGY
-   MASTER CARD SYSTEM
+   MASTER STYLE SHEET
    ========================================================= */
+
+/* =========================================================
+   01. ROOT
+   ========================================================= */
+
+:root {
+    --green-900: #071a13;
+    --green-800: #0b241a;
+    --green-700: #103c29;
+    --green-600: #17633e;
+    --green-500: #239b5b;
+    --green-400: #42c978;
+    --green-300: #7ee2a0;
+
+    --white: #ffffff;
+    --off-white: #f5f8f6;
+    --light: #eaf1ed;
+    --text: #14231c;
+    --muted: #64736b;
+
+    --border: rgba(20, 50, 36, 0.10);
+    --shadow: 0 18px 50px rgba(6, 31, 20, 0.10);
+    --shadow-hover: 0 25px 65px rgba(6, 31, 20, 0.18);
+
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+
+    --container: 1180px;
+}
 
 
 /* =========================================================
-   GLOBAL CARD BASE
-========================================================= */
+   02. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+}
+
+::selection {
+    background: var(--green-500);
+    color: white;
+}
+
+
+/* =========================================================
+   03. GLOBAL CONTAINER
+   ========================================================= */
+
+.section-container {
+    width: min(var(--container), calc(100% - 40px));
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   04. NAVBAR
+   ========================================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+    background: rgba(7, 26, 19, 0.94);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.20);
+}
+
+.nav-container {
+    width: min(1280px, calc(100% - 40px));
+    min-height: 78px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+
+    flex-shrink: 0;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        var(--green-400),
+        var(--green-600)
+    );
+
+    color: white;
+
+    box-shadow:
+        0 8px 25px rgba(35, 155, 91, 0.25);
+}
+
+
+/* NAV MENU */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+}
+
+.nav-menu a {
+    position: relative;
+
+    padding: 9px 12px;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    border-radius: 10px;
+
+    transition: 0.25s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-menu a.active::after {
+    content: "";
+
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 3px;
+
+    height: 2px;
+
+    background: var(--green-400);
+    border-radius: 20px;
+}
+
+
+/* THREE DOT BUTTON */
+
+.menu-dots {
+    width: 43px;
+    height: 43px;
+
+    display: none;
+    place-items: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   05. PAGE HERO
+   ========================================================= */
+
+.page-hero {
+    position: relative;
+
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 22, 14, 0.94),
+            rgba(6, 35, 22, 0.78),
+            rgba(7, 26, 19, 0.56)
+        ),
+        url("images/green-energy-bg.jpeg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.page-hero::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(66, 201, 120, 0.18),
+            transparent 30%
+        );
+}
+
+.page-hero .section-container {
+    position: relative;
+    z-index: 2;
+
+    padding: 85px 0;
+}
+
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--green-500);
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.page-hero .section-label {
+    color: var(--green-300);
+}
+
+.page-hero h1 {
+    max-width: 850px;
+
+    margin-top: 15px;
+
+    color: white;
+
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+    font-weight: 900;
+}
+
+.page-hero h1 span {
+    display: block;
+    color: var(--green-300);
+}
+
+.page-hero p {
+    max-width: 720px;
+
+    margin-top: 22px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   06. GLOBAL SECTION HEADING
+   ========================================================= */
+
+section:not(.page-hero) {
+    padding: 100px 0;
+}
+
+.section-heading {
+    margin-bottom: 55px;
+}
+
+.section-heading.center {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin-top: 10px;
+
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+
+    font-weight: 900;
+}
+
+.section-heading h2 span {
+    color: var(--green-500);
+}
+
+.section-heading p {
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   07. GLOBAL CARD EFFECT
+   ========================================================= */
 
 .data-card,
 .chart-card,
@@ -17,22 +376,102 @@
 .team-card,
 .research-source-card,
 .source-detail-card,
-.home-nav-card,
-.energy-card {
-
+.iea-research-panel,
+.energystar-panel,
+.effects-message,
+.save-message,
+.why-message,
+.sources-message,
+.team-message {
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease,
         border-color 0.3s ease;
 }
 
+.data-card:hover,
+.benefit-card:hover,
+.renewable-type-card:hover,
+.effect-card:hover,
+.save-card:hover,
+.team-card:hover,
+.research-source-card:hover,
+.source-detail-card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow-hover);
+}
+
 
 /* =========================================================
-   ENERGY DATA CARDS
-========================================================= */
+   08. ENERGY DATA PAGE
+   ========================================================= */
+
+.energy-section {
+    background: var(--off-white);
+}
+
+.dashboard {
+    padding: 35px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    box-shadow: var(--shadow);
+
+    border: 1px solid var(--border);
+}
+
+
+/* DASHBOARD HEADER */
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.dashboard-label {
+    color: var(--green-500);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.dashboard-header h3 {
+    margin-top: 5px;
+
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 15px;
+
+    border-radius: 12px;
+
+    background: var(--green-900);
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+
+/* DATA CARDS */
 
 .data-cards {
-
     display: grid;
 
     grid-template-columns:
@@ -40,654 +479,528 @@
 
     gap: 16px;
 
-    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
-
 .data-card {
+    min-height: 105px;
 
     display: flex;
-
     align-items: center;
 
-    gap: 14px;
+    gap: 15px;
 
     padding: 20px;
 
-    min-height: 100px;
-
-    background: white;
-
-    border:
-        1px solid
-        var(--border);
-
+    border: 1px solid var(--border);
     border-radius: 18px;
 
-    box-shadow:
-        var(--shadow);
-
+    background: #fbfdfc;
 }
-
-
-.data-card:hover {
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        var(--shadow-hover);
-
-}
-
 
 .data-icon {
-
-    width: 50px;
-
-    height: 50px;
+    width: 52px;
+    height: 52px;
 
     flex-shrink: 0;
 
     display: grid;
-
     place-items: center;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
-    font-size: 18px;
+    font-size: 20px;
 }
-
 
 .data-icon.renewable {
-
-    background:
-        rgba(35,155,91,0.12);
-
-    color:
-        var(--green-500);
+    background: rgba(35, 155, 91, 0.12);
+    color: var(--green-500);
 }
-
 
 .data-icon.fossil {
-
-    background:
-        rgba(120,80,55,0.12);
-
-    color:
-        #8a5a3b;
+    background: rgba(80, 80, 80, 0.10);
+    color: #555;
 }
-
 
 .data-icon.nuclear {
-
-    background:
-        rgba(100,100,180,0.12);
-
-    color:
-        #6262a8;
+    background: rgba(60, 100, 180, 0.10);
+    color: #426ab1;
 }
-
 
 .data-icon.electricity {
-
-    background:
-        rgba(245,180,45,0.14);
-
-    color:
-        #d89c16;
+    background: rgba(235, 180, 30, 0.14);
+    color: #b98500;
 }
-
 
 .data-card span {
-
     display: block;
 
-    color:
-        var(--green-500);
+    color: var(--muted);
 
     font-size: 9px;
-
     font-weight: 900;
-
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
 }
 
-
 .data-card strong {
-
     display: block;
 
     margin-top: 4px;
 
-    color:
-        var(--dark);
-
-    font-size: 14px;
-
-    font-weight: 900;
+    font-size: 13px;
 }
 
 
-/* =========================================================
-   CHART CARDS
-========================================================= */
+/* CHART CARDS */
 
 .chart-card {
-
     margin-top: 20px;
 
     padding: 28px;
 
-    border:
-        1px solid
-        var(--border);
-
     border-radius: 22px;
 
     background: white;
 
-    box-shadow:
-        var(--shadow);
+    border: 1px solid var(--border);
+
+    box-shadow: 0 10px 35px rgba(5, 30, 18, 0.06);
 }
-
-
-.chart-card:hover {
-
-    box-shadow:
-        var(--shadow-hover);
-
-}
-
 
 .chart-card.chart-dark {
-
     background:
         linear-gradient(
             145deg,
-            #071d13,
-            #103c28
+            #081d14,
+            #0d3523
         );
 
     color: white;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.08);
+    border-color: transparent;
 }
 
-
 .chart-header {
-
     display: flex;
-
-    align-items: center;
-
+    align-items: flex-start;
     justify-content: space-between;
 
     gap: 20px;
-
-    margin-bottom: 22px;
 }
-
 
 .chart-header span {
+    color: var(--green-500);
 
-    display: block;
-
-    color:
-        var(--green-500);
-
-    font-size: 9px;
-
+    font-size: 10px;
     font-weight: 900;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
 }
-
 
 .chart-dark .chart-header span {
-
-    color:
-        var(--green-300);
+    color: var(--green-300);
 }
 
-
 .chart-header h3 {
-
     margin-top: 6px;
 
-    font-size: 20px;
-
+    font-size: 22px;
     font-weight: 900;
 }
 
-
 .chart-header small {
-
     display: block;
 
-    margin-top: 5px;
+    margin-top: 4px;
 
-    color:
-        var(--muted);
-
-    font-size: 11px;
-}
-
-
-.chart-dark .chart-header small {
-
-    color:
-        rgba(255,255,255,0.55);
-}
-
-
-.chart-header > i {
-
-    width: 48px;
-
-    height: 48px;
-
-    display: grid;
-
-    place-items: center;
-
-    border-radius: 14px;
-
-    background:
-        rgba(35,155,91,0.10);
-
-    color:
-        var(--green-500);
-}
-
-
-.chart-dark .chart-header > i {
-
-    background:
-        rgba(126,226,160,0.10);
-
-    color:
-        var(--green-300);
-}
-
-
-.chart-wrapper {
-
-    position: relative;
-
-    width: 100%;
-
-    height: 380px;
-}
-
-
-.chart-wrapper canvas {
-
-    width: 100% !important;
-
-    height: 100% !important;
-}
-
-
-.chart-error {
-
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-direction: column;
-
-    gap: 10px;
-
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 12px;
-
-    text-align: center;
 }
 
+.chart-dark .chart-header small {
+    color: rgba(255, 255, 255, 0.55);
+}
 
-.chart-error i {
+.chart-header > i {
+    font-size: 22px;
+    color: var(--green-500);
+}
 
-    color:
-        #d89c16;
+.chart-wrapper {
+    position: relative;
 
-    font-size: 25px;
+    height: 360px;
+
+    margin-top: 25px;
+}
+
+.dashboard-source {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 30px;
+}
+
+.source-button,
+.iea-source-button,
+.energystar-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 13px 20px;
+
+    border-radius: 12px;
+
+    background: var(--green-600);
+
+    color: white;
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
+
+    transition: 0.25s ease;
+}
+
+.source-button:hover,
+.iea-source-button:hover,
+.energystar-button:hover {
+    background: var(--green-500);
+    transform: translateY(-2px);
 }
 
 
 /* =========================================================
-   BENEFIT CARDS
-========================================================= */
+   09. WHY RENEWABLE PAGE
+   ========================================================= */
+
+.why-section {
+    background: white;
+}
 
 .benefits-grid {
-
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(4, minmax(0, 1fr));
 
-    gap: 18px;
-
-    margin-top: 35px;
+    gap: 20px;
 }
 
-
 .benefit-card {
+    position: relative;
+
+    min-height: 350px;
 
     padding: 30px;
 
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
-
-    background: white;
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-.benefit-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        var(--shadow-hover);
-
-}
-
-
-.benefit-icon {
-
-    width: 55px;
-
-    height: 55px;
-
-    display: grid;
-
-    place-items: center;
-
-    border-radius: 16px;
+    border-radius: 24px;
 
     background:
-        var(--green-900);
+        linear-gradient(
+            150deg,
+            #ffffff,
+            #f4faf6
+        );
 
-    color:
-        var(--green-300);
+    border: 1px solid var(--border);
 
-    font-size: 21px;
+    box-shadow: var(--shadow);
 }
 
+.benefit-number,
+.effect-number,
+.save-number {
+    position: absolute;
+
+    top: 22px;
+    right: 24px;
+
+    color: rgba(35, 155, 91, 0.35);
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.benefit-icon,
+.effect-icon,
+.save-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    margin-top: 25px;
+
+    border-radius: 18px;
+
+    background: var(--green-900);
+
+    color: var(--green-300);
+
+    font-size: 23px;
+}
 
 .benefit-card h3,
 .effect-card h3,
 .save-card h3 {
+    margin-top: 23px;
 
-    margin-top: 20px;
-
-    font-size: 19px;
-
+    font-size: 20px;
     line-height: 1.25;
-
     font-weight: 900;
 }
-
 
 .benefit-card p,
 .effect-card p,
 .save-card p {
+    margin-top: 13px;
 
-    margin-top: 10px;
-
-    color:
-        var(--muted);
+    color: var(--muted);
 
     font-size: 13px;
-
     line-height: 1.75;
 }
 
 
-/* =========================================================
-   RENEWABLE TYPE CARDS
-========================================================= */
+/* RENEWABLE TYPES */
+
+.renewable-types {
+    margin-top: 100px;
+}
 
 .renewable-types-grid {
-
     display: grid;
 
     grid-template-columns:
         repeat(4, minmax(0, 1fr));
 
     gap: 18px;
-
-    margin-top: 30px;
 }
 
-
 .renewable-type-card {
-
-    padding: 28px;
-
-    border:
-        1px solid
-        var(--border);
+    padding: 30px;
 
     border-radius: 22px;
 
-    background:
-        var(--off-white);
+    background: var(--off-white);
+
+    border: 1px solid var(--border);
 }
-
-
-.renewable-type-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    background: white;
-
-    box-shadow:
-        var(--shadow-hover);
-}
-
 
 .renewable-type-icon {
-
     width: 54px;
-
     height: 54px;
 
     display: grid;
-
     place-items: center;
 
     border-radius: 15px;
 
-    background:
-        rgba(35,155,91,0.12);
+    background: rgba(35, 155, 91, 0.12);
 
-    color:
-        var(--green-500);
+    color: var(--green-500);
 
     font-size: 21px;
 }
 
-
 .renewable-type-card h3 {
-
-    margin-top: 18px;
+    margin-top: 20px;
 
     font-size: 18px;
+    font-weight: 900;
+}
+
+.renewable-type-card p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+
+/* WHY MESSAGE */
+
+.why-message {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    margin-top: 60px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: var(--green-900);
+
+    color: white;
+}
+
+.why-message-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    background: rgba(126, 226, 160, 0.12);
+
+    color: var(--green-300);
+
+    font-size: 23px;
+}
+
+.why-message h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.why-message p {
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   10. EFFECTS PAGE
+   ========================================================= */
+
+.effects-section {
+    background: var(--off-white);
+}
+
+
+/* IEA PANEL */
+
+.iea-research-panel {
+    padding: 32px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #081d14,
+            #123c28
+        );
+
+    color: white;
+
+    box-shadow:
+        0 20px 55px rgba(4, 28, 17, 0.20);
+}
+
+.iea-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.iea-panel-header span {
+    color: var(--green-300);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.iea-panel-header h3 {
+    margin-top: 7px;
+
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.iea-badge {
+    width: 62px;
+    height: 62px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    background: white;
+
+    color: var(--green-900);
 
     font-weight: 900;
 }
 
+.iea-panel-content {
+    display: grid;
 
-.renewable-type-card p {
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-    margin-top: 9px;
+    gap: 14px;
 
-    color:
-        var(--muted);
+    margin-top: 28px;
+}
 
-    font-size: 13px;
+.iea-stat {
+    padding: 18px;
 
-    line-height: 1.7;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.iea-stat strong {
+    display: block;
+
+    color: var(--green-300);
+
+    font-size: 23px;
+}
+
+.iea-stat span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.60);
+
+    font-size: 11px;
+}
+
+.iea-note {
+    max-width: 850px;
+
+    margin-top: 25px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 12px;
+}
+
+.iea-source-button {
+    margin-top: 20px;
 }
 
 
-/* =========================================================
-   EFFECT CARDS
-========================================================= */
+/* EFFECT CARDS */
 
 .effects-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-
-    margin-top: 35px;
-}
-
-
-.effect-card {
-
-    padding: 30px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
-
-    background: white;
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-.effect-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        var(--shadow-hover);
-}
-
-
-.effect-icon {
-
-    width: 55px;
-
-    height: 55px;
-
-    display: grid;
-
-    place-items: center;
-
-    border-radius: 16px;
-
-    background:
-        rgba(35,155,91,0.10);
-
-    color:
-        var(--green-500);
-
-    font-size: 21px;
-}
-
-
-/* =========================================================
-   SAVE ENERGY CARDS
-========================================================= */
-
-.save-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 18px;
-
-    margin-top: 35px;
-}
-
-
-.save-card {
-
-    padding: 30px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
-
-    background: white;
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-.save-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    box-shadow:
-        var(--shadow-hover);
-}
-
-
-.save-icon {
-
-    width: 55px;
-
-    height: 55px;
-
-    display: grid;
-
-    place-items: center;
-
-    border-radius: 16px;
-
-    background:
-        rgba(35,155,91,0.10);
-
-    color:
-        var(--green-500);
-
-    font-size: 21px;
-}
-
-
-/* =========================================================
-   TEAM CARDS
-========================================================= */
-
-.team-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -695,257 +1008,923 @@
 
     gap: 20px;
 
-    margin-top: 35px;
+    margin-top: 30px;
 }
 
+.effect-card {
+    position: relative;
 
-.team-card {
+    min-height: 360px;
 
-    padding: 28px;
+    padding: 30px;
 
-    text-align: center;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
+    border-radius: 24px;
 
     background: white;
 
-    box-shadow:
-        var(--shadow);
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.effect-card:nth-child(1) .effect-icon,
+.effect-card:nth-child(5) .effect-icon {
+    background: #17251f;
+}
+
+.effect-card:nth-child(2) .effect-icon {
+    background: #243d2d;
+}
+
+.effect-card:nth-child(3) .effect-icon {
+    background: #30352b;
+}
+
+.effect-card:nth-child(4) .effect-icon {
+    background: #183a2b;
+}
+
+.effect-card:nth-child(6) .effect-icon {
+    background: #19352a;
 }
 
 
-.team-card:hover {
+/* EFFECT MESSAGE */
 
-    transform:
-        translateY(-7px);
+.effects-message {
+    display: flex;
+    align-items: center;
 
-    box-shadow:
-        var(--shadow-hover);
+    gap: 22px;
+
+    margin-top: 60px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
 }
 
+.effects-message-icon {
+    width: 58px;
+    height: 58px;
 
-.team-image {
-
-    width: 110px;
-
-    height: 110px;
-
-    margin:
-        0 auto;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-
-    background:
-        var(--green-900);
-}
-
-
-.team-image img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-}
-
-
-.team-card h3 {
-
-    margin-top: 18px;
-
-    font-size: 18px;
-
-    font-weight: 900;
-}
-
-
-.team-card p {
-
-    margin-top: 5px;
-
-    color:
-        var(--muted);
-
-    font-size: 11px;
-}
-
-
-/* =========================================================
-   SOURCE CARDS
-========================================================= */
-
-.sources-grid {
+    flex-shrink: 0;
 
     display: grid;
+    place-items: center;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    border-radius: 17px;
 
-    gap: 18px;
+    background: rgba(235, 180, 30, 0.14);
 
-    margin-top: 35px;
+    color: #b98500;
 }
 
-
-.research-source-card,
-.source-detail-card {
-
-    padding: 28px;
-
-    border:
-        1px solid
-        var(--border);
-
-    border-radius: 22px;
-
-    background: white;
-
-    box-shadow:
-        var(--shadow);
-}
-
-
-.research-source-card:hover,
-.source-detail-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    box-shadow:
-        var(--shadow-hover);
-}
-
-
-.research-source-card h3,
-.source-detail-card h3 {
-
-    margin-top: 14px;
-
-    font-size: 18px;
-
+.effects-message h3 {
+    font-size: 20px;
     font-weight: 900;
 }
 
+.effects-message p {
+    margin-top: 5px;
 
-.research-source-card p,
-.source-detail-card p {
+    color: var(--muted);
 
-    margin-top: 8px;
-
-    color:
-        var(--muted);
-
-    font-size: 12px;
-
-    line-height: 1.75;
+    font-size: 13px;
 }
 
 
 /* =========================================================
-   PAGE HERO
-========================================================= */
+   11. WHAT WE CAN DO PAGE
+   ========================================================= */
 
-.page-hero {
+.save-section {
+    background: white;
+}
 
-    padding:
-        170px
-        0
-        90px;
+
+/* TNB PANEL */
+
+.energystar-panel {
+    display: grid;
+
+    grid-template-columns: 180px 1fr;
+
+    gap: 35px;
+
+    padding: 35px;
+
+    border-radius: 27px;
 
     background:
         linear-gradient(
-            135deg,
-            var(--green-900),
-            var(--green-700)
+            145deg,
+            #081d14,
+            #123c28
         );
+
+    color: white;
+
+    box-shadow:
+        0 20px 55px rgba(4, 28, 17, 0.18);
+}
+
+.energystar-logo {
+    min-height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: var(--green-300);
+
+    font-size: 32px;
+}
+
+.energystar-logo span {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.energystar-content > span {
+    color: var(--green-300);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.energystar-content h3 {
+    margin-top: 8px;
+
+    font-size: 27px;
+    font-weight: 900;
+}
+
+.energystar-content p {
+    max-width: 800px;
+
+    margin-top: 12px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+.energystar-button {
+    margin-top: 20px;
+}
+
+
+/* SAVE CARDS */
+
+.save-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+.save-card {
+    position: relative;
+
+    min-height: 330px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: var(--off-white);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.save-card:hover {
+    background: white;
+}
+
+.save-conclusion {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-top: 55px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: #f4f9f5;
+
+    border: 1px solid var(--border);
+}
+
+.save-conclusion > i {
+    font-size: 27px;
+    color: #c99a13;
+}
+
+.save-conclusion h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.save-conclusion p {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.text-source-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    color: var(--green-600);
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.save-message {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 35px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: var(--green-900);
 
     color: white;
 }
 
+.save-message-icon {
+    width: 58px;
+    height: 58px;
 
-.page-hero h1 {
+    flex-shrink: 0;
 
-    margin-top: 12px;
+    display: grid;
+    place-items: center;
 
-    font-size:
-        clamp(42px, 6vw, 70px);
+    border-radius: 17px;
 
-    line-height: 1.05;
+    background: rgba(126, 226, 160, 0.12);
 
-    letter-spacing: -3px;
+    color: var(--green-300);
+}
 
+.save-message h3 {
+    font-size: 20px;
     font-weight: 900;
 }
 
+.save-message p {
+    margin-top: 5px;
 
-.page-hero h1 span {
+    color: rgba(255, 255, 255, 0.62);
 
-    color:
-        var(--green-300);
-}
-
-
-.page-hero p {
-
-    max-width: 700px;
-
-    margin-top: 20px;
-
-    color:
-        rgba(255,255,255,0.68);
-
-    font-size: 14px;
-
-    line-height: 1.8;
+    font-size: 13px;
 }
 
 
 /* =========================================================
-   RESPONSIVE ALL CARDS
-========================================================= */
+   12. OUR TEAM PAGE
+   ========================================================= */
 
-@media (max-width: 1000px) {
+.team-section {
+    background: white;
+}
 
-    .data-cards {
+.team-grid {
+    display: grid;
 
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-
-    .renewable-types-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
-    .benefits-grid,
-    .effects-grid,
-    .save-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
-    .team-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
+    gap: 25px;
 }
 
 
-@media (max-width: 650px) {
+/* TEAM CARD */
+
+.team-card {
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* LARGE PHOTO */
+
+.team-photo-wrap {
+    position: relative;
+
+    width: 100%;
+
+    height: 430px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dfe9e2,
+            #b9cbbf
+        );
+}
+
+.team-photo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center top;
+
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-photo {
+    transform: scale(1.045);
+}
+
+
+/* TEAM CONTENT */
+
+.team-content {
+    position: relative;
+
+    padding: 28px;
+}
+
+.team-number {
+    display: inline-block;
+
+    color: var(--green-500);
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.team-content h3 {
+    margin-top: 10px;
+
+    font-size: 20px;
+    line-height: 1.3;
+
+    font-weight: 900;
+}
+
+.team-line {
+    width: 45px;
+    height: 3px;
+
+    margin: 17px 0;
+
+    border-radius: 20px;
+
+    background: var(--green-500);
+}
+
+.team-program {
+    color: var(--text);
+
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.7;
+
+    letter-spacing: 0.4px;
+}
+
+.team-centre {
+    margin-top: 9px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+
+/* TEAM MESSAGE */
+
+.team-message {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 60px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: var(--green-900);
+
+    color: white;
+}
+
+.team-message-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    background: rgba(126, 226, 160, 0.12);
+
+    color: var(--green-300);
+
+    font-size: 23px;
+}
+
+.team-message h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.team-message p {
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   13. SOURCES PAGE
+   ========================================================= */
+
+.sources-section {
+    background: var(--off-white);
+}
+
+.sources-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* RESEARCH SOURCE CARDS */
+
+.research-source-card {
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.research-source-icon {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 23px;
+
+    border-radius: 18px;
+
+    font-size: 23px;
+}
+
+.owid-icon {
+    background: rgba(35, 155, 91, 0.12);
+    color: var(--green-500);
+}
+
+.iea-icon {
+    background: rgba(45, 90, 170, 0.10);
+    color: #426ab1;
+}
+
+.tnb-icon {
+    background: rgba(230, 180, 30, 0.14);
+    color: #bd8d00;
+}
+
+.research-source-card > span {
+    color: var(--green-500);
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.research-source-card h3 {
+    margin-top: 7px;
+
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 900;
+}
+
+.research-source-card p {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+.research-source-card a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: auto;
+    padding-top: 22px;
+
+    color: var(--green-600);
+
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+
+/* SOURCE DETAILS */
+
+.source-details {
+    display: grid;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.source-detail-card {
+    display: grid;
+
+    grid-template-columns: 70px 1fr;
+
+    gap: 22px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow: 0 10px 30px rgba(5, 30, 18, 0.05);
+}
+
+.source-detail-number {
+    width: 60px;
+    height: 60px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 17px;
+
+    background: var(--green-900);
+
+    color: var(--green-300);
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.source-detail-card span {
+    color: var(--green-500);
+
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.source-detail-card h3 {
+    margin-top: 5px;
+
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.source-detail-card p {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.source-detail-card a {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 10px;
+
+    color: var(--green-600);
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+
+/* SOURCES MESSAGE */
+
+.sources-message {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    margin-top: 55px;
+
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background: var(--green-900);
+
+    color: white;
+}
+
+.sources-message-icon {
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 17px;
+
+    background: rgba(126, 226, 160, 0.12);
+
+    color: var(--green-300);
+
+    font-size: 22px;
+}
+
+.sources-message h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.sources-message p {
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   14. FOOTER
+   ========================================================= */
+
+footer {
+    padding: 55px 0 30px;
+
+    background: #04130d;
+
+    color: white;
+}
+
+.footer-container {
+    width: min(var(--container), calc(100% - 40px));
+    margin: auto;
+
+    text-align: center;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.footer-logo i {
+    color: var(--green-300);
+}
+
+.footer-container > p {
+    margin-top: 10px;
+
+    color: rgba(255, 255, 255, 0.50);
+
+    font-size: 12px;
+}
+
+.footer-source {
+    margin-top: 28px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 10px;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+
+    color: rgba(255, 255, 255, 0.28);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   15. RESPONSIVE TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .nav-menu {
+        position: absolute;
+
+        top: 78px;
+        left: 20px;
+        right: 20px;
+
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        padding: 12px;
+
+        background: rgba(7, 26, 19, 0.98);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-menu a {
+        padding: 13px 15px;
+    }
+
+    .menu-dots {
+        display: grid;
+    }
+
+    .data-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .renewable-types-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .effects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .save-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sources-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .iea-panel-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   16. RESPONSIVE MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .section-container {
+        width: min(
+            var(--container),
+            calc(100% - 28px)
+        );
+    }
+
+    section:not(.page-hero) {
+        padding: 70px 0;
+    }
+
+    .page-hero {
+        min-height: 390px;
+    }
+
+    .page-hero .section-container {
+        padding: 70px 0;
+    }
+
+    .page-hero h1 {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
+
+    .page-hero p {
+        font-size: 14px;
+    }
+
+    .section-heading {
+        margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+    .dashboard {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     .data-cards,
     .benefits-grid,
@@ -954,82 +1933,294 @@
     .save-grid,
     .team-grid,
     .sources-grid {
-
         grid-template-columns: 1fr;
     }
 
-
     .chart-card {
-
         padding: 20px;
     }
 
-
     .chart-wrapper {
-
-        height: 300px;
+        height: 280px;
     }
 
+    .iea-research-panel {
+        padding: 23px;
+    }
 
-    .chart-header {
-
+    .iea-panel-header {
         align-items: flex-start;
     }
 
-
-    .chart-header h3 {
-
-        font-size: 17px;
+    .iea-panel-header h3 {
+        font-size: 20px;
     }
 
-
-    .data-card {
-
-        min-height: 90px;
+    .iea-panel-content {
+        grid-template-columns: 1fr 1fr;
     }
 
+    .energystar-panel {
+        grid-template-columns: 1fr;
 
-    .page-hero {
-
-        padding:
-            130px
-            0
-            70px;
+        padding: 23px;
     }
 
-
-    .page-hero h1 {
-
-        font-size: 40px;
-
-        letter-spacing:
-            -1.8px;
+    .energystar-logo {
+        min-height: 120px;
     }
 
+    .team-photo-wrap {
+        height: 470px;
+    }
+
+    .source-detail-card {
+        grid-template-columns: 1fr;
+    }
+
+    .why-message,
+    .effects-message,
+    .save-message,
+    .team-message,
+    .sources-message,
+    .save-conclusion {
+        align-items: flex-start;
+    }
 }
 
 
 /* =========================================================
-   REVEAL
-========================================================= */
+   17. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .nav-container {
+        width: calc(100% - 28px);
+    }
+
+    .logo {
+        font-size: 13px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .page-hero h1 {
+        font-size: 37px;
+    }
+
+    .data-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .iea-panel-content {
+        grid-template-columns: 1fr;
+    }
+
+    .team-photo-wrap {
+        height: 430px;
+    }
+}
+
+
+/* =========================================================
+   18. SIMPLE REVEAL ANIMATION
+   ========================================================= */
 
 .reveal {
-
     opacity: 0;
-
-    transform:
-        translateY(25px);
+    transform: translateY(20px);
 
     transition:
         opacity 0.7s ease,
         transform 0.7s ease;
 }
 
-
 .reveal.show {
-
     opacity: 1;
+    transform: translateY(0);
+}
+/* =========================================================
+   19. HOMEPAGE CARDS + HERO ENERGY CARDS
+   Added without removing the original styles above.
+   ========================================================= */
 
-    transform:
-        translateY(0);
+.home-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 40px;
+}
+
+.home-nav-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 145px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow);
+    color: var(--dark);
+    text-decoration: none;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.home-nav-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(35,155,91,.25);
+    box-shadow: var(--shadow-hover);
+}
+
+.home-nav-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(35,155,91,.10);
+    color: var(--green-500);
+    font-size: 20px;
+}
+
+.home-nav-card > div:nth-child(2) {
+    min-width: 0;
+}
+
+.home-nav-card span {
+    color: var(--green-500);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.home-nav-card h3 {
+    margin-top: 3px;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.home-nav-card p {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.home-nav-arrow {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--green-500);
+    transition: transform .25s ease;
+}
+
+.home-nav-card:hover .home-nav-arrow {
+    transform: translateX(5px);
+}
+
+.hero-energy-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-top: 45px;
+}
+
+.energy-card {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 18px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(12px);
+    color: white;
+    transition: transform .3s ease, background .3s ease;
+}
+
+.energy-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,.13);
+}
+
+.energy-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: rgba(126,226,160,.12);
+    color: var(--green-300);
+}
+
+.energy-card strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.energy-card span {
+    display: block;
+    margin-top: 2px;
+    color: rgba(255,255,255,.60);
+    font-size: 10px;
+}
+
+/* =========================================================
+   20. CHART CANVAS SAFETY
+   ========================================================= */
+
+.chart-wrapper canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.chart-header > i {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(35,155,91,.10);
+    color: var(--green-500);
+    flex-shrink: 0;
+}
+
+.chart-dark .chart-header > i {
+    background: rgba(126,226,160,.10);
+    color: var(--green-300);
+}
+
+/* =========================================================
+   21. EXTRA RESPONSIVE FIXES
+   ========================================================= */
+
+@media (max-width: 1050px) {
+    .home-navigation,
+    .hero-energy-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .home-navigation,
+    .hero-energy-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .home-nav-card {
+        min-height: 125px;
+    }
+
+    .chart-wrapper {
+        height: 280px;
+    }
 }
