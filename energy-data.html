@@ -9,14 +9,12 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Energy Data | Safe Energy
-    </title>
+    <title>Energy Data | Safe Energy</title>
 
 
     <!-- =====================================================
          GOOGLE FONT
-         ===================================================== -->
+    ===================================================== -->
 
     <link
         rel="preconnect"
@@ -34,7 +32,7 @@
 
     <!-- =====================================================
          FONT AWESOME
-         ===================================================== -->
+    ===================================================== -->
 
     <link
         rel="stylesheet"
@@ -43,12 +41,279 @@
 
     <!-- =====================================================
          MAIN CSS
-         ===================================================== -->
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="style.css">
 
+
+    <!-- =====================================================
+         ENERGY DATA PAGE EXTRA STYLE
+    ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           ENERGY DATA DASHBOARD
+        ================================================= */
+
+        .energy-dashboard {
+            width: 100%;
+        }
+
+
+        /* =================================================
+           CHART GRID
+           
+           GRAPH 1 + GRAPH 2
+           = TWO COLUMNS
+        ================================================= */
+
+        .energy-chart-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 24px;
+
+            width: 100%;
+
+            margin-top: 30px;
+
+        }
+
+
+        /* =================================================
+           ALL CHART CARDS
+        ================================================= */
+
+        .energy-chart-grid .chart-card {
+
+            width: 100%;
+
+            min-width: 0;
+
+            margin: 0;
+
+        }
+
+
+        /* =================================================
+           GRAPH 3
+           
+           FULL WIDTH
+        ================================================= */
+
+        .energy-chart-full {
+
+            width: 100%;
+
+            margin-top: 24px;
+
+        }
+
+
+        .energy-chart-full .chart-card {
+
+            width: 100%;
+
+            margin: 0;
+
+        }
+
+
+        /* =================================================
+           CHART WRAPPER
+        ================================================= */
+
+        .energy-chart-grid .chart-wrapper {
+
+            width: 100%;
+
+            min-height: 380px;
+
+            height: 380px;
+
+        }
+
+
+        .energy-chart-full .chart-wrapper {
+
+            width: 100%;
+
+            min-height: 430px;
+
+            height: 430px;
+
+        }
+
+
+        .energy-chart-grid canvas,
+        .energy-chart-full canvas {
+
+            display: block;
+
+            max-width: 100%;
+
+        }
+
+
+        /* =================================================
+           DATA CARDS
+        ================================================= */
+
+        .energy-data-cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .energy-data-cards .data-card {
+
+            min-width: 0;
+
+        }
+
+
+        /* =================================================
+           YEAR DATA INFORMATION
+        ================================================= */
+
+        .year-data-note {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+            padding: 15px 18px;
+
+            border-radius: 14px;
+
+            background: rgba(66, 201, 120, 0.08);
+
+            border: 1px solid rgba(66, 201, 120, 0.18);
+
+        }
+
+
+        .year-data-note i {
+
+            font-size: 18px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .year-data-note strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .year-data-note span {
+
+            display: block;
+
+            font-size: 12px;
+
+            opacity: 0.75;
+
+        }
+
+
+        /* =================================================
+           TABLET
+        ================================================= */
+
+        @media (max-width: 1000px) {
+
+            .energy-chart-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .energy-data-cards {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media (max-width: 600px) {
+
+            .energy-data-cards {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .energy-chart-grid .chart-wrapper {
+
+                min-height: 320px;
+
+                height: 320px;
+
+            }
+
+
+            .energy-chart-full .chart-wrapper {
+
+                min-height: 350px;
+
+                height: 350px;
+
+            }
+
+
+            .energy-chart-grid {
+
+                gap: 18px;
+
+            }
+
+
+            .energy-chart-full {
+
+                margin-top: 18px;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -79,10 +344,9 @@
 
             </div>
 
-            SAFE ENERGY
+            <span>SAFE ENERGY</span>
 
         </a>
-
 
 
         <!-- NAVIGATION -->
@@ -107,42 +371,31 @@
 
 
             <a href="why-renewable.html">
-
                 WHY RENEWABLE
-
             </a>
 
 
             <a href="effects.html">
-
                 EFFECTS
-
             </a>
 
 
             <a href="what-we-can-do.html">
-
                 WHAT WE CAN DO
-
             </a>
 
 
             <a href="our-team.html">
-
                 OUR TEAM
-
             </a>
 
 
             <a href="sources.html">
-
                 SOURCES
-
             </a>
 
 
         </div>
-
 
 
         <!-- MOBILE MENU -->
@@ -153,9 +406,7 @@
             aria-label="Open navigation menu"
             aria-expanded="false">
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
 
         </button>
 
@@ -172,14 +423,11 @@
 
 <section class="page-hero">
 
-
     <div class="section-container">
 
 
         <span class="section-label">
-
             GLOBAL ENERGY DATA
-
         </span>
 
 
@@ -198,14 +446,16 @@
 
             Explore global energy trends using
             energy data and visualisations.
-            The charts compare renewable energy,
-            fossil fuels, nuclear power and
-            global energy consumption.
+            Compare renewable energy, fossil fuels,
+            nuclear power and global energy consumption
+            across different years.
 
         </p>
 
 
-        <!-- HERO ENERGY CARDS -->
+        <!-- =================================================
+             HERO ENERGY CARDS
+        ================================================= -->
 
         <div class="hero-energy-cards">
 
@@ -217,7 +467,6 @@
                     <i class="fa-solid fa-leaf"></i>
 
                 </div>
-
 
                 <div>
 
@@ -234,7 +483,6 @@
             </div>
 
 
-
             <div class="energy-card">
 
                 <div class="energy-icon">
@@ -242,7 +490,6 @@
                     <i class="fa-solid fa-industry"></i>
 
                 </div>
-
 
                 <div>
 
@@ -259,7 +506,6 @@
             </div>
 
 
-
             <div class="energy-card">
 
                 <div class="energy-icon">
@@ -267,7 +513,6 @@
                     <i class="fa-solid fa-bolt"></i>
 
                 </div>
-
 
                 <div>
 
@@ -286,7 +531,6 @@
 
         </div>
 
-
     </div>
 
 </section>
@@ -294,40 +538,30 @@
 
 
 <!-- =========================================================
-     ENERGY DATA SECTION
+     ENERGY DATA DASHBOARD
 ========================================================= -->
 
 <section class="energy-section">
 
-
     <div class="section-container">
 
-
-        <!-- =================================================
-             DASHBOARD
-        ================================================= -->
-
-        <div class="dashboard">
+        <div class="dashboard energy-dashboard">
 
 
-            <!-- DASHBOARD HEADER -->
+            <!-- =================================================
+                 DASHBOARD HEADER
+            ================================================= -->
 
             <div class="dashboard-header">
-
 
                 <div>
 
                     <span class="dashboard-label">
-
                         ENERGY RESEARCH DASHBOARD
-
                     </span>
 
-
                     <h3>
-
                         Global Energy Trends
-
                     </h3>
 
                 </div>
@@ -335,14 +569,11 @@
 
                 <div class="source-badge">
 
-                    <i
-                        class="fa-solid fa-database">
-                    </i>
+                    <i class="fa-solid fa-database"></i>
 
                     OFFLINE ENERGY DATA
 
                 </div>
-
 
             </div>
 
@@ -352,23 +583,18 @@
                  DATA CARDS
             ================================================= -->
 
-            <div class="data-cards">
+            <div class="data-cards energy-data-cards">
 
 
                 <!-- CARD 1 -->
 
                 <div class="data-card">
 
+                    <div class="data-icon renewable">
 
-                    <div
-                        class="data-icon renewable">
-
-                        <i
-                            class="fa-solid fa-leaf">
-                        </i>
+                        <i class="fa-solid fa-leaf"></i>
 
                     </div>
-
 
                     <div>
 
@@ -382,25 +608,18 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- CARD 2 -->
 
                 <div class="data-card">
 
+                    <div class="data-icon fossil">
 
-                    <div
-                        class="data-icon fossil">
-
-                        <i
-                            class="fa-solid fa-industry">
-                        </i>
+                        <i class="fa-solid fa-industry"></i>
 
                     </div>
-
 
                     <div>
 
@@ -414,25 +633,18 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- CARD 3 -->
 
                 <div class="data-card">
 
+                    <div class="data-icon nuclear">
 
-                    <div
-                        class="data-icon nuclear">
-
-                        <i
-                            class="fa-solid fa-atom">
-                        </i>
+                        <i class="fa-solid fa-atom"></i>
 
                     </div>
-
 
                     <div>
 
@@ -446,25 +658,18 @@
 
                     </div>
 
-
                 </div>
-
 
 
                 <!-- CARD 4 -->
 
                 <div class="data-card">
 
+                    <div class="data-icon electricity">
 
-                    <div
-                        class="data-icon electricity">
-
-                        <i
-                            class="fa-solid fa-bolt">
-                        </i>
+                        <i class="fa-solid fa-bolt"></i>
 
                     </div>
-
 
                     <div>
 
@@ -478,7 +683,6 @@
 
                     </div>
 
-
                 </div>
 
 
@@ -487,103 +691,119 @@
 
 
             <!-- =================================================
-                 GRAPH 1
+                 YEAR DATA NOTE
             ================================================= -->
 
-            <div class="chart-card chart-dark">
+            <div class="year-data-note">
 
+                <i class="fa-solid fa-calendar-days"></i>
 
-                <div class="chart-header">
+                <div>
 
+                    <strong>
+                        YEAR-BY-YEAR ENERGY DATA
+                    </strong>
 
-                    <div>
-
-                        <span>
-                            ENERGY TRANSITION
-                        </span>
-
-
-                        <h3>
-                            Renewable Energy vs Fossil Fuels
-                        </h3>
-
-
-                        <small>
-                            Global primary energy trends
-                        </small>
-
-                    </div>
-
-
-                    <i
-                        class="fa-solid fa-chart-line">
-                    </i>
-
+                    <span>
+                        Move across the chart timeline to compare
+                        energy trends from 2000 to 2023.
+                    </span>
 
                 </div>
-
-
-
-                <div class="chart-wrapper">
-
-
-                    <canvas
-                        id="renewableFossilChart">
-                    </canvas>
-
-
-                </div>
-
 
             </div>
 
 
 
             <!-- =================================================
-                 GRAPH 2
+                 GRAPH ROW
+                 
+                 GRAPH 1 + GRAPH 2
+                 TWO COLUMNS
             ================================================= -->
 
-            <div class="chart-card">
+            <div class="energy-chart-grid">
 
 
-                <div class="chart-header">
+                <!-- =================================================
+                     GRAPH 1
+                ================================================= -->
+
+                <div class="chart-card chart-dark">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <span>
+                                ENERGY TRANSITION
+                            </span>
+
+                            <h3>
+                                Renewable Energy vs Fossil Fuels
+                            </h3>
+
+                            <small>
+                                Global primary energy trends
+                            </small>
+
+                        </div>
 
 
-                    <div>
-
-                        <span>
-                            GLOBAL CONSUMPTION
-                        </span>
-
-
-                        <h3>
-                            Global Energy Consumption
-                        </h3>
-
-
-                        <small>
-                            Primary energy use over time
-                        </small>
+                        <i class="fa-solid fa-chart-line"></i>
 
                     </div>
 
 
-                    <i
-                        class="fa-solid fa-chart-area">
-                    </i>
+                    <div class="chart-wrapper">
 
+                        <canvas
+                            id="renewableFossilChart">
+                        </canvas>
+
+                    </div>
 
                 </div>
 
 
 
-                <div class="chart-wrapper">
+                <!-- =================================================
+                     GRAPH 2
+                ================================================= -->
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <span>
+                                GLOBAL CONSUMPTION
+                            </span>
+
+                            <h3>
+                                Global Energy Consumption
+                            </h3>
+
+                            <small>
+                                Primary energy use over time
+                            </small>
+
+                        </div>
 
 
-                    <canvas
-                        id="energyConsumptionChart">
-                    </canvas>
+                        <i class="fa-solid fa-chart-area"></i>
 
+                    </div>
+
+
+                    <div class="chart-wrapper">
+
+                        <canvas
+                            id="energyConsumptionChart">
+                        </canvas>
+
+                    </div>
 
                 </div>
 
@@ -594,52 +814,47 @@
 
             <!-- =================================================
                  GRAPH 3
+                 
+                 FULL WIDTH BELOW GRAPH 1 & 2
             ================================================= -->
 
-            <div class="chart-card">
+            <div class="energy-chart-full">
+
+                <div class="chart-card">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <span>
+                                ELECTRICITY GENERATION
+                            </span>
+
+                            <h3>
+                                How Electricity Is Generated
+                            </h3>
+
+                            <small>
+                                Renewable, fossil and nuclear electricity
+                            </small>
+
+                        </div>
 
 
-                <div class="chart-header">
-
-
-                    <div>
-
-                        <span>
-                            ELECTRICITY GENERATION
-                        </span>
-
-
-                        <h3>
-                            How Electricity Is Generated
-                        </h3>
-
-
-                        <small>
-                            Renewable, fossil and nuclear electricity
-                        </small>
+                        <i class="fa-solid fa-bolt"></i>
 
                     </div>
 
 
-                    <i
-                        class="fa-solid fa-bolt">
-                    </i>
+                    <div class="chart-wrapper">
 
+                        <canvas
+                            id="electricityChart">
+                        </canvas>
 
-                </div>
-
-
-
-                <div class="chart-wrapper">
-
-
-                    <canvas
-                        id="electricityChart">
-                    </canvas>
-
+                    </div>
 
                 </div>
-
 
             </div>
 
@@ -651,28 +866,22 @@
 
             <div class="dashboard-source">
 
-
                 <div
                     class="source-button"
                     style="cursor: default;">
 
-                    <i
-                        class="fa-solid fa-wifi">
-                    </i>
+                    <i class="fa-solid fa-wifi"></i>
 
                     CHARTS WORK OFFLINE
 
                 </div>
-
 
             </div>
 
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -688,17 +897,13 @@
         padding: 80px 0;
     ">
 
-
     <div class="section-container">
 
 
         <div class="section-heading center">
 
-
             <span class="section-label">
-
                 UNDERSTANDING THE DATA
-
             </span>
 
 
@@ -722,10 +927,13 @@
 
             </p>
 
-
         </div>
 
 
+
+        <!-- =================================================
+             INFORMATION CARDS
+        ================================================= -->
 
         <div class="home-navigation">
 
@@ -735,7 +943,6 @@
             <a
                 href="why-renewable.html"
                 class="home-nav-card">
-
 
                 <div class="home-nav-icon">
 
@@ -764,12 +971,9 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
@@ -780,7 +984,6 @@
             <a
                 href="effects.html"
                 class="home-nav-card">
-
 
                 <div class="home-nav-icon">
 
@@ -809,12 +1012,9 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
@@ -825,7 +1025,6 @@
             <a
                 href="what-we-can-do.html"
                 class="home-nav-card">
-
 
                 <div class="home-nav-icon">
 
@@ -854,21 +1053,16 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -884,18 +1078,14 @@
         padding: 65px 0;
     ">
 
-
     <div class="section-container">
-
 
         <div class="why-message">
 
 
             <div class="why-message-icon">
 
-                <i
-                    class="fa-solid fa-chart-line">
-                </i>
+                <i class="fa-solid fa-chart-line"></i>
 
             </div>
 
@@ -903,9 +1093,7 @@
             <div>
 
                 <h3>
-
                     Energy Data & Sustainability
-
                 </h3>
 
 
@@ -925,9 +1113,7 @@
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -939,23 +1125,16 @@
 
 <footer>
 
-
     <div class="footer-container">
 
 
         <div class="footer-logo">
 
-
-            <i
-                class="fa-solid fa-leaf">
-            </i>
-
+            <i class="fa-solid fa-leaf"></i>
 
             SAFE ENERGY
 
-
         </div>
-
 
 
         <p>
@@ -966,9 +1145,7 @@
         </p>
 
 
-
         <div class="footer-source">
-
 
             Research sources:
 
@@ -978,24 +1155,19 @@
 
             ENERGY STAR
 
-
         </div>
 
 
-
         <div class="footer-bottom">
-
 
             © 2026 Safe Energy.
 
             Educational Research Website.
 
-
         </div>
 
 
     </div>
-
 
 </footer>
 
