@@ -1,84 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>Safe Energy | Importance of Safe Energy</title>
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
-    <!-- Font Awesome -->
+
+    <!-- =====================================================
+         FONT AWESOME
+    ===================================================== -->
+
     <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
+
+    <!-- =====================================================
+         MAIN CSS
+    ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+
+    <!-- =====================================================
+         HOME CARD BACKGROUND STYLE
+         
+         HERO TIDAK DIUBAH.
+         STYLE INI KHAS UNTUK 6 CARD BAWAH SAHAJA.
+    ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           HOME NAVIGATION CARDS
+        ================================================= */
+
+        .home-navigation {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 24px;
+
+        }
+
+
+        /* =================================================
+           CARD BASE
+        ================================================= */
+
+        .home-nav-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 240px;
+
+            border-radius: 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+
+            padding: 32px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            isolation: isolate;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        /* =================================================
+           DARK OVERLAY
+        ================================================= */
+
+        .home-nav-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(5, 20, 13, 0.92),
+                    rgba(5, 30, 20, 0.72),
+                    rgba(0, 0, 0, 0.48)
+                );
+
+        }
+
+
+        /* =================================================
+           GREEN LIGHT EFFECT
+        ================================================= */
+
+        .home-nav-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            right: -70px;
+
+            bottom: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(92, 220, 140, 0.16);
+
+            filter: blur(10px);
+
+            z-index: -1;
+
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
+
+        }
+
+
+        /* =================================================
+           HOVER
+        ================================================= */
+
+        .home-nav-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                0 25px 55px rgba(0, 0, 0, 0.22);
+
+        }
+
+
+        .home-nav-card:hover::after {
+
+            transform:
+                scale(1.5);
+
+            opacity: 0.8;
+
+        }
+
+
+        /* =================================================
+           INDIVIDUAL CARD BACKGROUNDS
+        ================================================= */
+
+
+        /* 01 ENERGY DATA */
+
+        .home-nav-card:nth-child(1) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* 02 WHY RENEWABLE */
+
+        .home-nav-card:nth-child(2) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* 03 EFFECTS */
+
+        .home-nav-card:nth-child(3) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* 04 WHAT WE CAN DO */
+
+        .home-nav-card:nth-child(4) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* 05 OUR TEAM */
+
+        .home-nav-card:nth-child(5) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* 06 SOURCES */
+
+        .home-nav-card:nth-child(6) {
+
+            background-image:
+                url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85");
+
+        }
+
+
+        /* =================================================
+           ICON
+        ================================================= */
+
+        .home-nav-card .home-nav-icon {
+
+            flex-shrink: 0;
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.22);
+
+            backdrop-filter:
+                blur(10px);
+
+            -webkit-backdrop-filter:
+                blur(10px);
+
+            font-size: 25px;
+
+            color: white;
+
+        }
+
+
+        /* =================================================
+           CARD CONTENT
+        ================================================= */
+
+        .home-nav-card > div:nth-child(2) {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .home-nav-card span {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            color:
+                rgba(255, 255, 255, 0.72);
+
+        }
+
+
+        .home-nav-card h3 {
+
+            margin: 0 0 9px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: white;
+
+        }
+
+
+        .home-nav-card p {
+
+            margin: 0;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            color:
+                rgba(255, 255, 255, 0.82);
+
+        }
+
+
+        /* =================================================
+           ARROW
+        ================================================= */
+
+        .home-nav-card .home-nav-arrow {
+
+            flex-shrink: 0;
+
+            width: 44px;
+
+            height: 44px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.13);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.18);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+
+        }
+
+
+        .home-nav-card:hover
+        .home-nav-arrow {
+
+            transform:
+                translateX(5px);
+
+            background:
+                rgba(255, 255, 255, 0.22);
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media (max-width: 850px) {
+
+            .home-navigation {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .home-nav-card {
+
+                min-height: 210px;
+
+                padding: 24px;
+
+                gap: 16px;
+
+            }
+
+
+            .home-nav-card
+            .home-nav-icon {
+
+                width: 56px;
+
+                height: 56px;
+
+                border-radius: 16px;
+
+                font-size: 20px;
+
+            }
+
+
+            .home-nav-card h3 {
+
+                font-size: 20px;
+
+            }
+
+
+            .home-nav-card p {
+
+                font-size: 12px;
+
+            }
+
+
+            .home-nav-card
+            .home-nav-arrow {
+
+                width: 38px;
+
+                height: 38px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      NAVBAR
 ===================================================== -->
 
-<nav class="navbar" id="navbar">
+<nav
+    class="navbar"
+    id="navbar">
 
     <div class="nav-container">
 
-        <a href="index.html" class="logo">
+
+        <a
+            href="index.html"
+            class="logo">
 
             <div class="logo-icon">
+
                 <i class="fa-solid fa-leaf"></i>
+
             </div>
 
-            <span>SAFE ENERGY</span>
+            <span>
+                SAFE ENERGY
+            </span>
 
         </a>
 
 
-        <div class="nav-menu" id="navMenu">
+        <div
+            class="nav-menu"
+            id="navMenu">
 
-            <a href="index.html" class="active">
+
+            <a
+                href="index.html"
+                class="active">
+
                 HOME
+
             </a>
-            
+
+
             <a href="introduction.html">
+
                 INTRODUCTION
+
             </a>
+
 
             <a href="energy-data.html">
+
                 ENERGY DATA
+
             </a>
+
 
             <a href="why-renewable.html">
+
                 WHY RENEWABLE
+
             </a>
+
 
             <a href="effects.html">
+
                 EFFECTS
+
             </a>
+
 
             <a href="what-we-can-do.html">
+
                 WHAT WE CAN DO
+
             </a>
+
 
             <a href="our-team.html">
+
                 OUR TEAM
+
             </a>
 
+
             <a href="sources.html">
+
                 SOURCES
+
             </a>
+
 
         </div>
 
@@ -87,9 +578,10 @@
             class="menu-dots"
             id="menuDots"
             aria-label="Open navigation"
-            aria-expanded="false"
-        >
+            aria-expanded="false">
+
             <i class="fa-solid fa-ellipsis-vertical"></i>
+
         </button>
 
     </div>
@@ -97,8 +589,11 @@
 </nav>
 
 
+
 <!-- =====================================================
      HERO
+     
+     HERO ASAL — TAK USIK
 ===================================================== -->
 
 <section class="page-hero">
@@ -106,21 +601,31 @@
     <div class="section-container">
 
         <span class="section-label">
+
             <i class="fa-solid fa-leaf"></i>
+
             POWERING A GREENER FUTURE
+
         </span>
 
 
         <h1>
+
             IMPORTANCE OF
-            <span>SAFE ENERGY</span>
+
+            <span>
+                SAFE ENERGY
+            </span>
+
         </h1>
 
 
         <p>
+
             Understanding the importance of renewable energy,
             responsible energy use and sustainable solutions
             for a cleaner and safer future.
+
         </p>
 
 
@@ -134,7 +639,9 @@
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-solar-panel"></i>
+
                 </div>
 
                 <div>
@@ -157,7 +664,9 @@
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-bolt"></i>
+
                 </div>
 
                 <div>
@@ -180,7 +689,9 @@
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-earth-asia"></i>
+
                 </div>
 
                 <div>
@@ -197,11 +708,13 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -216,36 +729,53 @@
         <div class="section-heading center">
 
             <span class="section-label">
+
                 SAFE ENERGY
+
             </span>
 
+
             <h2>
+
                 Building A
-                <span>Sustainable Future</span>
+
+                <span>
+                    Sustainable Future
+                </span>
+
             </h2>
 
+
             <p>
-                Energy is essential for modern life. The way
-                we produce and consume energy affects our
-                environment, economy and future generations.
+
+                Energy is essential for modern life.
+                The way we produce and consume energy
+                affects our environment, economy and
+                future generations.
+
             </p>
 
         </div>
 
 
+
         <!-- =================================================
              MAIN NAVIGATION CARDS
+             
+             SETIAP CARD ADA BACKGROUND GAMBAR SENDIRI
         ================================================= -->
 
         <div class="home-navigation">
 
 
-            <!-- ENERGY DATA -->
+            <!-- =================================================
+                 01 ENERGY DATA
+            ================================================= -->
 
             <a
                 href="energy-data.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -257,16 +787,24 @@
                 <div>
 
                     <span>
+
                         01 • EXPLORE
+
                     </span>
 
+
                     <h3>
+
                         Energy Data
+
                     </h3>
 
+
                     <p>
+
                         Explore global energy trends,
                         consumption and renewable energy data.
+
                     </p>
 
                 </div>
@@ -278,15 +816,19 @@
 
                 </div>
 
+
             </a>
 
 
-            <!-- WHY RENEWABLE -->
+
+            <!-- =================================================
+                 02 WHY RENEWABLE
+            ================================================= -->
 
             <a
                 href="why-renewable.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -298,16 +840,24 @@
                 <div>
 
                     <span>
+
                         02 • DISCOVER
+
                     </span>
 
+
                     <h3>
+
                         Why Renewable?
+
                     </h3>
 
+
                     <p>
+
                         Understand why renewable energy
                         is important for our future.
+
                     </p>
 
                 </div>
@@ -319,15 +869,19 @@
 
                 </div>
 
+
             </a>
 
 
-            <!-- EFFECTS -->
+
+            <!-- =================================================
+                 03 EFFECTS
+            ================================================= -->
 
             <a
                 href="effects.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -339,16 +893,24 @@
                 <div>
 
                     <span>
+
                         03 • UNDERSTAND
+
                     </span>
 
+
                     <h3>
+
                         Effects
+
                     </h3>
 
+
                     <p>
+
                         Discover the environmental effects
                         of fossil fuel dependence.
+
                     </p>
 
                 </div>
@@ -360,15 +922,19 @@
 
                 </div>
 
+
             </a>
 
 
-            <!-- WHAT WE CAN DO -->
+
+            <!-- =================================================
+                 04 WHAT WE CAN DO
+            ================================================= -->
 
             <a
                 href="what-we-can-do.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -380,16 +946,24 @@
                 <div>
 
                     <span>
+
                         04 • TAKE ACTION
+
                     </span>
 
+
                     <h3>
+
                         What We Can Do
+
                     </h3>
 
+
                     <p>
+
                         Learn practical ways to reduce
                         energy consumption every day.
+
                     </p>
 
                 </div>
@@ -401,15 +975,19 @@
 
                 </div>
 
+
             </a>
 
 
-            <!-- OUR TEAM -->
+
+            <!-- =================================================
+                 05 OUR TEAM
+            ================================================= -->
 
             <a
                 href="our-team.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -421,16 +999,24 @@
                 <div>
 
                     <span>
+
                         05 • OUR PROJECT
+
                     </span>
 
+
                     <h3>
+
                         Our Team
+
                     </h3>
 
+
                     <p>
+
                         Meet the people behind
                         the Safe Energy project.
+
                     </p>
 
                 </div>
@@ -442,15 +1028,19 @@
 
                 </div>
 
+
             </a>
 
 
-            <!-- SOURCES -->
+
+            <!-- =================================================
+                 06 SOURCES
+            ================================================= -->
 
             <a
                 href="sources.html"
-                class="home-nav-card reveal"
-            >
+                class="home-nav-card reveal">
+
 
                 <div class="home-nav-icon">
 
@@ -462,16 +1052,24 @@
                 <div>
 
                     <span>
+
                         06 • RESEARCH
+
                     </span>
 
+
                     <h3>
+
                         Sources
+
                     </h3>
 
+
                     <p>
+
                         Explore the organisations and
                         research used in this website.
+
                     </p>
 
                 </div>
@@ -483,13 +1081,16 @@
 
                 </div>
 
+
             </a>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -504,18 +1105,29 @@
         <div class="section-heading">
 
             <span class="section-label">
+
                 WHY IT MATTERS
+
             </span>
 
+
             <h2>
+
                 Why We Need
-                <span>Safe Energy</span>
+
+                <span>
+                    Safe Energy
+                </span>
+
             </h2>
 
+
             <p>
+
                 Moving towards cleaner energy can help
                 create a healthier environment and a more
                 sustainable society.
+
             </p>
 
         </div>
@@ -532,23 +1144,31 @@
                     01
                 </span>
 
+
                 <div class="benefit-icon">
 
                     <i class="fa-solid fa-leaf"></i>
 
                 </div>
 
+
                 <h3>
+
                     Cleaner Environment
+
                 </h3>
 
+
                 <p>
+
                     Renewable energy can reduce reliance
                     on fossil fuels and help lower harmful
                     environmental impacts.
+
                 </p>
 
             </article>
+
 
 
             <!-- BENEFIT 2 -->
@@ -559,22 +1179,30 @@
                     02
                 </span>
 
+
                 <div class="benefit-icon">
 
                     <i class="fa-solid fa-wind"></i>
 
                 </div>
 
+
                 <h3>
+
                     Lower Emissions
+
                 </h3>
 
+
                 <p>
+
                     Cleaner energy technologies can support
                     efforts to reduce greenhouse gas emissions.
+
                 </p>
 
             </article>
+
 
 
             <!-- BENEFIT 3 -->
@@ -585,22 +1213,30 @@
                     03
                 </span>
 
+
                 <div class="benefit-icon">
 
                     <i class="fa-solid fa-sun"></i>
 
                 </div>
 
+
                 <h3>
+
                     Renewable Resources
+
                 </h3>
 
+
                 <p>
+
                     Solar, wind, hydro and other renewable
                     resources can provide sustainable energy.
+
                 </p>
 
             </article>
+
 
 
             <!-- BENEFIT 4 -->
@@ -611,24 +1247,33 @@
                     04
                 </span>
 
+
                 <div class="benefit-icon">
 
                     <i class="fa-solid fa-earth-americas"></i>
 
                 </div>
 
+
                 <h3>
+
                     Protect The Future
+
                 </h3>
 
+
                 <p>
+
                     Responsible energy choices today can
                     contribute to a more sustainable future.
+
                 </p>
 
             </article>
 
+
         </div>
+
 
 
         <!-- MESSAGE -->
@@ -645,13 +1290,18 @@
             <div>
 
                 <h3>
+
                     Every Energy Choice Matters
+
                 </h3>
 
+
                 <p>
+
                     From the electricity we use to the
                     technologies we support, our decisions
                     can contribute to a cleaner energy future.
+
                 </p>
 
             </div>
@@ -661,6 +1311,7 @@
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -684,14 +1335,19 @@
             <div>
 
                 <h3>
+
                     The Future Starts With Us
+
                 </h3>
 
+
                 <p>
+
                     Explore the website to understand
                     energy data, renewable energy,
                     environmental effects and practical
                     actions we can take.
+
                 </p>
 
             </div>
@@ -701,6 +1357,7 @@
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -726,16 +1383,21 @@
 
 
         <p>
+
             Understanding energy.
             Protecting the future.
+
         </p>
 
 
         <div class="footer-source">
 
             Research sources:
+
             Our World in Data •
+
             International Energy Agency •
+
             Tenaga Nasional Berhad
 
         </div>
@@ -744,6 +1406,7 @@
         <div class="footer-bottom">
 
             © 2026 Safe Energy.
+
             Educational Research Website.
 
         </div>
@@ -753,11 +1416,14 @@
 </footer>
 
 
+
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
