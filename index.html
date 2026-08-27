@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Safe Energy | Importance of Safe Energy</title>
+    <title>Safe Energy | Renewable Energy & Sustainability</title>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,11 +22,915 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           HOME HERO
+        ===================================================== */
+
+        .hero {
+            position: relative;
+            min-height: 720px;
+
+            display: flex;
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(4, 22, 14, 0.94),
+                    rgba(6, 35, 22, 0.76),
+                    rgba(7, 26, 19, 0.45)
+                ),
+                url("images/green-energy-bg.jpeg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at 75% 30%,
+                    rgba(66, 201, 120, 0.20),
+                    transparent 35%
+                );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: min(
+                1180px,
+                calc(100% - 40px)
+            );
+
+            margin: 0 auto;
+
+            padding-bottom: 180px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 9px 14px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(126, 226, 160, 0.12);
+
+            border:
+                1px solid
+                rgba(126, 226, 160, 0.25);
+
+            color:
+                #9ae8b5;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 1.8px;
+        }
+
+        .hero-content h1 {
+            max-width: 900px;
+
+            margin-top: 22px;
+
+            color: white;
+
+            font-size:
+                clamp(45px, 7vw, 78px);
+
+            line-height: 1.02;
+
+            letter-spacing: -4px;
+
+            font-weight: 900;
+        }
+
+        .hero-content h1 span {
+            color:
+                var(--green-300);
+        }
+
+        .hero-content > p {
+            max-width: 650px;
+
+            margin-top: 25px;
+
+            color:
+                rgba(255,255,255,0.72);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            padding: 14px 21px;
+
+            border-radius: 13px;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 0.7px;
+
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background:
+                var(--green-500);
+
+            color: white;
+
+            box-shadow:
+                0 12px 30px
+                rgba(35,155,91,0.25);
+        }
+
+        .btn-primary:hover {
+            background:
+                var(--green-400);
+
+            transform:
+                translateY(-3px);
+        }
+
+        .btn-secondary {
+            background:
+                rgba(255,255,255,0.09);
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
+
+            backdrop-filter:
+                blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background:
+                rgba(255,255,255,0.16);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* =====================================================
+           HERO ENERGY CARDS
+        ===================================================== */
+
+        .hero-energy-cards {
+            position: absolute;
+
+            z-index: 3;
+
+            left: 50%;
+            bottom: 45px;
+
+            transform:
+                translateX(-50%);
+
+            width: min(
+                1180px,
+                calc(100% - 40px)
+            );
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .energy-card {
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            min-height: 92px;
+
+            padding: 20px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.17);
+
+            border-radius: 18px;
+
+            backdrop-filter:
+                blur(15px);
+
+            color: white;
+
+            transition:
+                transform .3s ease,
+                background .3s ease;
+        }
+
+        .energy-card:hover {
+            transform:
+                translateY(-7px);
+
+            background:
+                rgba(255,255,255,0.16);
+        }
+
+        .energy-icon {
+            width: 48px;
+            height: 48px;
+
+            min-width: 48px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(126,226,160,0.15);
+
+            color:
+                var(--green-300);
+
+            font-size: 19px;
+        }
+
+        .energy-card strong {
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 900;
+        }
+
+        .energy-card span {
+            display: block;
+
+            margin-top: 3px;
+
+            color:
+                rgba(255,255,255,0.62);
+
+            font-size: 10px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+
+            left: 50%;
+            bottom: 15px;
+
+            transform:
+                translateX(-50%);
+
+            display: none;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 4px;
+
+            color:
+                rgba(255,255,255,0.45);
+
+            font-size: 8px;
+
+            letter-spacing: 1.5px;
+        }
+
+
+        /* =====================================================
+           ENERGY DATA PREVIEW
+        ===================================================== */
+
+        .energy-preview {
+            background:
+                var(--off-white);
+
+            padding:
+                100px 0;
+        }
+
+        .energy-dashboard {
+            padding: 32px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            border:
+                1px solid
+                var(--border);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .energy-dashboard-header {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .energy-dashboard-header span {
+            color:
+                var(--green-500);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+        .energy-dashboard-header h2 {
+            margin-top: 7px;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            letter-spacing: -1px;
+        }
+
+        .energy-dashboard-header p {
+            margin-top: 7px;
+
+            color:
+                var(--muted);
+
+            font-size: 12px;
+        }
+
+        .owid-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 12px 16px;
+
+            border-radius: 12px;
+
+            background:
+                var(--green-900);
+
+            color: white;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           STAT CARDS
+        ===================================================== */
+
+        .energy-stat-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .energy-stat {
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background:
+                #f8fbf9;
+
+            border:
+                1px solid
+                var(--border);
+
+            transition: .3s ease;
+        }
+
+        .energy-stat:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .energy-stat-icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(35,155,91,0.12);
+
+            color:
+                var(--green-500);
+
+            font-size: 17px;
+        }
+
+        .energy-stat span {
+            display: block;
+
+            margin-top: 14px;
+
+            color:
+                var(--muted);
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .energy-stat strong {
+            display: block;
+
+            margin-top: 4px;
+
+            color:
+                var(--text);
+
+            font-size: 22px;
+
+            font-weight: 900;
+        }
+
+
+        /* =====================================================
+           GRAPH
+        ===================================================== */
+
+        .energy-chart-card {
+            margin-top: 20px;
+
+            padding: 28px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #081d14,
+                    #0d3523
+                );
+
+            color: white;
+
+            box-shadow:
+                0 20px 55px
+                rgba(4,28,17,0.20);
+        }
+
+        .energy-chart-top {
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .energy-chart-top span {
+            color:
+                var(--green-300);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.8px;
+        }
+
+        .energy-chart-top h3 {
+            margin-top: 6px;
+
+            font-size: 24px;
+
+            font-weight: 900;
+        }
+
+        .energy-chart-top p {
+            margin-top: 5px;
+
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size: 11px;
+        }
+
+        .year-selector {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .year-selector label {
+            color:
+                rgba(255,255,255,0.55);
+
+            font-size: 9px;
+
+            font-weight: 900;
+        }
+
+        .year-selector select {
+            padding: 10px 13px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.13);
+
+            background:
+                rgba(255,255,255,0.08);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+        .year-selector option {
+            color:
+                #14231c;
+
+            background:
+                white;
+        }
+
+        .chart-area {
+            position: relative;
+
+            height: 390px;
+
+            margin-top: 25px;
+        }
+
+        .chart-area canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .chart-info {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 20px;
+
+            padding-top: 17px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+        .chart-info p {
+            color:
+                rgba(255,255,255,0.48);
+
+            font-size: 10px;
+        }
+
+        .chart-info strong {
+            color:
+                var(--green-300);
+
+            font-size: 10px;
+        }
+
+        .view-data-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 15px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(126,226,160,0.10);
+
+            color:
+                var(--green-300);
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: .5px;
+        }
+
+        .view-data-button:hover {
+            background:
+                rgba(126,226,160,0.17);
+        }
+
+
+        /* =====================================================
+           HOME INTRO
+        ===================================================== */
+
+        .home-intro {
+            background:
+                white;
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta-section {
+            background:
+                var(--off-white);
+
+            padding:
+                80px 0;
+        }
+
+        .cta-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+
+            padding: 35px;
+
+            border-radius: 27px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #081d14,
+                    #123c28
+                );
+
+            color: white;
+
+            box-shadow:
+                0 20px 55px
+                rgba(4,28,17,0.18);
+        }
+
+        .cta-icon {
+            width: 70px;
+            height: 70px;
+
+            min-width: 70px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 20px;
+
+            background:
+                rgba(126,226,160,0.11);
+
+            color:
+                var(--green-300);
+
+            font-size: 27px;
+        }
+
+        .cta-content {
+            flex: 1;
+        }
+
+        .cta-content .section-label {
+            color:
+                var(--green-300);
+        }
+
+        .cta-content h2 {
+            margin-top: 7px;
+
+            font-size: 27px;
+
+            font-weight: 900;
+        }
+
+        .cta-content h2 span {
+            color:
+                var(--green-300);
+        }
+
+        .cta-content p {
+            margin-top: 7px;
+
+            color:
+                rgba(255,255,255,0.58);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .hero-energy-cards {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .energy-stat-grid {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .cta-box {
+                flex-wrap: wrap;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .hero {
+                min-height: 780px;
+
+                align-items: flex-start;
+            }
+
+            .hero-content {
+                padding-top: 100px;
+                padding-bottom: 300px;
+            }
+
+            .hero-content h1 {
+                font-size: 45px;
+
+                letter-spacing: -2.5px;
+            }
+
+            .hero-content > p {
+                font-size: 14px;
+            }
+
+            .hero-energy-cards {
+                grid-template-columns: 1fr;
+
+                bottom: 25px;
+            }
+
+            .energy-dashboard {
+                padding: 20px;
+            }
+
+            .energy-dashboard-header {
+                flex-direction: column;
+            }
+
+            .energy-chart-card {
+                padding: 20px;
+            }
+
+            .energy-chart-top {
+                flex-direction: column;
+            }
+
+            .chart-area {
+                height: 300px;
+            }
+
+            .energy-stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-box {
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                padding: 25px;
+            }
+
+        }
+
+        @media (max-width: 430px) {
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .year-selector {
+                width: 100%;
+
+                justify-content: space-between;
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      NAVBAR
@@ -85,7 +990,9 @@
             aria-label="Open navigation"
             aria-expanded="false"
         >
+
             <i class="fa-solid fa-ellipsis-vertical"></i>
+
         </button>
 
     </div>
@@ -97,97 +1004,371 @@
      HERO
 ===================================================== -->
 
-<section class="page-hero">
+<section class="hero">
 
-    <div class="section-container">
+    <div class="hero-overlay"></div>
 
-        <span class="section-label">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+
             <i class="fa-solid fa-leaf"></i>
+
             POWERING A GREENER FUTURE
-        </span>
+
+        </div>
 
 
         <h1>
-            IMPORTANCE OF
-            <span>SAFE ENERGY</span>
+
+            Energy Today.
+
+            <br>
+
+            <span>
+                A Sustainable Tomorrow.
+            </span>
+
         </h1>
 
 
         <p>
-            Understanding the importance of renewable energy,
-            responsible energy use and sustainable solutions
-            for a cleaner and safer future.
+
+            Discover how renewable energy and smarter
+            energy choices can create a cleaner, safer
+            and more sustainable future.
+
         </p>
 
 
-        <!-- HERO ENERGY CARDS -->
+        <div class="hero-buttons">
 
-        <div class="hero-energy-cards">
+            <a
+                href="energy-data.html"
+                class="btn-primary"
+            >
+
+                Explore Energy
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
 
 
-            <!-- CARD 1 -->
+            <a
+                href="what-we-can-do.html"
+                class="btn-secondary"
+            >
 
-            <div class="energy-card reveal">
+                How To Save Energy
 
-                <div class="energy-icon">
-                    <i class="fa-solid fa-solar-panel"></i>
-                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO ENERGY CARDS -->
+
+    <div class="hero-energy-cards">
+
+        <div class="energy-card reveal">
+
+            <div class="energy-icon">
+                <i class="fa-solid fa-solar-panel"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Renewable Energy
+                </strong>
+
+                <span>
+                    Cleaner power for tomorrow
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="energy-card reveal">
+
+            <div class="energy-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Save Energy
+                </strong>
+
+                <span>
+                    Use energy smarter every day
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="energy-card reveal">
+
+            <div class="energy-icon">
+                <i class="fa-solid fa-earth-asia"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    Protect Our Planet
+                </strong>
+
+                <span>
+                    Small actions, big impact
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="scroll-indicator">
+
+        <span>
+            SCROLL TO EXPLORE
+        </span>
+
+        <i class="fa-solid fa-chevron-down"></i>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ENERGY DATA PREVIEW
+===================================================== -->
+
+<section class="energy-preview">
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+            <span class="section-label">
+                GLOBAL ENERGY DATA
+            </span>
+
+            <h2>
+                Energy Trends
+                <span>By Year</span>
+            </h2>
+
+            <p>
+                Explore how global primary energy use
+                changes over time using data from
+                Our World in Data.
+            </p>
+
+        </div>
+
+
+        <div class="energy-dashboard">
+
+
+            <!-- DASHBOARD HEADER -->
+
+            <div class="energy-dashboard-header">
 
                 <div>
 
-                    <strong>
-                        Renewable Energy
-                    </strong>
-
                     <span>
-                        Cleaner power for tomorrow
+                        OUR WORLD IN DATA
                     </span>
+
+                    <h2>
+                        Global Energy Dashboard
+                    </h2>
+
+                    <p>
+                        Primary energy use by source,
+                        measured in terawatt-hours.
+                    </p>
+
+                </div>
+
+
+                <div class="owid-badge">
+
+                    <i class="fa-solid fa-database"></i>
+
+                    OWID ENERGY DATA
 
                 </div>
 
             </div>
 
 
-            <!-- CARD 2 -->
+            <!-- STAT CARDS -->
 
-            <div class="energy-card reveal">
+            <div class="energy-stat-grid">
 
-                <div class="energy-icon">
-                    <i class="fa-solid fa-bolt"></i>
-                </div>
 
-                <div>
+                <div class="energy-stat">
 
-                    <strong>
-                        Energy Efficiency
-                    </strong>
+                    <div class="energy-stat-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
 
                     <span>
-                        Use energy smarter every day
+                        RENEWABLES
                     </span>
 
+                    <strong id="renewableValue">
+                        Loading...
+                    </strong>
+
                 </div>
+
+
+                <div class="energy-stat">
+
+                    <div class="energy-stat-icon">
+
+                        <i class="fa-solid fa-fire"></i>
+
+                    </div>
+
+                    <span>
+                        FOSSIL FUELS
+                    </span>
+
+                    <strong id="fossilValue">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="energy-stat">
+
+                    <div class="energy-stat-icon">
+
+                        <i class="fa-solid fa-atom"></i>
+
+                    </div>
+
+                    <span>
+                        NUCLEAR
+                    </span>
+
+                    <strong id="nuclearValue">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="energy-stat">
+
+                    <div class="energy-stat-icon">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+                    <span>
+                        TOTAL ENERGY
+                    </span>
+
+                    <strong id="totalValue">
+                        Loading...
+                    </strong>
+
+                </div>
+
 
             </div>
 
 
-            <!-- CARD 3 -->
+            <!-- GRAPH -->
 
-            <div class="energy-card reveal">
+            <div class="energy-chart-card">
 
-                <div class="energy-icon">
-                    <i class="fa-solid fa-earth-asia"></i>
+
+                <div class="energy-chart-top">
+
+                    <div>
+
+                        <span>
+                            YEARLY ENERGY DATA
+                        </span>
+
+                        <h3>
+                            Global Primary Energy Use
+                        </h3>
+
+                        <p>
+                            Hover over any point to see the
+                            exact value for that year.
+                        </p>
+
+                    </div>
+
+
+                    <div class="year-selector">
+
+                        <label for="yearSelect">
+                            YEAR
+                        </label>
+
+                        <select id="yearSelect">
+
+                            <option value="latest">
+                                Latest
+                            </option>
+
+                        </select>
+
+                    </div>
+
                 </div>
 
-                <div>
 
-                    <strong>
-                        Protect Our Planet
-                    </strong>
+                <div class="chart-area">
 
-                    <span>
-                        Small actions create big impact
-                    </span>
+                    <canvas id="energyChart"></canvas>
+
+                </div>
+
+
+                <div class="chart-info">
+
+                    <p id="chartStatus">
+                        Loading global energy data...
+                    </p>
+
+                    <a
+                        href="energy-data.html"
+                        class="view-data-button"
+                    >
+
+                        VIEW FULL DATA
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
 
                 </div>
 
@@ -200,11 +1381,12 @@
 </section>
 
 
+
 <!-- =====================================================
-     INTRODUCTION
+     HOME INTRO
 ===================================================== -->
 
-<section class="why-section">
+<section class="home-intro">
 
     <div class="section-container">
 
@@ -216,27 +1398,29 @@
             </span>
 
             <h2>
+
                 Building A
                 <span>Sustainable Future</span>
+
             </h2>
 
             <p>
-                Energy is essential for modern life. The way
-                we produce and consume energy affects our
-                environment, economy and future generations.
+
+                Explore global energy data,
+                understand the importance of
+                renewable energy, discover the
+                effects of fossil fuel dependence
+                and learn practical ways to save energy.
+
             </p>
 
         </div>
 
 
-        <!-- =================================================
-             MAIN NAVIGATION CARDS
-        ================================================= -->
+        <!-- NAVIGATION CARDS -->
 
         <div class="home-navigation">
 
-
-            <!-- ENERGY DATA -->
 
             <a
                 href="energy-data.html"
@@ -249,35 +1433,26 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        01 • EXPLORE
-                    </span>
+                    <span>01</span>
 
                     <h3>
                         Energy Data
                     </h3>
 
                     <p>
-                        Explore global energy trends,
-                        consumption and renewable energy data.
+                        Explore global energy trends.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
-
-            <!-- WHY RENEWABLE -->
 
             <a
                 href="why-renewable.html"
@@ -290,35 +1465,26 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        02 • DISCOVER
-                    </span>
+                    <span>02</span>
 
                     <h3>
                         Why Renewable?
                     </h3>
 
                     <p>
-                        Understand why renewable energy
-                        is important for our future.
+                        Understand why clean energy matters.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
-
-            <!-- EFFECTS -->
 
             <a
                 href="effects.html"
@@ -331,35 +1497,26 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        03 • UNDERSTAND
-                    </span>
+                    <span>03</span>
 
                     <h3>
                         Effects
                     </h3>
 
                     <p>
-                        Discover the environmental effects
-                        of fossil fuel dependence.
+                        Discover fossil fuel dependence effects.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
-
-            <!-- WHAT WE CAN DO -->
 
             <a
                 href="what-we-can-do.html"
@@ -372,35 +1529,26 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        04 • TAKE ACTION
-                    </span>
+                    <span>04</span>
 
                     <h3>
                         What We Can Do
                     </h3>
 
                     <p>
-                        Learn practical ways to reduce
-                        energy consumption every day.
+                        Learn practical ways to save energy.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
-
-            <!-- OUR TEAM -->
 
             <a
                 href="our-team.html"
@@ -413,35 +1561,26 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        05 • OUR PROJECT
-                    </span>
+                    <span>05</span>
 
                     <h3>
                         Our Team
                     </h3>
 
                     <p>
-                        Meet the people behind
-                        the Safe Energy project.
+                        Meet the Safe Energy team.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
-
-            <!-- SOURCES -->
 
             <a
                 href="sources.html"
@@ -454,30 +1593,23 @@
 
                 </div>
 
-
                 <div>
 
-                    <span>
-                        06 • RESEARCH
-                    </span>
+                    <span>06</span>
 
                     <h3>
                         Sources
                     </h3>
 
                     <p>
-                        Explore the organisations and
-                        research used in this website.
+                        Explore our research sources.
                     </p>
 
                 </div>
 
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
+                <i
+                    class="fa-solid fa-arrow-right home-nav-arrow"
+                ></i>
 
             </a>
 
@@ -488,169 +1620,58 @@
 </section>
 
 
+
 <!-- =====================================================
-     WHY SAFE ENERGY
+     CTA
 ===================================================== -->
 
-<section class="why-section">
+<section class="cta-section">
 
     <div class="section-container">
 
+        <div class="cta-box">
 
-        <div class="section-heading">
+            <div class="cta-icon">
 
-            <span class="section-label">
-                WHY IT MATTERS
-            </span>
-
-            <h2>
-                Why We Need
-                <span>Safe Energy</span>
-            </h2>
-
-            <p>
-                Moving towards cleaner energy can help
-                create a healthier environment and a more
-                sustainable society.
-            </p>
-
-        </div>
-
-
-        <div class="benefits-grid">
-
-
-            <!-- BENEFIT 1 -->
-
-            <article class="benefit-card reveal">
-
-                <span class="benefit-number">
-                    01
-                </span>
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-                </div>
-
-                <h3>
-                    Cleaner Environment
-                </h3>
-
-                <p>
-                    Renewable energy can reduce reliance
-                    on fossil fuels and help lower harmful
-                    environmental impacts.
-                </p>
-
-            </article>
-
-
-            <!-- BENEFIT 2 -->
-
-            <article class="benefit-card reveal">
-
-                <span class="benefit-number">
-                    02
-                </span>
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-wind"></i>
-
-                </div>
-
-                <h3>
-                    Lower Emissions
-                </h3>
-
-                <p>
-                    Cleaner energy technologies can support
-                    efforts to reduce greenhouse gas emissions.
-                </p>
-
-            </article>
-
-
-            <!-- BENEFIT 3 -->
-
-            <article class="benefit-card reveal">
-
-                <span class="benefit-number">
-                    03
-                </span>
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-sun"></i>
-
-                </div>
-
-                <h3>
-                    Renewable Resources
-                </h3>
-
-                <p>
-                    Solar, wind, hydro and other renewable
-                    resources can provide sustainable energy.
-                </p>
-
-            </article>
-
-
-            <!-- BENEFIT 4 -->
-
-            <article class="benefit-card reveal">
-
-                <span class="benefit-number">
-                    04
-                </span>
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-earth-americas"></i>
-
-                </div>
-
-                <h3>
-                    Protect The Future
-                </h3>
-
-                <p>
-                    Responsible energy choices today can
-                    contribute to a more sustainable future.
-                </p>
-
-            </article>
-
-        </div>
-
-
-        <!-- MESSAGE -->
-
-        <div class="why-message reveal">
-
-            <div class="why-message-icon">
-
-                <i class="fa-solid fa-lightbulb"></i>
+                <i class="fa-solid fa-solar-panel"></i>
 
             </div>
 
 
-            <div>
+            <div class="cta-content">
 
-                <h3>
-                    Every Energy Choice Matters
-                </h3>
+                <span class="section-label">
+                    THE FUTURE OF ENERGY
+                </span>
+
+                <h2>
+
+                    Choose Cleaner.
+                    <span>Choose Smarter.</span>
+
+                </h2>
 
                 <p>
-                    From the electricity we use to the
-                    technologies we support, our decisions
-                    can contribute to a cleaner energy future.
+
+                    Every energy choice we make today
+                    contributes to the world we leave
+                    for tomorrow.
+
                 </p>
 
             </div>
+
+
+            <a
+                href="why-renewable.html"
+                class="btn-primary"
+            >
+
+                Discover Renewable Energy
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
 
         </div>
 
@@ -658,45 +1679,6 @@
 
 </section>
 
-
-<!-- =====================================================
-     CALL TO ACTION
-===================================================== -->
-
-<section class="save-section">
-
-    <div class="section-container">
-
-
-        <div class="save-message reveal">
-
-            <div class="save-message-icon">
-
-                <i class="fa-solid fa-seedling"></i>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    The Future Starts With Us
-                </h3>
-
-                <p>
-                    Explore the website to understand
-                    energy data, renewable energy,
-                    environmental effects and practical
-                    actions we can take.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 
 <!-- =====================================================
@@ -722,8 +1704,10 @@
 
 
         <p>
+
             Understanding energy.
             Protecting the future.
+
         </p>
 
 
@@ -749,11 +1733,1048 @@
 </footer>
 
 
+
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
 
 <script src="script.js"></script>
 
+
+<script>
+
+/* =========================================================
+   SAFE ENERGY — LIVE ENERGY GRAPH
+   OUR WORLD IN DATA
+========================================================= */
+
+const ENERGY_API =
+    "https://ourworldindata.org/grapher/energy-mix.csv?v=1&csvType=full&useColumnShortNames=false&source=total&metric=by_source";
+
+
+let energyRows = [];
+let energyChart = null;
+
+
+/* =========================================================
+   CSV PARSER
+========================================================= */
+
+function parseCSV(text) {
+
+    const rows = [];
+
+    let row = [];
+    let value = "";
+    let insideQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"' && insideQuotes && next === '"') {
+
+            value += '"';
+
+            i++;
+
+        }
+
+        else if (char === '"') {
+
+            insideQuotes = !insideQuotes;
+
+        }
+
+        else if (char === "," && !insideQuotes) {
+
+            row.push(value);
+
+            value = "";
+
+        }
+
+        else if (
+            (char === "\n" || char === "\r") &&
+            !insideQuotes
+        ) {
+
+            if (value !== "" || row.length > 0) {
+
+                row.push(value);
+
+                rows.push(row);
+
+                row = [];
+                value = "";
+
+            }
+
+        }
+
+        else {
+
+            value += char;
+
+        }
+
+    }
+
+    if (value !== "" || row.length > 0) {
+
+        row.push(value);
+
+        rows.push(row);
+
+    }
+
+    return rows;
+
+}
+
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatEnergy(value) {
+
+    if (
+        value === null ||
+        value === undefined ||
+        Number.isNaN(value)
+    ) {
+
+        return "N/A";
+
+    }
+
+    const n = Number(value);
+
+    if (n >= 1000000) {
+
+        return (
+            (n / 1000000).toFixed(2) +
+            "M TWh"
+        );
+
+    }
+
+    if (n >= 1000) {
+
+        return (
+            (n / 1000).toFixed(2) +
+            "k TWh"
+        );
+
+    }
+
+    return (
+        n.toFixed(1) +
+        " TWh"
+    );
+
+}
+
+
+/* =========================================================
+   FIND COLUMN
+========================================================= */
+
+function findColumn(headers, names) {
+
+    for (const name of names) {
+
+        const index =
+            headers.findIndex(
+                h =>
+                    h.trim().toLowerCase() ===
+                    name.toLowerCase()
+            );
+
+        if (index !== -1) {
+
+            return index;
+
+        }
+
+    }
+
+    return -1;
+
+}
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+async function loadEnergyData() {
+
+    const status =
+        document.getElementById("chartStatus");
+
+    try {
+
+        status.textContent =
+            "Connecting to Our World in Data...";
+
+
+        const response =
+            await fetch(ENERGY_API);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load energy data."
+            );
+
+        }
+
+
+        const text =
+            await response.text();
+
+
+        const table =
+            parseCSV(text);
+
+
+        if (!table.length) {
+
+            throw new Error(
+                "No data returned."
+            );
+
+        }
+
+
+        const headers =
+            table[0];
+
+
+        const entityIndex =
+            findColumn(
+                headers,
+                ["Entity"]
+            );
+
+
+        const yearIndex =
+            findColumn(
+                headers,
+                ["Year"]
+            );
+
+
+        const coalIndex =
+            findColumn(
+                headers,
+                ["Coal"]
+            );
+
+
+        const oilIndex =
+            findColumn(
+                headers,
+                ["Oil"]
+            );
+
+
+        const gasIndex =
+            findColumn(
+                headers,
+                ["Gas"]
+            );
+
+
+        const nuclearIndex =
+            findColumn(
+                headers,
+                ["Nuclear"]
+            );
+
+
+        const hydroIndex =
+            findColumn(
+                headers,
+                ["Hydro"]
+            );
+
+
+        const windIndex =
+            findColumn(
+                headers,
+                ["Wind"]
+            );
+
+
+        const solarIndex =
+            findColumn(
+                headers,
+                ["Solar"]
+            );
+
+
+        const biofuelsIndex =
+            findColumn(
+                headers,
+                ["Biofuels"]
+            );
+
+
+        const otherRenewablesIndex =
+            findColumn(
+                headers,
+                ["Other renewables"]
+            );
+
+
+        /*
+         * WORLD ONLY
+         */
+
+        for (let i = 1; i < table.length; i++) {
+
+            const r = table[i];
+
+            if (!r[entityIndex]) continue;
+
+            if (
+                r[entityIndex].trim().toLowerCase()
+                !== "world"
+            ) {
+
+                continue;
+
+            }
+
+
+            const year =
+                Number(
+                    r[yearIndex]
+                );
+
+
+            if (!year) continue;
+
+
+            const coal =
+                Number(r[coalIndex]) || 0;
+
+            const oil =
+                Number(r[oilIndex]) || 0;
+
+            const gas =
+                Number(r[gasIndex]) || 0;
+
+            const nuclear =
+                Number(r[nuclearIndex]) || 0;
+
+            const hydro =
+                Number(r[hydroIndex]) || 0;
+
+            const wind =
+                Number(r[windIndex]) || 0;
+
+            const solar =
+                Number(r[solarIndex]) || 0;
+
+            const biofuels =
+                Number(r[biofuelsIndex]) || 0;
+
+            const otherRenewables =
+                Number(
+                    r[otherRenewablesIndex]
+                ) || 0;
+
+
+            const fossil =
+                coal +
+                oil +
+                gas;
+
+
+            const renewables =
+                hydro +
+                wind +
+                solar +
+                biofuels +
+                otherRenewables;
+
+
+            const total =
+                fossil +
+                nuclear +
+                renewables;
+
+
+            energyRows.push({
+
+                year,
+
+                coal,
+                oil,
+                gas,
+
+                fossil,
+
+                nuclear,
+
+                hydro,
+                wind,
+                solar,
+                biofuels,
+                otherRenewables,
+
+                renewables,
+
+                total
+
+            });
+
+        }
+
+
+        energyRows.sort(
+            (a,b) =>
+                a.year - b.year
+        );
+
+
+        if (!energyRows.length) {
+
+            throw new Error(
+                "World energy data not found."
+            );
+
+        }
+
+
+        populateYears();
+
+        createEnergyChart();
+
+        updateLatestStats();
+
+
+        status.textContent =
+            `Showing annual global energy data from ${energyRows[0].year} to ${energyRows[energyRows.length - 1].year}.`;
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        status.textContent =
+            "Unable to load live energy data. Please check your internet connection.";
+
+    }
+
+}
+
+
+/* =========================================================
+   YEAR DROPDOWN
+========================================================= */
+
+function populateYears() {
+
+    const select =
+        document.getElementById(
+            "yearSelect"
+        );
+
+
+    for (
+        let year = energyRows[energyRows.length - 1].year;
+        year >= energyRows[0].year;
+        year--
+    ) {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.value =
+            year;
+
+        option.textContent =
+            year;
+
+
+        select.appendChild(option);
+
+    }
+
+
+    select.addEventListener(
+        "change",
+        function () {
+
+            const year =
+                this.value;
+
+
+            if (year === "latest") {
+
+                updateLatestStats();
+
+                return;
+
+            }
+
+
+            const data =
+                energyRows.find(
+                    d =>
+                        d.year ===
+                        Number(year)
+                );
+
+
+            if (!data) return;
+
+
+            updateStats(data);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(data) {
+
+    document.getElementById(
+        "renewableValue"
+    ).textContent =
+        formatEnergy(
+            data.renewables
+        );
+
+
+    document.getElementById(
+        "fossilValue"
+    ).textContent =
+        formatEnergy(
+            data.fossil
+        );
+
+
+    document.getElementById(
+        "nuclearValue"
+    ).textContent =
+        formatEnergy(
+            data.nuclear
+        );
+
+
+    document.getElementById(
+        "totalValue"
+    ).textContent =
+        formatEnergy(
+            data.total
+        );
+
+}
+
+
+function updateLatestStats() {
+
+    const latest =
+        energyRows[
+            energyRows.length - 1
+        ];
+
+    if (latest) {
+
+        updateStats(latest);
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE GRAPH
+========================================================= */
+
+function createEnergyChart() {
+
+    const canvas =
+        document.getElementById(
+            "energyChart"
+        );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const labels =
+        energyRows.map(
+            d => d.year
+        );
+
+
+    const renewableData =
+        energyRows.map(
+            d => d.renewables
+        );
+
+
+    const fossilData =
+        energyRows.map(
+            d => d.fossil
+        );
+
+
+    const nuclearData =
+        energyRows.map(
+            d => d.nuclear
+        );
+
+
+    /*
+     * DESTROY OLD CHART
+     */
+
+    if (energyChart) {
+
+        energyChart.destroy();
+
+    }
+
+
+    /*
+     * GRADIENTS
+     */
+
+    const renewableGradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            400
+        );
+
+    renewableGradient.addColorStop(
+        0,
+        "rgba(126,226,160,0.45)"
+    );
+
+    renewableGradient.addColorStop(
+        1,
+        "rgba(126,226,160,0.02)"
+    );
+
+
+    const fossilGradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            400
+        );
+
+    fossilGradient.addColorStop(
+        0,
+        "rgba(255,255,255,0.18)"
+    );
+
+    fossilGradient.addColorStop(
+        1,
+        "rgba(255,255,255,0.01)"
+    );
+
+
+    energyChart =
+        new Chart(
+            ctx,
+            {
+
+                type: "line",
+
+                data: {
+
+                    labels,
+
+                    datasets: [
+
+                        {
+                            label:
+                                "Renewable Energy",
+
+                            data:
+                                renewableData,
+
+                            borderColor:
+                                "#7ee2a0",
+
+                            backgroundColor:
+                                renewableGradient,
+
+                            borderWidth: 4,
+
+                            pointRadius: 0,
+
+                            pointHoverRadius: 7,
+
+                            pointHoverBorderWidth: 3,
+
+                            pointHoverBackgroundColor:
+                                "#ffffff",
+
+                            pointHoverBorderColor:
+                                "#7ee2a0",
+
+                            fill: true,
+
+                            tension: 0.35
+                        },
+
+
+                        {
+                            label:
+                                "Fossil Fuels",
+
+                            data:
+                                fossilData,
+
+                            borderColor:
+                                "#ffffff",
+
+                            backgroundColor:
+                                fossilGradient,
+
+                            borderWidth: 3,
+
+                            pointRadius: 0,
+
+                            pointHoverRadius: 6,
+
+                            pointHoverBorderWidth: 2,
+
+                            pointHoverBackgroundColor:
+                                "#ffffff",
+
+                            pointHoverBorderColor:
+                                "#ffffff",
+
+                            fill: true,
+
+                            tension: 0.35
+                        },
+
+
+                        {
+                            label:
+                                "Nuclear",
+
+                            data:
+                                nuclearData,
+
+                            borderColor:
+                                "#79a7e8",
+
+                            backgroundColor:
+                                "rgba(121,167,232,0.06)",
+
+                            borderWidth: 3,
+
+                            pointRadius: 0,
+
+                            pointHoverRadius: 6,
+
+                            pointHoverBorderWidth: 2,
+
+                            pointHoverBackgroundColor:
+                                "#ffffff",
+
+                            pointHoverBorderColor:
+                                "#79a7e8",
+
+                            fill: false,
+
+                            tension: 0.35
+                        }
+
+                    ]
+
+                },
+
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    interaction: {
+
+                        mode: "index",
+
+                        intersect: false
+
+                    },
+
+
+                    plugins: {
+
+                        legend: {
+
+                            position: "top",
+
+                            align: "start",
+
+                            labels: {
+
+                                color:
+                                    "rgba(255,255,255,0.72)",
+
+                                font: {
+
+                                    family:
+                                        "Inter",
+
+                                    size: 10,
+
+                                    weight: "800"
+
+                                },
+
+                                usePointStyle: true,
+
+                                pointStyle:
+                                    "circle",
+
+                                padding: 18
+
+                            }
+
+                        },
+
+
+                        tooltip: {
+
+                            enabled: true,
+
+                            backgroundColor:
+                                "#061a11",
+
+                            borderColor:
+                                "rgba(126,226,160,0.25)",
+
+                            borderWidth: 1,
+
+                            titleColor:
+                                "#ffffff",
+
+                            bodyColor:
+                                "rgba(255,255,255,0.75)",
+
+                            titleFont: {
+
+                                family:
+                                    "Inter",
+
+                                size: 13,
+
+                                weight: "900"
+
+                            },
+
+                            bodyFont: {
+
+                                family:
+                                    "Inter",
+
+                                size: 11,
+
+                                weight: "700"
+
+                            },
+
+                            padding: 14,
+
+                            displayColors: true,
+
+                            callbacks: {
+
+                                title: function(items) {
+
+                                    return (
+                                        "YEAR " +
+                                        items[0].label
+                                    );
+
+                                },
+
+                                label: function(context) {
+
+                                    const value =
+                                        context.raw;
+
+                                    return (
+                                        " " +
+                                        context.dataset.label +
+                                        ": " +
+                                        Number(value)
+                                            .toLocaleString(
+                                                undefined,
+                                                {
+                                                    maximumFractionDigits: 1
+                                                }
+                                            ) +
+                                        " TWh"
+                                    );
+
+                                }
+
+                            }
+
+                        }
+
+                    },
+
+
+                    scales: {
+
+                        x: {
+
+                            grid: {
+
+                                color:
+                                    "rgba(255,255,255,0.05)"
+
+                            },
+
+                            ticks: {
+
+                                color:
+                                    "rgba(255,255,255,0.48)",
+
+                                font: {
+
+                                    family:
+                                        "Inter",
+
+                                    size: 9,
+
+                                    weight: "700"
+
+                                },
+
+                                maxTicksLimit: 12
+
+                            }
+
+                        },
+
+
+                        y: {
+
+                            beginAtZero: true,
+
+                            grid: {
+
+                                color:
+                                    "rgba(255,255,255,0.06)"
+
+                            },
+
+                            ticks: {
+
+                                color:
+                                    "rgba(255,255,255,0.48)",
+
+                                font: {
+
+                                    family:
+                                        "Inter",
+
+                                    size: 9,
+
+                                    weight: "700"
+
+                                },
+
+                                callback:
+                                    function(value) {
+
+                                        if (
+                                            value >=
+                                            1000000
+                                        ) {
+
+                                            return (
+                                                (
+                                                    value /
+                                                    1000000
+                                                ).toFixed(1)
+                                                +
+                                                "M"
+                                            );
+
+                                        }
+
+                                        if (
+                                            value >=
+                                            1000
+                                        ) {
+
+                                            return (
+                                                (
+                                                    value /
+                                                    1000
+                                                ).toFixed(0)
+                                                +
+                                                "k"
+                                            );
+
+                                        }
+
+                                        return value;
+
+                                    }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadEnergyData
+);
+
+</script>
+
+
 </body>
+
 </html>
