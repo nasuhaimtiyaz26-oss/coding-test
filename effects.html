@@ -14,7 +14,9 @@
     </title>
 
 
-    <!-- Google Font -->
+    <!-- =====================================================
+         GOOGLE FONT
+    ===================================================== -->
 
     <link
         rel="preconnect"
@@ -30,14 +32,18 @@
         rel="stylesheet">
 
 
-    <!-- Font Awesome -->
+    <!-- =====================================================
+         FONT AWESOME
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
-    <!-- CSS -->
+    <!-- =====================================================
+         MAIN CSS
+    ===================================================== -->
 
     <link
         rel="stylesheet"
@@ -49,9 +55,9 @@
 <body>
 
 
-<!-- =====================================================
+<!-- =========================================================
      NAVBAR
-===================================================== -->
+========================================================= -->
 
 <nav
     class="navbar"
@@ -78,7 +84,7 @@
 
 
 
-        <!-- THREE DOT MENU -->
+        <!-- NAVIGATION -->
 
         <div
             class="nav-menu"
@@ -128,11 +134,12 @@
                 SOURCES
             </a>
 
+
         </div>
 
 
 
-        <!-- THREE DOT BUTTON -->
+        <!-- MOBILE MENU -->
 
         <button
             class="menu-dots"
@@ -146,19 +153,28 @@
 
         </button>
 
+
     </div>
 
 </nav>
 
 
 
-<!-- =====================================================
-     PAGE HEADER
-===================================================== -->
+<!-- =========================================================
+     PAGE HERO
+     EFFECTS HERO
+========================================================= -->
 
-<section class="page-hero">
+<section class="page-hero effects-page-hero">
 
-    <div class="section-container">
+
+    <!-- HERO OVERLAY -->
+
+    <div class="effects-hero-overlay"></div>
+
+
+    <div
+        class="section-container effects-hero-content">
 
 
         <span class="section-label">
@@ -194,9 +210,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      EFFECTS SECTION
-===================================================== -->
+========================================================= -->
 
 <section class="effects-section">
 
@@ -254,9 +270,7 @@
                 <div>
 
                     <span>
-
                         IEA RESEARCH
-
                     </span>
 
 
@@ -294,9 +308,7 @@
                     </strong>
 
                     <span>
-
                         Carbon dioxide emissions
-
                     </span>
 
                 </div>
@@ -312,9 +324,7 @@
                     </strong>
 
                     <span>
-
                         Methane emissions
-
                     </span>
 
                 </div>
@@ -330,9 +340,7 @@
                     </strong>
 
                     <span>
-
                         Nitrous oxide emissions
-
                     </span>
 
                 </div>
@@ -348,10 +356,8 @@
                     </strong>
 
                     <span>
-
                         Energy-related
                         greenhouse gases
-
                     </span>
 
                 </div>
@@ -398,6 +404,7 @@
 
         <!-- =================================================
              EFFECT CARDS
+             EACH CARD WILL HAVE A DIFFERENT BACKGROUND IMAGE
         ================================================= -->
 
         <div class="effects-grid">
@@ -405,44 +412,57 @@
 
             <!-- =================================================
                  EFFECT 1
+                 GREENHOUSE GAS EMISSIONS
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-emissions">
 
 
-                <span class="effect-number">
+                <!-- IMAGE OVERLAY -->
 
-                    01
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <!-- CARD CONTENT -->
 
-                    <i
-                        class="fa-solid fa-smog">
-                    </i>
+                <div class="effect-card-content">
+
+
+                    <span class="effect-number">
+                        01
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-smog">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Higher Greenhouse
+                        Gas Emissions
+
+                    </h3>
+
+
+                    <p>
+
+                        When energy systems continue to depend
+                        heavily on fossil fuels, burning coal, oil
+                        and natural gas releases greenhouse gases.
+                        This contributes to the accumulation of
+                        heat-trapping gases in the atmosphere.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Higher Greenhouse
-                    Gas Emissions
-
-                </h3>
-
-
-                <p>
-
-                    When energy systems continue to depend
-                    heavily on fossil fuels, burning coal, oil
-                    and natural gas releases greenhouse gases.
-                    This contributes to the accumulation of
-                    heat-trapping gases in the atmosphere.
-
-                </p>
 
 
             </div>
@@ -451,43 +471,52 @@
 
             <!-- =================================================
                  EFFECT 2
+                 CLIMATE PRESSURE
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-climate">
 
 
-                <span class="effect-number">
-
-                    02
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <div class="effect-card-content">
 
-                    <i
-                        class="fa-solid fa-temperature-high">
-                    </i>
+
+                    <span class="effect-number">
+                        02
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-temperature-high">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Increased Climate
+                        Pressure
+
+                    </h3>
+
+
+                    <p>
+
+                        Higher energy-related greenhouse gas
+                        emissions increase pressure on the global
+                        climate system and make climate targets
+                        more difficult to achieve.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Increased Climate
-                    Pressure
-
-                </h3>
-
-
-                <p>
-
-                    Higher energy-related greenhouse gas
-                    emissions increase pressure on the global
-                    climate system and make climate targets
-                    more difficult to achieve.
-
-                </p>
 
 
             </div>
@@ -496,43 +525,52 @@
 
             <!-- =================================================
                  EFFECT 3
+                 FOSSIL FUEL DEPENDENCE
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-fossil">
 
 
-                <span class="effect-number">
-
-                    03
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <div class="effect-card-content">
 
-                    <i
-                        class="fa-solid fa-industry">
-                    </i>
+
+                    <span class="effect-number">
+                        03
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-industry">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Continued Fossil
+                        Fuel Dependence
+
+                    </h3>
+
+
+                    <p>
+
+                        Relying heavily on fossil fuels keeps energy
+                        systems dependent on coal, oil and natural
+                        gas instead of increasing the contribution
+                        of renewable sources.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Continued Fossil
-                    Fuel Dependence
-
-                </h3>
-
-
-                <p>
-
-                    Relying heavily on fossil fuels keeps energy
-                    systems dependent on coal, oil and natural
-                    gas instead of increasing the contribution
-                    of renewable sources.
-
-                </p>
 
 
             </div>
@@ -541,43 +579,52 @@
 
             <!-- =================================================
                  EFFECT 4
+                 ENVIRONMENTAL PRESSURE
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-environment">
 
 
-                <span class="effect-number">
-
-                    04
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <div class="effect-card-content">
 
-                    <i
-                        class="fa-solid fa-earth-americas">
-                    </i>
+
+                    <span class="effect-number">
+                        04
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-earth-americas">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Greater Environmental
+                        Pressure
+
+                    </h3>
+
+
+                    <p>
+
+                        Fossil-fuel-based energy production can
+                        create additional environmental pressures
+                        through fuel extraction, combustion and
+                        energy-related emissions.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Greater Environmental
-                    Pressure
-
-                </h3>
-
-
-                <p>
-
-                    Fossil-fuel-based energy production can
-                    create additional environmental pressures
-                    through fuel extraction, combustion and
-                    energy-related emissions.
-
-                </p>
 
 
             </div>
@@ -586,42 +633,51 @@
 
             <!-- =================================================
                  EFFECT 5
+                 AIR POLLUTION
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-air">
 
 
-                <span class="effect-number">
-
-                    05
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <div class="effect-card-content">
 
-                    <i
-                        class="fa-solid fa-wind">
-                    </i>
+
+                    <span class="effect-number">
+                        05
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-wind">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Air Pollution
+
+                    </h3>
+
+
+                    <p>
+
+                        Burning fossil fuels can release pollutants
+                        alongside greenhouse gases, affecting
+                        air quality around energy generation,
+                        transportation and industrial activities.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Air Pollution
-
-                </h3>
-
-
-                <p>
-
-                    Burning fossil fuels can release pollutants
-                    alongside greenhouse gases, affecting
-                    air quality around energy generation,
-                    transportation and industrial activities.
-
-                </p>
 
 
             </div>
@@ -630,43 +686,52 @@
 
             <!-- =================================================
                  EFFECT 6
+                 SLOWER ENERGY TRANSITION
             ================================================= -->
 
-            <div class="effect-card">
+            <div
+                class="effect-card effect-card-image effect-transition">
 
 
-                <span class="effect-number">
-
-                    06
-
-                </span>
+                <div class="effect-card-overlay"></div>
 
 
-                <div class="effect-icon">
+                <div class="effect-card-content">
 
-                    <i
-                        class="fa-solid fa-chart-line">
-                    </i>
+
+                    <span class="effect-number">
+                        06
+                    </span>
+
+
+                    <div class="effect-icon">
+
+                        <i
+                            class="fa-solid fa-chart-line">
+                        </i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Slower Energy
+                        Transition
+
+                    </h3>
+
+
+                    <p>
+
+                        Continued dependence on conventional energy
+                        sources can make the transition towards a
+                        lower-emission and more diversified energy
+                        system more challenging.
+
+                    </p>
+
 
                 </div>
-
-
-                <h3>
-
-                    Slower Energy
-                    Transition
-
-                </h3>
-
-
-                <p>
-
-                    Continued dependence on conventional energy
-                    sources can make the transition towards a
-                    lower-emission and more diversified energy
-                    system more challenging.
-
-                </p>
 
 
             </div>
@@ -694,6 +759,7 @@
 
             <div>
 
+
                 <h3>
 
                     The Key Message
@@ -712,6 +778,7 @@
 
                 </p>
 
+
             </div>
 
 
@@ -724,9 +791,222 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
+     ADDITIONAL INFORMATION
+========================================================= -->
+
+<section
+    class="effects-information">
+
+
+    <div class="section-container">
+
+
+        <div class="section-heading center">
+
+
+            <span class="section-label">
+
+                THE BIGGER PICTURE
+
+            </span>
+
+
+            <h2>
+
+                Why The Energy
+
+                <span>
+                    Transition Matters
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Moving towards cleaner energy can help
+                diversify energy systems, improve efficiency
+                and reduce the environmental pressures
+                associated with fossil fuel use.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- INFORMATION CARDS -->
+
+        <div class="home-navigation">
+
+
+            <!-- CARD 1 -->
+
+            <a
+                href="why-renewable.html"
+                class="home-nav-card">
+
+
+                <div class="home-nav-icon">
+
+                    <i
+                        class="fa-solid fa-leaf">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        EXPLORE
+                    </span>
+
+
+                    <h3>
+                        Why Renewable?
+                    </h3>
+
+
+                    <p>
+
+                        Discover why renewable energy
+                        is important for a sustainable
+                        future.
+
+                    </p>
+
+                </div>
+
+
+                <div class="home-nav-arrow">
+
+                    <i
+                        class="fa-solid fa-arrow-right">
+                    </i>
+
+                </div>
+
+
+            </a>
+
+
+
+            <!-- CARD 2 -->
+
+            <a
+                href="energy-data.html"
+                class="home-nav-card">
+
+
+                <div class="home-nav-icon">
+
+                    <i
+                        class="fa-solid fa-chart-line">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        EXPLORE
+                    </span>
+
+
+                    <h3>
+                        Energy Data
+                    </h3>
+
+
+                    <p>
+
+                        Explore global energy trends
+                        through interactive data.
+
+                    </p>
+
+                </div>
+
+
+                <div class="home-nav-arrow">
+
+                    <i
+                        class="fa-solid fa-arrow-right">
+                    </i>
+
+                </div>
+
+
+            </a>
+
+
+
+            <!-- CARD 3 -->
+
+            <a
+                href="what-we-can-do.html"
+                class="home-nav-card">
+
+
+                <div class="home-nav-icon">
+
+                    <i
+                        class="fa-solid fa-hand-holding-heart">
+                    </i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        TAKE ACTION
+                    </span>
+
+
+                    <h3>
+                        What We Can Do
+                    </h3>
+
+
+                    <p>
+
+                        Learn practical ways to
+                        use energy more responsibly.
+
+                    </p>
+
+                </div>
+
+
+                <div class="home-nav-arrow">
+
+                    <i
+                        class="fa-solid fa-arrow-right">
+                    </i>
+
+                </div>
+
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <footer>
 
@@ -780,9 +1060,9 @@
 
 
 
-<!-- =====================================================
+<!-- =========================================================
      JAVASCRIPT
-===================================================== -->
+========================================================= -->
 
 <script src="script.js"></script>
 
