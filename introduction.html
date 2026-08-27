@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Introduction | Safe Energy
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- =====================================================
+         MAIN CSS
+    ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+
+    <!-- =====================================================
+         INTRODUCTION PAGE EXTRA STYLE
+         Tidak mengubah style.css
+    ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           INTRO HERO
+        ================================================= */
+
+        .intro-hero {
+            min-height: 72vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(5, 30, 19, 0.90),
+                    rgba(12, 68, 42, 0.72)
+                ),
+                url("https://webcdn.getmidas.com/uploads/2024/10/17141253/gunes.webp");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .intro-hero-content {
+            max-width: 900px;
+            padding: 120px 0 90px;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .intro-hero-content .section-label {
+            color: #9bf5bd;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+
+        .intro-hero-content h1 {
+            color: white;
+            font-size: clamp(48px, 7vw, 88px);
+            line-height: 0.98;
+            margin: 20px 0 28px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+
+        .intro-hero-content h1 span {
+            color: #72e59b;
+        }
+
+
+        .intro-hero-content p {
+            max-width: 760px;
+            color: rgba(255,255,255,0.84);
+            font-size: 19px;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+
+        /* =================================================
+           INTRODUCTION SECTION
+        ================================================= */
+
+        .intro-section {
+            background: #f6faf7;
+            padding: 100px 0;
+        }
+
+
+        .intro-heading {
+            max-width: 800px;
+            margin: 0 auto 55px;
+            text-align: center;
+        }
+
+
+        .intro-heading .section-label {
+            color: #27864d;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+
+        .intro-heading h2 {
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.05;
+            margin: 15px 0 20px;
+            color: #14231c;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+
+        .intro-heading h2 span {
+            color: #269653;
+        }
+
+
+        .intro-heading p {
+            color: #64736b;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+
+        /* =================================================
+           CREATIVE CARDS
+        ================================================= */
+
+        .intro-cards {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 24px;
+        }
+
+
+        .intro-card {
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            display: flex;
+            align-items: flex-end;
+
+            text-decoration: none;
+
+            background-size: cover;
+            background-position: center;
+
+            box-shadow:
+                0 18px 45px rgba(20, 45, 31, 0.14);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+
+        .intro-card:hover {
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 30px 65px rgba(20, 45, 31, 0.24);
+        }
+
+
+        /* CARD IMAGES */
+
+        .intro-card:nth-child(1) {
+            background-image:
+                url("https://webcdn.getmidas.com/uploads/2024/10/17141253/gunes.webp");
+        }
+
+
+        .intro-card:nth-child(2) {
+            background-image:
+                url("https://ecotoxicologie.fr/wp-content/uploads/2020/04/classes-pixabay-1140x720.jpg");
+        }
+
+
+        .intro-card:nth-child(3) {
+            background-image:
+                url("https://cloudfront-ap-southeast-2.images.arcpublishing.com/nzme/HSDCDLLWS2CBEIUAWYNI6Y6SQA.jpg");
+        }
+
+
+        /* DARK OVERLAY */
+
+        .intro-card::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5, 22, 14, 0.96) 0%,
+                    rgba(5, 22, 14, 0.72) 42%,
+                    rgba(5, 22, 14, 0.10) 100%
+                );
+
+            transition:
+                background 0.4s ease;
+        }
+
+
+        .intro-card:hover::before {
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5, 22, 14, 0.98) 0%,
+                    rgba(5, 22, 14, 0.78) 55%,
+                    rgba(5, 22, 14, 0.20) 100%
+                );
+        }
+
+
+        /* CARD CONTENT */
+
+        .intro-card-content {
+            position: relative;
+            z-index: 2;
+
+            padding: 32px;
+
+            color: white;
+        }
+
+
+        .intro-card-number {
+            display: inline-flex;
+
+            width: 44px;
+            height: 44px;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.16);
+            border: 1px solid rgba(255,255,255,0.28);
+
+            backdrop-filter: blur(8px);
+
+            font-size: 13px;
+            font-weight: 900;
+
+            margin-bottom: 20px;
+        }
+
+
+        .intro-card-icon {
+            font-size: 28px;
+            color: #79eba2;
+            margin-bottom: 15px;
+        }
+
+
+        .intro-card h3 {
+            font-size: 28px;
+            line-height: 1.1;
+            margin: 0 0 15px;
+            font-weight: 900;
+            letter-spacing: -0.7px;
+        }
+
+
+        .intro-card p {
+            margin: 0;
+
+            color: rgba(255,255,255,0.82);
+
+            font-size: 15px;
+            line-height: 1.75;
+        }
+
+
+        /* =================================================
+           BOTTOM MESSAGE
+        ================================================= */
+
+        .intro-message-section {
+            padding: 90px 0;
+            background: white;
+        }
+
+
+        .intro-message {
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            padding: 55px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c3b25,
+                    #176b40
+                );
+
+            box-shadow:
+                0 20px 55px rgba(12, 59, 37, 0.18);
+        }
+
+
+        .intro-message::after {
+            content: "♻";
+
+            position: absolute;
+
+            right: 35px;
+            bottom: -35px;
+
+            font-size: 190px;
+
+            color: rgba(255,255,255,0.045);
+
+            font-weight: 900;
+        }
+
+
+        .intro-message-label {
+            color: #8cf0ad;
+
+            font-size: 12px;
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .intro-message h2 {
+            color: white;
+
+            font-size: clamp(30px, 4vw, 48px);
+
+            line-height: 1.1;
+
+            margin: 14px 0 18px;
+
+            font-weight: 900;
+
+            max-width: 750px;
+        }
+
+
+        .intro-message h2 span {
+            color: #7aeba2;
+        }
+
+
+        .intro-message p {
+            color: rgba(255,255,255,0.78);
+
+            max-width: 760px;
+
+            line-height: 1.8;
+
+            margin: 0;
+
+            font-size: 16px;
+        }
+
+
+        /* =================================================
+           RESPONSIVE
+        ================================================= */
+
+        @media (max-width: 900px) {
+
+            .intro-cards {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .intro-card:last-child {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .intro-hero {
+                min-height: 70vh;
+            }
+
+
+            .intro-hero-content {
+                padding: 110px 0 70px;
+            }
+
+
+            .intro-hero-content h1 {
+                letter-spacing: -2px;
+            }
+
+
+            .intro-hero-content p {
+                font-size: 16px;
+            }
+
+
+            .intro-section {
+                padding: 70px 0;
+            }
+
+
+            .intro-cards {
+                grid-template-columns: 1fr;
+            }
+
+
+            .intro-card:last-child {
+                grid-column: auto;
+            }
+
+
+            .intro-card {
+                min-height: 460px;
+            }
+
+
+            .intro-message {
+                padding: 35px 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav
+    class="navbar"
+    id="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-leaf"></i>
+
+            </div>
+
+            SAFE ENERGY
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div
+            class="nav-menu"
+            id="navMenu">
+
+
+            <a href="index.html">
+                HOME
+            </a>
+
+
+            <a
+                href="introduction.html"
+                class="active">
+
+                INTRODUCTION
+
+            </a>
+
+
+            <a href="energy-data.html">
+
+                ENERGY DATA
+
+            </a>
+
+
+            <a href="why-renewable.html">
+
+                WHY RENEWABLE
+
+            </a>
+
+
+            <a href="effects.html">
+
+                EFFECTS
+
+            </a>
+
+
+            <a href="what-we-can-do.html">
+
+                WHAT WE CAN DO
+
+            </a>
+
+
+            <a href="our-team.html">
+
+                OUR TEAM
+
+            </a>
+
+
+            <a href="sources.html">
+
+                SOURCES
+
+            </a>
+
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-dots"
+            id="menuDots"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+
+            <i
+                class="fa-solid fa-ellipsis-vertical">
+            </i>
+
+        </button>
+
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     INTRODUCTION HERO
+========================================================= -->
+
+<section class="intro-hero">
+
+    <div class="section-container">
+
+        <div class="intro-hero-content">
+
+            <span class="section-label">
+
+                INTRODUCTION
+
+            </span>
+
+
+            <h1>
+
+                Understanding
+
+                <span>Safe Energy.</span>
+
+            </h1>
+
+
+            <p>
+
+                Energy powers the modern world.
+                From our homes and transportation
+                to industries and communication,
+                energy is essential to everyday life.
+                But the way we produce and use energy
+                can have a major impact on our planet.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN INTRODUCTION
+========================================================= -->
+
+<section class="intro-section">
+
+    <div class="section-container">
+
+
+        <div class="intro-heading">
+
+            <span class="section-label">
+
+                WHY IT MATTERS
+
+            </span>
+
+
+            <h2>
+
+                Energy Shapes Our
+
+                <span>Future</span>
+
+            </h2>
+
+
+            <p>
+
+                Understanding where our energy comes
+                from, how we use it and its effects on
+                the environment is an important step
+                towards building a safer and more
+                sustainable future.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             THREE CREATIVE CARDS
+        ================================================= -->
+
+        <div class="intro-cards">
+
+
+            <!-- =================================================
+                 CARD 01
+            ================================================= -->
+
+            <article class="intro-card">
+
+                <div class="intro-card-content">
+
+                    <div class="intro-card-number">
+                        01
+                    </div>
+
+
+                    <div class="intro-card-icon">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Energy Is Essential
+
+                    </h3>
+
+
+                    <p>
+
+                        Energy is essential in our daily
+                        lives, powering homes,
+                        transportation, industries and
+                        communication. It allows modern
+                        society to function and connects
+                        people around the world.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CARD 02
+            ================================================= -->
+
+            <article class="intro-card">
+
+                <div class="intro-card-content">
+
+                    <div class="intro-card-number">
+                        02
+                    </div>
+
+
+                    <div class="intro-card-icon">
+
+                        <i class="fa-solid fa-smog"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        The Energy Challenge
+
+                    </h3>
+
+
+                    <p>
+
+                        Excessive dependence on fossil
+                        fuels such as coal, oil and natural
+                        gas contributes to greenhouse gas
+                        emissions and environmental
+                        pollution.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CARD 03
+            ================================================= -->
+
+            <article class="intro-card">
+
+                <div class="intro-card-content">
+
+                    <div class="intro-card-number">
+                        03
+                    </div>
+
+
+                    <div class="intro-card-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        The Safe Energy Solution
+
+                    </h3>
+
+
+                    <p>
+
+                        Safe Energy focuses on using
+                        energy efficiently, safely and
+                        sustainably. This includes reducing
+                        energy wastage, improving energy
+                        efficiency and increasing the use
+                        of renewable energy such as solar
+                        and hydropower.
+
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL MESSAGE
+========================================================= -->
+
+<section class="intro-message-section">
+
+    <div class="section-container">
+
+        <div class="intro-message">
+
+
+            <span class="intro-message-label">
+
+                A CLEANER FUTURE STARTS TODAY
+
+            </span>
+
+
+            <h2>
+
+                Choose Energy That
+
+                <span>Protects Tomorrow.</span>
+
+            </h2>
+
+
+            <p>
+
+                Adopting safe and sustainable energy
+                practices is important to protect the
+                environment, reduce energy wastage and
+                support a cleaner future. By making
+                smarter energy choices today, we can
+                help create a more reliable and
+                sustainable energy supply for future
+                generations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-logo">
+
+            <div class="logo-icon">
+
+                <i class="fa-solid fa-leaf"></i>
+
+            </div>
+
+            SAFE ENERGY
+
+        </div>
+
+
+        <p>
+
+            Understanding energy.
+            Protecting the future.
+
+        </p>
+
+
+        <div class="footer-source">
+
+            Research sources:
+
+            Our World in Data •
+
+            International Energy Agency •
+
+            ENERGY STAR
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 Safe Energy.
+
+            Educational Research Website.
+
+        </div>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
