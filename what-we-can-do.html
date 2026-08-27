@@ -14,7 +14,9 @@
     </title>
 
 
-    <!-- Google Font -->
+    <!-- =====================================================
+         GOOGLE FONT
+    ===================================================== -->
 
     <link
         rel="preconnect"
@@ -30,18 +32,893 @@
         rel="stylesheet">
 
 
-    <!-- Font Awesome -->
+    <!-- =====================================================
+         FONT AWESOME
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
-    <!-- CSS -->
+    <!-- =====================================================
+         MAIN CSS
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="style.css">
+
+
+    <!-- =====================================================
+         PAGE-SPECIFIC STYLE
+         BACKGROUND IMAGES
+    ===================================================== -->
+
+    <style>
+
+        /* =================================================
+           GLOBAL BACKGROUND SETTINGS
+        ================================================= */
+
+        .action-section {
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+
+        .action-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(3, 25, 15, 0.90),
+                    rgba(6, 48, 27, 0.78),
+                    rgba(0, 0, 0, 0.60)
+                );
+            z-index: 0;
+        }
+
+
+        .action-section > .section-container {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =================================================
+           HERO BACKGROUND
+        ================================================= */
+
+        .page-hero {
+            position: relative;
+            overflow: hidden;
+
+            background-image:
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(3, 35, 20, 0.88),
+                    rgba(0, 0, 0, 0.48)
+                );
+
+            z-index: 0;
+        }
+
+
+        .page-hero > .section-container {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =================================================
+           SAVE ENERGY SECTION
+        ================================================= */
+
+        .save-section {
+
+            position: relative;
+
+            padding: 100px 0;
+
+            overflow: hidden;
+
+            background-image:
+                url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-attachment: fixed;
+
+        }
+
+
+        .save-section::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(2, 26, 15, 0.92),
+                    rgba(5, 55, 29, 0.82),
+                    rgba(0, 0, 0, 0.72)
+                );
+
+            z-index: 0;
+
+        }
+
+
+        .save-section > .section-container {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =================================================
+           SECTION HEADING
+        ================================================= */
+
+        .save-section .section-heading {
+
+            color: white;
+
+        }
+
+
+        .save-section .section-heading p {
+
+            color: rgba(255,255,255,0.78);
+
+        }
+
+
+        .save-section .section-label {
+
+            color: #72e6a3;
+
+        }
+
+
+        /* =================================================
+           TNB PANEL
+        ================================================= */
+
+        .energystar-panel {
+
+            position: relative;
+
+            margin-top: 50px;
+
+            padding: 35px;
+
+            border-radius: 24px;
+
+            display: grid;
+
+            grid-template-columns: 150px 1fr;
+
+            gap: 35px;
+
+            align-items: center;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid rgba(255,255,255,0.20);
+
+            backdrop-filter: blur(14px);
+
+            -webkit-backdrop-filter: blur(14px);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.25);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .energystar-panel:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 35px 80px rgba(0,0,0,0.35);
+
+        }
+
+
+        /* =================================================
+           TNB LOGO
+        ================================================= */
+
+        .energystar-logo {
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 28px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            background:
+                rgba(255,255,255,0.14);
+
+            border:
+                1px solid rgba(255,255,255,0.25);
+
+            color: white;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.25);
+
+        }
+
+
+        .energystar-logo i {
+
+            font-size: 38px;
+
+        }
+
+
+        .energystar-logo span {
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        /* =================================================
+           TNB CONTENT
+        ================================================= */
+
+        .energystar-content {
+
+            color: white;
+
+        }
+
+
+        .energystar-content > span {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color: #72e6a3;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .energystar-content h3 {
+
+            margin: 0 0 12px;
+
+            font-size: 28px;
+
+        }
+
+
+        .energystar-content p {
+
+            margin: 0 0 22px;
+
+            max-width: 850px;
+
+            line-height: 1.8;
+
+            color:
+                rgba(255,255,255,0.78);
+
+        }
+
+
+        .energystar-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 13px 20px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            background: white;
+
+            color: #123d26;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+        }
+
+
+        .energystar-button:hover {
+
+            transform: translateY(-3px);
+
+            background: #72e6a3;
+
+            color: #092416;
+
+        }
+
+
+        /* =================================================
+           SAVE GRID
+        ================================================= */
+
+        .save-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 22px;
+
+            margin-top: 35px;
+
+        }
+
+
+        /* =================================================
+           SAVE CARDS
+        ================================================= */
+
+        .save-card {
+
+            position: relative;
+
+            padding: 32px;
+
+            min-height: 290px;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid rgba(255,255,255,0.18);
+
+            backdrop-filter: blur(14px);
+
+            -webkit-backdrop-filter: blur(14px);
+
+            color: white;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+
+        }
+
+
+        .save-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            right: -50px;
+
+            top: -50px;
+
+            background:
+                rgba(114,230,163,0.12);
+
+            transition:
+                transform 0.4s ease;
+
+        }
+
+
+        .save-card:hover {
+
+            transform: translateY(-9px);
+
+            background:
+                rgba(255,255,255,0.15);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.30);
+
+        }
+
+
+        .save-card:hover::before {
+
+            transform: scale(1.6);
+
+        }
+
+
+        /* =================================================
+           NUMBER
+        ================================================= */
+
+        .save-number {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 24px;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            color:
+                rgba(255,255,255,0.40);
+
+        }
+
+
+        /* =================================================
+           ICON
+        ================================================= */
+
+        .save-icon {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 24px;
+
+            background:
+                rgba(114,230,163,0.15);
+
+            border:
+                1px solid rgba(114,230,163,0.25);
+
+            color: #72e6a3;
+
+            font-size: 23px;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .save-card:hover .save-icon {
+
+            transform:
+                rotate(-6deg)
+                scale(1.08);
+
+        }
+
+
+        /* =================================================
+           SAVE CARD TEXT
+        ================================================= */
+
+        .save-card h3 {
+
+            margin: 0 0 12px;
+
+            font-size: 19px;
+
+            line-height: 1.4;
+
+        }
+
+
+        .save-card p {
+
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.70);
+
+            line-height: 1.75;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =================================================
+           CONCLUSION
+        ================================================= */
+
+        .save-conclusion {
+
+            position: relative;
+
+            margin-top: 45px;
+
+            padding: 32px;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 22px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.09);
+
+            border:
+                1px solid rgba(255,255,255,0.18);
+
+            backdrop-filter: blur(12px);
+
+            color: white;
+
+        }
+
+
+        .save-conclusion > i {
+
+            width: 55px;
+
+            height: 55px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,215,70,0.14);
+
+            color:
+                #ffe27a;
+
+            font-size: 22px;
+
+        }
+
+
+        .save-conclusion h3 {
+
+            margin: 0 0 8px;
+
+            font-size: 21px;
+
+        }
+
+
+        .save-conclusion p {
+
+            margin: 0 0 15px;
+
+            line-height: 1.75;
+
+            color:
+                rgba(255,255,255,0.72);
+
+        }
+
+
+        .text-source-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #72e6a3;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        .text-source-link:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =================================================
+           KEY MESSAGE
+        ================================================= */
+
+        .save-message {
+
+            margin-top: 28px;
+
+            padding: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(80,200,120,0.18),
+                    rgba(255,255,255,0.08)
+                );
+
+            border:
+                1px solid rgba(114,230,163,0.22);
+
+            color: white;
+
+        }
+
+
+        .save-message-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            flex-shrink: 0;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(114,230,163,0.15);
+
+            color:
+                #72e6a3;
+
+            font-size: 25px;
+
+        }
+
+
+        .save-message h3 {
+
+            margin: 0 0 7px;
+
+            font-size: 21px;
+
+        }
+
+
+        .save-message p {
+
+            margin: 0;
+
+            line-height: 1.7;
+
+            color:
+                rgba(255,255,255,0.72);
+
+        }
+
+
+        /* =================================================
+           FOOTER BACKGROUND
+        ================================================= */
+
+        footer {
+
+            position: relative;
+
+            background-image:
+                url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            overflow: hidden;
+
+        }
+
+
+        footer::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(2,20,12,0.88);
+
+        }
+
+
+        footer > * {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        /* =================================================
+           TABLET
+        ================================================= */
+
+        @media (max-width: 1000px) {
+
+            .save-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+
+            .energystar-panel {
+
+                grid-template-columns: 110px 1fr;
+
+            }
+
+        }
+
+
+        /* =================================================
+           MOBILE
+        ================================================= */
+
+        @media (max-width: 700px) {
+
+            .save-section,
+            .page-hero {
+
+                background-attachment: scroll;
+
+            }
+
+
+            .energystar-panel {
+
+                grid-template-columns: 1fr;
+
+                padding: 25px;
+
+            }
+
+
+            .energystar-logo {
+
+                width: 90px;
+
+                height: 90px;
+
+            }
+
+
+            .save-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .save-card {
+
+                min-height: auto;
+
+            }
+
+
+            .save-conclusion {
+
+                flex-direction: column;
+
+            }
+
+
+            .save-message {
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+
+    </style>
 
 </head>
 
@@ -78,7 +955,7 @@
 
 
 
-        <!-- THREE DOT MENU -->
+        <!-- NAVIGATION -->
 
         <div
             class="nav-menu"
@@ -132,7 +1009,7 @@
 
 
 
-        <!-- THREE DOT BUTTON -->
+        <!-- MOBILE MENU -->
 
         <button
             class="menu-dots"
@@ -146,6 +1023,7 @@
 
         </button>
 
+
     </div>
 
 </nav>
@@ -153,7 +1031,7 @@
 
 
 <!-- =====================================================
-     PAGE HEADER
+     HERO
 ===================================================== -->
 
 <section class="page-hero">
@@ -196,7 +1074,7 @@
 
 
 <!-- =====================================================
-     WHAT WE CAN DO
+     SAVE ENERGY SECTION
 ===================================================== -->
 
 <section class="save-section">
@@ -208,8 +1086,7 @@
              SECTION INTRO
         ================================================= -->
 
-        <div
-            class="section-heading center">
+        <div class="section-heading center">
 
 
             <span class="section-label">
@@ -244,13 +1121,11 @@
 
 
         <!-- =================================================
-             TNB RESEARCH PANEL
+             TNB PANEL
         ================================================= -->
 
         <div class="energystar-panel">
 
-
-            <!-- TNB ICON -->
 
             <div class="energystar-logo">
 
@@ -263,8 +1138,6 @@
             </div>
 
 
-
-            <!-- TNB CONTENT -->
 
             <div class="energystar-content">
 
@@ -325,25 +1198,18 @@
         <div class="save-grid">
 
 
-            <!-- =================================================
-                 01
-            ================================================= -->
+            <!-- 01 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     01
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-power-off">
-                    </i>
+                    <i class="fa-solid fa-power-off"></i>
 
                 </div>
 
@@ -364,30 +1230,22 @@
 
                 </p>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 02
-            ================================================= -->
+            <!-- 02 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     02
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-sun">
-                    </i>
+                    <i class="fa-solid fa-sun"></i>
 
                 </div>
 
@@ -407,30 +1265,22 @@
 
                 </p>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 03
-            ================================================= -->
+            <!-- 03 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     03
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-snowflake">
-                    </i>
+                    <i class="fa-solid fa-snowflake"></i>
 
                 </div>
 
@@ -451,30 +1301,22 @@
 
                 </p>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 04
-            ================================================= -->
+            <!-- 04 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     04
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-shirt">
-                    </i>
+                    <i class="fa-solid fa-shirt"></i>
 
                 </div>
 
@@ -495,30 +1337,22 @@
 
                 </p>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 05
-            ================================================= -->
+            <!-- 05 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     05
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-star">
-                    </i>
+                    <i class="fa-solid fa-star"></i>
 
                 </div>
 
@@ -540,30 +1374,22 @@
 
                 </p>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 06
-            ================================================= -->
+            <!-- 06 -->
 
             <div class="save-card">
 
-
                 <span class="save-number">
-
                     06
-
                 </span>
 
 
                 <div class="save-icon">
 
-                    <i
-                        class="fa-solid fa-chart-line">
-                    </i>
+                    <i class="fa-solid fa-chart-line"></i>
 
                 </div>
 
@@ -584,7 +1410,6 @@
 
                 </p>
 
-
             </div>
 
 
@@ -593,19 +1418,16 @@
 
 
         <!-- =================================================
-             TNB ENERGY EFFICIENCY LABEL
+             CONCLUSION
         ================================================= -->
 
         <div class="save-conclusion">
 
 
-            <i
-                class="fa-solid fa-star">
-            </i>
+            <i class="fa-solid fa-star"></i>
 
 
             <div>
-
 
                 <h3>
 
@@ -640,7 +1462,6 @@
 
                 </a>
 
-
             </div>
 
 
@@ -657,15 +1478,12 @@
 
             <div class="save-message-icon">
 
-                <i
-                    class="fa-solid fa-leaf">
-                </i>
+                <i class="fa-solid fa-leaf"></i>
 
             </div>
 
 
             <div>
-
 
                 <h3>
 
@@ -682,7 +1500,6 @@
                     support environmental protection.
 
                 </p>
-
 
             </div>
 
@@ -707,9 +1524,7 @@
 
         <div class="footer-logo">
 
-            <i
-                class="fa-solid fa-leaf">
-            </i>
+            <i class="fa-solid fa-leaf"></i>
 
             SAFE ENERGY
 
