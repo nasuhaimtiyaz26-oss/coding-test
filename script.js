@@ -1,525 +1,3486 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================================
+   SAFE ENERGY
+   MASTER JAVASCRIPT
+   ONLINE VERSION
+   ---------------------------------------------------------
+   Navigation
+   Animation
+   Active Navigation
+   Our World in Data Charts
+   Interactive Year Tooltip
+========================================================= */
 
-<head>
+document.addEventListener("DOMContentLoaded", function () {
 
-    <meta charset="UTF-8">
+    /* =====================================================
+       01. MOBILE NAVIGATION
+    ===================================================== */
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    const menuDots = document.getElementById("menuDots");
+    const navMenu = document.getElementById("navMenu");
 
-    <title>
-        Our Team | Safe Energy
-    </title>
+    if (menuDots && navMenu) {
 
+        menuDots.addEventListener("click", function (event) {
 
-    <!-- Google Font -->
+            event.stopPropagation();
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
+            const isOpen =
+                navMenu.classList.toggle("open");
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+            menuDots.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+        });
 
+        navMenu.querySelectorAll("a").forEach(function (link) {
 
-    <!-- Font Awesome -->
+            link.addEventListener("click", function () {
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+                navMenu.classList.remove("open");
 
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-    <!-- Main CSS -->
+            });
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+        });
+    }
 
-</head>
 
+    /* =====================================================
+       02. NAVBAR SCROLL
+    ===================================================== */
 
-<body>
+    const navbar =
+        document.getElementById("navbar");
 
+    function updateNavbar() {
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+        if (!navbar) return;
 
-<nav
-    class="navbar"
-    id="navbar">
+        if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    }
 
-    <div class="nav-container">
+    updateNavbar();
 
+    window.addEventListener(
+        "scroll",
+        updateNavbar,
+        { passive: true }
+    );
 
-        <!-- LOGO -->
 
-        <a
-            href="index.html"
-            class="logo">
+    /* =====================================================
+       03. REVEAL ANIMATION
+       -----------------------------------------------------
+       IMPORTANT:
+       Does NOT modify card HTML or CSS.
+    ===================================================== */
 
-            <div class="logo-icon">
+    const animatedElements =
+        document.querySelectorAll(
+            ".data-card, " +
+            ".chart-card, " +
+            ".benefit-card, " +
+            ".renewable-type-card, " +
+            ".effect-card, " +
+            ".save-card, " +
+            ".team-card, " +
+            ".research-source-card, " +
+            ".source-detail-card, " +
+            ".home-nav-card, " +
+            ".energy-card"
+        );
 
-                <i class="fa-solid fa-leaf"></i>
+    animatedElements.forEach(function (element) {
 
-            </div>
+        element.classList.remove("reveal");
+        element.classList.add("show");
 
-            SAFE ENERGY
+    });
 
-        </a>
+    if ("IntersectionObserver" in window) {
 
+        animatedElements.forEach(function (element) {
 
-        <!-- NAVIGATION -->
+            element.classList.remove("show");
+            element.classList.add("reveal");
 
-        <div
-            class="nav-menu"
-            id="navMenu">
+        });
 
+        const observer =
+            new IntersectionObserver(
+                function (entries) {
 
-            <a href="index.html">
-                HOME
-            </a>
+                    entries.forEach(function (entry) {
 
+                        if (entry.isIntersecting) {
 
-            <a href="energy-data.html">
-                ENERGY DATA
-            </a>
+                            entry.target.classList.add("show");
 
+                            observer.unobserve(
+                                entry.target
+                            );
 
-            <a href="why-renewable.html">
-                WHY RENEWABLE
-            </a>
+                        }
 
+                    });
 
-            <a href="effects.html">
-                EFFECTS
-            </a>
+                },
+                {
+                    threshold: 0.05
+                }
+            );
 
+        animatedElements.forEach(function (element) {
 
-            <a href="what-we-can-do.html">
-                WHAT WE CAN DO
-            </a>
+            observer.observe(element);
 
+        });
 
-            <a
-                href="our-team.html"
-                class="active">
+    } else {
 
-                OUR TEAM
+        animatedElements.forEach(function (element) {
 
-            </a>
+            element.classList.remove("reveal");
+            element.classList.add("show");
 
+        });
 
-            <a href="sources.html">
-                SOURCES
-            </a>
+    }
 
-        </div>
 
+    /* =====================================================
+       04. ACTIVE NAVIGATION
+    ===================================================== */
 
-        <!-- MOBILE MENU -->
+    let currentPage =
+        window.location.pathname
+            .split("/")
+            .pop();
 
-        <button
-            class="menu-dots"
-            id="menuDots"
-            aria-label="Open navigation menu"
-            aria-expanded="false">
+    if (!currentPage) {
+        currentPage = "index.html";
+    }
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
+    document
+        .querySelectorAll(".nav-menu a")
+        .forEach(function (link) {
 
-        </button>
+            const linkPage =
+                link.getAttribute("href");
 
-    </div>
+            if (linkPage === currentPage) {
 
-</nav>
+                link.classList.add("active");
 
+            } else {
 
+                link.classList.remove("active");
 
-<!-- =====================================================
-     PAGE HERO
-===================================================== -->
+            }
 
-<section class="page-hero">
+        });
 
-    <div class="section-container">
 
+    /* =====================================================
+       05. CLOSE MENU OUTSIDE
+    ===================================================== */
 
-        <span class="section-label">
+    document.addEventListener(
+        "click",
+        function (event) {
 
-            THE PEOPLE BEHIND THE PROJECT
+            if (
+                navMenu &&
+                menuDots &&
+                !navMenu.contains(event.target) &&
+                !menuDots.contains(event.target)
+            ) {
 
-        </span>
+                navMenu.classList.remove("open");
 
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-        <h1>
+            }
 
-            Meet Our
+        }
+    );
 
-            <span>
-                Team
-            </span>
 
-        </h1>
+    /* =====================================================
+       06. ESCAPE KEY
+    ===================================================== */
 
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-        <p>
+            if (event.key === "Escape") {
 
-            Meet the team behind Safe Energy.
-            Together, we explore the importance of
-            sustainable energy and its role in building
-            a safer and greener future.
+                if (navMenu) {
 
-        </p>
+                    navMenu.classList.remove("open");
 
-    </div>
+                }
 
-</section>
+                if (menuDots) {
 
+                    menuDots.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
 
+                }
 
-<!-- =====================================================
-     OUR TEAM
-===================================================== -->
+            }
 
-<section class="team-section">
+        }
+    );
 
-    <div class="section-container">
 
+    /* =====================================================
+       07. LOAD ONLINE ENERGY DATA
+       -----------------------------------------------------
+       Only initialize if Energy Data charts exist.
+    ===================================================== */
 
-        <!-- SECTION HEADING -->
+    initializeOnlineEnergyCharts();
 
-        <div class="section-heading center">
+});
 
-            <span class="section-label">
 
-                OUR TEAM
 
-            </span>
+/* =========================================================
+   OUR WORLD IN DATA
+   ONLINE DATA SOURCES
+========================================================= */
 
+const OWID_URLS = {
 
-            <h2>
+    /* Primary energy mix */
 
-                The Team Behind
+    energyMix:
+        "https://ourworldindata.org/grapher/energy-mix.csv?v=1&csvType=full&useColumnShortNames=false&metric=share&source=fossil_fuels",
 
-                <span>
-                    Safe Energy
-                </span>
+    /* Primary energy total */
 
-            </h2>
+    primaryEnergy:
+        "https://ourworldindata.org/grapher/global-primary-energy-by-source.csv?v=1&csvType=full&useColumnShortNames=false",
 
+    /* Electricity */
 
-            <p>
+    electricity:
+        "https://ourworldindata.org/grapher/electricity-fossil-renewables-nuclear-line.csv?v=1&csvType=full&useColumnShortNames=false"
 
-                A collaborative team dedicated to
-                understanding energy, sustainability
-                and environmental responsibility.
+};
 
-            </p>
 
-        </div>
 
+/* =========================================================
+   MAIN INITIALIZATION
+========================================================= */
 
+async function initializeOnlineEnergyCharts() {
 
-        <!-- TEAM GRID -->
+    const renewableFossilCanvas =
+        document.getElementById(
+            "renewableFossilChart"
+        );
 
-        <div class="team-grid">
+    const energyConsumptionCanvas =
+        document.getElementById(
+            "energyConsumptionChart"
+        );
 
+    const electricityCanvas =
+        document.getElementById(
+            "electricityChart"
+        );
 
-            <!-- =================================================
-                 MEMBER 01
-            ================================================= -->
 
-            <div class="team-card">
+    /*
+       If this page has no charts,
+       stop here.
 
+       This protects every other tab.
+    */
 
-                <div class="team-photo-wrap">
+    if (
+        !renewableFossilCanvas &&
+        !energyConsumptionCanvas &&
+        !electricityCanvas
+    ) {
 
-                    <img
-                        src="images/person1.jpeg"
-                        alt="Asyiq Huda Zukni Bin Ahmad Zukni"
-                        class="team-photo">
+        return;
 
-                </div>
+    }
 
 
-                <div class="team-content">
+    showChartLoading(
+        renewableFossilCanvas
+    );
 
-                    <span class="team-number">
+    showChartLoading(
+        energyConsumptionCanvas
+    );
 
-                        01
+    showChartLoading(
+        electricityCanvas
+    );
 
-                    </span>
 
+    try {
 
-                    <h3>
+        const results =
+            await Promise.allSettled([
 
-                        ASYIQ HUDA ZUKNI BIN
-                        <br>
-                        AHMAD ZUKNI
+                fetchCSV(
+                    OWID_URLS.energyMix
+                ),
 
-                    </h3>
+                fetchCSV(
+                    OWID_URLS.primaryEnergy
+                ),
 
+                fetchCSV(
+                    OWID_URLS.electricity
+                )
 
-                    <div class="team-line"></div>
+            ]);
 
 
-                    <p class="team-program">
+        /* =================================================
+           GRAPH 1
+           Renewable vs Fossil
+        ================================================= */
 
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
+        if (
+            renewableFossilCanvas &&
+            results[0].status === "fulfilled"
+        ) {
 
-                    </p>
+            const rows =
+                results[0].value;
 
+            const worldRows =
+                getWorldRows(rows);
 
-                    <p class="team-centre">
+            const parsed =
+                parseEnergyMix(worldRows);
 
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
+            if (parsed.years.length > 0) {
 
-                    </p>
+                drawInteractiveLineChart(
+                    renewableFossilCanvas,
+                    {
+                        labels: parsed.years,
 
-                </div>
+                        datasets: [
 
-            </div>
+                            {
+                                label:
+                                    "Renewable Energy",
 
+                                data:
+                                    parsed.renewable,
 
+                                lineWidth: 4,
 
-            <!-- =================================================
-                 MEMBER 02
-            ================================================= -->
+                                fill: false,
 
-            <div class="team-card">
+                                smooth: true
+                            },
 
+                            {
+                                label:
+                                    "Fossil Fuels",
 
-                <div class="team-photo-wrap">
+                                data:
+                                    parsed.fossil,
 
-                    <img
-                        src="images/person2.jpeg"
-                        alt="Nasuha Imtiyaz Bin Mohd Sabarjoo"
-                        class="team-photo">
+                                lineWidth: 4,
 
-                </div>
+                                fill: false,
 
+                                smooth: true
+                            }
 
-                <div class="team-content">
+                        ],
 
-                    <span class="team-number">
+                        dark: true,
 
-                        02
+                        yLabel:
+                            "Share (%)"
 
-                    </span>
+                    }
+                );
 
+            } else {
 
-                    <h3>
+                drawChartError(
+                    renewableFossilCanvas,
+                    "No global energy-mix data found."
+                );
 
-                        NASUHA IMTIYAZ BIN
-                        <br>
-                        MOHD SABARJOO
+            }
 
-                    </h3>
+        } else if (renewableFossilCanvas) {
 
+            drawChartError(
+                renewableFossilCanvas,
+                "Unable to load energy data."
+            );
 
-                    <div class="team-line"></div>
+        }
 
 
-                    <p class="team-program">
+        /* =================================================
+           GRAPH 2
+           GLOBAL PRIMARY ENERGY
+        ================================================= */
 
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
+        if (
+            energyConsumptionCanvas &&
+            results[1].status === "fulfilled"
+        ) {
 
-                    </p>
+            const rows =
+                results[1].value;
 
+            const worldRows =
+                getWorldRows(rows);
 
-                    <p class="team-centre">
+            const parsed =
+                parsePrimaryEnergy(
+                    worldRows
+                );
 
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
+            if (parsed.years.length > 0) {
 
-                    </p>
+                drawInteractiveLineChart(
+                    energyConsumptionCanvas,
+                    {
+                        labels:
+                            parsed.years,
 
-                </div>
+                        datasets: [
 
-            </div>
+                            {
+                                label:
+                                    "Global Primary Energy",
 
+                                data:
+                                    parsed.total,
 
+                                lineWidth: 4,
 
-            <!-- =================================================
-                 MEMBER 03
-            ================================================= -->
+                                fill: true,
 
-            <div class="team-card">
+                                smooth: true
 
+                            }
 
-                <div class="team-photo-wrap">
+                        ],
 
-                    <img
-                        src="images/person3.jpeg"
-                        alt="Muhammad Azfar Hadi Bin Mohd Khairi"
-                        class="team-photo">
+                        dark: false,
 
-                </div>
+                        yLabel:
+                            "Energy use"
 
+                    }
+                );
 
-                <div class="team-content">
+            } else {
 
-                    <span class="team-number">
+                drawChartError(
+                    energyConsumptionCanvas,
+                    "No primary energy data found."
+                );
 
-                        03
+            }
 
-                    </span>
+        } else if (energyConsumptionCanvas) {
 
+            drawChartError(
+                energyConsumptionCanvas,
+                "Unable to load primary energy data."
+            );
 
-                    <h3>
+        }
 
-                        MUHAMMAD AZFAR HADI BIN
-                        <br>
-                        MOHD KHAIRI
 
-                    </h3>
+        /* =================================================
+           GRAPH 3
+           ELECTRICITY MIX
+        ================================================= */
 
+        if (
+            electricityCanvas &&
+            results[2].status === "fulfilled"
+        ) {
 
-                    <div class="team-line"></div>
+            const rows =
+                results[2].value;
 
+            const worldRows =
+                getWorldRows(rows);
 
-                    <p class="team-program">
+            const parsed =
+                parseElectricity(
+                    worldRows
+                );
 
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
+            if (parsed.years.length > 0) {
 
-                    </p>
+                drawInteractiveLineChart(
+                    electricityCanvas,
+                    {
+                        labels:
+                            parsed.years,
 
+                        datasets: [
 
-                    <p class="team-centre">
+                            {
+                                label:
+                                    "Renewable",
 
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
+                                data:
+                                    parsed.renewable,
 
-                    </p>
+                                lineWidth: 4,
 
-                </div>
+                                fill: false,
 
-            </div>
+                                smooth: true
+                            },
 
+                            {
+                                label:
+                                    "Fossil Fuels",
 
-        </div>
+                                data:
+                                    parsed.fossil,
 
+                                lineWidth: 4,
 
+                                fill: false,
 
-        <!-- =================================================
-             TEAM MESSAGE
-        ================================================= -->
+                                smooth: true
+                            },
 
-        <div class="team-message">
+                            {
+                                label:
+                                    "Nuclear",
 
+                                data:
+                                    parsed.nuclear,
 
-            <div class="team-message-icon">
+                                lineWidth: 4,
 
-                <i class="fa-solid fa-users"></i>
+                                fill: false,
 
-            </div>
+                                smooth: true
+                            }
 
+                        ],
 
-            <div>
+                        dark: false,
 
-                <h3>
+                        yLabel:
+                            "Share (%)"
 
-                    One Team. One Mission.
+                    }
+                );
 
-                </h3>
+            } else {
 
+                drawChartError(
+                    electricityCanvas,
+                    "No electricity data found."
+                );
 
-                <p>
+            }
 
-                    We believe that understanding energy
-                    is the first step towards creating a
-                    safer, cleaner and more sustainable future.
+        } else if (electricityCanvas) {
 
-                </p>
+            drawChartError(
+                electricityCanvas,
+                "Unable to load electricity data."
+            );
 
-            </div>
+        }
 
-        </div>
+    } catch (error) {
 
+        console.error(
+            "Energy data error:",
+            error
+        );
 
-    </div>
+        [
+            renewableFossilCanvas,
+            energyConsumptionCanvas,
+            electricityCanvas
+        ].forEach(function (canvas) {
 
-</section>
+            if (canvas) {
 
+                drawChartError(
+                    canvas,
+                    "Unable to connect to Our World in Data."
+                );
 
+            }
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+        });
 
-<footer>
+    }
 
-    <div class="footer-container">
+}
 
 
-        <div class="footer-logo">
 
-            <i
-                class="fa-solid fa-leaf">
-            </i>
+/* =========================================================
+   FETCH CSV
+========================================================= */
 
-            SAFE ENERGY
+async function fetchCSV(url) {
 
-        </div>
+    const response =
+        await fetch(
+            url,
+            {
+                cache: "no-store"
+            }
+        );
 
+    if (!response.ok) {
 
-        <p>
+        throw new Error(
+            "HTTP error: " +
+            response.status
+        );
 
-            Understanding energy.
-            Protecting the future.
+    }
 
-        </p>
+    const text =
+        await response.text();
 
+    return parseCSV(text);
 
-        <div class="footer-source">
+}
 
-            Research sources:
 
-            Our World in Data •
 
-            International Energy Agency •
+/* =========================================================
+   SIMPLE CSV PARSER
+========================================================= */
 
-            ENERGY STAR
+function parseCSV(text) {
 
-        </div>
+    const rows = [];
 
+    let row = [];
 
-        <div class="footer-bottom">
+    let value = "";
 
-            © 2026 Safe Energy.
+    let insideQuotes = false;
 
-            Educational Research Website.
 
-        </div>
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
 
+        const char =
+            text[i];
 
-    </div>
+        const next =
+            text[i + 1];
 
-</footer>
 
+        if (char === '"' && insideQuotes && next === '"') {
 
+            value += '"';
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
+            i++;
 
-<script src="script.js"></script>
+            continue;
 
+        }
 
-</body>
 
-</html>
+        if (char === '"') {
+
+            insideQuotes =
+                !insideQuotes;
+
+            continue;
+
+        }
+
+
+        if (char === "," && !insideQuotes) {
+
+            row.push(value);
+
+            value = "";
+
+            continue;
+
+        }
+
+
+        if (
+            (char === "\n" || char === "\r") &&
+            !insideQuotes
+        ) {
+
+            if (char === "\r" && next === "\n") {
+
+                i++;
+
+            }
+
+            row.push(value);
+
+            value = "";
+
+            if (row.length > 0) {
+
+                rows.push(row);
+
+            }
+
+            row = [];
+
+            continue;
+
+        }
+
+
+        value += char;
+
+    }
+
+
+    if (value.length > 0 || row.length > 0) {
+
+        row.push(value);
+        rows.push(row);
+
+    }
+
+
+    if (!rows.length) {
+        return [];
+    }
+
+
+    const headers =
+        rows[0].map(function (header) {
+
+            return header.trim();
+
+        });
+
+
+    return rows.slice(1).map(function (values) {
+
+        const object = {};
+
+        headers.forEach(function (header, index) {
+
+            object[header] =
+                values[index] !== undefined
+                    ? values[index].trim()
+                    : "";
+
+        });
+
+        return object;
+
+    });
+
+}
+
+
+
+/* =========================================================
+   GET WORLD DATA
+========================================================= */
+
+function getWorldRows(rows) {
+
+    if (!rows || !rows.length) {
+        return [];
+    }
+
+
+    const worldRows =
+        rows.filter(function (row) {
+
+            const entity =
+                String(
+                    row.Entity ||
+                    row.entity ||
+                    ""
+                ).trim().toLowerCase();
+
+            return (
+                entity === "world"
+            );
+
+        });
+
+
+    if (worldRows.length) {
+
+        return worldRows;
+
+    }
+
+
+    return rows;
+
+}
+
+
+
+/* =========================================================
+   FIND COLUMN
+========================================================= */
+
+function findColumn(row, keywords) {
+
+    const columns =
+        Object.keys(row);
+
+
+    for (
+        let i = 0;
+        i < keywords.length;
+        i++
+    ) {
+
+        const keyword =
+            keywords[i].toLowerCase();
+
+
+        const found =
+            columns.find(function (column) {
+
+                return column
+                    .toLowerCase()
+                    .includes(keyword);
+
+            });
+
+
+        if (found) {
+
+            return found;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   PARSE ENERGY MIX
+========================================================= */
+
+function parseEnergyMix(rows) {
+
+    if (!rows.length) {
+
+        return {
+            years: [],
+            renewable: [],
+            fossil: []
+        };
+
+    }
+
+
+    const fossilColumn =
+        findColumn(
+            rows[0],
+            [
+                "Fossil fuels as a share",
+                "Fossil fuels"
+            ]
+        );
+
+
+    const renewableColumn =
+        findColumn(
+            rows[0],
+            [
+                "Renewables as a share",
+                "Renewable"
+            ]
+        );
+
+
+    /*
+       The current OWID energy-mix
+       endpoint can be configured
+       for fossil fuels.
+
+       If renewable column isn't
+       present, try the direct
+       renewable share dataset.
+    */
+
+    const years = [];
+
+    const fossil = [];
+
+    const renewable = [];
+
+
+    rows.forEach(function (row) {
+
+        const year =
+            Number(
+                row.Year
+            );
+
+
+        if (!Number.isFinite(year)) {
+            return;
+        }
+
+
+        const fossilValue =
+            fossilColumn
+                ? Number(
+                    row[fossilColumn]
+                )
+                : NaN;
+
+
+        const renewableValue =
+            renewableColumn
+                ? Number(
+                    row[renewableColumn]
+                )
+                : NaN;
+
+
+        if (
+            Number.isFinite(fossilValue) ||
+            Number.isFinite(renewableValue)
+        ) {
+
+            years.push(year);
+
+            fossil.push(
+                Number.isFinite(fossilValue)
+                    ? fossilValue
+                    : null
+            );
+
+            renewable.push(
+                Number.isFinite(renewableValue)
+                    ? renewableValue
+                    : null
+            );
+
+        }
+
+    });
+
+
+    return {
+
+        years,
+        renewable,
+        fossil
+
+    };
+
+}
+
+
+
+/* =========================================================
+   PARSE PRIMARY ENERGY
+========================================================= */
+
+function parsePrimaryEnergy(rows) {
+
+    if (!rows.length) {
+
+        return {
+            years: [],
+            total: []
+        };
+
+    }
+
+
+    const columns =
+        Object.keys(
+            rows[0]
+        );
+
+
+    /*
+       Find energy source columns.
+
+       We sum the available global
+       primary-energy source values.
+    */
+
+    const sourceColumns =
+        columns.filter(function (column) {
+
+            const name =
+                column.toLowerCase();
+
+
+            return (
+                name !== "entity" &&
+                name !== "code" &&
+                name !== "year" &&
+                (
+                    name.includes("coal") ||
+                    name.includes("oil") ||
+                    name.includes("gas") ||
+                    name.includes("nuclear") ||
+                    name.includes("hydro") ||
+                    name.includes("solar") ||
+                    name.includes("wind") ||
+                    name.includes("biofuel") ||
+                    name.includes("other renewables") ||
+                    name.includes("renewables")
+                )
+            );
+
+        });
+
+
+    const yearlyData = {};
+
+
+    rows.forEach(function (row) {
+
+        const year =
+            Number(row.Year);
+
+
+        if (!Number.isFinite(year)) {
+            return;
+        }
+
+
+        let total = 0;
+
+        let hasValue = false;
+
+
+        sourceColumns.forEach(function (column) {
+
+            const value =
+                Number(
+                    row[column]
+                );
+
+
+            if (Number.isFinite(value)) {
+
+                total += value;
+
+                hasValue = true;
+
+            }
+
+        });
+
+
+        if (hasValue) {
+
+            yearlyData[year] =
+                total;
+
+        }
+
+    });
+
+
+    const years =
+        Object.keys(yearlyData)
+            .map(Number)
+            .sort(function (a, b) {
+                return a - b;
+            });
+
+
+    const total =
+        years.map(function (year) {
+
+            return yearlyData[year];
+
+        });
+
+
+    return {
+        years,
+        total
+    };
+
+}
+
+
+
+/* =========================================================
+   PARSE ELECTRICITY
+========================================================= */
+
+function parseElectricity(rows) {
+
+    if (!rows.length) {
+
+        return {
+            years: [],
+            renewable: [],
+            fossil: [],
+            nuclear: []
+        };
+
+    }
+
+
+    const renewableColumn =
+        findColumn(
+            rows[0],
+            [
+                "Renewables - %",
+                "Renewables"
+            ]
+        );
+
+
+    const fossilColumn =
+        findColumn(
+            rows[0],
+            [
+                "Fossil fuels - %",
+                "Fossil fuels"
+            ]
+        );
+
+
+    const nuclearColumn =
+        findColumn(
+            rows[0],
+            [
+                "Nuclear - %",
+                "Nuclear"
+            ]
+        );
+
+
+    const data = {};
+
+
+    rows.forEach(function (row) {
+
+        const year =
+            Number(
+                row.Year
+            );
+
+
+        if (!Number.isFinite(year)) {
+            return;
+        }
+
+
+        const renewable =
+            renewableColumn
+                ? Number(
+                    row[renewableColumn]
+                )
+                : NaN;
+
+
+        const fossil =
+            fossilColumn
+                ? Number(
+                    row[fossilColumn]
+                )
+                : NaN;
+
+
+        const nuclear =
+            nuclearColumn
+                ? Number(
+                    row[nuclearColumn]
+                )
+                : NaN;
+
+
+        if (
+            Number.isFinite(renewable) ||
+            Number.isFinite(fossil) ||
+            Number.isFinite(nuclear)
+        ) {
+
+            data[year] = {
+
+                renewable:
+                    Number.isFinite(renewable)
+                        ? renewable
+                        : null,
+
+                fossil:
+                    Number.isFinite(fossil)
+                        ? fossil
+                        : null,
+
+                nuclear:
+                    Number.isFinite(nuclear)
+                        ? nuclear
+                        : null
+
+            };
+
+        }
+
+    });
+
+
+    const years =
+        Object.keys(data)
+            .map(Number)
+            .sort(function (a, b) {
+                return a - b;
+            });
+
+
+    return {
+
+        years,
+
+        renewable:
+            years.map(function (year) {
+                return data[year].renewable;
+            }),
+
+        fossil:
+            years.map(function (year) {
+                return data[year].fossil;
+            }),
+
+        nuclear:
+            years.map(function (year) {
+                return data[year].nuclear;
+            })
+
+    };
+
+}
+
+
+
+/* =========================================================
+   LOADING STATE
+========================================================= */
+
+function showChartLoading(canvas) {
+
+    if (!canvas) return;
+
+
+    const wrapper =
+        canvas.parentElement;
+
+
+    if (!wrapper) return;
+
+
+    wrapper.style.position =
+        "relative";
+
+
+    let loading =
+        wrapper.querySelector(
+            ".energy-chart-loading"
+        );
+
+
+    if (!loading) {
+
+        loading =
+            document.createElement("div");
+
+        loading.className =
+            "energy-chart-loading";
+
+
+        loading.style.position =
+            "absolute";
+
+        loading.style.inset =
+            "0";
+
+        loading.style.display =
+            "flex";
+
+        loading.style.alignItems =
+            "center";
+
+        loading.style.justifyContent =
+            "center";
+
+        loading.style.font =
+            "600 14px Inter, Arial, sans-serif";
+
+        loading.style.color =
+            "#64736b";
+
+        loading.style.pointerEvents =
+            "none";
+
+
+        wrapper.appendChild(
+            loading
+        );
+
+    }
+
+
+    loading.textContent =
+        "Loading live energy data...";
+
+
+    loading.style.display =
+        "flex";
+
+}
+
+
+
+/* =========================================================
+   HIDE LOADING
+========================================================= */
+
+function hideChartLoading(canvas) {
+
+    if (!canvas) return;
+
+
+    const wrapper =
+        canvas.parentElement;
+
+
+    if (!wrapper) return;
+
+
+    const loading =
+        wrapper.querySelector(
+            ".energy-chart-loading"
+        );
+
+
+    if (loading) {
+
+        loading.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   INTERACTIVE LINE CHART
+========================================================= */
+
+function drawInteractiveLineChart(
+    canvas,
+    config
+) {
+
+    if (!canvas) return;
+
+
+    hideChartLoading(canvas);
+
+
+    const wrapper =
+        canvas.parentElement;
+
+
+    if (!wrapper) return;
+
+
+    const rect =
+        wrapper.getBoundingClientRect();
+
+
+    const width =
+        Math.max(
+            rect.width,
+            300
+        );
+
+
+    const height =
+        Math.max(
+            rect.height,
+            280
+        );
+
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        width * dpr;
+
+
+    canvas.height =
+        height * dpr;
+
+
+    canvas.style.width =
+        width + "px";
+
+
+    canvas.style.height =
+        height + "px";
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    const dark =
+        config.dark === true;
+
+
+    const textColor =
+        dark
+            ? "rgba(255,255,255,.78)"
+            : "#52635a";
+
+
+    const gridColor =
+        dark
+            ? "rgba(255,255,255,.10)"
+            : "rgba(0,0,0,.08)";
+
+
+    const colors = [
+
+        "#32c878",
+        "#777777",
+        "#3f6db5"
+
+    ];
+
+
+    const padding = {
+
+        top: 58,
+
+        right: 28,
+
+        bottom: 48,
+
+        left: 58
+
+    };
+
+
+    const chartWidth =
+        width -
+        padding.left -
+        padding.right;
+
+
+    const chartHeight =
+        height -
+        padding.top -
+        padding.bottom;
+
+
+    const labels =
+        config.labels;
+
+
+    const datasets =
+        config.datasets;
+
+
+    let allValues = [];
+
+
+    datasets.forEach(function (dataset) {
+
+        dataset.data.forEach(function (value) {
+
+            if (
+                typeof value === "number" &&
+                Number.isFinite(value)
+            ) {
+
+                allValues.push(value);
+
+            }
+
+        });
+
+    });
+
+
+    if (!allValues.length) {
+
+        drawChartError(
+            canvas,
+            "No valid data."
+        );
+
+        return;
+
+    }
+
+
+    let minValue =
+        Math.min(...allValues);
+
+
+    let maxValue =
+        Math.max(...allValues);
+
+
+    if (minValue === maxValue) {
+
+        minValue -= 1;
+        maxValue += 1;
+
+    }
+
+
+    const range =
+        maxValue - minValue;
+
+
+    minValue =
+        Math.floor(
+            minValue -
+            range * 0.08
+        );
+
+
+    maxValue =
+        Math.ceil(
+            maxValue +
+            range * 0.08
+        );
+
+
+    /* =====================================================
+       Y LABEL
+    ===================================================== */
+
+    ctx.fillStyle =
+        textColor;
+
+
+    ctx.font =
+        "700 11px Inter, Arial, sans-serif";
+
+
+    ctx.textAlign =
+        "left";
+
+
+    ctx.fillText(
+        config.yLabel || "",
+        padding.left,
+        22
+    );
+
+
+    /* =====================================================
+       GRID
+    ===================================================== */
+
+    const gridLines = 5;
+
+
+    for (
+        let i = 0;
+        i <= gridLines;
+        i++
+    ) {
+
+        const y =
+            padding.top +
+            (
+                chartHeight /
+                gridLines
+            ) * i;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            padding.left,
+            y
+        );
+
+        ctx.lineTo(
+            width - padding.right,
+            y
+        );
+
+
+        ctx.strokeStyle =
+            gridColor;
+
+        ctx.lineWidth = 1;
+
+        ctx.stroke();
+
+
+        const value =
+            maxValue -
+            (
+                (maxValue - minValue) /
+                gridLines
+            ) * i;
+
+
+        ctx.fillStyle =
+            textColor;
+
+
+        ctx.font =
+            "600 10px Inter, Arial, sans-serif";
+
+
+        ctx.textAlign =
+            "right";
+
+
+        ctx.fillText(
+            formatChartNumber(value),
+            padding.left - 10,
+            y + 3
+        );
+
+    }
+
+
+    /* =====================================================
+       X AXIS
+    ===================================================== */
+
+    ctx.fillStyle =
+        textColor;
+
+
+    ctx.font =
+        "600 10px Inter, Arial, sans-serif";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    const labelStep =
+        Math.max(
+            1,
+            Math.ceil(
+                labels.length / 9
+            )
+        );
+
+
+    labels.forEach(function (label, index) {
+
+        if (
+            index % labelStep !== 0 &&
+            index !== labels.length - 1
+        ) {
+
+            return;
+
+        }
+
+
+        const x =
+            getXPosition(
+                index,
+                labels.length,
+                padding.left,
+                chartWidth
+            );
+
+
+        ctx.fillText(
+            String(label),
+            x,
+            height - 18
+        );
+
+    });
+
+
+    /* =====================================================
+       BUILD POINTS
+    ===================================================== */
+
+    const allPoints = [];
+
+
+    datasets.forEach(
+        function (dataset, datasetIndex) {
+
+            const color =
+                colors[
+                    datasetIndex %
+                    colors.length
+                ];
+
+
+            const points = [];
+
+
+            dataset.data.forEach(
+                function (value, index) {
+
+                    if (
+                        typeof value !== "number" ||
+                        !Number.isFinite(value)
+                    ) {
+
+                        points.push(null);
+
+                        return;
+
+                    }
+
+
+                    const x =
+                        getXPosition(
+                            index,
+                            labels.length,
+                            padding.left,
+                            chartWidth
+                        );
+
+
+                    const y =
+                        getYPosition(
+                            value,
+                            minValue,
+                            maxValue,
+                            padding.top,
+                            chartHeight
+                        );
+
+
+                    points.push({
+
+                        x,
+                        y,
+                        value,
+                        year:
+                            labels[index]
+
+                    });
+
+                }
+            );
+
+
+            allPoints.push(points);
+
+
+            /* =================================================
+               FILL
+            ================================================= */
+
+            if (dataset.fill) {
+
+                const validPoints =
+                    points.filter(Boolean);
+
+
+                if (validPoints.length > 1) {
+
+                    const gradient =
+                        ctx.createLinearGradient(
+                            0,
+                            padding.top,
+                            0,
+                            height -
+                            padding.bottom
+                        );
+
+
+                    gradient.addColorStop(
+                        0,
+                        hexToRGBA(
+                            color,
+                            dark ? 0.30 : 0.18
+                        )
+                    );
+
+
+                    gradient.addColorStop(
+                        1,
+                        hexToRGBA(
+                            color,
+                            0.01
+                        )
+                    );
+
+
+                    ctx.beginPath();
+
+
+                    drawSmoothPath(
+                        ctx,
+                        validPoints
+                    );
+
+
+                    ctx.lineTo(
+                        validPoints[
+                            validPoints.length - 1
+                        ].x,
+                        height -
+                        padding.bottom
+                    );
+
+
+                    ctx.lineTo(
+                        validPoints[0].x,
+                        height -
+                        padding.bottom
+                    );
+
+
+                    ctx.closePath();
+
+
+                    ctx.fillStyle =
+                        gradient;
+
+                    ctx.fill();
+
+                }
+
+            }
+
+
+            /* =================================================
+               LINE
+            ================================================= */
+
+            const validPoints =
+                points.filter(Boolean);
+
+
+            if (validPoints.length > 1) {
+
+                ctx.beginPath();
+
+
+                if (dataset.smooth) {
+
+                    drawSmoothPath(
+                        ctx,
+                        validPoints
+                    );
+
+                } else {
+
+                    validPoints.forEach(
+                        function (point, index) {
+
+                            if (index === 0) {
+
+                                ctx.moveTo(
+                                    point.x,
+                                    point.y
+                                );
+
+                            } else {
+
+                                ctx.lineTo(
+                                    point.x,
+                                    point.y
+                                );
+
+                            }
+
+                        }
+                    );
+
+                }
+
+
+                ctx.strokeStyle =
+                    color;
+
+
+                ctx.lineWidth =
+                    dataset.lineWidth || 3;
+
+
+                ctx.lineJoin =
+                    "round";
+
+
+                ctx.lineCap =
+                    "round";
+
+
+                ctx.stroke();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       LEGEND
+    ===================================================== */
+
+    drawLegend(
+        ctx,
+        datasets,
+        colors,
+        width,
+        dark
+    );
+
+
+    /* =====================================================
+       INTERACTIVE HOVER
+    ===================================================== */
+
+    setupChartInteraction(
+        canvas,
+        {
+            labels,
+            datasets,
+            allPoints,
+            padding,
+            chartWidth,
+            chartHeight,
+            minValue,
+            maxValue,
+            dark
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   CHART INTERACTION
+   ---------------------------------------------------------
+   Hover over graph -> shows exact YEAR + DATA
+========================================================= */
+
+function setupChartInteraction(
+    canvas,
+    state
+) {
+
+    const oldHandler =
+        canvas._energyMouseMoveHandler;
+
+
+    if (oldHandler) {
+
+        canvas.removeEventListener(
+            "mousemove",
+            oldHandler
+        );
+
+    }
+
+
+    const oldLeave =
+        canvas._energyMouseLeaveHandler;
+
+
+    if (oldLeave) {
+
+        canvas.removeEventListener(
+            "mouseleave",
+            oldLeave
+        );
+
+    }
+
+
+    const mouseMove =
+        function (event) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+
+            const mouseX =
+                event.clientX -
+                rect.left;
+
+
+            const mouseY =
+                event.clientY -
+                rect.top;
+
+
+            const index =
+                findNearestYear(
+                    mouseX,
+                    state.labels.length,
+                    state.padding.left,
+                    state.chartWidth
+                );
+
+
+            if (
+                index < 0 ||
+                index >= state.labels.length
+            ) {
+
+                return;
+
+            }
+
+
+            drawChartWithTooltip(
+                canvas,
+                state,
+                index,
+                mouseX,
+                mouseY
+            );
+
+        };
+
+
+    const mouseLeave =
+        function () {
+
+            redrawChart(
+                canvas,
+                state
+            );
+
+        };
+
+
+    canvas.addEventListener(
+        "mousemove",
+        mouseMove
+    );
+
+
+    canvas.addEventListener(
+        "mouseleave",
+        mouseLeave
+    );
+
+
+    canvas._energyMouseMoveHandler =
+        mouseMove;
+
+
+    canvas._energyMouseLeaveHandler =
+        mouseLeave;
+
+
+    /*
+       Touch support
+    */
+
+    canvas.addEventListener(
+        "touchstart",
+        function (event) {
+
+            if (!event.touches.length) {
+                return;
+            }
+
+
+            const touch =
+                event.touches[0];
+
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+
+            const x =
+                touch.clientX -
+                rect.left;
+
+
+            const y =
+                touch.clientY -
+                rect.top;
+
+
+            const index =
+                findNearestYear(
+                    x,
+                    state.labels.length,
+                    state.padding.left,
+                    state.chartWidth
+                );
+
+
+            drawChartWithTooltip(
+                canvas,
+                state,
+                index,
+                x,
+                y
+            );
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   REDRAW
+========================================================= */
+
+function redrawChart(
+    canvas,
+    state
+) {
+
+    drawInteractiveLineChart(
+        canvas,
+        {
+            labels:
+                state.labels,
+
+            datasets:
+                state.datasets,
+
+            dark:
+                state.dark,
+
+            yLabel:
+                ""
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   DRAW TOOLTIP
+========================================================= */
+
+function drawChartWithTooltip(
+    canvas,
+    state,
+    index,
+    mouseX,
+    mouseY
+) {
+
+    redrawChartBase(
+        canvas,
+        state
+    );
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const width =
+        rect.width;
+
+
+    const height =
+        rect.height;
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    const x =
+        getXPosition(
+            index,
+            state.labels.length,
+            state.padding.left,
+            state.chartWidth
+        );
+
+
+    /* =====================================================
+       VERTICAL GUIDE
+    ===================================================== */
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+        x,
+        state.padding.top
+    );
+
+
+    ctx.lineTo(
+        x,
+        height -
+        state.padding.bottom
+    );
+
+
+    ctx.strokeStyle =
+        state.dark
+            ? "rgba(255,255,255,.25)"
+            : "rgba(0,0,0,.18)";
+
+
+    ctx.lineWidth = 1;
+
+
+    ctx.setLineDash([
+        5,
+        5
+    ]);
+
+
+    ctx.stroke();
+
+
+    ctx.setLineDash([]);
+
+
+    /* =====================================================
+       POINTS
+    ===================================================== */
+
+    state.allPoints.forEach(
+        function (points, datasetIndex) {
+
+            const point =
+                points[index];
+
+
+            if (!point) {
+                return;
+            }
+
+
+            const colors = [
+                "#32c878",
+                "#777777",
+                "#3f6db5"
+            ];
+
+
+            const color =
+                colors[
+                    datasetIndex %
+                    colors.length
+                ];
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                point.x,
+                point.y,
+                6,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                color;
+
+
+            ctx.fill();
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                point.x,
+                point.y,
+                9,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.strokeStyle =
+                state.dark
+                    ? "#ffffff"
+                    : "#ffffff";
+
+
+            ctx.lineWidth = 2;
+
+
+            ctx.stroke();
+
+        }
+    );
+
+
+    /* =====================================================
+       TOOLTIP CONTENT
+    ===================================================== */
+
+    const tooltipLines = [];
+
+
+    tooltipLines.push(
+        String(
+            state.labels[index]
+        )
+    );
+
+
+    state.datasets.forEach(
+        function (dataset, datasetIndex) {
+
+            const value =
+                dataset.data[index];
+
+
+            if (
+                typeof value !== "number" ||
+                !Number.isFinite(value)
+            ) {
+
+                return;
+
+            }
+
+
+            tooltipLines.push(
+                dataset.label +
+                ": " +
+                formatChartNumber(value) +
+                (
+                    dataset.label
+                        .toLowerCase()
+                        .includes("energy")
+                    ? ""
+                    : "%"
+                )
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       TOOLTIP BOX
+    ===================================================== */
+
+    ctx.font =
+        "700 12px Inter, Arial, sans-serif";
+
+
+    let maxTextWidth = 0;
+
+
+    tooltipLines.forEach(
+        function (line) {
+
+            maxTextWidth =
+                Math.max(
+                    maxTextWidth,
+                    ctx.measureText(line).width
+                );
+
+        }
+    );
+
+
+    const boxWidth =
+        maxTextWidth + 30;
+
+
+    const boxHeight =
+        tooltipLines.length * 21 +
+        20;
+
+
+    let boxX =
+        mouseX + 15;
+
+
+    let boxY =
+        mouseY - boxHeight - 15;
+
+
+    if (
+        boxX + boxWidth >
+        width - 10
+    ) {
+
+        boxX =
+            mouseX -
+            boxWidth -
+            15;
+
+    }
+
+
+    if (boxX < 10) {
+
+        boxX = 10;
+
+    }
+
+
+    if (boxY < 10) {
+
+        boxY =
+            mouseY + 15;
+
+    }
+
+
+    if (
+        boxY + boxHeight >
+        height - 10
+    ) {
+
+        boxY =
+            height -
+            boxHeight -
+            10;
+
+    }
+
+
+    ctx.fillStyle =
+        state.dark
+            ? "rgba(8,22,15,.96)"
+            : "rgba(255,255,255,.97)";
+
+
+    roundRect(
+        ctx,
+        boxX,
+        boxY,
+        boxWidth,
+        boxHeight,
+        10
+    );
+
+
+    ctx.fill();
+
+
+    ctx.strokeStyle =
+        state.dark
+            ? "rgba(255,255,255,.12)"
+            : "rgba(0,0,0,.08)";
+
+
+    ctx.lineWidth = 1;
+
+
+    ctx.stroke();
+
+
+    tooltipLines.forEach(
+        function (line, lineIndex) {
+
+            ctx.fillStyle =
+                lineIndex === 0
+                    ? (
+                        state.dark
+                            ? "#ffffff"
+                            : "#14231c"
+                    )
+                    : (
+                        state.dark
+                            ? "rgba(255,255,255,.75)"
+                            : "#52635a"
+                    );
+
+
+            ctx.font =
+                lineIndex === 0
+                    ? "800 12px Inter, Arial, sans-serif"
+                    : "600 11px Inter, Arial, sans-serif";
+
+
+            ctx.textAlign =
+                "left";
+
+
+            ctx.fillText(
+                line,
+                boxX + 15,
+                boxY +
+                20 +
+                lineIndex * 21
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   REDRAW BASE
+========================================================= */
+
+function redrawChartBase(
+    canvas,
+    state
+) {
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    const rect =
+        canvas.getBoundingClientRect();
+
+
+    const width =
+        rect.width;
+
+
+    const height =
+        rect.height;
+
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    const dark =
+        state.dark;
+
+
+    const textColor =
+        dark
+            ? "rgba(255,255,255,.78)"
+            : "#52635a";
+
+
+    const gridColor =
+        dark
+            ? "rgba(255,255,255,.10)"
+            : "rgba(0,0,0,.08)";
+
+
+    const gridLines = 5;
+
+
+    /* GRID */
+
+    for (
+        let i = 0;
+        i <= gridLines;
+        i++
+    ) {
+
+        const y =
+            state.padding.top +
+            (
+                state.chartHeight /
+                gridLines
+            ) * i;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            state.padding.left,
+            y
+        );
+
+        ctx.lineTo(
+            width -
+            state.padding.right,
+            y
+        );
+
+
+        ctx.strokeStyle =
+            gridColor;
+
+        ctx.lineWidth = 1;
+
+        ctx.stroke();
+
+
+        const value =
+            state.maxValue -
+            (
+                (
+                    state.maxValue -
+                    state.minValue
+                ) /
+                gridLines
+            ) * i;
+
+
+        ctx.fillStyle =
+            textColor;
+
+
+        ctx.font =
+            "600 10px Inter, Arial, sans-serif";
+
+
+        ctx.textAlign =
+            "right";
+
+
+        ctx.fillText(
+            formatChartNumber(value),
+            state.padding.left - 10,
+            y + 3
+        );
+
+    }
+
+
+    /* X LABELS */
+
+    const labelStep =
+        Math.max(
+            1,
+            Math.ceil(
+                state.labels.length / 9
+            )
+        );
+
+
+    ctx.fillStyle =
+        textColor;
+
+
+    ctx.font =
+        "600 10px Inter, Arial, sans-serif";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    state.labels.forEach(
+        function (label, index) {
+
+            if (
+                index % labelStep !== 0 &&
+                index !== state.labels.length - 1
+            ) {
+
+                return;
+
+            }
+
+
+            const x =
+                getXPosition(
+                    index,
+                    state.labels.length,
+                    state.padding.left,
+                    state.chartWidth
+                );
+
+
+            ctx.fillText(
+                String(label),
+                x,
+                height - 18
+            );
+
+        }
+    );
+
+
+    /* LINES */
+
+    const colors = [
+        "#32c878",
+        "#777777",
+        "#3f6db5"
+    ];
+
+
+    state.datasets.forEach(
+        function (dataset, datasetIndex) {
+
+            const color =
+                colors[
+                    datasetIndex %
+                    colors.length
+                ];
+
+
+            const points =
+                state.allPoints[
+                    datasetIndex
+                ].filter(Boolean);
+
+
+            if (points.length < 2) {
+                return;
+            }
+
+
+            ctx.beginPath();
+
+
+            if (dataset.smooth) {
+
+                drawSmoothPath(
+                    ctx,
+                    points
+                );
+
+            } else {
+
+                points.forEach(
+                    function (point, index) {
+
+                        if (index === 0) {
+
+                            ctx.moveTo(
+                                point.x,
+                                point.y
+                            );
+
+                        } else {
+
+                            ctx.lineTo(
+                                point.x,
+                                point.y
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            ctx.strokeStyle =
+                color;
+
+
+            ctx.lineWidth =
+                dataset.lineWidth || 3;
+
+
+            ctx.lineJoin =
+                "round";
+
+
+            ctx.lineCap =
+                "round";
+
+
+            ctx.stroke();
+
+        }
+    );
+
+
+    drawLegend(
+        ctx,
+        state.datasets,
+        colors,
+        width,
+        dark
+    );
+
+}
+
+
+
+/* =========================================================
+   FIND NEAREST YEAR
+========================================================= */
+
+function findNearestYear(
+    mouseX,
+    total,
+    left,
+    width
+) {
+
+    if (total <= 1) {
+        return 0;
+    }
+
+
+    const position =
+        (
+            mouseX -
+            left
+        ) /
+        width;
+
+
+    const rawIndex =
+        position *
+        (total - 1);
+
+
+    return Math.max(
+        0,
+        Math.min(
+            total - 1,
+            Math.round(rawIndex)
+        )
+    );
+
+}
+
+
+
+/* =========================================================
+   SMOOTH LINE
+========================================================= */
+
+function drawSmoothPath(
+    ctx,
+    points
+) {
+
+    if (!points.length) {
+        return;
+    }
+
+
+    ctx.moveTo(
+        points[0].x,
+        points[0].y
+    );
+
+
+    for (
+        let i = 1;
+        i < points.length;
+        i++
+    ) {
+
+        const previous =
+            points[i - 1];
+
+
+        const current =
+            points[i];
+
+
+        const midpointX =
+            (
+                previous.x +
+                current.x
+            ) / 2;
+
+
+        const midpointY =
+            (
+                previous.y +
+                current.y
+            ) / 2;
+
+
+        ctx.quadraticCurveTo(
+            previous.x,
+            previous.y,
+            midpointX,
+            midpointY
+        );
+
+    }
+
+
+    const last =
+        points[
+            points.length - 1
+        ];
+
+
+    ctx.quadraticCurveTo(
+        last.x,
+        last.y,
+        last.x,
+        last.y
+    );
+
+}
+
+
+
+/* =========================================================
+   X POSITION
+========================================================= */
+
+function getXPosition(
+    index,
+    total,
+    left,
+    width
+) {
+
+    if (total <= 1) {
+        return left;
+    }
+
+
+    return (
+        left +
+        (
+            index /
+            (total - 1)
+        ) *
+        width
+    );
+
+}
+
+
+
+/* =========================================================
+   Y POSITION
+========================================================= */
+
+function getYPosition(
+    value,
+    min,
+    max,
+    top,
+    height
+) {
+
+    return (
+        top +
+        (
+            (max - value) /
+            (max - min)
+        ) *
+        height
+    );
+
+}
+
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+function drawLegend(
+    ctx,
+    datasets,
+    colors,
+    width,
+    dark
+) {
+
+    const textColor =
+        dark
+            ? "#ffffff"
+            : "#14231c";
+
+
+    let currentX = 20;
+
+
+    const legendY = 35;
+
+
+    ctx.font =
+        "700 10px Inter, Arial, sans-serif";
+
+
+    datasets.forEach(
+        function (dataset, index) {
+
+            const color =
+                colors[
+                    index %
+                    colors.length
+                ];
+
+
+            const label =
+                dataset.label || "";
+
+
+            const textWidth =
+                ctx.measureText(
+                    label
+                ).width;
+
+
+            const itemWidth =
+                20 +
+                textWidth +
+                25;
+
+
+            if (
+                currentX +
+                itemWidth >
+                width
+            ) {
+
+                return;
+
+            }
+
+
+            ctx.beginPath();
+
+
+            ctx.moveTo(
+                currentX,
+                legendY
+            );
+
+
+            ctx.lineTo(
+                currentX + 14,
+                legendY
+            );
+
+
+            ctx.strokeStyle =
+                color;
+
+
+            ctx.lineWidth = 4;
+
+
+            ctx.lineCap =
+                "round";
+
+
+            ctx.stroke();
+
+
+            ctx.fillStyle =
+                textColor;
+
+
+            ctx.textAlign =
+                "left";
+
+
+            ctx.fillText(
+                label,
+                currentX + 20,
+                legendY + 4
+            );
+
+
+            currentX +=
+                itemWidth;
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   ROUND RECT
+========================================================= */
+
+function roundRect(
+    ctx,
+    x,
+    y,
+    width,
+    height,
+    radius
+) {
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x + radius,
+        y
+    );
+
+    ctx.lineTo(
+        x + width - radius,
+        y
+    );
+
+    ctx.quadraticCurveTo(
+        x + width,
+        y,
+        x + width,
+        y + radius
+    );
+
+    ctx.lineTo(
+        x + width,
+        y + height - radius
+    );
+
+    ctx.quadraticCurveTo(
+        x + width,
+        y + height,
+        x + width - radius,
+        y + height
+    );
+
+    ctx.lineTo(
+        x + radius,
+        y + height
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y + height,
+        x,
+        y + height - radius
+    );
+
+    ctx.lineTo(
+        x,
+        y + radius
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y,
+        x + radius,
+        y
+    );
+
+    ctx.closePath();
+
+}
+
+
+
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatChartNumber(value) {
+
+    if (
+        !Number.isFinite(value)
+    ) {
+
+        return "-";
+
+    }
+
+
+    if (
+        Math.abs(value) >= 1000
+    ) {
+
+        return value.toLocaleString(
+            "en-US",
+            {
+                maximumFractionDigits: 0
+            }
+        );
+
+    }
+
+
+    if (
+        Number.isInteger(value)
+    ) {
+
+        return value.toString();
+
+    }
+
+
+    return value.toFixed(1);
+
+}
+
+
+
+/* =========================================================
+   HEX TO RGBA
+========================================================= */
+
+function hexToRGBA(
+    hex,
+    alpha
+) {
+
+    const clean =
+        hex.replace("#", "");
+
+
+    const bigint =
+        parseInt(
+            clean,
+            16
+        );
+
+
+    const r =
+        (bigint >> 16) & 255;
+
+
+    const g =
+        (bigint >> 8) & 255;
+
+
+    const b =
+        bigint & 255;
+
+
+    return (
+        "rgba(" +
+        r +
+        "," +
+        g +
+        "," +
+        b +
+        "," +
+        alpha +
+        ")"
+    );
+
+}
+
+
+
+/* =========================================================
+   CHART ERROR
+========================================================= */
+
+function drawChartError(
+    canvas,
+    message
+) {
+
+    if (!canvas) return;
+
+
+    hideChartLoading(canvas);
+
+
+    const wrapper =
+        canvas.parentElement;
+
+
+    if (!wrapper) return;
+
+
+    const rect =
+        wrapper.getBoundingClientRect();
+
+
+    const width =
+        Math.max(
+            rect.width,
+            300
+        );
+
+
+    const height =
+        Math.max(
+            rect.height,
+            280
+        );
+
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    canvas.width =
+        width * dpr;
+
+
+    canvas.height =
+        height * dpr;
+
+
+    canvas.style.width =
+        width + "px";
+
+
+    canvas.style.height =
+        height + "px";
+
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    ctx.fillStyle =
+        "#64736b";
+
+
+    ctx.font =
+        "700 14px Inter, Arial, sans-serif";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillText(
+        message,
+        width / 2,
+        height / 2
+    );
+
+}
+
+
+
+/* =========================================================
+   RESIZE
+   ---------------------------------------------------------
+   Rebuild charts when screen size changes.
+========================================================= */
+
+let resizeTimer;
+
+
+window.addEventListener(
+    "resize",
+    function () {
+
+        clearTimeout(
+            resizeTimer
+        );
+
+
+        resizeTimer =
+            setTimeout(
+                function () {
+
+                    initializeOnlineEnergyCharts();
+
+                },
+                250
+            );
+
+    }
+);
