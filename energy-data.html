@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,60 +6,34 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Energy Data | Safe Energy</title>
 
-
-    <!-- =====================================================
-         GOOGLE FONT
-    ===================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-
-    <!-- =====================================================
-         FONT AWESOME
-    ===================================================== -->
-
+    <!-- FONT AWESOME -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- =====================================================
-         MAIN CSS
-    ===================================================== -->
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="style.css">
 
-    <link
-        rel="stylesheet"
-        href="style.css">
-
-
-    <!-- =====================================================
-         ENERGY DATA PAGE STYLE
-         -----------------------------------------------------
-         Temporary page-specific CSS.
-         Later we can move this into style.css.
-    ===================================================== -->
 
     <style>
 
         /* =====================================================
-           PAGE BACKGROUND SYSTEM
+           PAGE BACKGROUND
         ===================================================== */
 
         .energy-page-section {
@@ -66,31 +41,33 @@
             overflow: hidden;
         }
 
-
         .energy-page-section::before {
             content: "";
             position: absolute;
             inset: 0;
+
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+
             z-index: 0;
         }
 
-
         .energy-page-section::after {
             content: "";
+
             position: absolute;
             inset: 0;
+
             background:
                 linear-gradient(
                     180deg,
                     rgba(5, 24, 15, 0.82),
                     rgba(7, 30, 19, 0.72)
                 );
+
             z-index: 1;
         }
-
 
         .energy-page-section > .section-container {
             position: relative;
@@ -106,7 +83,6 @@
             background-image:
                 url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=85");
         }
-
 
         .energy-data-hero::after {
             background:
@@ -128,7 +104,6 @@
                 url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2200&q=85");
         }
 
-
         .energy-dashboard-section::after {
             background:
                 linear-gradient(
@@ -147,7 +122,6 @@
             background-image:
                 url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2200&q=85");
         }
-
 
         .energy-information-section::after {
             background:
@@ -168,7 +142,6 @@
                 url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
         }
 
-
         .energy-message-section::after {
             background:
                 linear-gradient(
@@ -185,64 +158,72 @@
 
         .energy-data-hero {
             min-height: 720px;
+
             display: flex;
             align-items: center;
+
             padding: 150px 0 100px;
         }
-
 
         .energy-hero-content {
             max-width: 900px;
         }
-
 
         .energy-hero-content .section-label {
             display: inline-flex;
             margin-bottom: 20px;
         }
 
-
         .energy-hero-content h1 {
             font-size: clamp(46px, 7vw, 88px);
+
             line-height: 0.98;
+
             font-weight: 900;
+
             letter-spacing: -3px;
+
             margin-bottom: 28px;
+
             color: white;
         }
-
 
         .energy-hero-content h1 span {
             display: block;
         }
 
-
         .energy-hero-content p {
             max-width: 760px;
+
             font-size: 17px;
+
             line-height: 1.8;
+
             color: rgba(255,255,255,0.78);
+
             margin-bottom: 42px;
         }
 
 
         /* =====================================================
-           HERO ENERGY CARDS
+           HERO CARDS
         ===================================================== */
 
         .hero-energy-cards {
             display: grid;
+
             grid-template-columns:
                 repeat(3, minmax(0, 1fr));
 
             gap: 18px;
+
             max-width: 1000px;
         }
-
 
         .hero-energy-cards .energy-card {
             display: flex;
             align-items: center;
+
             gap: 16px;
 
             padding: 20px;
@@ -266,7 +247,6 @@
                 border-color 0.3s ease;
         }
 
-
         .hero-energy-cards .energy-card:hover {
             transform: translateY(-8px);
 
@@ -276,7 +256,6 @@
             border-color:
                 rgba(80,220,130,0.45);
         }
-
 
         .energy-icon {
             width: 50px;
@@ -298,30 +277,33 @@
             font-size: 20px;
         }
 
-
         .energy-card strong {
             display: block;
+
             font-size: 14px;
+
             font-weight: 800;
+
             margin-bottom: 5px;
         }
 
-
         .energy-card span {
             display: block;
+
             font-size: 11px;
-            color: rgba(255,255,255,0.60);
+
+            color:
+                rgba(255,255,255,0.60);
         }
 
 
         /* =====================================================
-           DASHBOARD SECTION
+           DASHBOARD
         ===================================================== */
 
         .energy-dashboard-section {
             padding: 100px 0;
         }
-
 
         .energy-dashboard-section .dashboard {
             position: relative;
@@ -338,7 +320,6 @@
 
             overflow: hidden;
         }
-
 
         .energy-dashboard-section .dashboard::before {
             content: "";
@@ -377,11 +358,11 @@
             margin-bottom: 25px;
         }
 
-
         .dashboard-label {
             display: block;
 
             font-size: 10px;
+
             font-weight: 800;
 
             letter-spacing: 1.8px;
@@ -390,7 +371,6 @@
 
             margin-bottom: 7px;
         }
-
 
         .dashboard-header h3 {
             margin: 0;
@@ -402,10 +382,10 @@
             color: #14231c;
         }
 
-
         .source-badge {
             display: inline-flex;
             align-items: center;
+
             gap: 8px;
 
             padding: 10px 14px;
@@ -443,7 +423,6 @@
             margin-top: 25px;
         }
 
-
         .energy-data-cards .data-card {
             min-width: 0;
 
@@ -467,14 +446,12 @@
                 box-shadow 0.3s ease;
         }
 
-
         .energy-data-cards .data-card:hover {
             transform: translateY(-6px);
 
             box-shadow:
                 0 15px 35px rgba(20,60,40,0.10);
         }
-
 
         .data-icon {
             width: 45px;
@@ -491,30 +468,25 @@
             font-size: 17px;
         }
 
-
         .data-icon.renewable {
             background: rgba(50,200,120,0.13);
             color: #2cb96e;
         }
-
 
         .data-icon.fossil {
             background: rgba(100,100,100,0.11);
             color: #666;
         }
 
-
         .data-icon.nuclear {
             background: rgba(70,110,180,0.12);
             color: #426fac;
         }
 
-
         .data-icon.electricity {
             background: rgba(240,190,60,0.13);
             color: #bd8b16;
         }
-
 
         .data-card span {
             display: block;
@@ -529,7 +501,6 @@
 
             margin-bottom: 4px;
         }
-
 
         .data-card strong {
             display: block;
@@ -568,7 +539,6 @@
                 1px solid rgba(50,200,120,0.16);
         }
 
-
         .year-data-note > i {
             font-size: 18px;
 
@@ -576,7 +546,6 @@
 
             flex-shrink: 0;
         }
-
 
         .year-data-note strong {
             display: block;
@@ -589,7 +558,6 @@
 
             margin-bottom: 3px;
         }
-
 
         .year-data-note span {
             display: block;
@@ -620,21 +588,13 @@
             margin-top: 30px;
         }
 
-
         .energy-chart-grid .chart-card,
         .energy-chart-full .chart-card {
             width: 100%;
+
             min-width: 0;
+
             margin: 0;
-        }
-
-
-        /* =====================================================
-           CHART CARDS
-        ===================================================== */
-
-        .energy-chart-grid .chart-card,
-        .energy-chart-full .chart-card {
 
             border-radius: 24px;
 
@@ -648,25 +608,17 @@
                 box-shadow 0.3s ease;
         }
 
-
         .energy-chart-grid .chart-card:hover,
         .energy-chart-full .chart-card:hover {
-
             transform: translateY(-6px);
 
             box-shadow:
                 0 25px 55px rgba(20,40,30,0.16);
         }
 
-
-        /* =====================================================
-           CHART BACKGROUND EFFECTS
-        ===================================================== */
-
         .energy-chart-grid .chart-card {
             position: relative;
         }
-
 
         .energy-chart-grid .chart-card::before {
             content: "";
@@ -685,7 +637,6 @@
             pointer-events: none;
         }
 
-
         .energy-chart-full {
             position: relative;
             z-index: 2;
@@ -694,7 +645,6 @@
 
             margin-top: 24px;
         }
-
 
         .energy-chart-full .chart-card {
             position: relative;
@@ -706,7 +656,6 @@
         ===================================================== */
 
         .energy-chart-grid .chart-wrapper {
-
             width: 100%;
 
             min-height: 380px;
@@ -718,9 +667,7 @@
             position: relative;
         }
 
-
         .energy-chart-full .chart-wrapper {
-
             width: 100%;
 
             min-height: 430px;
@@ -732,10 +679,8 @@
             position: relative;
         }
 
-
         .energy-chart-grid canvas,
         .energy-chart-full canvas {
-
             display: block;
 
             max-width: 100%;
@@ -761,7 +706,6 @@
             padding: 25px 25px 10px;
         }
 
-
         .chart-header span {
             display: block;
 
@@ -776,7 +720,6 @@
             margin-bottom: 7px;
         }
 
-
         .chart-header h3 {
             margin: 0 0 5px;
 
@@ -787,13 +730,11 @@
             font-weight: 900;
         }
 
-
         .chart-header small {
             font-size: 11px;
 
             color: #75827c;
         }
-
 
         .chart-header > i {
             width: 42px;
@@ -830,21 +771,17 @@
             color: white;
         }
 
-
         .energy-chart-grid .chart-dark .chart-header span {
             color: #55dc8a;
         }
-
 
         .energy-chart-grid .chart-dark .chart-header h3 {
             color: white;
         }
 
-
         .energy-chart-grid .chart-dark .chart-header small {
             color: rgba(255,255,255,0.56);
         }
-
 
         .energy-chart-grid .chart-dark .chart-header > i {
             background:
@@ -860,7 +797,6 @@
 
         .energy-chart-grid .chart-card:not(.chart-dark),
         .energy-chart-full .chart-card {
-
             background:
                 rgba(255,255,255,0.98);
 
@@ -869,16 +805,7 @@
 
 
         /* =====================================================
-           CHART LOADING
-        ===================================================== */
-
-        .energy-chart-loading {
-            border-radius: 15px;
-        }
-
-
-        /* =====================================================
-           OFFLINE INFORMATION
+           SOURCE
         ===================================================== */
 
         .dashboard-source {
@@ -891,7 +818,6 @@
 
             margin-top: 25px;
         }
-
 
         .source-button {
             display: inline-flex;
@@ -916,13 +842,12 @@
 
 
         /* =====================================================
-           INFORMATION SECTION
+           INFORMATION
         ===================================================== */
 
         .energy-information-section {
             padding: 100px 0;
         }
-
 
         .energy-information-section .section-heading {
             max-width: 800px;
@@ -935,11 +860,9 @@
             color: white;
         }
 
-
         .energy-information-section .section-label {
             color: #63df96;
         }
-
 
         .energy-information-section .section-heading h2 {
             color: white;
@@ -949,14 +872,13 @@
             font-weight: 900;
         }
 
-
         .energy-information-section .section-heading h2 span {
             color: #55dc8a;
         }
 
-
         .energy-information-section .section-heading p {
-            color: rgba(255,255,255,0.70);
+            color:
+                rgba(255,255,255,0.70);
 
             line-height: 1.8;
 
@@ -982,9 +904,7 @@
             margin-top: 45px;
         }
 
-
         .energy-information-section .home-nav-card {
-
             position: relative;
 
             display: flex;
@@ -1017,9 +937,7 @@
                 border-color 0.3s ease;
         }
 
-
         .energy-information-section .home-nav-card:hover {
-
             transform: translateY(-8px);
 
             background:
@@ -1029,9 +947,7 @@
                 rgba(85,220,138,0.45);
         }
 
-
         .home-nav-icon {
-
             width: 50px;
             height: 50px;
 
@@ -1052,9 +968,7 @@
             font-size: 18px;
         }
 
-
         .home-nav-card span {
-
             display: block;
 
             font-size: 9px;
@@ -1068,9 +982,7 @@
             margin-bottom: 5px;
         }
 
-
         .home-nav-card h3 {
-
             margin: 0 0 5px;
 
             font-size: 16px;
@@ -1080,21 +992,18 @@
             color: white;
         }
 
-
         .home-nav-card p {
-
             margin: 0;
 
             font-size: 11px;
 
             line-height: 1.6;
 
-            color: rgba(255,255,255,0.60);
+            color:
+                rgba(255,255,255,0.60);
         }
 
-
         .home-nav-arrow {
-
             margin-left: auto;
 
             color: #55dc8a;
@@ -1110,14 +1019,10 @@
         ===================================================== */
 
         .energy-message-section {
-
             padding: 75px 0;
-
         }
 
-
         .energy-message-section .why-message {
-
             display: flex;
 
             align-items: center;
@@ -1144,9 +1049,7 @@
                 0 20px 60px rgba(0,0,0,0.20);
         }
 
-
         .energy-message-section .why-message-icon {
-
             width: 60px;
             height: 60px;
 
@@ -1167,9 +1070,7 @@
             font-size: 23px;
         }
 
-
         .energy-message-section .why-message h3 {
-
             margin: 0 0 8px;
 
             color: white;
@@ -1179,12 +1080,11 @@
             font-weight: 900;
         }
 
-
         .energy-message-section .why-message p {
-
             margin: 0;
 
-            color: rgba(255,255,255,0.68);
+            color:
+                rgba(255,255,255,0.68);
 
             line-height: 1.7;
 
@@ -1199,33 +1099,21 @@
         @media (max-width: 1000px) {
 
             .hero-energy-cards {
-
                 grid-template-columns: 1fr;
-
                 max-width: 650px;
-
             }
-
 
             .energy-data-cards {
-
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
-
             }
-
 
             .energy-chart-grid {
-
                 grid-template-columns: 1fr;
-
             }
 
-
             .energy-information-section .home-navigation {
-
                 grid-template-columns: 1fr;
-
             }
 
         }
@@ -1234,134 +1122,81 @@
         @media (max-width: 700px) {
 
             .energy-data-hero {
-
                 min-height: auto;
 
                 padding:
                     130px 0
                     80px;
-
             }
-
 
             .energy-hero-content h1 {
-
                 font-size: 48px;
-
                 letter-spacing: -2px;
-
             }
-
 
             .energy-hero-content p {
-
                 font-size: 14px;
-
             }
-
 
             .energy-dashboard-section {
-
                 padding: 60px 0;
-
             }
-
 
             .energy-dashboard-section .dashboard {
-
                 padding: 18px;
-
                 border-radius: 22px;
-
             }
-
 
             .dashboard-header {
-
                 align-items: flex-start;
-
                 flex-direction: column;
-
             }
-
 
             .source-badge {
-
                 white-space: normal;
-
             }
-
 
             .energy-data-cards {
-
                 grid-template-columns: 1fr;
-
             }
-
 
             .energy-chart-grid .chart-wrapper {
-
                 min-height: 320px;
-
                 height: 320px;
-
             }
-
 
             .energy-chart-full .chart-wrapper {
-
                 min-height: 350px;
-
                 height: 350px;
-
             }
-
 
             .energy-chart-grid {
-
                 gap: 18px;
-
             }
-
 
             .energy-chart-full {
-
                 margin-top: 18px;
-
             }
 
-
             .chart-header {
-
                 padding:
                     20px
                     20px
                     8px;
             }
 
-
             .chart-header h3 {
-
                 font-size: 16px;
-
             }
-
 
             .energy-information-section {
-
                 padding: 70px 0;
-
             }
 
-
             .energy-message-section .why-message {
-
                 align-items: flex-start;
-
                 flex-direction: column;
-
                 padding: 24px;
-
             }
 
         }
@@ -1370,50 +1205,30 @@
         @media (max-width: 500px) {
 
             .hero-energy-cards .energy-card {
-
                 padding: 16px;
-
             }
-
 
             .energy-icon {
-
                 width: 44px;
                 height: 44px;
-
             }
-
 
             .energy-hero-content h1 {
-
                 font-size: 40px;
-
             }
-
 
             .energy-chart-grid .chart-wrapper {
-
                 min-height: 300px;
-
                 height: 300px;
-
             }
 
-
             .energy-chart-full .chart-wrapper {
-
                 min-height: 320px;
-
                 height: 320px;
-
             }
 
         }
 
-
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
 
         @media (prefers-reduced-motion: reduce) {
 
@@ -1422,9 +1237,7 @@
             .energy-chart-grid .chart-card,
             .energy-chart-full .chart-card,
             .energy-information-section .home-nav-card {
-
                 transition: none;
-
             }
 
         }
@@ -1441,23 +1254,14 @@
      NAVBAR
 ========================================================= -->
 
-<nav
-    class="navbar"
-    id="navbar">
+<nav class="navbar" id="navbar">
 
     <div class="nav-container">
 
-
-        <!-- LOGO -->
-
-        <a
-            href="index.html"
-            class="logo">
+        <a href="index.html" class="logo">
 
             <div class="logo-icon">
-
                 <i class="fa-solid fa-leaf"></i>
-
             </div>
 
             <span>SAFE ENERGY</span>
@@ -1465,61 +1269,42 @@
         </a>
 
 
-        <!-- NAVIGATION -->
-
-        <div
-            class="nav-menu"
-            id="navMenu">
-
+        <div class="nav-menu" id="navMenu">
 
             <a href="index.html">
                 HOME
             </a>
 
-
             <a href="introduction.html">
                 INTRODUCTION
             </a>
 
-
-            <a
-                href="energy-data.html"
-                class="active">
-
+            <a href="energy-data.html" class="active">
                 ENERGY DATA
-
             </a>
-
 
             <a href="why-renewable.html">
                 WHY RENEWABLE
             </a>
 
-
             <a href="effects.html">
                 EFFECTS
             </a>
-
 
             <a href="what-we-can-do.html">
                 WHAT WE CAN DO
             </a>
 
-
             <a href="our-team.html">
                 OUR TEAM
             </a>
-
 
             <a href="sources.html">
                 SOURCES
             </a>
 
-
         </div>
 
-
-        <!-- MOBILE MENU -->
 
         <button
             class="menu-dots"
@@ -1531,7 +1316,6 @@
 
         </button>
 
-
     </div>
 
 </nav>
@@ -1542,62 +1326,39 @@
      HERO
 ========================================================= -->
 
-<section
-    class="energy-page-section energy-data-hero">
+<section class="energy-page-section energy-data-hero">
 
     <div class="section-container">
 
         <div class="energy-hero-content">
 
-
             <span class="section-label">
-
                 GLOBAL ENERGY DATA
-
             </span>
 
-
             <h1>
-
                 The Global
-
-                <span>
-                    Energy Picture
-                </span>
-
+                <span>Energy Picture</span>
             </h1>
 
-
             <p>
-
                 Explore global energy trends using
                 energy data and visualisations.
                 Compare renewable energy, fossil fuels,
                 nuclear power and global energy consumption
                 across different years.
-
             </p>
 
 
-            <!-- =================================================
-                 HERO ENERGY CARDS
-            ================================================= -->
-
             <div class="hero-energy-cards">
-
-
-                <!-- CARD 1 -->
 
                 <div class="energy-card">
 
                     <div class="energy-icon">
-
                         <i class="fa-solid fa-leaf"></i>
-
                     </div>
 
                     <div>
-
                         <strong>
                             Renewable Energy
                         </strong>
@@ -1605,24 +1366,18 @@
                         <span>
                             Clean energy transition
                         </span>
-
                     </div>
 
                 </div>
 
 
-                <!-- CARD 2 -->
-
                 <div class="energy-card">
 
                     <div class="energy-icon">
-
                         <i class="fa-solid fa-industry"></i>
-
                     </div>
 
                     <div>
-
                         <strong>
                             Fossil Fuels
                         </strong>
@@ -1630,24 +1385,18 @@
                         <span>
                             Traditional energy source
                         </span>
-
                     </div>
 
                 </div>
 
 
-                <!-- CARD 3 -->
-
                 <div class="energy-card">
 
                     <div class="energy-icon">
-
                         <i class="fa-solid fa-bolt"></i>
-
                     </div>
 
                     <div>
-
                         <strong>
                             Electricity
                         </strong>
@@ -1655,11 +1404,9 @@
                         <span>
                             Global electricity generation
                         </span>
-
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1675,20 +1422,12 @@
      ENERGY DASHBOARD
 ========================================================= -->
 
-<section
-    class="
-        energy-page-section
-        energy-dashboard-section
-    ">
+<section class="energy-page-section energy-dashboard-section">
 
     <div class="section-container">
 
         <div class="dashboard energy-dashboard">
 
-
-            <!-- =================================================
-                 DASHBOARD HEADER
-            ================================================= -->
 
             <div class="dashboard-header">
 
@@ -1704,7 +1443,6 @@
 
                 </div>
 
-
                 <div class="source-badge">
 
                     <i class="fa-solid fa-database"></i>
@@ -1717,21 +1455,15 @@
 
 
 
-            <!-- =================================================
-                 DATA CARDS
-            ================================================= -->
+            <!-- DATA CARDS -->
 
             <div class="data-cards energy-data-cards">
 
 
-                <!-- CARD 1 -->
-
                 <div class="data-card">
 
                     <div class="data-icon renewable">
-
                         <i class="fa-solid fa-leaf"></i>
-
                     </div>
 
                     <div>
@@ -1749,14 +1481,10 @@
                 </div>
 
 
-                <!-- CARD 2 -->
-
                 <div class="data-card">
 
                     <div class="data-icon fossil">
-
                         <i class="fa-solid fa-industry"></i>
-
                     </div>
 
                     <div>
@@ -1774,14 +1502,10 @@
                 </div>
 
 
-                <!-- CARD 3 -->
-
                 <div class="data-card">
 
                     <div class="data-icon nuclear">
-
                         <i class="fa-solid fa-atom"></i>
-
                     </div>
 
                     <div>
@@ -1799,14 +1523,10 @@
                 </div>
 
 
-                <!-- CARD 4 -->
-
                 <div class="data-card">
 
                     <div class="data-icon electricity">
-
                         <i class="fa-solid fa-bolt"></i>
-
                     </div>
 
                     <div>
@@ -1823,14 +1543,11 @@
 
                 </div>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 YEAR DATA NOTE
-            ================================================= -->
+            <!-- YEAR NOTE -->
 
             <div class="year-data-note">
 
@@ -1860,9 +1577,7 @@
             <div class="energy-chart-grid">
 
 
-                <!-- =================================================
-                     GRAPH 1
-                ================================================= -->
+                <!-- GRAPH 1 -->
 
                 <div class="chart-card chart-dark">
 
@@ -1884,7 +1599,6 @@
 
                         </div>
 
-
                         <i class="fa-solid fa-chart-line"></i>
 
                     </div>
@@ -1892,9 +1606,7 @@
 
                     <div class="chart-wrapper">
 
-                        <canvas
-                            id="renewableFossilChart">
-                        </canvas>
+                        <canvas id="renewableFossilChart"></canvas>
 
                     </div>
 
@@ -1902,9 +1614,7 @@
 
 
 
-                <!-- =================================================
-                     GRAPH 2
-                ================================================= -->
+                <!-- GRAPH 2 -->
 
                 <div class="chart-card">
 
@@ -1926,7 +1636,6 @@
 
                         </div>
 
-
                         <i class="fa-solid fa-chart-area"></i>
 
                     </div>
@@ -1934,14 +1643,11 @@
 
                     <div class="chart-wrapper">
 
-                        <canvas
-                            id="energyConsumptionChart">
-                        </canvas>
+                        <canvas id="energyConsumptionChart"></canvas>
 
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1973,7 +1679,6 @@
 
                         </div>
 
-
                         <i class="fa-solid fa-bolt"></i>
 
                     </div>
@@ -1981,9 +1686,7 @@
 
                     <div class="chart-wrapper">
 
-                        <canvas
-                            id="electricityChart">
-                        </canvas>
+                        <canvas id="electricityChart"></canvas>
 
                     </div>
 
@@ -1993,15 +1696,11 @@
 
 
 
-            <!-- =================================================
-                 DATA STATUS
-            ================================================= -->
+            <!-- SOURCE -->
 
             <div class="dashboard-source">
 
-                <div
-                    class="source-button"
-                    style="cursor: default;">
+                <div class="source-button">
 
                     <i class="fa-solid fa-globe"></i>
 
@@ -2024,11 +1723,7 @@
      WHY ENERGY DATA MATTERS
 ========================================================= -->
 
-<section
-    class="
-        energy-page-section
-        energy-information-section
-    ">
+<section class="energy-page-section energy-information-section">
 
     <div class="section-container">
 
@@ -2036,55 +1731,35 @@
         <div class="section-heading center">
 
             <span class="section-label">
-
                 UNDERSTANDING THE DATA
-
             </span>
 
-
             <h2>
-
                 Why Energy Data
-
-                <span>
-                    Matters
-                </span>
-
+                <span>Matters</span>
             </h2>
 
-
             <p>
-
                 Energy data helps us understand
                 how the world produces and consumes
                 energy and how the transition toward
                 cleaner energy is progressing.
-
             </p>
 
         </div>
 
 
 
-        <!-- =================================================
-             INFORMATION CARDS
-        ================================================= -->
-
         <div class="home-navigation">
 
-
-            <!-- CARD 1 -->
 
             <a
                 href="why-renewable.html"
                 class="home-nav-card">
 
                 <div class="home-nav-icon">
-
                     <i class="fa-solid fa-leaf"></i>
-
                 </div>
-
 
                 <div>
 
@@ -2103,29 +1778,21 @@
 
                 </div>
 
-
                 <div class="home-nav-arrow">
-
                     <i class="fa-solid fa-arrow-right"></i>
-
                 </div>
 
             </a>
 
 
 
-            <!-- CARD 2 -->
-
             <a
                 href="effects.html"
                 class="home-nav-card">
 
                 <div class="home-nav-icon">
-
                     <i class="fa-solid fa-globe"></i>
-
                 </div>
-
 
                 <div>
 
@@ -2144,29 +1811,21 @@
 
                 </div>
 
-
                 <div class="home-nav-arrow">
-
                     <i class="fa-solid fa-arrow-right"></i>
-
                 </div>
 
             </a>
 
 
 
-            <!-- CARD 3 -->
-
             <a
                 href="what-we-can-do.html"
                 class="home-nav-card">
 
                 <div class="home-nav-icon">
-
                     <i class="fa-solid fa-hand-holding-heart"></i>
-
                 </div>
-
 
                 <div>
 
@@ -2185,11 +1844,8 @@
 
                 </div>
 
-
                 <div class="home-nav-arrow">
-
                     <i class="fa-solid fa-arrow-right"></i>
-
                 </div>
 
             </a>
@@ -2204,26 +1860,18 @@
 
 
 <!-- =========================================================
-     FINAL DATA MESSAGE
+     FINAL MESSAGE
 ========================================================= -->
 
-<section
-    class="
-        energy-page-section
-        energy-message-section
-    ">
+<section class="energy-page-section energy-message-section">
 
     <div class="section-container">
 
         <div class="why-message">
 
-
             <div class="why-message-icon">
-
                 <i class="fa-solid fa-chart-line"></i>
-
             </div>
-
 
             <div>
 
@@ -2231,20 +1879,16 @@
                     Energy Data & Sustainability
                 </h3>
 
-
                 <p>
-
                     These visualisations are designed
                     for educational purposes to help
                     explain global energy trends,
                     renewable energy growth and the
                     continuing role of fossil fuels
                     and nuclear power.
-
                 </p>
 
             </div>
-
 
         </div>
 
@@ -2262,7 +1906,6 @@
 
     <div class="footer-container">
 
-
         <div class="footer-logo">
 
             <i class="fa-solid fa-leaf"></i>
@@ -2271,14 +1914,10 @@
 
         </div>
 
-
         <p>
-
             Understanding energy.
             Protecting the future.
-
         </p>
-
 
         <div class="footer-source">
 
@@ -2290,15 +1929,12 @@
 
         </div>
 
-
         <div class="footer-bottom">
 
             © 2026 Safe Energy.
-
             Educational Research Website.
 
         </div>
-
 
     </div>
 
@@ -2306,13 +1942,11 @@
 
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
+<!-- JAVASCRIPT -->
 
 <script src="script.js"></script>
-
 
 </body>
 
 </html>
+```
