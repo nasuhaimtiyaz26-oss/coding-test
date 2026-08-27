@@ -49,28 +49,564 @@
 
 
     <!-- =====================================================
-         ENERGY DATA PAGE EXTRA STYLE
+         ENERGY DATA PAGE STYLE
+         -----------------------------------------------------
+         Temporary page-specific CSS.
+         Later we can move this into style.css.
     ===================================================== -->
 
     <style>
 
-        /* =================================================
-           ENERGY DATA DASHBOARD
-        ================================================= */
+        /* =====================================================
+           PAGE BACKGROUND SYSTEM
+        ===================================================== */
 
-        .energy-dashboard {
-            width: 100%;
+        .energy-page-section {
+            position: relative;
+            overflow: hidden;
         }
 
 
-        /* =================================================
+        .energy-page-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+
+
+        .energy-page-section::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(5, 24, 15, 0.82),
+                    rgba(7, 30, 19, 0.72)
+                );
+            z-index: 1;
+        }
+
+
+        .energy-page-section > .section-container {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           HERO BACKGROUND
+        ===================================================== */
+
+        .energy-data-hero::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=85");
+        }
+
+
+        .energy-data-hero::after {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(3, 25, 15, 0.90),
+                    rgba(8, 55, 30, 0.65),
+                    rgba(0, 0, 0, 0.72)
+                );
+        }
+
+
+        /* =====================================================
+           DASHBOARD BACKGROUND
+        ===================================================== */
+
+        .energy-dashboard-section::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2200&q=85");
+        }
+
+
+        .energy-dashboard-section::after {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(3, 18, 11, 0.92),
+                    rgba(5, 35, 21, 0.82)
+                );
+        }
+
+
+        /* =====================================================
+           INFORMATION BACKGROUND
+        ===================================================== */
+
+        .energy-information-section::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2200&q=85");
+        }
+
+
+        .energy-information-section::after {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(7, 30, 18, 0.82),
+                    rgba(10, 48, 27, 0.76)
+                );
+        }
+
+
+        /* =====================================================
+           FINAL MESSAGE BACKGROUND
+        ===================================================== */
+
+        .energy-message-section::before {
+            background-image:
+                url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
+        }
+
+
+        .energy-message-section::after {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(4, 25, 15, 0.88),
+                    rgba(8, 48, 27, 0.78)
+                );
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .energy-data-hero {
+            min-height: 720px;
+            display: flex;
+            align-items: center;
+            padding: 150px 0 100px;
+        }
+
+
+        .energy-hero-content {
+            max-width: 900px;
+        }
+
+
+        .energy-hero-content .section-label {
+            display: inline-flex;
+            margin-bottom: 20px;
+        }
+
+
+        .energy-hero-content h1 {
+            font-size: clamp(46px, 7vw, 88px);
+            line-height: 0.98;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+            color: white;
+        }
+
+
+        .energy-hero-content h1 span {
+            display: block;
+        }
+
+
+        .energy-hero-content p {
+            max-width: 760px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.78);
+            margin-bottom: 42px;
+        }
+
+
+        /* =====================================================
+           HERO ENERGY CARDS
+        ===================================================== */
+
+        .hero-energy-cards {
+            display: grid;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 18px;
+            max-width: 1000px;
+        }
+
+
+        .hero-energy-cards .energy-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid rgba(255,255,255,0.16);
+
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            color: white;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        .hero-energy-cards .energy-card:hover {
+            transform: translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.15);
+
+            border-color:
+                rgba(80,220,130,0.45);
+        }
+
+
+        .energy-icon {
+            width: 50px;
+            height: 50px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(50,200,120,0.18);
+
+            color: #55dc8a;
+
+            font-size: 20px;
+        }
+
+
+        .energy-card strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+
+        .energy-card span {
+            display: block;
+            font-size: 11px;
+            color: rgba(255,255,255,0.60);
+        }
+
+
+        /* =====================================================
+           DASHBOARD SECTION
+        ===================================================== */
+
+        .energy-dashboard-section {
+            padding: 100px 0;
+        }
+
+
+        .energy-dashboard-section .dashboard {
+            position: relative;
+
+            padding: 35px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.28);
+
+            overflow: hidden;
+        }
+
+
+        .energy-dashboard-section .dashboard::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            top: -150px;
+            right: -120px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(50,200,120,0.10);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           DASHBOARD HEADER
+        ===================================================== */
+
+        .dashboard-header {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .dashboard-label {
+            display: block;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 1.8px;
+
+            color: #32c878;
+
+            margin-bottom: 7px;
+        }
+
+
+        .dashboard-header h3 {
+            margin: 0;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            color: #14231c;
+        }
+
+
+        .source-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(50,200,120,0.10);
+
+            color: #277c50;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           DATA CARDS
+        ===================================================== */
+
+        .energy-data-cards {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 18px;
+
+            margin-top: 25px;
+        }
+
+
+        .energy-data-cards .data-card {
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(248,251,249,0.96);
+
+            border:
+                1px solid rgba(30,70,50,0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .energy-data-cards .data-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 15px 35px rgba(20,60,40,0.10);
+        }
+
+
+        .data-icon {
+            width: 45px;
+            height: 45px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            font-size: 17px;
+        }
+
+
+        .data-icon.renewable {
+            background: rgba(50,200,120,0.13);
+            color: #2cb96e;
+        }
+
+
+        .data-icon.fossil {
+            background: rgba(100,100,100,0.11);
+            color: #666;
+        }
+
+
+        .data-icon.nuclear {
+            background: rgba(70,110,180,0.12);
+            color: #426fac;
+        }
+
+
+        .data-icon.electricity {
+            background: rgba(240,190,60,0.13);
+            color: #bd8b16;
+        }
+
+
+        .data-card span {
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #718078;
+
+            margin-bottom: 4px;
+        }
+
+
+        .data-card strong {
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            color: #18271f;
+        }
+
+
+        /* =====================================================
+           YEAR NOTE
+        ===================================================== */
+
+        .year-data-note {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            margin-top: 20px;
+
+            padding: 15px 18px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(50,200,120,0.07);
+
+            border:
+                1px solid rgba(50,200,120,0.16);
+        }
+
+
+        .year-data-note > i {
+            font-size: 18px;
+
+            color: #32c878;
+
+            flex-shrink: 0;
+        }
+
+
+        .year-data-note strong {
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: #1c3126;
+
+            margin-bottom: 3px;
+        }
+
+
+        .year-data-note span {
+            display: block;
+
+            font-size: 11px;
+
+            color: #65746c;
+        }
+
+
+        /* =====================================================
            CHART GRID
-           
-           GRAPH 1 + GRAPH 2
-           = TWO COLUMNS
-        ================================================= */
+        ===================================================== */
 
         .energy-chart-grid {
+            position: relative;
+            z-index: 2;
 
             display: grid;
 
@@ -82,52 +618,92 @@
             width: 100%;
 
             margin-top: 30px;
-
         }
 
 
-        /* =================================================
-           ALL CHART CARDS
-        ================================================= */
+        .energy-chart-grid .chart-card,
+        .energy-chart-full .chart-card {
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           CHART CARDS
+        ===================================================== */
+
+        .energy-chart-grid .chart-card,
+        .energy-chart-full .chart-card {
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 45px rgba(20,40,30,0.10);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .energy-chart-grid .chart-card:hover,
+        .energy-chart-full .chart-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 25px 55px rgba(20,40,30,0.16);
+        }
+
+
+        /* =====================================================
+           CHART BACKGROUND EFFECTS
+        ===================================================== */
 
         .energy-chart-grid .chart-card {
-
-            width: 100%;
-
-            min-width: 0;
-
-            margin: 0;
-
+            position: relative;
         }
 
 
-        /* =================================================
-           GRAPH 3
-           
-           FULL WIDTH
-        ================================================= */
+        .energy-chart-grid .chart-card::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(50,200,120,0.06),
+                    transparent 60%
+                );
+
+            pointer-events: none;
+        }
+
 
         .energy-chart-full {
+            position: relative;
+            z-index: 2;
 
             width: 100%;
 
             margin-top: 24px;
-
         }
 
 
         .energy-chart-full .chart-card {
-
-            width: 100%;
-
-            margin: 0;
-
+            position: relative;
         }
 
 
-        /* =================================================
+        /* =====================================================
            CHART WRAPPER
-        ================================================= */
+        ===================================================== */
 
         .energy-chart-grid .chart-wrapper {
 
@@ -137,6 +713,9 @@
 
             height: 380px;
 
+            padding: 10px 15px 15px;
+
+            position: relative;
         }
 
 
@@ -148,6 +727,9 @@
 
             height: 430px;
 
+            padding: 10px 15px 15px;
+
+            position: relative;
         }
 
 
@@ -157,102 +739,470 @@
             display: block;
 
             max-width: 100%;
-
         }
 
 
-        /* =================================================
-           DATA CARDS
-        ================================================= */
+        /* =====================================================
+           CHART HEADER
+        ===================================================== */
 
-        .energy-data-cards {
+        .chart-header {
+            position: relative;
+            z-index: 2;
 
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 25px 25px 10px;
+        }
+
+
+        .chart-header span {
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            color: #32a968;
+
+            margin-bottom: 7px;
+        }
+
+
+        .chart-header h3 {
+            margin: 0 0 5px;
+
+            font-size: 18px;
+
+            line-height: 1.3;
+
+            font-weight: 900;
+        }
+
+
+        .chart-header small {
+            font-size: 11px;
+
+            color: #75827c;
+        }
+
+
+        .chart-header > i {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                rgba(50,200,120,0.10);
+
+            color: #32c878;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           DARK CHART
+        ===================================================== */
+
+        .energy-chart-grid .chart-dark {
+            background:
+                linear-gradient(
+                    145deg,
+                    #071b11,
+                    #0c3020
+                );
+
+            color: white;
+        }
+
+
+        .energy-chart-grid .chart-dark .chart-header span {
+            color: #55dc8a;
+        }
+
+
+        .energy-chart-grid .chart-dark .chart-header h3 {
+            color: white;
+        }
+
+
+        .energy-chart-grid .chart-dark .chart-header small {
+            color: rgba(255,255,255,0.56);
+        }
+
+
+        .energy-chart-grid .chart-dark .chart-header > i {
+            background:
+                rgba(50,200,120,0.14);
+
+            color: #55dc8a;
+        }
+
+
+        /* =====================================================
+           NORMAL CHART
+        ===================================================== */
+
+        .energy-chart-grid .chart-card:not(.chart-dark),
+        .energy-chart-full .chart-card {
+
+            background:
+                rgba(255,255,255,0.98);
+
+            color: #17251e;
+        }
+
+
+        /* =====================================================
+           CHART LOADING
+        ===================================================== */
+
+        .energy-chart-loading {
+            border-radius: 15px;
+        }
+
+
+        /* =====================================================
+           OFFLINE INFORMATION
+        ===================================================== */
+
+        .dashboard-source {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 25px;
+        }
+
+
+        .source-button {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 15px;
+
+            border-radius: 999px;
+
+            background:
+                #f2f6f3;
+
+            color: #5d6d64;
+
+            font-size: 10px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           INFORMATION SECTION
+        ===================================================== */
+
+        .energy-information-section {
+            padding: 100px 0;
+        }
+
+
+        .energy-information-section .section-heading {
+            max-width: 800px;
+
+            margin-left: auto;
+            margin-right: auto;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .energy-information-section .section-label {
+            color: #63df96;
+        }
+
+
+        .energy-information-section .section-heading h2 {
+            color: white;
+
+            font-size: clamp(36px, 5vw, 58px);
+
+            font-weight: 900;
+        }
+
+
+        .energy-information-section .section-heading h2 span {
+            color: #55dc8a;
+        }
+
+
+        .energy-information-section .section-heading p {
+            color: rgba(255,255,255,0.70);
+
+            line-height: 1.8;
+
+            max-width: 700px;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* =====================================================
+           NAVIGATION CARDS
+        ===================================================== */
+
+        .energy-information-section .home-navigation {
             display: grid;
 
             grid-template-columns:
-                repeat(4, minmax(0, 1fr));
+                repeat(3, minmax(0, 1fr));
 
-            gap: 18px;
+            gap: 20px;
 
-            margin-top: 30px;
-
+            margin-top: 45px;
         }
 
 
-        .energy-data-cards .data-card {
+        .energy-information-section .home-nav-card {
 
-            min-width: 0;
-
-        }
-
-
-        /* =================================================
-           YEAR DATA INFORMATION
-        ================================================= */
-
-        .year-data-note {
+            position: relative;
 
             display: flex;
 
             align-items: center;
 
-            gap: 12px;
+            gap: 17px;
 
-            margin-top: 20px;
+            padding: 25px;
 
-            padding: 15px 18px;
+            border-radius: 22px;
 
-            border-radius: 14px;
+            background:
+                rgba(255,255,255,0.10);
 
-            background: rgba(66, 201, 120, 0.08);
+            border:
+                1px solid rgba(255,255,255,0.16);
 
-            border: 1px solid rgba(66, 201, 120, 0.18);
+            backdrop-filter: blur(14px);
 
+            -webkit-backdrop-filter: blur(14px);
+
+            color: white;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                border-color 0.3s ease;
         }
 
 
-        .year-data-note i {
+        .energy-information-section .home-nav-card:hover {
 
-            font-size: 18px;
+            transform: translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.15);
+
+            border-color:
+                rgba(85,220,138,0.45);
+        }
+
+
+        .home-nav-icon {
+
+            width: 50px;
+            height: 50px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
 
             flex-shrink: 0;
 
+            border-radius: 15px;
+
+            background:
+                rgba(50,200,120,0.16);
+
+            color: #55dc8a;
+
+            font-size: 18px;
         }
 
 
-        .year-data-note strong {
+        .home-nav-card span {
 
             display: block;
 
-            font-size: 13px;
+            font-size: 9px;
 
             font-weight: 800;
 
-            margin-bottom: 3px;
+            letter-spacing: 1.3px;
+
+            color: #62dc94;
+
+            margin-bottom: 5px;
+        }
+
+
+        .home-nav-card h3 {
+
+            margin: 0 0 5px;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            color: white;
+        }
+
+
+        .home-nav-card p {
+
+            margin: 0;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            color: rgba(255,255,255,0.60);
+        }
+
+
+        .home-nav-arrow {
+
+            margin-left: auto;
+
+            color: #55dc8a;
+
+            font-size: 14px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           FINAL MESSAGE
+        ===================================================== */
+
+        .energy-message-section {
+
+            padding: 75px 0;
 
         }
 
 
-        .year-data-note span {
+        .energy-message-section .why-message {
 
-            display: block;
+            display: flex;
 
-            font-size: 12px;
+            align-items: center;
 
-            opacity: 0.75;
+            gap: 22px;
 
+            padding: 30px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,0.10);
+
+            border:
+                1px solid rgba(255,255,255,0.16);
+
+            backdrop-filter: blur(15px);
+
+            -webkit-backdrop-filter: blur(15px);
+
+            color: white;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.20);
         }
 
 
-        /* =================================================
-           TABLET
-        ================================================= */
+        .energy-message-section .why-message-icon {
+
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 18px;
+
+            background:
+                rgba(50,200,120,0.18);
+
+            color: #63df96;
+
+            font-size: 23px;
+        }
+
+
+        .energy-message-section .why-message h3 {
+
+            margin: 0 0 8px;
+
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        .energy-message-section .why-message p {
+
+            margin: 0;
+
+            color: rgba(255,255,255,0.68);
+
+            line-height: 1.7;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
         @media (max-width: 1000px) {
 
-            .energy-chart-grid {
+            .hero-energy-cards {
 
                 grid-template-columns: 1fr;
+
+                max-width: 650px;
 
             }
 
@@ -264,14 +1214,83 @@
 
             }
 
+
+            .energy-chart-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .energy-information-section .home-navigation {
+
+                grid-template-columns: 1fr;
+
+            }
+
         }
 
 
-        /* =================================================
-           MOBILE
-        ================================================= */
+        @media (max-width: 700px) {
 
-        @media (max-width: 600px) {
+            .energy-data-hero {
+
+                min-height: auto;
+
+                padding:
+                    130px 0
+                    80px;
+
+            }
+
+
+            .energy-hero-content h1 {
+
+                font-size: 48px;
+
+                letter-spacing: -2px;
+
+            }
+
+
+            .energy-hero-content p {
+
+                font-size: 14px;
+
+            }
+
+
+            .energy-dashboard-section {
+
+                padding: 60px 0;
+
+            }
+
+
+            .energy-dashboard-section .dashboard {
+
+                padding: 18px;
+
+                border-radius: 22px;
+
+            }
+
+
+            .dashboard-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .source-badge {
+
+                white-space: normal;
+
+            }
+
 
             .energy-data-cards {
 
@@ -308,6 +1327,103 @@
             .energy-chart-full {
 
                 margin-top: 18px;
+
+            }
+
+
+            .chart-header {
+
+                padding:
+                    20px
+                    20px
+                    8px;
+            }
+
+
+            .chart-header h3 {
+
+                font-size: 16px;
+
+            }
+
+
+            .energy-information-section {
+
+                padding: 70px 0;
+
+            }
+
+
+            .energy-message-section .why-message {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                padding: 24px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero-energy-cards .energy-card {
+
+                padding: 16px;
+
+            }
+
+
+            .energy-icon {
+
+                width: 44px;
+                height: 44px;
+
+            }
+
+
+            .energy-hero-content h1 {
+
+                font-size: 40px;
+
+            }
+
+
+            .energy-chart-grid .chart-wrapper {
+
+                min-height: 300px;
+
+                height: 300px;
+
+            }
+
+
+            .energy-chart-full .chart-wrapper {
+
+                min-height: 320px;
+
+                height: 320px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero-energy-cards .energy-card,
+            .energy-data-cards .data-card,
+            .energy-chart-grid .chart-card,
+            .energy-chart-full .chart-card,
+            .energy-information-section .home-nav-card {
+
+                transition: none;
 
             }
 
@@ -359,7 +1475,7 @@
             <a href="index.html">
                 HOME
             </a>
-            
+
 
             <a href="introduction.html">
                 INTRODUCTION
@@ -423,116 +1539,129 @@
 
 
 <!-- =========================================================
-     PAGE HERO
+     HERO
 ========================================================= -->
 
-<section class="page-hero">
+<section
+    class="energy-page-section energy-data-hero">
 
     <div class="section-container">
 
-
-        <span class="section-label">
-            GLOBAL ENERGY DATA
-        </span>
+        <div class="energy-hero-content">
 
 
-        <h1>
+            <span class="section-label">
 
-            The Global
+                GLOBAL ENERGY DATA
 
-            <span>
-                Energy Picture
             </span>
 
-        </h1>
+
+            <h1>
+
+                The Global
+
+                <span>
+                    Energy Picture
+                </span>
+
+            </h1>
 
 
-        <p>
+            <p>
 
-            Explore global energy trends using
-            energy data and visualisations.
-            Compare renewable energy, fossil fuels,
-            nuclear power and global energy consumption
-            across different years.
+                Explore global energy trends using
+                energy data and visualisations.
+                Compare renewable energy, fossil fuels,
+                nuclear power and global energy consumption
+                across different years.
 
-        </p>
-
-
-        <!-- =================================================
-             HERO ENERGY CARDS
-        ================================================= -->
-
-        <div class="hero-energy-cards">
+            </p>
 
 
-            <div class="energy-card">
+            <!-- =================================================
+                 HERO ENERGY CARDS
+            ================================================= -->
 
-                <div class="energy-icon">
+            <div class="hero-energy-cards">
 
-                    <i class="fa-solid fa-leaf"></i>
+
+                <!-- CARD 1 -->
+
+                <div class="energy-card">
+
+                    <div class="energy-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Renewable Energy
+                        </strong>
+
+                        <span>
+                            Clean energy transition
+                        </span>
+
+                    </div>
 
                 </div>
 
-                <div>
 
-                    <strong>
-                        Renewable Energy
-                    </strong>
+                <!-- CARD 2 -->
 
-                    <span>
-                        Clean energy transition
-                    </span>
+                <div class="energy-card">
+
+                    <div class="energy-icon">
+
+                        <i class="fa-solid fa-industry"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Fossil Fuels
+                        </strong>
+
+                        <span>
+                            Traditional energy source
+                        </span>
+
+                    </div>
 
                 </div>
+
+
+                <!-- CARD 3 -->
+
+                <div class="energy-card">
+
+                    <div class="energy-icon">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Electricity
+                        </strong>
+
+                        <span>
+                            Global electricity generation
+                        </span>
+
+                    </div>
+
+                </div>
+
 
             </div>
-
-
-            <div class="energy-card">
-
-                <div class="energy-icon">
-
-                    <i class="fa-solid fa-industry"></i>
-
-                </div>
-
-                <div>
-
-                    <strong>
-                        Fossil Fuels
-                    </strong>
-
-                    <span>
-                        Traditional energy source
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="energy-card">
-
-                <div class="energy-icon">
-
-                    <i class="fa-solid fa-bolt"></i>
-
-                </div>
-
-                <div>
-
-                    <strong>
-                        Electricity
-                    </strong>
-
-                    <span>
-                        Global electricity generation
-                    </span>
-
-                </div>
-
-            </div>
-
 
         </div>
 
@@ -543,10 +1672,14 @@
 
 
 <!-- =========================================================
-     ENERGY DATA DASHBOARD
+     ENERGY DASHBOARD
 ========================================================= -->
 
-<section class="energy-section">
+<section
+    class="
+        energy-page-section
+        energy-dashboard-section
+    ">
 
     <div class="section-container">
 
@@ -576,7 +1709,7 @@
 
                     <i class="fa-solid fa-database"></i>
 
-                    OFFLINE ENERGY DATA
+                    ONLINE ENERGY DATA
 
                 </div>
 
@@ -711,7 +1844,7 @@
 
                     <span>
                         Move across the chart timeline to compare
-                        energy trends from 2000 to 2023.
+                        global energy trends across different years.
                     </span>
 
                 </div>
@@ -721,10 +1854,7 @@
 
 
             <!-- =================================================
-                 GRAPH ROW
-                 
                  GRAPH 1 + GRAPH 2
-                 TWO COLUMNS
             ================================================= -->
 
             <div class="energy-chart-grid">
@@ -819,8 +1949,6 @@
 
             <!-- =================================================
                  GRAPH 3
-                 
-                 FULL WIDTH BELOW GRAPH 1 & 2
             ================================================= -->
 
             <div class="energy-chart-full">
@@ -866,7 +1994,7 @@
 
 
             <!-- =================================================
-                 OFFLINE INFORMATION
+                 DATA STATUS
             ================================================= -->
 
             <div class="dashboard-source">
@@ -875,9 +2003,9 @@
                     class="source-button"
                     style="cursor: default;">
 
-                    <i class="fa-solid fa-wifi"></i>
+                    <i class="fa-solid fa-globe"></i>
 
-                    CHARTS WORK OFFLINE
+                    LIVE DATA FROM OUR WORLD IN DATA
 
                 </div>
 
@@ -893,13 +2021,13 @@
 
 
 <!-- =========================================================
-     ENERGY INFORMATION
+     WHY ENERGY DATA MATTERS
 ========================================================= -->
 
 <section
-    style="
-        background: white;
-        padding: 80px 0;
+    class="
+        energy-page-section
+        energy-information-section
     ">
 
     <div class="section-container">
@@ -908,7 +2036,9 @@
         <div class="section-heading center">
 
             <span class="section-label">
+
                 UNDERSTANDING THE DATA
+
             </span>
 
 
@@ -1074,13 +2204,13 @@
 
 
 <!-- =========================================================
-     DATA NOTE
+     FINAL DATA MESSAGE
 ========================================================= -->
 
 <section
-    style="
-        background: var(--off-white);
-        padding: 65px 0;
+    class="
+        energy-page-section
+        energy-message-section
     ">
 
     <div class="section-container">
@@ -1155,9 +2285,7 @@
             Research sources:
 
             Our World in Data •
-
             International Energy Agency •
-
             ENERGY STAR
 
         </div>
