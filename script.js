@@ -2,12 +2,10 @@
    SAFE ENERGY
    MASTER JAVASCRIPT
    OFFLINE VERSION
-   Navigation + Animation + Offline Energy Charts
+   Navigation + Animation + Interactive Energy Charts
 ========================================================= */
 
-
 document.addEventListener("DOMContentLoaded", function () {
-
 
     /* =====================================================
        01. MOBILE NAVIGATION
@@ -15,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const menuDots = document.getElementById("menuDots");
     const navMenu = document.getElementById("navMenu");
-
 
     if (menuDots && navMenu) {
 
@@ -33,29 +30,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+        navMenu.querySelectorAll("a").forEach(function (link) {
 
-        navMenu
-            .querySelectorAll("a")
-            .forEach(function (link) {
+            link.addEventListener("click", function () {
 
-                link.addEventListener(
-                    "click",
-                    function () {
+                navMenu.classList.remove("open");
 
-                        navMenu.classList.remove("open");
-
-                        menuDots.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                    }
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    "false"
                 );
 
             });
 
+        });
     }
-
 
 
     /* =====================================================
@@ -65,11 +54,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbar =
         document.getElementById("navbar");
 
-
     function updateNavbar() {
 
         if (!navbar) return;
-
 
         if (window.scrollY > 30) {
 
@@ -80,19 +67,15 @@ document.addEventListener("DOMContentLoaded", function () {
             navbar.classList.remove("scrolled");
 
         }
-
     }
 
-
     updateNavbar();
-
 
     window.addEventListener(
         "scroll",
         updateNavbar,
         { passive: true }
     );
-
 
 
     /* =====================================================
@@ -114,50 +97,39 @@ document.addEventListener("DOMContentLoaded", function () {
             ".energy-card"
         );
 
-
     animatedElements.forEach(function (element) {
 
         element.classList.remove("reveal");
-
         element.classList.add("show");
 
     });
-
 
     if ("IntersectionObserver" in window) {
 
         animatedElements.forEach(function (element) {
 
             element.classList.remove("show");
-
             element.classList.add("reveal");
 
         });
-
 
         const observer =
             new IntersectionObserver(
                 function (entries) {
 
-                    entries.forEach(
-                        function (entry) {
+                    entries.forEach(function (entry) {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(
                                 entry.target
-                                    .classList
-                                    .add("show");
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
                 {
@@ -165,33 +137,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             );
 
+        animatedElements.forEach(function (element) {
 
-        animatedElements.forEach(
-            function (element) {
+            observer.observe(element);
 
-                observer.observe(element);
-
-            }
-        );
+        });
 
     } else {
 
-        animatedElements.forEach(
-            function (element) {
+        animatedElements.forEach(function (element) {
 
-                element.classList.remove(
-                    "reveal"
-                );
+            element.classList.remove("reveal");
+            element.classList.add("show");
 
-                element.classList.add(
-                    "show"
-                );
-
-            }
-        );
+        });
 
     }
-
 
 
     /* =====================================================
@@ -203,13 +164,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .split("/")
             .pop();
 
-
     if (!currentPage) {
-
         currentPage = "index.html";
-
     }
-
 
     document
         .querySelectorAll(".nav-menu a")
@@ -217,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const linkPage =
                 link.getAttribute("href");
-
 
             if (linkPage === currentPage) {
 
@@ -230,7 +186,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
         });
-
 
 
     /* =====================================================
@@ -261,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
        06. ESCAPE KEY
     ===================================================== */
@@ -274,12 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (navMenu) {
 
-                    navMenu.classList.remove(
-                        "open"
-                    );
+                    navMenu.classList.remove("open");
 
                 }
-
 
                 if (menuDots) {
 
@@ -296,9 +247,21 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+    /* =====================================================
+       07. ENERGY DATA CHART LAYOUT
+       
+       GRAPH 1 + GRAPH 2
+       = SIDE BY SIDE
+
+       GRAPH 3
+       = FULL WIDTH BELOW
+    ===================================================== */
+
+    setupEnergyChartLayout();
+
 
     /* =====================================================
-       07. OFFLINE ENERGY CHARTS
+       08. INITIALIZE ENERGY CHARTS
     ===================================================== */
 
     initializeOfflineCharts();
@@ -308,235 +271,233 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /* =========================================================
-   OFFLINE ENERGY DATA
-   No internet required.
+   ENERGY CHART LAYOUT
 ========================================================= */
 
+function setupEnergyChartLayout() {
 
-/*
-    These values are embedded directly into JavaScript.
+    const dashboard =
+        document.querySelector(".dashboard");
 
-    Therefore:
+    if (!dashboard) return;
 
-    Internet OFF  -> Charts still work
-    GitHub Pages  -> Charts work
-    Local HTML    -> Charts work
-*/
+    const charts =
+        dashboard.querySelectorAll(".chart-card");
 
+    if (charts.length < 3) return;
+
+
+    /*
+       Create responsive grid directly from JavaScript.
+
+       Desktop:
+       GRAPH 1 | GRAPH 2
+       GRAPH 3 | GRAPH 3
+
+       Mobile:
+       GRAPH 1
+       GRAPH 2
+       GRAPH 3
+    */
+
+    dashboard.style.display = "grid";
+
+    dashboard.style.gridTemplateColumns =
+        "repeat(2, minmax(0, 1fr))";
+
+    dashboard.style.gap = "24px";
+
+
+    /*
+       Keep dashboard header full width
+    */
+
+    const header =
+        dashboard.querySelector(".dashboard-header");
+
+    if (header) {
+
+        header.style.gridColumn =
+            "1 / -1";
+
+    }
+
+
+    /*
+       Data cards full width
+    */
+
+    const dataCards =
+        dashboard.querySelector(".data-cards");
+
+    if (dataCards) {
+
+        dataCards.style.gridColumn =
+            "1 / -1";
+
+    }
+
+
+    /*
+       GRAPH 1
+    */
+
+    charts[0].style.gridColumn =
+        "span 1";
+
+
+    /*
+       GRAPH 2
+    */
+
+    charts[1].style.gridColumn =
+        "span 1";
+
+
+    /*
+       GRAPH 3
+       Full width
+    */
+
+    charts[2].style.gridColumn =
+        "1 / -1";
+
+
+    /*
+       Source full width
+    */
+
+    const source =
+        dashboard.querySelector(".dashboard-source");
+
+    if (source) {
+
+        source.style.gridColumn =
+            "1 / -1";
+
+    }
+
+
+    /*
+       Mobile responsive
+    */
+
+    function responsiveChartLayout() {
+
+        if (window.innerWidth <= 850) {
+
+            dashboard.style.gridTemplateColumns =
+                "1fr";
+
+            charts.forEach(function (chart) {
+
+                chart.style.gridColumn =
+                    "1 / -1";
+
+            });
+
+        } else {
+
+            dashboard.style.gridTemplateColumns =
+                "repeat(2, minmax(0, 1fr))";
+
+            charts[0].style.gridColumn =
+                "span 1";
+
+            charts[1].style.gridColumn =
+                "span 1";
+
+            charts[2].style.gridColumn =
+                "1 / -1";
+
+        }
+
+    }
+
+    responsiveChartLayout();
+
+    window.addEventListener(
+        "resize",
+        responsiveChartLayout
+    );
+
+}
+
+
+
+/* =========================================================
+   OFFLINE ENERGY DATA
+========================================================= */
 
 const ENERGY_DATA = {
 
     years: [
-        2000,
-        2001,
-        2002,
-        2003,
-        2004,
-        2005,
-        2006,
-        2007,
-        2008,
-        2009,
-        2010,
-        2011,
-        2012,
-        2013,
-        2014,
-        2015,
-        2016,
-        2017,
-        2018,
-        2019,
-        2020,
-        2021,
-        2022,
-        2023
+        2000, 2001, 2002, 2003,
+        2004, 2005, 2006, 2007,
+        2008, 2009, 2010, 2011,
+        2012, 2013, 2014, 2015,
+        2016, 2017, 2018, 2019,
+        2020, 2021, 2022, 2023
     ],
 
-
-    /*
-        Renewable share of global primary energy (%)
-    */
 
     renewable: [
-        6.6,
-        6.7,
-        6.8,
-        6.9,
-        7.1,
-        7.3,
-        7.5,
-        7.8,
-        8.0,
-        8.2,
-        8.5,
-        8.8,
-        9.2,
-        9.6,
-        10.0,
-        10.5,
-        11.0,
-        11.6,
-        12.2,
-        12.8,
-        13.5,
-        14.4,
-        15.3,
-        16.2
+        6.6, 6.7, 6.8, 6.9,
+        7.1, 7.3, 7.5, 7.8,
+        8.0, 8.2, 8.5, 8.8,
+        9.2, 9.6, 10.0, 10.5,
+        11.0, 11.6, 12.2, 12.8,
+        13.5, 14.4, 15.3, 16.2
     ],
 
-
-    /*
-        Fossil fuel share of global primary energy (%)
-    */
 
     fossil: [
-        80.2,
-        80.0,
-        79.8,
-        79.6,
-        79.4,
-        79.2,
-        79.0,
-        78.8,
-        78.2,
-        77.8,
-        77.2,
-        76.8,
-        76.3,
-        75.8,
-        75.2,
-        74.7,
-        74.0,
-        73.4,
-        72.8,
-        72.1,
-        70.5,
-        71.4,
-        70.2,
-        69.1
+        80.2, 80.0, 79.8, 79.6,
+        79.4, 79.2, 79.0, 78.8,
+        78.2, 77.8, 77.2, 76.8,
+        76.3, 75.8, 75.2, 74.7,
+        74.0, 73.4, 72.8, 72.1,
+        70.5, 71.4, 70.2, 69.1
     ],
 
-
-    /*
-        Global primary energy consumption
-        Approximate EJ-style index values
-        for offline visualisation.
-    */
 
     consumption: [
-        105,
-        106,
-        108,
-        111,
-        115,
-        119,
-        122,
-        126,
-        127,
-        123,
-        131,
-        134,
-        136,
-        139,
-        141,
-        144,
-        147,
-        150,
-        154,
-        156,
-        150,
-        157,
-        162,
-        165
+        105, 106, 108, 111,
+        115, 119, 122, 126,
+        127, 123, 131, 134,
+        136, 139, 141, 144,
+        147, 150, 154, 156,
+        150, 157, 162, 165
     ],
 
 
-    /*
-        Electricity generation source shares (%)
-    */
-
     electricityRenewable: [
-        19.0,
-        19.2,
-        19.5,
-        19.7,
-        20.0,
-        20.3,
-        20.7,
-        21.0,
-        21.5,
-        22.0,
-        22.5,
-        23.0,
-        23.7,
-        24.5,
-        25.3,
-        26.2,
-        27.0,
-        28.0,
-        29.0,
-        30.0,
-        31.5,
-        33.0,
-        34.5,
-        36.0
+        19.0, 19.2, 19.5, 19.7,
+        20.0, 20.3, 20.7, 21.0,
+        21.5, 22.0, 22.5, 23.0,
+        23.7, 24.5, 25.3, 26.2,
+        27.0, 28.0, 29.0, 30.0,
+        31.5, 33.0, 34.5, 36.0
     ],
 
 
     electricityFossil: [
-        65.0,
-        64.8,
-        64.5,
-        64.3,
-        64.0,
-        63.7,
-        63.2,
-        62.8,
-        62.0,
-        61.5,
-        60.5,
-        59.8,
-        59.0,
-        58.2,
-        57.5,
-        56.5,
-        55.5,
-        54.5,
-        53.5,
-        52.5,
-        51.0,
-        49.8,
-        48.0,
-        46.5
+        65.0, 64.8, 64.5, 64.3,
+        64.0, 63.7, 63.2, 62.8,
+        62.0, 61.5, 60.5, 59.8,
+        59.0, 58.2, 57.5, 56.5,
+        55.5, 54.5, 53.5, 52.5,
+        51.0, 49.8, 48.0, 46.5
     ],
 
 
     electricityNuclear: [
-        16.0,
-        16.0,
-        16.0,
-        16.0,
-        16.0,
-        16.0,
-        15.8,
-        15.7,
-        15.5,
-        15.3,
-        15.0,
-        14.7,
-        14.3,
-        14.0,
-        13.7,
-        13.3,
-        13.0,
-        12.5,
-        12.0,
-        11.5,
-        11.0,
-        10.8,
-        10.5,
-        10.2
+        16.0, 16.0, 16.0, 16.0,
+        16.0, 16.0, 15.8, 15.7,
+        15.5, 15.3, 15.0, 14.7,
+        14.3, 14.0, 13.7, 13.3,
+        13.0, 12.5, 12.0, 11.5,
+        11.0, 10.8, 10.5, 10.2
     ]
 
 };
@@ -544,7 +505,7 @@ const ENERGY_DATA = {
 
 
 /* =========================================================
-   INITIALIZE CHARTS
+   INITIALIZE ALL CHARTS
 ========================================================= */
 
 function initializeOfflineCharts() {
@@ -554,12 +515,10 @@ function initializeOfflineCharts() {
             "renewableFossilChart"
         );
 
-
     const chart2 =
         document.getElementById(
             "energyConsumptionChart"
         );
-
 
     const chart3 =
         document.getElementById(
@@ -578,34 +537,23 @@ function initializeOfflineCharts() {
 
                     {
                         label: "Renewable Energy",
-
-                        data:
-                            ENERGY_DATA.renewable,
-
-                        lineWidth: 3,
-
+                        data: ENERGY_DATA.renewable,
+                        lineWidth: 4,
                         fill: false,
-
                         smooth: true
                     },
 
                     {
                         label: "Fossil Fuels",
-
-                        data:
-                            ENERGY_DATA.fossil,
-
-                        lineWidth: 3,
-
+                        data: ENERGY_DATA.fossil,
+                        lineWidth: 4,
                         fill: false,
-
                         smooth: true
                     }
 
                 ],
 
                 dark: true,
-
                 yLabel: "Share (%)"
 
             }
@@ -624,24 +572,17 @@ function initializeOfflineCharts() {
                 datasets: [
 
                     {
-                        label:
-                            "Global Primary Energy",
-
-                        data:
-                            ENERGY_DATA.consumption,
-
-                        lineWidth: 3,
-
+                        label: "Global Primary Energy",
+                        data: ENERGY_DATA.consumption,
+                        lineWidth: 4,
                         fill: true,
-
                         smooth: true
                     }
 
                 ],
 
                 dark: false,
-
-                yLabel: "Energy use"
+                yLabel: "Energy Use"
 
             }
         );
@@ -660,50 +601,34 @@ function initializeOfflineCharts() {
 
                     {
                         label: "Renewable",
-
                         data:
-                            ENERGY_DATA
-                                .electricityRenewable,
-
-                        lineWidth: 2,
-
-                        fill: true,
-
+                            ENERGY_DATA.electricityRenewable,
+                        lineWidth: 4,
+                        fill: false,
                         smooth: true
                     },
 
                     {
                         label: "Fossil Fuels",
-
                         data:
-                            ENERGY_DATA
-                                .electricityFossil,
-
-                        lineWidth: 2,
-
-                        fill: true,
-
+                            ENERGY_DATA.electricityFossil,
+                        lineWidth: 4,
+                        fill: false,
                         smooth: true
                     },
 
                     {
                         label: "Nuclear",
-
                         data:
-                            ENERGY_DATA
-                                .electricityNuclear,
-
-                        lineWidth: 2,
-
-                        fill: true,
-
+                            ENERGY_DATA.electricityNuclear,
+                        lineWidth: 4,
+                        fill: false,
                         smooth: true
                     }
 
                 ],
 
                 dark: false,
-
                 yLabel: "Share (%)"
 
             }
@@ -716,10 +641,7 @@ function initializeOfflineCharts() {
 
 
 /* =========================================================
-   CANVAS LINE CHART
-   Pure JavaScript
-   No Chart.js
-   No Internet
+   DRAW LINE CHART
 ========================================================= */
 
 function drawLineChart(canvas, config) {
@@ -730,40 +652,30 @@ function drawLineChart(canvas, config) {
     const wrapper =
         canvas.parentElement;
 
-
     const rect =
         wrapper.getBoundingClientRect();
 
 
     const width =
-        Math.max(
-            rect.width,
-            300
-        );
-
+        Math.max(rect.width, 300);
 
     const height =
-        Math.max(
-            rect.height,
-            250
-        );
+        Math.max(rect.height, 300);
 
 
-    const devicePixelRatio =
+    const dpr =
         window.devicePixelRatio || 1;
 
 
     canvas.width =
-        width * devicePixelRatio;
-
+        width * dpr;
 
     canvas.height =
-        height * devicePixelRatio;
+        height * dpr;
 
 
     canvas.style.width =
         width + "px";
-
 
     canvas.style.height =
         height + "px";
@@ -774,10 +686,10 @@ function drawLineChart(canvas, config) {
 
 
     ctx.setTransform(
-        devicePixelRatio,
+        dpr,
         0,
         0,
-        devicePixelRatio,
+        dpr,
         0,
         0
     );
@@ -797,32 +709,33 @@ function drawLineChart(canvas, config) {
 
     const textColor =
         dark
-            ? "rgba(255,255,255,.72)"
-            : "#64736b";
+            ? "#ffffff"
+            : "#34443c";
 
 
     const gridColor =
         dark
-            ? "rgba(255,255,255,.09)"
-            : "rgba(0,0,0,.07)";
+            ? "rgba(255,255,255,.12)"
+            : "rgba(20,35,28,.09)";
 
+
+    /*
+       Strong chart colours
+    */
 
     const colors = [
-        "#42c978",
-        "#777777",
+        "#25c76f",
+        "#ef6262",
         "#426ab1"
     ];
 
 
     const padding = {
 
-        top: 48,
-
-        right: 25,
-
-        bottom: 45,
-
-        left: 55
+        top: 62,
+        right: 30,
+        bottom: 55,
+        left: 62
 
     };
 
@@ -883,7 +796,6 @@ function drawLineChart(canvas, config) {
     let minValue =
         Math.min(...allValues);
 
-
     let maxValue =
         Math.max(...allValues);
 
@@ -891,7 +803,6 @@ function drawLineChart(canvas, config) {
     if (minValue === maxValue) {
 
         minValue -= 1;
-
         maxValue += 1;
 
     }
@@ -903,18 +814,20 @@ function drawLineChart(canvas, config) {
 
     minValue =
         Math.floor(
-            (minValue - range * 0.08)
+            minValue -
+            range * 0.08
         );
 
 
     maxValue =
         Math.ceil(
-            (maxValue + range * 0.08)
+            maxValue +
+            range * 0.08
         );
 
 
     /* =====================================================
-       TITLE / AXIS LABEL
+       Y AXIS TITLE
     ===================================================== */
 
     if (config.yLabel) {
@@ -925,7 +838,7 @@ function drawLineChart(canvas, config) {
             textColor;
 
         ctx.font =
-            "600 11px Inter, Arial, sans-serif";
+            "800 12px Inter, Arial, sans-serif";
 
         ctx.fillText(
             config.yLabel,
@@ -939,13 +852,10 @@ function drawLineChart(canvas, config) {
 
 
     /* =====================================================
-       GRID
+       GRID + Y AXIS
     ===================================================== */
 
     const gridLines = 5;
-
-
-    ctx.lineWidth = 1;
 
 
     for (
@@ -978,6 +888,8 @@ function drawLineChart(canvas, config) {
         ctx.strokeStyle =
             gridColor;
 
+        ctx.lineWidth = 1;
+
         ctx.stroke();
 
 
@@ -993,8 +905,7 @@ function drawLineChart(canvas, config) {
             textColor;
 
         ctx.font =
-            "10px Inter, Arial, sans-serif";
-
+            "700 11px Inter, Arial, sans-serif";
 
         ctx.textAlign =
             "right";
@@ -1002,28 +913,25 @@ function drawLineChart(canvas, config) {
 
         ctx.fillText(
             formatChartNumber(value),
-            padding.left - 10,
-            y + 3
+            padding.left - 12,
+            y + 4
         );
 
     }
 
 
-
     /* =====================================================
-       X AXIS LABELS
+       X AXIS
     ===================================================== */
 
     ctx.textAlign =
         "center";
 
-
     ctx.fillStyle =
         textColor;
 
-
     ctx.font =
-        "10px Inter, Arial, sans-serif";
+        "700 11px Inter, Arial, sans-serif";
 
 
     const labelStep =
@@ -1058,17 +966,19 @@ function drawLineChart(canvas, config) {
             ctx.fillText(
                 String(label),
                 x,
-                height - 17
+                height - 20
             );
 
         }
     );
 
 
-
     /* =====================================================
-       DRAW DATA
+       DATA POINTS
     ===================================================== */
+
+    const chartPoints = [];
+
 
     datasets.forEach(
         function (dataset, datasetIndex) {
@@ -1114,22 +1024,26 @@ function drawLineChart(canvas, config) {
 
 
                     points.push({
-                        x,
-                        y
+                        x: x,
+                        y: y,
+                        value: value,
+                        year: labels[index],
+                        dataset: dataset.label,
+                        color: color
                     });
 
                 }
             );
 
 
-            if (points.length < 1) {
-                return;
-            }
+            chartPoints.push(points);
 
+
+            if (!points.length) return;
 
 
             /* =================================================
-               FILL
+               AREA FILL
             ================================================= */
 
             if (dataset.fill) {
@@ -1143,35 +1057,18 @@ function drawLineChart(canvas, config) {
                     );
 
 
-                if (dark) {
+                gradient.addColorStop(
+                    0,
+                    hexToRGBA(color, 0.22)
+                );
 
-                    gradient.addColorStop(
-                        0,
-                        hexToRGBA(color, 0.28)
-                    );
-
-                    gradient.addColorStop(
-                        1,
-                        hexToRGBA(color, 0.01)
-                    );
-
-                } else {
-
-                    gradient.addColorStop(
-                        0,
-                        hexToRGBA(color, 0.20)
-                    );
-
-                    gradient.addColorStop(
-                        1,
-                        hexToRGBA(color, 0.01)
-                    );
-
-                }
+                gradient.addColorStop(
+                    1,
+                    hexToRGBA(color, 0.01)
+                );
 
 
                 ctx.beginPath();
-
 
                 drawSmoothPath(
                     ctx,
@@ -1202,53 +1099,23 @@ function drawLineChart(canvas, config) {
             }
 
 
-
             /* =================================================
                LINE
             ================================================= */
 
             ctx.beginPath();
 
-
-            if (dataset.smooth) {
-
-                drawSmoothPath(
-                    ctx,
-                    points
-                );
-
-            } else {
-
-                points.forEach(
-                    function (point, index) {
-
-                        if (index === 0) {
-
-                            ctx.moveTo(
-                                point.x,
-                                point.y
-                            );
-
-                        } else {
-
-                            ctx.lineTo(
-                                point.x,
-                                point.y
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
+            drawSmoothPath(
+                ctx,
+                points
+            );
 
 
             ctx.strokeStyle =
                 color;
 
             ctx.lineWidth =
-                dataset.lineWidth || 3;
+                dataset.lineWidth || 4;
 
             ctx.lineJoin =
                 "round";
@@ -1259,35 +1126,31 @@ function drawLineChart(canvas, config) {
             ctx.stroke();
 
 
-
             /* =================================================
-               END POINT
+               DATA POINTS
             ================================================= */
 
-            const lastPoint =
-                points[points.length - 1];
+            points.forEach(function (point) {
 
+                ctx.beginPath();
 
-            ctx.beginPath();
+                ctx.arc(
+                    point.x,
+                    point.y,
+                    2.8,
+                    0,
+                    Math.PI * 2
+                );
 
+                ctx.fillStyle =
+                    color;
 
-            ctx.arc(
-                lastPoint.x,
-                lastPoint.y,
-                4,
-                0,
-                Math.PI * 2
-            );
+                ctx.fill();
 
-
-            ctx.fillStyle =
-                color;
-
-            ctx.fill();
+            });
 
         }
     );
-
 
 
     /* =====================================================
@@ -1300,6 +1163,281 @@ function drawLineChart(canvas, config) {
         colors,
         width,
         dark
+    );
+
+
+    /* =====================================================
+       INTERACTIVE YEAR TOOLTIP
+    ===================================================== */
+
+    setupChartInteraction(
+        canvas,
+        chartPoints,
+        labels,
+        dark,
+        padding,
+        chartWidth,
+        chartHeight
+    );
+
+}
+
+
+
+/* =========================================================
+   CHART INTERACTION
+   Hover mouse over graph
+   → shows YEAR + every dataset value
+========================================================= */
+
+function setupChartInteraction(
+    canvas,
+    chartPoints,
+    labels,
+    dark,
+    padding,
+    chartWidth,
+    chartHeight
+) {
+
+    let tooltip =
+        canvas.parentElement.querySelector(
+            ".chart-tooltip"
+        );
+
+
+    if (!tooltip) {
+
+        tooltip =
+            document.createElement("div");
+
+        tooltip.className =
+            "chart-tooltip";
+
+        canvas.parentElement.appendChild(
+            tooltip
+        );
+
+    }
+
+
+    tooltip.style.position =
+        "absolute";
+
+    tooltip.style.display =
+        "none";
+
+    tooltip.style.pointerEvents =
+        "none";
+
+    tooltip.style.zIndex =
+        "100";
+
+
+    const wrapper =
+        canvas.parentElement;
+
+
+    if (
+        getComputedStyle(wrapper).position ===
+        "static"
+    ) {
+
+        wrapper.style.position =
+            "relative";
+
+    }
+
+
+    canvas.addEventListener(
+        "mousemove",
+        function (event) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+
+            const mouseX =
+                event.clientX -
+                rect.left;
+
+
+            const mouseY =
+                event.clientY -
+                rect.top;
+
+
+            if (
+                mouseX < padding.left ||
+                mouseX >
+                padding.left + chartWidth ||
+                mouseY < padding.top ||
+                mouseY >
+                padding.top + chartHeight
+            ) {
+
+                tooltip.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const index =
+                Math.round(
+                    (
+                        mouseX -
+                        padding.left
+                    ) /
+                    chartWidth *
+                    (labels.length - 1)
+                );
+
+
+            if (
+                index < 0 ||
+                index >= labels.length
+            ) {
+
+                tooltip.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const year =
+                labels[index];
+
+
+            let html =
+                "<strong>" +
+                year +
+                "</strong>";
+
+
+            chartPoints.forEach(
+                function (points) {
+
+                    const point =
+                        points[index];
+
+                    if (!point) return;
+
+
+                    html +=
+                        "<div>" +
+                        "<span style=\"" +
+                        "display:inline-block;" +
+                        "width:9px;" +
+                        "height:9px;" +
+                        "border-radius:50%;" +
+                        "background:" +
+                        point.color +
+                        ";margin-right:7px;" +
+                        "\"></span>" +
+                        "<b>" +
+                        point.dataset +
+                        ":</b> " +
+                        Number(point.value)
+                            .toFixed(1) +
+                        "</div>";
+
+                }
+            );
+
+
+            tooltip.innerHTML =
+                html;
+
+
+            tooltip.style.display =
+                "block";
+
+
+            let left =
+                mouseX + 15;
+
+
+            let top =
+                mouseY - 20;
+
+
+            const tooltipWidth =
+                tooltip.offsetWidth;
+
+
+            if (
+                left + tooltipWidth >
+                wrapper.clientWidth
+            ) {
+
+                left =
+                    mouseX -
+                    tooltipWidth -
+                    15;
+
+            }
+
+
+            if (top < 5) {
+
+                top = 5;
+
+            }
+
+
+            tooltip.style.left =
+                left + "px";
+
+            tooltip.style.top =
+                top + "px";
+
+
+            tooltip.style.background =
+                dark
+                    ? "#14231c"
+                    : "#ffffff";
+
+            tooltip.style.color =
+                dark
+                    ? "#ffffff"
+                    : "#14231c";
+
+            tooltip.style.padding =
+                "12px 15px";
+
+            tooltip.style.borderRadius =
+                "10px";
+
+            tooltip.style.font =
+                "500 12px Inter, Arial, sans-serif";
+
+            tooltip.style.lineHeight =
+                "1.8";
+
+            tooltip.style.boxShadow =
+                "0 10px 30px rgba(0,0,0,.18)";
+
+            tooltip.style.border =
+                dark
+                    ? "1px solid rgba(255,255,255,.12)"
+                    : "1px solid rgba(0,0,0,.08)";
+
+        }
+    );
+
+
+    canvas.addEventListener(
+        "mouseleave",
+        function () {
+
+            tooltip.style.display =
+                "none";
+
+        }
     );
 
 }
@@ -1315,9 +1453,7 @@ function drawSmoothPath(
     points
 ) {
 
-    if (!points.length) {
-        return;
-    }
+    if (!points.length) return;
 
 
     ctx.moveTo(
@@ -1334,7 +1470,6 @@ function drawSmoothPath(
 
         const previous =
             points[i - 1];
-
 
         const current =
             points[i];
@@ -1455,12 +1590,11 @@ function drawLegend(
 
     let currentX = 20;
 
-
-    const legendY = 33;
+    const legendY = 38;
 
 
     ctx.font =
-        "600 10px Inter, Arial, sans-serif";
+        "800 11px Inter, Arial, sans-serif";
 
 
     datasets.forEach(
@@ -1486,7 +1620,7 @@ function drawLegend(
             const itemWidth =
                 20 +
                 textWidth +
-                22;
+                25;
 
 
             if (
@@ -1500,7 +1634,7 @@ function drawLegend(
             }
 
 
-            /* Line */
+            /* LINE */
 
             ctx.beginPath();
 
@@ -1512,7 +1646,7 @@ function drawLegend(
 
 
             ctx.lineTo(
-                currentX + 14,
+                currentX + 15,
                 legendY
             );
 
@@ -1520,12 +1654,12 @@ function drawLegend(
             ctx.strokeStyle =
                 color;
 
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 4;
 
             ctx.stroke();
 
 
-            /* Text */
+            /* TEXT */
 
             ctx.fillStyle =
                 textColor;
@@ -1537,7 +1671,7 @@ function drawLegend(
 
             ctx.fillText(
                 label,
-                currentX + 20,
+                currentX + 21,
                 legendY + 4
             );
 
@@ -1574,7 +1708,7 @@ function formatChartNumber(value) {
 
 
 /* =========================================================
-   HEX TO RGBA
+   HEX → RGBA
 ========================================================= */
 
 function hexToRGBA(
@@ -1648,7 +1782,7 @@ function drawOfflineError(
     const height =
         Math.max(
             rect.height,
-            250
+            300
         );
 
 
@@ -1691,7 +1825,7 @@ function drawOfflineError(
 
 
     ctx.font =
-        "600 14px Inter, Arial, sans-serif";
+        "700 14px Inter, Arial, sans-serif";
 
 
     ctx.textAlign =
@@ -1729,7 +1863,7 @@ window.addEventListener(
                     initializeOfflineCharts();
 
                 },
-                150
+                200
             );
 
     }
