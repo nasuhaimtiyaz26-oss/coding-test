@@ -18,9 +18,10 @@
 
     <title>Why Renewable | Importance of Safe Energy</title>
 
+
     <!-- =====================================================
          GOOGLE FONT
-         ===================================================== -->
+    ===================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -35,25 +36,233 @@
         rel="stylesheet"
     >
 
+
     <!-- =====================================================
          FONT AWESOME
-         ===================================================== -->
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
+
     <!-- =====================================================
          MAIN CSS
-         ===================================================== -->
+    ===================================================== -->
 
     <link
         rel="stylesheet"
         href="style.css"
     >
 
+
+    <!-- =====================================================
+         IMPORTANCE VIDEO CSS
+    ===================================================== -->
+
+    <style>
+
+        /* =====================================================
+           INSTAGRAM VIDEO SECTION
+        ===================================================== */
+
+        .importance-video-section {
+            padding: 90px 0;
+            background:
+                linear-gradient(
+                    135deg,
+                    #061b10,
+                    #0b3020
+                );
+        }
+
+
+        .importance-video-heading {
+            max-width: 750px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+
+        .importance-video-heading .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+
+        .importance-video-heading h2 {
+            margin: 0 0 15px;
+
+            color: white;
+
+            font-size:
+                clamp(32px, 5vw, 54px);
+
+            line-height: 1.05;
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+        }
+
+
+        .importance-video-heading h2 span {
+            color: #55dc8a;
+        }
+
+
+        .importance-video-heading p {
+            margin: 0 auto;
+
+            max-width: 650px;
+
+            color:
+                rgba(255,255,255,0.68);
+
+            line-height: 1.8;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           VIDEO CARD
+        ===================================================== */
+
+        .importance-video-card {
+            width: 100%;
+
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            overflow: hidden;
+
+            border-radius: 26px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0,0,0,0.30);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+
+        /* =====================================================
+           INSTAGRAM EMBED
+        ===================================================== */
+
+        .importance-video-container {
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #000;
+
+            overflow: hidden;
+        }
+
+
+        .importance-video-container .instagram-media {
+            width: 100% !important;
+
+            max-width: 658px !important;
+
+            min-width: 0 !important;
+
+            margin:
+                0 auto !important;
+        }
+
+
+        /* =====================================================
+           VIDEO CONTENT
+        ===================================================== */
+
+        .importance-video-content {
+            padding: 25px 28px;
+        }
+
+
+        .importance-video-content h3 {
+            margin:
+                0 0 8px;
+
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: 900;
+        }
+
+
+        .importance-video-content h3 i {
+            color: #55dc8a;
+
+            margin-right: 8px;
+        }
+
+
+        .importance-video-content p {
+            margin: 0;
+
+            color:
+                rgba(255,255,255,0.65);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .importance-video-section {
+                padding:
+                    65px 0;
+            }
+
+
+            .importance-video-card {
+                border-radius: 20px;
+            }
+
+
+            .importance-video-content {
+                padding:
+                    20px;
+            }
+
+
+            .importance-video-content h3 {
+                font-size: 17px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 
 <body>
@@ -61,11 +270,12 @@
 
 <!-- =========================================================
      NAVBAR
-     ========================================================= -->
+========================================================= -->
 
 <header class="navbar">
 
     <div class="nav-container">
+
 
         <!-- LOGO -->
 
@@ -75,7 +285,9 @@
         >
 
             <span class="logo-icon">
+
                 <i class="fa-solid fa-leaf"></i>
+
             </span>
 
             <span>
@@ -85,6 +297,7 @@
         </a>
 
 
+
         <!-- NAVIGATION -->
 
         <nav class="nav-menu">
@@ -92,7 +305,7 @@
             <a href="index.html">
                 HOME
             </a>
-            
+
             <a href="introduction.html">
                 INTRODUCTION
             </a>
@@ -127,12 +340,14 @@
         </nav>
 
 
+
         <!-- MOBILE MENU -->
 
         <button
             class="menu-dots"
             id="menuDots"
             aria-label="Open navigation menu"
+            aria-expanded="false"
         >
 
             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -145,18 +360,24 @@
 
 
 
+
+
 <!-- =========================================================
      PAGE HERO
-     ========================================================= -->
+========================================================= -->
 
 <section class="page-hero">
 
     <div class="section-container">
 
         <span class="section-label">
+
             <i class="fa-solid fa-leaf"></i>
+
             Importance Of Renewable Energy
+
         </span>
+
 
         <h1>
 
@@ -166,10 +387,13 @@
 
         </h1>
 
+
         <p>
+
             Renewable energy provides cleaner, safer and more
             sustainable ways to power our world while reducing
             dependence on finite fossil fuels.
+
         </p>
 
     </div>
@@ -178,18 +402,18 @@
 
 
 
+
+
 <!-- =========================================================
      WHY RENEWABLE SECTION
-     ========================================================= -->
+========================================================= -->
 
 <section class="why-section">
 
     <div class="section-container">
 
 
-        <!-- =================================================
-             SECTION HEADING
-             ================================================= -->
+        <!-- SECTION HEADING -->
 
         <div class="section-heading center reveal">
 
@@ -197,24 +421,35 @@
                 THE IMPORTANCE
             </span>
 
+
             <h2>
+
                 Renewable Energy
-                <span>Creates A Better Future</span>
+
+                <span>
+                    Creates A Better Future
+                </span>
+
             </h2>
 
+
             <p>
+
                 Moving towards renewable energy can improve
                 environmental protection, energy security,
                 economic resilience and long-term sustainability.
+
             </p>
 
         </div>
 
 
 
+
+
         <!-- =================================================
              BENEFIT CARDS
-             ================================================= -->
+        ================================================= -->
 
         <div class="benefits-grid">
 
@@ -227,21 +462,30 @@
                     01
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-earth-americas"></i>
+
                 </div>
+
 
                 <h3>
                     Protects The Environment
                 </h3>
 
+
                 <p>
+
                     Renewable energy produces little or no
                     greenhouse gas emissions during operation,
                     helping reduce pressure on the environment.
+
                 </p>
 
             </article>
+
+
 
 
 
@@ -253,21 +497,30 @@
                     02
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-shield-halved"></i>
+
                 </div>
+
 
                 <h3>
                     Improves Energy Security
                 </h3>
 
+
                 <p>
+
                     Renewable resources such as sunlight, wind
                     and water can reduce dependence on limited
                     fossil fuel supplies.
+
                 </p>
 
             </article>
+
+
 
 
 
@@ -279,21 +532,30 @@
                     03
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-chart-line"></i>
+
                 </div>
+
 
                 <h3>
                     Supports Economic Growth
                 </h3>
 
+
                 <p>
+
                     The renewable energy sector creates
                     opportunities for innovation, investment,
                     infrastructure and new skills.
+
                 </p>
 
             </article>
+
+
 
 
 
@@ -305,18 +567,25 @@
                     04
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-seedling"></i>
+
                 </div>
+
 
                 <h3>
                     Builds A Sustainable Future
                 </h3>
 
+
                 <p>
+
                     Renewable energy helps meet present energy
                     needs while supporting a cleaner and more
                     sustainable future for future generations.
+
                 </p>
 
             </article>
@@ -325,9 +594,11 @@
 
 
 
+
+
         <!-- =================================================
              ENERGY TRANSITION
-             ================================================= -->
+        ================================================= -->
 
         <div class="renewable-types">
 
@@ -340,25 +611,34 @@
                     ENERGY TRANSITION
                 </span>
 
+
                 <h2>
+
                     Moving Towards
-                    <span>Cleaner Energy</span>
+
+                    <span>
+                        Cleaner Energy
+                    </span>
+
                 </h2>
 
+
                 <p>
+
                     Energy transition means changing the way
                     energy is produced and consumed by gradually
                     replacing high-emission sources with cleaner
                     and renewable alternatives.
+
                 </p>
 
             </div>
 
 
 
-            <!-- =================================================
-                 ENERGY TRANSITION CARDS
-                 ================================================= -->
+
+
+            <!-- ENERGY TRANSITION CARDS -->
 
             <div class="renewable-types-grid">
 
@@ -373,19 +653,26 @@
 
                     </div>
 
+
                     <h3>
                         Solar Energy
                     </h3>
 
+
                     <p>
+
                         <strong class="example-label">
                             Example Of
                         </strong>
+
                         rooftop solar panels generating
                         electricity from sunlight.
+
                     </p>
 
                 </article>
+
+
 
 
 
@@ -399,19 +686,26 @@
 
                     </div>
 
+
                     <h3>
                         Wind Energy
                     </h3>
 
+
                     <p>
+
                         <strong class="example-label">
                             Example Of
                         </strong>
+
                         wind turbines converting wind movement
                         into electricity.
+
                     </p>
 
                 </article>
+
+
 
 
 
@@ -425,19 +719,26 @@
 
                     </div>
 
+
                     <h3>
                         Hydropower
                     </h3>
 
+
                     <p>
+
                         <strong class="example-label">
                             Example Of
                         </strong>
+
                         electricity generation using flowing
                         or falling water.
+
                     </p>
 
                 </article>
+
+
 
 
 
@@ -451,16 +752,21 @@
 
                     </div>
 
+
                     <h3>
                         Bioenergy
                     </h3>
 
+
                     <p>
+
                         <strong class="example-label">
                             Example Of
                         </strong>
+
                         using organic materials such as
                         agricultural residues for energy.
+
                     </p>
 
                 </article>
@@ -469,9 +775,9 @@
 
 
 
-            <!-- =================================================
-                 ENERGY TRANSITION MESSAGE
-                 ================================================= -->
+
+
+            <!-- ENERGY TRANSITION MESSAGE -->
 
             <div class="why-message reveal">
 
@@ -481,17 +787,21 @@
 
                 </div>
 
+
                 <div>
 
                     <h3>
                         Energy Transition Starts With Change
                     </h3>
 
+
                     <p>
+
                         A successful energy transition combines
                         renewable generation, energy efficiency,
                         better technology and responsible energy
                         consumption.
+
                     </p>
 
                 </div>
@@ -506,13 +816,106 @@
 
 
 
+
+
+<!-- =========================================================
+     INSTAGRAM VIDEO
+========================================================= -->
+
+<section class="importance-video-section">
+
+    <div class="section-container">
+
+
+        <!-- VIDEO HEADING -->
+
+        <div class="importance-video-heading reveal">
+
+            <span class="section-label">
+
+                <i class="fa-brands fa-instagram"></i>
+
+                RENEWABLE ENERGY
+
+            </span>
+
+
+            <h2>
+
+                Why Renewable Energy
+
+                <span>Matters</span>
+
+            </h2>
+
+
+            <p>
+
+                Watch the video to learn more about the importance
+                of renewable energy and its role in creating a
+                cleaner and more sustainable future.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- VIDEO CARD -->
+
+        <div class="importance-video-card reveal">
+
+
+            <div class="importance-video-container">
+
+                <blockquote
+                    class="instagram-media"
+                    data-instgrm-permalink="https://www.instagram.com/reel/DUkP4lmAWgR/"
+                    data-instgrm-version="14"
+                ></blockquote>
+
+            </div>
+
+
+            <div class="importance-video-content">
+
+                <h3>
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                    Renewable Energy Video
+
+                </h3>
+
+
+                <p>
+
+                    Educational video related to renewable energy,
+                    sustainability and the importance of cleaner
+                    energy sources.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
 <!-- =========================================================
      FOOTER
-     ========================================================= -->
+========================================================= -->
 
 <footer>
 
     <div class="footer-container">
+
 
         <div class="footer-logo">
 
@@ -522,9 +925,13 @@
 
         </div>
 
+
         <p>
+
             Powering a cleaner, safer and more sustainable future.
+
         </p>
+
 
         <div class="footer-source">
 
@@ -532,6 +939,7 @@
             publicly available energy and sustainability sources.
 
         </div>
+
 
         <div class="footer-bottom">
 
@@ -545,9 +953,21 @@
 
 
 
+
+
+<!-- =========================================================
+     INSTAGRAM EMBED SCRIPT
+========================================================= -->
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
+
+
+
+
 <!-- =========================================================
      JAVASCRIPT
-     ========================================================= -->
+========================================================= -->
 
 <script>
 
@@ -556,7 +976,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        MOBILE MENU
-       ===================================================== */
+    ===================================================== */
 
     const menuDots =
         document.getElementById("menuDots");
@@ -573,6 +993,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 navMenu.classList.toggle("open");
 
+                menuDots.setAttribute(
+                    "aria-expanded",
+                    navMenu.classList.contains("open")
+                );
+
             }
         );
 
@@ -582,7 +1007,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        CLOSE MOBILE MENU
-       ===================================================== */
+    ===================================================== */
 
     const navLinks =
         document.querySelectorAll(".nav-menu a");
@@ -594,7 +1019,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "click",
             function () {
 
-                navMenu.classList.remove("open");
+                if (navMenu) {
+
+                    navMenu.classList.remove("open");
+
+                }
 
             }
         );
@@ -605,7 +1034,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        NAVBAR SCROLL
-       ===================================================== */
+    ===================================================== */
 
     const navbar =
         document.querySelector(".navbar");
@@ -614,6 +1043,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener(
         "scroll",
         function () {
+
+            if (!navbar) return;
+
 
             if (window.scrollY > 30) {
 
@@ -632,63 +1064,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        REVEAL ANIMATION
-       ===================================================== */
+    ===================================================== */
 
     const revealElements =
         document.querySelectorAll(".reveal");
 
 
-    const revealObserver =
-        new IntersectionObserver(
-            function (entries) {
+    if ("IntersectionObserver" in window) {
 
-                entries.forEach(function (entry) {
+        const revealObserver =
+            new IntersectionObserver(
+                function (entries) {
 
-                    if (entry.isIntersecting) {
+                    entries.forEach(function (entry) {
 
-                        entry.target.classList.add("show");
+                        if (entry.isIntersecting) {
 
-                        revealObserver.unobserve(
-                            entry.target
-                        );
+                            entry.target.classList.add("show");
 
-                    }
+                            revealObserver.unobserve(
+                                entry.target
+                            );
 
-                });
+                        }
 
-            },
-            {
-                threshold: 0.12
-            }
-        );
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
 
 
-    revealElements.forEach(function (element) {
+        revealElements.forEach(function (element) {
 
-        revealObserver.observe(element);
+            revealObserver.observe(element);
 
-    });
+        });
+
+    } else {
+
+        revealElements.forEach(function (element) {
+
+            element.classList.add("show");
+
+        });
+
+    }
 
 });
 
 </script>
 
 
-</body <div class="video-card">
-    <div class="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/RzTIO0MMK9I"
-            title="Important Energy Information"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="video-content">
-        <h3>Important Energy Information</h3>
-        <p>Learn important information about energy and sustainability.</p>
-    </div>
-</div>>
+</body>
 
 </html>
 ```
