@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,7 @@
 
     <!-- =====================================================
          GOOGLE FONT
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -32,7 +33,7 @@
 
     <!-- =====================================================
          FONT AWESOME
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -41,7 +42,7 @@
 
     <!-- =====================================================
          MAIN CSS
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -49,16 +50,13 @@
 
 
     <!-- =====================================================
-         HOME CARD BACKGROUND STYLE
-         
-         HERO TIDAK DIUBAH.
-         STYLE INI KHAS UNTUK 6 CARD BAWAH SAHAJA.
-    ===================================================== -->
+         HOME CARD + VIDEO STYLE
+    ====================================================== -->
 
     <style>
 
         /* =================================================
-           HOME NAVIGATION CARDS
+           HOME NAVIGATION
         ================================================= */
 
         .home-navigation {
@@ -74,7 +72,7 @@
 
 
         /* =================================================
-           CARD BASE
+           HOME CARD
         ================================================= */
 
         .home-nav-card {
@@ -115,7 +113,7 @@
 
 
         /* =================================================
-           DARK OVERLAY
+           CARD OVERLAY
         ================================================= */
 
         .home-nav-card::before {
@@ -202,9 +200,6 @@
            INDIVIDUAL CARD BACKGROUNDS
         ================================================= */
 
-
-        /* 01 ENERGY DATA */
-
         .home-nav-card:nth-child(1) {
 
             background-image:
@@ -212,8 +207,6 @@
 
         }
 
-
-        /* 02 WHY RENEWABLE */
 
         .home-nav-card:nth-child(2) {
 
@@ -223,8 +216,6 @@
         }
 
 
-        /* 03 EFFECTS */
-
         .home-nav-card:nth-child(3) {
 
             background-image:
@@ -232,8 +223,6 @@
 
         }
 
-
-        /* 04 WHAT WE CAN DO */
 
         .home-nav-card:nth-child(4) {
 
@@ -243,8 +232,6 @@
         }
 
 
-        /* 05 OUR TEAM */
-
         .home-nav-card:nth-child(5) {
 
             background-image:
@@ -252,8 +239,6 @@
 
         }
 
-
-        /* 06 SOURCES */
 
         .home-nav-card:nth-child(6) {
 
@@ -264,7 +249,7 @@
 
 
         /* =================================================
-           ICON
+           CARD ICON
         ================================================= */
 
         .home-nav-card .home-nav-icon {
@@ -393,14 +378,132 @@
         }
 
 
-        .home-nav-card:hover
-        .home-nav-arrow {
+        .home-nav-card:hover .home-nav-arrow {
 
             transform:
                 translateX(5px);
 
             background:
                 rgba(255, 255, 255, 0.22);
+
+        }
+
+
+        /* =================================================
+           VIDEO SECTION
+        ================================================= */
+
+        .home-video-section {
+
+            padding: 90px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f4faf6 0%,
+                    #ffffff 100%
+                );
+
+        }
+
+
+        .home-video-card {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            background: #ffffff;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.12);
+
+            border:
+                1px solid rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        .home-video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            background: #101914;
+
+            overflow: hidden;
+
+        }
+
+
+        .home-video-container iframe {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+        }
+
+
+        .home-video-content {
+
+            padding: 28px 32px 32px;
+
+        }
+
+
+        .home-video-content span {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            color: #4b9b67;
+
+        }
+
+
+        .home-video-content h3 {
+
+            margin: 0 0 10px;
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            color: #14251b;
+
+        }
+
+
+        .home-video-content p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            color: #637069;
 
         }
 
@@ -433,8 +536,7 @@
             }
 
 
-            .home-nav-card
-            .home-nav-icon {
+            .home-nav-card .home-nav-icon {
 
                 width: 56px;
 
@@ -461,12 +563,32 @@
             }
 
 
-            .home-nav-card
-            .home-nav-arrow {
+            .home-nav-card .home-nav-arrow {
 
                 width: 38px;
 
                 height: 38px;
+
+            }
+
+
+            .home-video-section {
+
+                padding: 60px 0;
+
+            }
+
+
+            .home-video-content {
+
+                padding: 22px;
+
+            }
+
+
+            .home-video-content h3 {
+
+                font-size: 22px;
 
             }
 
@@ -482,7 +604,7 @@
 
 <!-- =====================================================
      NAVBAR
-===================================================== -->
+====================================================== -->
 
 <nav
     class="navbar"
@@ -490,6 +612,8 @@
 
     <div class="nav-container">
 
+
+        <!-- LOGO -->
 
         <a
             href="index.html"
@@ -507,6 +631,8 @@
 
         </a>
 
+
+        <!-- NAVIGATION -->
 
         <div
             class="nav-menu"
@@ -538,7 +664,7 @@
 
             <a href="renewable-energy-is-important-because.html">
 
-                IMPORTANCE 
+                IMPORTANCE
 
             </a>
 
@@ -550,9 +676,9 @@
             </a>
 
 
-            <a href="what-we-can-do.html">
+            <a href="ways-to-safe-energy.html">
 
-                WAYS 
+                WAYS
 
             </a>
 
@@ -574,6 +700,8 @@
         </div>
 
 
+        <!-- MOBILE MENU -->
+
         <button
             class="menu-dots"
             id="menuDots"
@@ -589,12 +717,9 @@
 </nav>
 
 
-
 <!-- =====================================================
      HERO
-     
-     HERO ASAL — TAK USIK
-===================================================== -->
+====================================================== -->
 
 <section class="page-hero">
 
@@ -708,7 +833,6 @@
 
             </div>
 
-
         </div>
 
     </div>
@@ -716,10 +840,9 @@
 </section>
 
 
-
 <!-- =====================================================
      INTRODUCTION
-===================================================== -->
+====================================================== -->
 
 <section class="why-section">
 
@@ -758,24 +881,18 @@
         </div>
 
 
-
         <!-- =================================================
              MAIN NAVIGATION CARDS
-             
-             SETIAP CARD ADA BACKGROUND GAMBAR SENDIRI
-        ================================================= -->
+        ================================================== -->
 
         <div class="home-navigation">
 
 
-            <!-- =================================================
-                 01 ENERGY DATA
-            ================================================= -->
+            <!-- 01 ENERGY DATA -->
 
             <a
                 href="trend.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -787,16 +904,12 @@
                 <div>
 
                     <span>
-
                         01 • EXPLORE
-
                     </span>
 
 
                     <h3>
-
                         Energy Data
-
                     </h3>
 
 
@@ -816,19 +929,14 @@
 
                 </div>
 
-
             </a>
 
 
-
-            <!-- =================================================
-                 02 WHY RENEWABLE
-            ================================================= -->
+            <!-- 02 WHY RENEWABLE -->
 
             <a
                 href="renewable-energy-is-important-because.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -840,22 +948,18 @@
                 <div>
 
                     <span>
-
                         02 • DISCOVER
-
                     </span>
 
 
                     <h3>
-
                         Renewable Energy Is Important Because
-
                     </h3>
 
 
                     <p>
 
-                        Understand renewable energy
+                        Understand why renewable energy
                         is important for our future.
 
                     </p>
@@ -869,19 +973,14 @@
 
                 </div>
 
-
             </a>
 
 
-
-            <!-- =================================================
-                 03 EFFECTS
-            ================================================= -->
+            <!-- 03 EFFECTS -->
 
             <a
                 href="effects.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -893,16 +992,12 @@
                 <div>
 
                     <span>
-
                         03 • UNDERSTAND
-
                     </span>
 
 
                     <h3>
-
                         Effects
-
                     </h3>
 
 
@@ -922,19 +1017,14 @@
 
                 </div>
 
-
             </a>
 
 
-
-            <!-- =================================================
-                 04 WHAT WE CAN DO
-            ================================================= -->
+            <!-- 04 WAYS -->
 
             <a
                 href="ways-to-safe-energy.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -946,16 +1036,12 @@
                 <div>
 
                     <span>
-
                         04 • TAKE ACTION
-
                     </span>
 
 
                     <h3>
-
                         Ways To Safe Energy
-
                     </h3>
 
 
@@ -975,19 +1061,14 @@
 
                 </div>
 
-
             </a>
 
 
-
-            <!-- =================================================
-                 05 OUR TEAM
-            ================================================= -->
+            <!-- 05 OUR TEAM -->
 
             <a
                 href="our-team.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -999,16 +1080,12 @@
                 <div>
 
                     <span>
-
                         05 • OUR PROJECT
-
                     </span>
 
 
                     <h3>
-
                         Our Team
-
                     </h3>
 
 
@@ -1028,19 +1105,14 @@
 
                 </div>
 
-
             </a>
 
 
-
-            <!-- =================================================
-                 06 SOURCES
-            ================================================= -->
+            <!-- 06 SOURCES -->
 
             <a
                 href="sources.html"
                 class="home-nav-card reveal">
-
 
                 <div class="home-nav-icon">
 
@@ -1052,16 +1124,12 @@
                 <div>
 
                     <span>
-
                         06 • RESEARCH
-
                     </span>
 
 
                     <h3>
-
                         Sources
-
                     </h3>
 
 
@@ -1081,7 +1149,6 @@
 
                 </div>
 
-
             </a>
 
 
@@ -1092,10 +1159,9 @@
 </section>
 
 
-
 <!-- =====================================================
      WHY SAFE ENERGY
-===================================================== -->
+====================================================== -->
 
 <section class="why-section">
 
@@ -1153,9 +1219,7 @@
 
 
                 <h3>
-
                     Cleaner Environment
-
                 </h3>
 
 
@@ -1168,7 +1232,6 @@
                 </p>
 
             </article>
-
 
 
             <!-- BENEFIT 2 -->
@@ -1188,9 +1251,7 @@
 
 
                 <h3>
-
                     Lower Emissions
-
                 </h3>
 
 
@@ -1202,7 +1263,6 @@
                 </p>
 
             </article>
-
 
 
             <!-- BENEFIT 3 -->
@@ -1222,9 +1282,7 @@
 
 
                 <h3>
-
                     Renewable Resources
-
                 </h3>
 
 
@@ -1236,7 +1294,6 @@
                 </p>
 
             </article>
-
 
 
             <!-- BENEFIT 4 -->
@@ -1256,9 +1313,7 @@
 
 
                 <h3>
-
                     Protect The Future
-
                 </h3>
 
 
@@ -1275,7 +1330,6 @@
         </div>
 
 
-
         <!-- MESSAGE -->
 
         <div class="why-message reveal">
@@ -1290,9 +1344,7 @@
             <div>
 
                 <h3>
-
                     Every Energy Choice Matters
-
                 </h3>
 
 
@@ -1313,10 +1365,9 @@
 </section>
 
 
-
 <!-- =====================================================
      CALL TO ACTION
-===================================================== -->
+====================================================== -->
 
 <section class="save-section">
 
@@ -1335,9 +1386,7 @@
             <div>
 
                 <h3>
-
                     The Future Starts With Us
-
                 </h3>
 
 
@@ -1359,10 +1408,98 @@
 </section>
 
 
+<!-- =====================================================
+     HOME VIDEO
+====================================================== -->
+
+<section class="home-video-section">
+
+    <div class="section-container">
+
+
+        <!-- VIDEO HEADING -->
+
+        <div class="section-heading center reveal">
+
+            <span class="section-label">
+                SAFE ENERGY VIDEO
+            </span>
+
+
+            <h2>
+
+                Learn More About
+
+                <span>
+                    Safe Energy
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Watch this video to learn more about
+                energy, renewable energy and sustainability.
+
+            </p>
+
+        </div>
+
+
+        <!-- VIDEO CARD -->
+
+        <div class="home-video-card reveal">
+
+
+            <!-- VIDEO -->
+
+            <div class="home-video-container">
+
+                <iframe
+                    src="https://www.youtube.com/embed/RzTIO0MMK9I"
+                    title="Safe Energy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+
+            <!-- VIDEO INFORMATION -->
+
+            <div class="home-video-content">
+
+                <span>
+                    VIDEO • SAFE ENERGY
+                </span>
+
+
+                <h3>
+                    Safe Energy
+                </h3>
+
+
+                <p>
+
+                    Learn more about energy,
+                    renewable energy and sustainability
+                    through this informative video.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 <!-- =====================================================
      FOOTER
-===================================================== -->
+====================================================== -->
 
 <footer>
 
@@ -1416,28 +1553,14 @@
 </footer>
 
 
-
 <!-- =====================================================
      JAVASCRIPT
-===================================================== -->
+====================================================== -->
 
 <script src="script.js"></script>
 
 
-</body <div class="video-card">
-    <div class="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/RzTIO0MMK9I"
-            title="Safe Energy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="video-content">
-        <h3>Safe Energy</h3>
-        <p>Learn more about energy, renewable energy and sustainability.</p>
-    </div>
-</div>>
+</body>
 
 </html>
+```
