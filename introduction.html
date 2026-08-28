@@ -9,14 +9,12 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Introduction | Safe Energy
-    </title>
+    <title>Introduction | Safe Energy</title>
 
 
     <!-- =====================================================
          GOOGLE FONT
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -34,7 +32,7 @@
 
     <!-- =====================================================
          FONT AWESOME
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -43,7 +41,7 @@
 
     <!-- =====================================================
          MAIN CSS
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -52,8 +50,7 @@
 
     <!-- =====================================================
          INTRODUCTION PAGE EXTRA STYLE
-         Tidak mengubah style.css
-    ===================================================== -->
+    ====================================================== -->
 
     <style>
 
@@ -62,10 +59,15 @@
         ================================================= */
 
         .intro-hero {
+
             min-height: 72vh;
+
             position: relative;
+
             display: flex;
+
             align-items: center;
+
             overflow: hidden;
 
             background:
@@ -77,47 +79,244 @@
                 url("https://webcdn.getmidas.com/uploads/2024/10/17141253/gunes.webp");
 
             background-size: cover;
+
             background-position: center;
+
         }
 
 
         .intro-hero-content {
+
             max-width: 900px;
+
             padding: 120px 0 90px;
+
             position: relative;
+
             z-index: 2;
+
         }
 
 
         .intro-hero-content .section-label {
+
             color: #9bf5bd;
+
             font-weight: 800;
+
             letter-spacing: 2px;
+
         }
 
 
         .intro-hero-content h1 {
+
             color: white;
+
             font-size: clamp(48px, 7vw, 88px);
+
             line-height: 0.98;
+
             margin: 20px 0 28px;
+
             font-weight: 900;
+
             letter-spacing: -3px;
+
         }
 
 
         .intro-hero-content h1 span {
+
             color: #72e59b;
+
         }
 
 
         .intro-hero-content p {
+
             max-width: 760px;
+
             color: rgba(255,255,255,0.84);
+
             font-size: 19px;
+
             line-height: 1.8;
+
             margin: 0;
+
         }
+
+
+
+        /* =================================================
+           VIDEO SECTION
+        ================================================= */
+
+        .intro-video-section {
+
+            padding: 90px 0;
+
+            background: #ffffff;
+
+        }
+
+
+        .intro-video-heading {
+
+            max-width: 800px;
+
+            margin: 0 auto 45px;
+
+            text-align: center;
+
+        }
+
+
+        .intro-video-heading .section-label {
+
+            color: #27864d;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .intro-video-heading h2 {
+
+            font-size: clamp(34px, 5vw, 56px);
+
+            line-height: 1.05;
+
+            margin: 15px 0 18px;
+
+            color: #14231c;
+
+            font-weight: 900;
+
+            letter-spacing: -2px;
+
+        }
+
+
+        .intro-video-heading h2 span {
+
+            color: #269653;
+
+        }
+
+
+        .intro-video-heading p {
+
+            color: #64736b;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+
+            margin: 0;
+
+        }
+
+
+        /* =================================================
+           VIDEO CARD
+        ================================================= */
+
+        .video-card {
+
+            max-width: 1050px;
+
+            margin: 0 auto;
+
+            background: #0c3b25;
+
+            border-radius: 28px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(12, 59, 37, 0.20);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .video-card:hover {
+
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 35px 75px rgba(12, 59, 37, 0.28);
+
+        }
+
+
+        .video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            background: #071c12;
+
+        }
+
+
+        .video-container iframe {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+        }
+
+
+        .video-content {
+
+            padding: 28px 32px 32px;
+
+        }
+
+
+        .video-content h3 {
+
+            color: white;
+
+            font-size: 28px;
+
+            font-weight: 900;
+
+            margin: 0 0 10px;
+
+        }
+
+
+        .video-content p {
+
+            color: rgba(255,255,255,0.76);
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            margin: 0;
+
+        }
+
 
 
         /* =================================================
@@ -125,45 +324,70 @@
         ================================================= */
 
         .intro-section {
+
             background: #f6faf7;
+
             padding: 100px 0;
+
         }
 
 
         .intro-heading {
+
             max-width: 800px;
+
             margin: 0 auto 55px;
+
             text-align: center;
+
         }
 
 
         .intro-heading .section-label {
+
             color: #27864d;
+
             font-weight: 800;
+
             letter-spacing: 2px;
+
         }
 
 
         .intro-heading h2 {
+
             font-size: clamp(34px, 5vw, 58px);
+
             line-height: 1.05;
+
             margin: 15px 0 20px;
+
             color: #14231c;
+
             font-weight: 900;
+
             letter-spacing: -2px;
+
         }
 
 
         .intro-heading h2 span {
+
             color: #269653;
+
         }
 
 
         .intro-heading p {
+
             color: #64736b;
+
             line-height: 1.8;
+
             font-size: 16px;
+
         }
+
 
 
         /* =================================================
@@ -171,27 +395,35 @@
         ================================================= */
 
         .intro-cards {
+
             display: grid;
+
             grid-template-columns:
                 repeat(3, minmax(0, 1fr));
 
             gap: 24px;
+
         }
 
 
         .intro-card {
+
             min-height: 500px;
+
             position: relative;
+
             overflow: hidden;
 
             border-radius: 24px;
 
             display: flex;
+
             align-items: flex-end;
 
             text-decoration: none;
 
             background-size: cover;
+
             background-position: center;
 
             box-shadow:
@@ -200,43 +432,58 @@
             transition:
                 transform 0.4s ease,
                 box-shadow 0.4s ease;
+
         }
 
 
         .intro-card:hover {
+
             transform: translateY(-10px);
 
             box-shadow:
                 0 30px 65px rgba(20, 45, 31, 0.24);
+
         }
 
 
-        /* CARD IMAGES */
+        /* =================================================
+           CARD IMAGES
+        ================================================= */
 
         .intro-card:nth-child(1) {
+
             background-image:
                 url("https://webcdn.getmidas.com/uploads/2024/10/17141253/gunes.webp");
+
         }
 
 
         .intro-card:nth-child(2) {
+
             background-image:
                 url("https://ecotoxicologie.fr/wp-content/uploads/2020/04/classes-pixabay-1140x720.jpg");
+
         }
 
 
         .intro-card:nth-child(3) {
+
             background-image:
                 url("https://cloudfront-ap-southeast-2.images.arcpublishing.com/nzme/HSDCDLLWS2CBEIUAWYNI6Y6SQA.jpg");
+
         }
 
 
-        /* DARK OVERLAY */
+        /* =================================================
+           DARK OVERLAY
+        ================================================= */
 
         .intro-card::before {
+
             content: "";
 
             position: absolute;
+
             inset: 0;
 
             background:
@@ -249,10 +496,12 @@
 
             transition:
                 background 0.4s ease;
+
         }
 
 
         .intro-card:hover::before {
+
             background:
                 linear-gradient(
                     to top,
@@ -260,68 +509,98 @@
                     rgba(5, 22, 14, 0.78) 55%,
                     rgba(5, 22, 14, 0.20) 100%
                 );
+
         }
 
 
-        /* CARD CONTENT */
+        /* =================================================
+           CARD CONTENT
+        ================================================= */
 
         .intro-card-content {
+
             position: relative;
+
             z-index: 2;
 
             padding: 32px;
 
             color: white;
+
         }
 
 
         .intro-card-number {
+
             display: inline-flex;
 
             width: 44px;
+
             height: 44px;
 
             align-items: center;
+
             justify-content: center;
 
             border-radius: 50%;
 
-            background: rgba(255,255,255,0.16);
-            border: 1px solid rgba(255,255,255,0.28);
+            background:
+                rgba(255,255,255,0.16);
 
-            backdrop-filter: blur(8px);
+            border:
+                1px solid rgba(255,255,255,0.28);
+
+            backdrop-filter:
+                blur(8px);
 
             font-size: 13px;
+
             font-weight: 900;
 
             margin-bottom: 20px;
+
         }
 
 
         .intro-card-icon {
+
             font-size: 28px;
+
             color: #79eba2;
+
             margin-bottom: 15px;
+
         }
 
 
         .intro-card h3 {
+
             font-size: 28px;
+
             line-height: 1.1;
+
             margin: 0 0 15px;
+
             font-weight: 900;
+
             letter-spacing: -0.7px;
+
         }
 
 
         .intro-card p {
+
             margin: 0;
 
-            color: rgba(255,255,255,0.82);
+            color:
+                rgba(255,255,255,0.82);
 
             font-size: 15px;
+
             line-height: 1.75;
+
         }
+
 
 
         /* =================================================
@@ -329,13 +608,18 @@
         ================================================= */
 
         .intro-message-section {
+
             padding: 90px 0;
+
             background: white;
+
         }
 
 
         .intro-message {
+
             position: relative;
+
             overflow: hidden;
 
             border-radius: 28px;
@@ -351,39 +635,49 @@
 
             box-shadow:
                 0 20px 55px rgba(12, 59, 37, 0.18);
+
         }
 
 
         .intro-message::after {
+
             content: "♻";
 
             position: absolute;
 
             right: 35px;
+
             bottom: -35px;
 
             font-size: 190px;
 
-            color: rgba(255,255,255,0.045);
+            color:
+                rgba(255,255,255,0.045);
 
             font-weight: 900;
+
         }
 
 
         .intro-message-label {
+
             color: #8cf0ad;
 
             font-size: 12px;
+
             font-weight: 900;
 
             letter-spacing: 2px;
+
         }
 
 
         .intro-message h2 {
+
             color: white;
 
-            font-size: clamp(30px, 4vw, 48px);
+            font-size:
+                clamp(30px, 4vw, 48px);
 
             line-height: 1.1;
 
@@ -392,16 +686,21 @@
             font-weight: 900;
 
             max-width: 750px;
+
         }
 
 
         .intro-message h2 span {
+
             color: #7aeba2;
+
         }
 
 
         .intro-message p {
-            color: rgba(255,255,255,0.78);
+
+            color:
+                rgba(255,255,255,0.78);
 
             max-width: 760px;
 
@@ -410,7 +709,9 @@
             margin: 0;
 
             font-size: 16px;
+
         }
+
 
 
         /* =================================================
@@ -420,12 +721,17 @@
         @media (max-width: 900px) {
 
             .intro-cards {
+
                 grid-template-columns:
                     repeat(2, minmax(0, 1fr));
+
             }
 
+
             .intro-card:last-child {
+
                 grid-column: 1 / -1;
+
             }
 
         }
@@ -434,47 +740,100 @@
         @media (max-width: 650px) {
 
             .intro-hero {
+
                 min-height: 70vh;
+
             }
 
 
             .intro-hero-content {
+
                 padding: 110px 0 70px;
+
             }
 
 
             .intro-hero-content h1 {
+
                 letter-spacing: -2px;
+
             }
 
 
             .intro-hero-content p {
+
                 font-size: 16px;
+
+            }
+
+
+            .intro-video-section {
+
+                padding: 70px 0;
+
+            }
+
+
+            .video-card {
+
+                border-radius: 20px;
+
+            }
+
+
+            .video-content {
+
+                padding: 24px;
+
+            }
+
+
+            .video-content h3 {
+
+                font-size: 23px;
+
+            }
+
+
+            .video-content p {
+
+                font-size: 13px;
+
             }
 
 
             .intro-section {
+
                 padding: 70px 0;
+
             }
 
 
             .intro-cards {
+
                 grid-template-columns: 1fr;
+
             }
 
 
             .intro-card:last-child {
+
                 grid-column: auto;
+
             }
 
 
             .intro-card {
+
                 min-height: 460px;
+
             }
 
 
             .intro-message {
+
                 padding: 35px 28px;
+
             }
 
         }
@@ -510,7 +869,9 @@
 
             </div>
 
-            SAFE ENERGY
+            <span>
+                SAFE ENERGY
+            </span>
 
         </a>
 
@@ -537,46 +898,33 @@
 
 
             <a href="trend.html">
-
                 TREND
-
             </a>
 
 
             <a href="renewable-energy-is-important-because.html">
-
-                IMPORTANCE 
-
+                IMPORTANCE
             </a>
 
 
             <a href="effects.html">
-
                 EFFECTS
-
             </a>
 
 
             <a href="ways-to-safe-energy.html">
-
-                WAYS 
-
+                WAYS
             </a>
 
 
             <a href="our-team.html">
-
                 OUR TEAM
-
             </a>
 
 
             <a href="sources.html">
-
                 SOURCES
-
             </a>
-
 
         </div>
 
@@ -589,12 +937,9 @@
             aria-label="Open navigation menu"
             aria-expanded="false">
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
 
         </button>
-
 
     </div>
 
@@ -613,9 +958,7 @@
         <div class="intro-hero-content">
 
             <span class="section-label">
-
                 INTRODUCTION
-
             </span>
 
 
@@ -623,7 +966,9 @@
 
                 Understanding
 
-                <span>Safe Energy.</span>
+                <span>
+                    Safe Energy.
+                </span>
 
             </h1>
 
@@ -638,6 +983,89 @@
                 can have a major impact on our planet.
 
             </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INTRODUCTION VIDEO
+========================================================= -->
+
+<section class="intro-video-section">
+
+    <div class="section-container">
+
+
+        <div class="intro-video-heading">
+
+            <span class="section-label">
+
+                WATCH & LEARN
+
+            </span>
+
+
+            <h2>
+
+                Introduction To
+
+                <span>
+                    Energy
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Watch this video to learn more about
+                energy, renewable energy and
+                sustainability.
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             VIDEO CARD
+        ================================================= -->
+
+        <div class="video-card">
+
+
+            <div class="video-container">
+
+                <iframe
+                    src="https://www.youtube.com/embed/RnvCbquYeIM"
+                    title="Introduction to Energy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+
+            </div>
+
+
+            <div class="video-content">
+
+                <h3>
+                    Introduction
+                </h3>
+
+
+                <p>
+
+                    An introduction to energy,
+                    renewable energy and sustainability.
+
+                </p>
+
+            </div>
 
         </div>
 
@@ -669,7 +1097,9 @@
 
                 Energy Shapes Our
 
-                <span>Future</span>
+                <span>
+                    Future
+                </span>
 
             </h2>
 
@@ -702,6 +1132,7 @@
             <article class="intro-card">
 
                 <div class="intro-card-content">
+
 
                     <div class="intro-card-number">
                         01
@@ -747,6 +1178,7 @@
 
                 <div class="intro-card-content">
 
+
                     <div class="intro-card-number">
                         02
                     </div>
@@ -789,6 +1221,7 @@
             <article class="intro-card">
 
                 <div class="intro-card-content">
+
 
                     <div class="intro-card-number">
                         03
@@ -842,6 +1275,7 @@
 
     <div class="section-container">
 
+
         <div class="intro-message">
 
 
@@ -856,7 +1290,9 @@
 
                 Choose Energy That
 
-                <span>Protects Tomorrow.</span>
+                <span>
+                    Protects Tomorrow.
+                </span>
 
             </h2>
 
@@ -933,7 +1369,6 @@
 
         </div>
 
-
     </div>
 
 </footer>
@@ -947,20 +1382,6 @@
 <script src="script.js"></script>
 
 
-</body <div class="video-card">
-    <div class="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/RnvCbquYeIM"
-            title="Introduction to Energy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="video-content">
-        <h3>Introduction</h3>
-        <p>An introduction to energy, renewable energy and sustainability.</p>
-    </div>
-</div>>
+</body>
 
 </html>
