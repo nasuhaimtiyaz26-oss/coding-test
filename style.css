@@ -3410,3 +3410,590 @@ button:focus-visible {
 /* =========================================================
    END OF SAFE ENERGY MASTER CSS
    ========================================================= */
+
+/* =========================================================
+   SAFE ENERGY TREND PAGE
+   3 GRAPH ROWS + DISCUSSION / TREND OVER TIME
+   ADDITION TO ORIGINAL CSS
+   ========================================================= */
+
+
+/* =========================================================
+   01. TREND CHART LAYOUT
+   ========================================================= */
+
+/*
+   Original:
+   .energy-chart-grid
+   used 2 columns.
+
+   This changes ONLY the Trend page chart layout
+   so Graph 1, Graph 2 and Graph 3 appear vertically.
+*/
+
+.energy-chart-grid {
+    display: grid;
+
+    grid-template-columns: 1fr !important;
+
+    gap: 28px;
+
+    width: 100%;
+}
+
+
+/*
+   Make every chart card inside the Trend page
+   occupy the complete available width.
+*/
+
+.energy-chart-grid .chart-card {
+    width: 100%;
+}
+
+
+/*
+   Graph 3 remains below Graph 2.
+*/
+
+.energy-chart-full {
+    width: 100%;
+
+    margin-top: 28px;
+}
+
+.energy-chart-full .chart-card {
+    width: 100%;
+}
+
+
+/* =========================================================
+   02. GRAPH ITEM
+   ========================================================= */
+
+/*
+   If the HTML uses:
+
+   <div class="chart-item">
+       <div class="chart-card">...</div>
+       <div class="chart-discussion">...</div>
+   </div>
+*/
+
+.chart-item {
+    width: 100%;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   03. DISCUSSION BOX
+   ========================================================= */
+
+.chart-discussion {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 16px;
+
+    padding: 23px 25px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(248, 251, 249, 0.98);
+
+    border:
+        1px solid
+        rgba(20, 50, 36, 0.10);
+
+    box-shadow:
+        0 10px 35px
+        rgba(5, 30, 18, 0.07);
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+/*
+   Green accent line
+*/
+
+.chart-discussion::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--green-400),
+            var(--green-500)
+        );
+}
+
+
+/* =========================================================
+   04. DISCUSSION HOVER
+   ========================================================= */
+
+.chart-discussion:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 16px 40px
+        rgba(6, 31, 20, 0.11);
+
+    border-color:
+        rgba(35, 155, 91, 0.22);
+}
+
+
+/* =========================================================
+   05. DISCUSSION HEADER
+   ========================================================= */
+
+.chart-discussion-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 11px;
+}
+
+
+.chart-discussion-header i {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(35, 155, 91, 0.10);
+
+    color:
+        var(--green-500);
+
+    font-size: 13px;
+}
+
+
+.chart-discussion-header span {
+    display: block;
+
+    color:
+        var(--green-600);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   06. DISCUSSION TITLE
+   ========================================================= */
+
+.chart-discussion h4 {
+    margin: 0 0 8px;
+
+    color:
+        var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   07. DISCUSSION TEXT
+   ========================================================= */
+
+.chart-discussion p {
+    margin: 0;
+
+    color:
+        var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   08. TREND HIGHLIGHT
+   ========================================================= */
+
+.chart-trend-highlight {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 14px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(35, 155, 91, 0.09);
+
+    color:
+        var(--green-600);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.4px;
+}
+
+
+.chart-trend-highlight i {
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   09. GRAPH 1 DARK DISCUSSION
+   ========================================================= */
+
+/*
+   Graph 1 is the dark chart.
+   The discussion underneath it follows
+   the same dark green visual language.
+*/
+
+.chart-dark + .chart-discussion {
+    background:
+        linear-gradient(
+            145deg,
+            #081d14,
+            #0d3523
+        );
+
+    border-color:
+        rgba(126, 226, 160, 0.14);
+
+    color: white;
+}
+
+
+.chart-dark + .chart-discussion::before {
+    background:
+        linear-gradient(
+            180deg,
+            var(--green-300),
+            var(--green-400)
+        );
+}
+
+
+.chart-dark + .chart-discussion
+.chart-discussion-header i {
+    background:
+        rgba(126, 226, 160, 0.10);
+
+    color:
+        var(--green-300);
+}
+
+
+.chart-dark + .chart-discussion
+.chart-discussion-header span {
+    color:
+        var(--green-300);
+}
+
+
+.chart-dark + .chart-discussion h4 {
+    color: white;
+}
+
+
+.chart-dark + .chart-discussion p {
+    color:
+        rgba(255, 255, 255, 0.64);
+}
+
+
+.chart-dark + .chart-discussion
+.chart-trend-highlight {
+    background:
+        rgba(126, 226, 160, 0.10);
+
+    color:
+        var(--green-300);
+}
+
+
+/* =========================================================
+   10. DISCUSSION SPACING
+   ========================================================= */
+
+/*
+   Prevent the original chart-card hover
+   from affecting the discussion box.
+*/
+
+.chart-discussion {
+    transform-origin: center;
+}
+
+
+/*
+   Keep original Chart.js hover effect.
+   Nothing here changes canvas interaction.
+*/
+
+.energy-chart-grid .chart-card:hover,
+.energy-chart-full .chart-card:hover {
+    transform:
+        translateY(-5px);
+}
+
+
+/* =========================================================
+   11. GRAPH + DISCUSSION STACK
+   ========================================================= */
+
+.energy-chart-grid > .chart-item {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+.energy-chart-grid > .chart-item
+.chart-card {
+    margin-top: 0;
+}
+
+
+.energy-chart-grid > .chart-item
+.chart-discussion {
+    margin-top: 16px;
+}
+
+
+/*
+   Graph 3
+*/
+
+.energy-chart-full > .chart-item {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+}
+
+
+.energy-chart-full > .chart-item
+.chart-card {
+    margin-top: 0;
+}
+
+
+.energy-chart-full > .chart-item
+.chart-discussion {
+    margin-top: 16px;
+}
+
+
+/* =========================================================
+   12. KEEP CHART WRAPPER
+   ========================================================= */
+
+.energy-chart-grid .chart-wrapper {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+.energy-chart-full .chart-wrapper {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   13. RESPONSIVE TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .energy-chart-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 25px;
+    }
+
+    .energy-chart-full {
+        margin-top: 25px;
+    }
+
+}
+
+
+/* =========================================================
+   14. RESPONSIVE MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .energy-chart-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 22px;
+    }
+
+    .energy-chart-full {
+        margin-top: 22px;
+    }
+
+
+    .chart-discussion {
+        margin-top: 14px;
+
+        padding: 20px 20px;
+    }
+
+
+    .chart-discussion-header {
+        gap: 9px;
+
+        margin-bottom: 9px;
+    }
+
+
+    .chart-discussion-header i {
+        width: 31px;
+        height: 31px;
+
+        font-size: 12px;
+    }
+
+
+    .chart-discussion-header span {
+        font-size: 9px;
+
+        letter-spacing: 1.4px;
+    }
+
+
+    .chart-discussion h4 {
+        font-size: 14px;
+    }
+
+
+    .chart-discussion p {
+        font-size: 11px;
+
+        line-height: 1.75;
+    }
+
+
+    .chart-trend-highlight {
+        margin-top: 12px;
+
+        padding: 6px 10px;
+
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   15. SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .energy-chart-grid {
+        gap: 18px;
+    }
+
+
+    .energy-chart-full {
+        margin-top: 18px;
+    }
+
+
+    .chart-discussion {
+        padding: 17px 18px;
+    }
+
+
+    .chart-discussion h4 {
+        font-size: 13px;
+    }
+
+
+    .chart-discussion p {
+        font-size: 10.5px;
+    }
+
+
+    .chart-discussion-header i {
+        width: 29px;
+        height: 29px;
+    }
+
+
+    .chart-discussion-header span {
+        font-size: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   16. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .chart-discussion {
+        transition: none;
+    }
+
+}
