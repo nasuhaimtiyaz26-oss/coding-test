@@ -1,11 +1,9 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Trend | Safe Energy</title>
@@ -570,6 +568,8 @@
 
         /* =====================================================
            CHART GRID
+           CHANGED:
+           ALL GRAPHS ARE NOW ONE ABOVE ANOTHER
         ===================================================== */
 
         .energy-chart-grid {
@@ -578,15 +578,19 @@
 
             display: grid;
 
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
 
-            gap: 24px;
+            gap: 30px;
 
             width: 100%;
 
             margin-top: 30px;
         }
+
+
+        /* =====================================================
+           CHART CARD
+        ===================================================== */
 
         .energy-chart-grid .chart-card,
         .energy-chart-full .chart-card {
@@ -643,7 +647,7 @@
 
             width: 100%;
 
-            margin-top: 24px;
+            margin-top: 30px;
         }
 
         .energy-chart-full .chart-card {
@@ -684,6 +688,93 @@
             display: block;
 
             max-width: 100%;
+        }
+
+
+        /* =====================================================
+           DISCUSSION / TREND OVER TIME
+        ===================================================== */
+
+        .chart-discussion {
+            position: relative;
+            z-index: 2;
+
+            margin: 0 25px 25px;
+
+            padding: 22px 24px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(50,200,120,0.07);
+
+            border:
+                1px solid rgba(50,200,120,0.15);
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+        }
+
+        .chart-discussion-icon {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background:
+                rgba(50,200,120,0.13);
+
+            color: #2cb96e;
+
+            font-size: 16px;
+        }
+
+        .chart-discussion-content {
+            min-width: 0;
+        }
+
+        .chart-discussion-label {
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+
+            color: #32a968;
+
+            margin-bottom: 5px;
+        }
+
+        .chart-discussion h4 {
+            margin: 0 0 7px;
+
+            font-size: 15px;
+
+            font-weight: 900;
+
+            color: #18271f;
+        }
+
+        .chart-discussion p {
+            margin: 0;
+
+            font-size: 12px;
+
+            line-height: 1.75;
+
+            color: #65746c;
         }
 
 
@@ -788,6 +879,33 @@
                 rgba(50,200,120,0.14);
 
             color: #55dc8a;
+        }
+
+        .energy-chart-grid .chart-dark .chart-discussion {
+            background:
+                rgba(255,255,255,0.07);
+
+            border-color:
+                rgba(255,255,255,0.12);
+        }
+
+        .energy-chart-grid .chart-dark .chart-discussion-icon {
+            background:
+                rgba(50,200,120,0.14);
+
+            color: #55dc8a;
+        }
+
+        .energy-chart-grid .chart-dark .chart-discussion-label {
+            color: #55dc8a;
+        }
+
+        .energy-chart-grid .chart-dark .chart-discussion h4 {
+            color: white;
+        }
+
+        .energy-chart-grid .chart-dark .chart-discussion p {
+            color: rgba(255,255,255,0.62);
         }
 
 
@@ -1160,6 +1278,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .energy-chart-grid {
+                gap: 22px;
+            }
+
             .energy-chart-grid .chart-wrapper {
                 min-height: 320px;
                 height: 320px;
@@ -1170,12 +1292,8 @@
                 height: 350px;
             }
 
-            .energy-chart-grid {
-                gap: 18px;
-            }
-
             .energy-chart-full {
-                margin-top: 18px;
+                margin-top: 22px;
             }
 
             .chart-header {
@@ -1187,6 +1305,28 @@
 
             .chart-header h3 {
                 font-size: 16px;
+            }
+
+            .chart-discussion {
+                margin:
+                    0 20px
+                    20px;
+
+                padding: 18px;
+            }
+
+            .chart-discussion-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .chart-discussion h4 {
+                font-size: 14px;
+            }
+
+            .chart-discussion p {
+                font-size: 11px;
+                line-height: 1.7;
             }
 
             .energy-information-section {
@@ -1225,6 +1365,10 @@
             .energy-chart-full .chart-wrapper {
                 min-height: 320px;
                 height: 320px;
+            }
+
+            .chart-discussion {
+                flex-direction: column;
             }
 
         }
@@ -1359,6 +1503,7 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Renewable Energy
                         </strong>
@@ -1366,6 +1511,7 @@
                         <span>
                             Clean energy transition
                         </span>
+
                     </div>
 
                 </div>
@@ -1378,6 +1524,7 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Fossil Fuels
                         </strong>
@@ -1385,6 +1532,7 @@
                         <span>
                             Traditional energy source
                         </span>
+
                     </div>
 
                 </div>
@@ -1397,6 +1545,7 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Electricity
                         </strong>
@@ -1404,6 +1553,7 @@
                         <span>
                             Global electricity generation
                         </span>
+
                     </div>
 
                 </div>
@@ -1571,13 +1721,11 @@
 
 
             <!-- =================================================
-                 GRAPH 1 + GRAPH 2
+                 GRAPH 1
             ================================================= -->
 
             <div class="energy-chart-grid">
 
-
-                <!-- GRAPH 1 -->
 
                 <div class="chart-card chart-dark">
 
@@ -1610,11 +1758,45 @@
 
                     </div>
 
+
+                    <!-- DISCUSSION 1 -->
+
+                    <div class="chart-discussion">
+
+                        <div class="chart-discussion-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div class="chart-discussion-content">
+
+                            <span class="chart-discussion-label">
+                                DISCUSSION / TREND OVER TIME
+                            </span>
+
+                            <h4>
+                                Renewable Energy vs Fossil Fuels
+                            </h4>
+
+                            <p>
+                                The graph allows us to observe how renewable
+                                energy and fossil fuel use change over time.
+                                Renewable energy shows the progress of the
+                                global transition toward cleaner energy,
+                                while fossil fuels continue to play a major
+                                role in the global energy system.
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
 
-                <!-- GRAPH 2 -->
+                <!-- =================================================
+                     GRAPH 2
+                ================================================= -->
 
                 <div class="chart-card">
 
@@ -1644,6 +1826,37 @@
                     <div class="chart-wrapper">
 
                         <canvas id="energyConsumptionChart"></canvas>
+
+                    </div>
+
+
+                    <!-- DISCUSSION 2 -->
+
+                    <div class="chart-discussion">
+
+                        <div class="chart-discussion-icon">
+                            <i class="fa-solid fa-chart-area"></i>
+                        </div>
+
+                        <div class="chart-discussion-content">
+
+                            <span class="chart-discussion-label">
+                                DISCUSSION / TREND OVER TIME
+                            </span>
+
+                            <h4>
+                                Global Energy Consumption
+                            </h4>
+
+                            <p>
+                                The graph shows changes in global primary
+                                energy consumption across different years.
+                                The overall trend helps illustrate how
+                                increasing energy demand has influenced
+                                the amount of energy used worldwide.
+                            </p>
+
+                        </div>
 
                     </div>
 
@@ -1687,6 +1900,38 @@
                     <div class="chart-wrapper">
 
                         <canvas id="electricityChart"></canvas>
+
+                    </div>
+
+
+                    <!-- DISCUSSION 3 -->
+
+                    <div class="chart-discussion">
+
+                        <div class="chart-discussion-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <div class="chart-discussion-content">
+
+                            <span class="chart-discussion-label">
+                                DISCUSSION / TREND OVER TIME
+                            </span>
+
+                            <h4>
+                                Electricity Generation
+                            </h4>
+
+                            <p>
+                                This graph compares how electricity generation
+                                changes across renewable, fossil fuel and
+                                nuclear sources over time. It helps show the
+                                changing contribution of different electricity
+                                sources and the development of cleaner
+                                electricity generation.
+                            </p>
+
+                        </div>
 
                     </div>
 
@@ -1949,4 +2194,3 @@
 </body>
 
 </html>
-```
