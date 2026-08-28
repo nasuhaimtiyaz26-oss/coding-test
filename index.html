@@ -5,26 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Safe Energy - Renewable Energy, Sustainability and Energy Efficiency">
+    <title>Safe Energy | Importance of Safe Energy</title>
 
-    <title>
-        Safe Energy | Renewable Energy & Sustainability
-    </title>
-
-
-    <!-- =====================================================
-         GOOGLE FONT
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
         rel="preconnect"
@@ -35,180 +21,267 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-
-    <!-- =====================================================
-         FONT AWESOME
-    ====================================================== -->
-
+    <!-- FONT AWESOME -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="style.css">
 
-    <!-- =====================================================
-         MAIN CSS
-    ====================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="style.css">
-
-
-    <!-- =====================================================
-         HOME VIDEO STYLE
-    ====================================================== -->
-
+    <!-- HOME PAGE STYLE -->
     <style>
 
-        /* =================================================
-           HOME VIDEO SECTION
-        ================================================= */
-
-        .home-video-section {
-            padding: 100px 0;
-            background: #f5faf7;
+        .home-navigation {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
         }
 
-
-        .home-video-wrapper {
-            max-width: 1000px;
-            margin: 50px auto 0;
-        }
-
-
-        /* =================================================
-           VIDEO CARD
-        ================================================= */
-
-        .home-video-card {
+        .home-nav-card {
+            position: relative;
             overflow: hidden;
-            border-radius: 28px;
-            background: white;
-
-            border: 1px solid rgba(20, 70, 45, 0.10);
-
-            box-shadow:
-                0 25px 70px rgba(20, 55, 38, 0.14);
-
+            min-height: 240px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 32px;
+            color: white;
+            text-decoration: none;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            isolation: isolate;
             transition:
                 transform 0.35s ease,
                 box-shadow 0.35s ease;
         }
 
-
-        .home-video-card:hover {
-            transform: translateY(-7px);
-
-            box-shadow:
-                0 35px 85px rgba(20, 55, 38, 0.20);
-        }
-
-
-        /* =================================================
-           VIDEO CONTAINER
-        ================================================= */
-
-        .home-video-container {
-            position: relative;
-
-            width: 100%;
-
-            aspect-ratio: 16 / 9;
-
-            overflow: hidden;
-
-            background: #071d12;
-        }
-
-
-        .home-video-container iframe {
+        .home-nav-card::before {
+            content: "";
             position: absolute;
-
             inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(5, 20, 13, 0.92),
+                    rgba(5, 30, 20, 0.72),
+                    rgba(0, 0, 0, 0.48)
+                );
+        }
 
+        .home-nav-card::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: -70px;
+            bottom: -70px;
+            border-radius: 50%;
+            background: rgba(92, 220, 140, 0.16);
+            filter: blur(10px);
+            z-index: -1;
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
+        }
+
+        .home-nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow:
+                0 25px 55px rgba(0, 0, 0, 0.22);
+        }
+
+        .home-nav-card:hover::after {
+            transform: scale(1.5);
+            opacity: 0.8;
+        }
+
+        .home-nav-card:nth-child(1) {
+            background-image:
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card:nth-child(2) {
+            background-image:
+                url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card:nth-child(3) {
+            background-image:
+                url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card:nth-child(4) {
+            background-image:
+                url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card:nth-child(5) {
+            background-image:
+                url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card:nth-child(6) {
+            background-image:
+                url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85");
+        }
+
+        .home-nav-card .home-nav-icon {
+            flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-size: 25px;
+            color: white;
+        }
+
+        .home-nav-card > div:nth-child(2) {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .home-nav-card span {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .home-nav-card h3 {
+            margin: 0 0 9px;
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .home-nav-card p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .home-nav-card .home-nav-arrow {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .home-nav-card:hover .home-nav-arrow {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        /* VIDEO */
+
+        .video-section {
+            padding: 90px 0;
+            background: #f6faf7;
+        }
+
+        .video-card {
+            max-width: 950px;
+            margin: 40px auto 0;
+            overflow: hidden;
+            border-radius: 24px;
+            background: white;
+            box-shadow:
+                0 20px 55px rgba(20, 45, 31, 0.15);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #071c12;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-
             border: 0;
         }
 
-
-        /* =================================================
-           VIDEO CONTENT
-        ================================================= */
-
-        .home-video-content {
-            padding: 30px 34px 34px;
+        .video-content {
+            padding: 28px 32px;
         }
 
-
-        .home-video-label {
-            display: inline-block;
-
-            margin-bottom: 10px;
-
-            color: #27864d;
-
-            font-size: 11px;
-
-            font-weight: 900;
-
-            letter-spacing: 2px;
-        }
-
-
-        .home-video-content h3 {
-            margin: 0 0 10px;
-
+        .video-content h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            font-weight: 800;
             color: #14231c;
-
-            font-size: 27px;
-
-            font-weight: 900;
-
-            letter-spacing: -0.7px;
         }
 
-
-        .home-video-content p {
+        .video-content p {
             margin: 0;
-
             color: #64736b;
-
-            font-size: 15px;
-
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-
-        /* =================================================
-           HOME VIDEO RESPONSIVE
-        ================================================= */
-
-        @media (max-width: 700px) {
-
-            .home-video-section {
-                padding: 70px 0;
+        @media (max-width: 850px) {
+            .home-navigation {
+                grid-template-columns: 1fr;
             }
+        }
 
+        @media (max-width: 600px) {
 
-            .home-video-wrapper {
-                margin-top: 35px;
-            }
-
-
-            .home-video-card {
-                border-radius: 20px;
-            }
-
-
-            .home-video-content {
+            .home-nav-card {
+                min-height: 210px;
                 padding: 24px;
+                gap: 16px;
             }
 
+            .home-nav-card .home-nav-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 16px;
+                font-size: 20px;
+            }
 
-            .home-video-content h3 {
-                font-size: 22px;
+            .home-nav-card h3 {
+                font-size: 20px;
+            }
+
+            .home-nav-card p {
+                font-size: 12px;
+            }
+
+            .home-nav-card .home-nav-arrow {
+                width: 38px;
+                height: 38px;
+            }
+
+            .video-section {
+                padding: 65px 0;
+            }
+
+            .video-content {
+                padding: 22px;
             }
 
         }
@@ -217,1232 +290,695 @@
 
 </head>
 
-
 <body>
 
+    <!-- NAVBAR -->
 
-<!-- =========================================================
-     NAVBAR
-========================================================= -->
+    <nav class="navbar" id="navbar">
 
-<nav
-    class="navbar"
-    id="navbar">
+        <div class="nav-container">
 
-    <div class="nav-container">
+            <a href="index.html" class="logo">
+
+                <div class="logo-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <span>SAFE ENERGY</span>
+
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+
+                <a href="index.html" class="active">
+                    HOME
+                </a>
+
+                <a href="introduction.html">
+                    INTRODUCTION
+                </a>
+
+                <a href="trend.html">
+                    TREND
+                </a>
+
+                <a href="renewable-energy-is-important-because.html">
+                    IMPORTANCE
+                </a>
+
+                <a href="effects.html">
+                    EFFECTS
+                </a>
+
+                <a href="ways-to-safe-energy.html">
+                    WAYS
+                </a>
+
+                <a href="our-team.html">
+                    OUR TEAM
+                </a>
+
+                <a href="sources.html">
+                    SOURCES
+                </a>
+
+            </div>
+
+            <button
+                class="menu-dots"
+                id="menuDots"
+                aria-label="Open navigation"
+                aria-expanded="false">
+
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+
+            </button>
+
+        </div>
+
+    </nav>
 
 
-        <!-- LOGO -->
+    <!-- HERO -->
 
-        <a
-            href="index.html"
-            class="logo">
+    <section class="page-hero">
 
-            <div class="logo-icon">
+        <div class="section-container">
+
+            <span class="section-label">
 
                 <i class="fa-solid fa-leaf"></i>
 
-            </div>
-
-            SAFE ENERGY
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
-        <div
-            class="nav-menu"
-            id="navMenu">
-
-
-            <a
-                href="index.html"
-                class="active">
-
-                HOME
-
-            </a>
-
-
-            <a href="introduction.html">
-
-                INTRODUCTION
-
-            </a>
-
-
-            <a href="trend.html">
-
-                TREND
-
-            </a>
-
-
-            <a href="renewable-energy-is-important-because.html">
-
-                IMPORTANCE
-
-            </a>
-
-
-            <a href="effects.html">
-
-                EFFECTS
-
-            </a>
-
-
-            <a href="ways-to-safe-energy.html">
-
-                WAYS
-
-            </a>
-
-
-            <a href="our-team.html">
-
-                OUR TEAM
-
-            </a>
-
-
-            <a href="sources.html">
-
-                SOURCES
-
-            </a>
-
-
-        </div>
-
-
-        <!-- MOBILE MENU -->
-
-        <button
-            class="menu-dots"
-            id="menuDots"
-            aria-label="Open navigation menu"
-            aria-expanded="false">
-
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-
-        </button>
-
-
-    </div>
-
-</nav>
-
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-
-    <div class="hero-overlay"></div>
-
-
-    <div class="section-container hero-content">
-
-
-        <span class="section-label">
-
-            RENEWABLE ENERGY & SUSTAINABILITY
-
-        </span>
-
-
-        <h1>
-
-            Powering A
-
-            <span>
-                Safer Future
-            </span>
-
-        </h1>
-
-
-        <p>
-
-            Explore how energy shapes our world,
-            understand the importance of renewable
-            energy and discover practical ways to
-            use energy more responsibly.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-
-            <a
-                href="introduction.html"
-                class="btn-primary">
-
-                EXPLORE
-
-                <i class="fa-solid fa-arrow-right"></i>
-
-            </a>
-
-
-            <a
-                href="#home-video"
-                class="btn-secondary">
-
-                WATCH VIDEO
-
-                <i class="fa-solid fa-play"></i>
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     ENERGY DATA
-========================================================= -->
-
-<section class="dashboard-section">
-
-
-    <div class="section-container">
-
-
-        <div class="section-heading center">
-
-
-            <span class="section-label">
-
-                ENERGY TODAY
+                POWERING A GREENER FUTURE
 
             </span>
 
+            <h1>
 
-            <h2>
-
-                Understanding Our
+                IMPORTANCE OF
 
                 <span>
-                    Energy World
+                    SAFE ENERGY
                 </span>
 
-            </h2>
-
+            </h1>
 
             <p>
 
-                Energy is an essential part of modern life.
-                Understanding how energy is produced and
-                consumed helps us make better decisions
-                for the future.
+                Understanding the importance of renewable energy,
+                responsible energy use and sustainable solutions
+                for a cleaner and safer future.
 
             </p>
 
+            <div class="hero-energy-cards">
+
+                <div class="energy-card reveal">
+
+                    <div class="energy-icon">
+                        <i class="fa-solid fa-solar-panel"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Renewable Energy
+                        </strong>
+
+                        <span>
+                            Cleaner power for tomorrow
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="energy-card reveal">
+
+                    <div class="energy-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Energy Efficiency
+                        </strong>
+
+                        <span>
+                            Use energy smarter every day
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="energy-card reveal">
+
+                    <div class="energy-icon">
+                        <i class="fa-solid fa-earth-asia"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Protect Our Planet
+                        </strong>
+
+                        <span>
+                            Small actions create big impact
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
 
-        <div class="dashboard-grid">
+    <!-- INTRODUCTION -->
 
+    <section class="why-section">
 
-            <!-- CARD 1 -->
+        <div class="section-container">
 
-            <div class="data-card">
+            <div class="section-heading center">
 
-
-                <div class="data-icon">
-
-                    <i class="fa-solid fa-bolt"></i>
-
-                </div>
-
-
-                <span class="data-label">
-
-                    ENERGY
-
+                <span class="section-label">
+                    SAFE ENERGY
                 </span>
 
+                <h2>
 
-                <h3>
+                    Building A
 
-                    Essential
+                    <span>
+                        Sustainable Future
+                    </span>
 
-                </h3>
-
+                </h2>
 
                 <p>
 
-                    Energy powers homes,
-                    transportation, industries
-                    and communication.
+                    Energy is essential for modern life.
+                    The way we produce and consume energy
+                    affects our environment, economy and
+                    future generations.
 
                 </p>
-
 
             </div>
 
 
+            <!-- NAVIGATION CARDS -->
 
-            <!-- CARD 2 -->
+            <div class="home-navigation">
 
-            <div class="data-card">
+                <a
+                    href="trend.html"
+                    class="home-nav-card reveal">
+
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            01 • EXPLORE
+                        </span>
+
+                        <h3>
+                            Energy Data
+                        </h3>
+
+                        <p>
+                            Explore global energy trends,
+                            consumption and renewable energy data.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
 
 
-                <div class="data-icon">
+                <a
+                    href="renewable-energy-is-important-because.html"
+                    class="home-nav-card reveal">
 
-                    <i class="fa-solid fa-earth-americas"></i>
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
 
-                </div>
+                    <div>
+
+                        <span>
+                            02 • DISCOVER
+                        </span>
+
+                        <h3>
+                            Renewable Energy Is Important Because
+                        </h3>
+
+                        <p>
+                            Understand why renewable energy
+                            is important for our future.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
 
 
-                <span class="data-label">
+                <a
+                    href="effects.html"
+                    class="home-nav-card reveal">
 
-                    ENVIRONMENT
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
 
-                </span>
+                    <div>
+
+                        <span>
+                            03 • UNDERSTAND
+                        </span>
+
+                        <h3>
+                            Effects
+                        </h3>
+
+                        <p>
+                            Discover the environmental effects
+                            of fossil fuel dependence.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
 
 
-                <h3>
+                <a
+                    href="ways-to-safe-energy.html"
+                    class="home-nav-card reveal">
 
-                    Connected
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
 
-                </h3>
+                    <div>
+
+                        <span>
+                            04 • TAKE ACTION
+                        </span>
+
+                        <h3>
+                            Ways To Save Energy
+                        </h3>
+
+                        <p>
+                            Learn practical ways to reduce
+                            energy consumption every day.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
 
 
-                <p>
+                <a
+                    href="our-team.html"
+                    class="home-nav-card reveal">
 
-                    The way energy is produced
-                    can affect the environment
-                    and climate.
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
 
-                </p>
+                    <div>
 
+                        <span>
+                            05 • OUR PROJECT
+                        </span>
+
+                        <h3>
+                            Our Team
+                        </h3>
+
+                        <p>
+                            Meet the people behind
+                            the Safe Energy project.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="sources.html"
+                    class="home-nav-card reveal">
+
+                    <div class="home-nav-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            06 • RESEARCH
+                        </span>
+
+                        <h3>
+                            Sources
+                        </h3>
+
+                        <p>
+                            Explore the organisations and
+                            research used in this website.
+                        </p>
+
+                    </div>
+
+                    <div class="home-nav-arrow">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+
+                </a>
 
             </div>
-
-
-
-            <!-- CARD 3 -->
-
-            <div class="data-card">
-
-
-                <div class="data-icon">
-
-                    <i class="fa-solid fa-solar-panel"></i>
-
-                </div>
-
-
-                <span class="data-label">
-
-                    RENEWABLE
-
-                </span>
-
-
-                <h3>
-
-                    Sustainable
-
-                </h3>
-
-
-                <p>
-
-                    Renewable sources provide
-                    alternatives to conventional
-                    fossil fuel energy.
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- CARD 4 -->
-
-            <div class="data-card">
-
-
-                <div class="data-icon">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-                </div>
-
-
-                <span class="data-label">
-
-                    FUTURE
-
-                </span>
-
-
-                <h3>
-
-                    Safer
-
-                </h3>
-
-
-                <p>
-
-                    Better energy choices can
-                    support a cleaner and more
-                    sustainable future.
-
-                </p>
-
-
-            </div>
-
 
         </div>
 
-
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- WHY SAFE ENERGY -->
 
-<!-- =========================================================
-     WHY RENEWABLE ENERGY
-========================================================= -->
+    <section class="why-section">
 
-<section class="why-section">
+        <div class="section-container">
 
+            <div class="section-heading">
 
-    <div class="section-container">
-
-
-        <div class="section-heading center">
-
-
-            <span class="section-label">
-
-                WHY RENEWABLE ENERGY?
-
-            </span>
-
-
-            <h2>
-
-                A Better Direction
-
-                <span>
-                    For Energy
+                <span class="section-label">
+                    WHY IT MATTERS
                 </span>
 
-            </h2>
+                <h2>
+
+                    Why We Need
+
+                    <span>
+                        Safe Energy
+                    </span>
+
+                </h2>
+
+                <p>
+
+                    Moving towards cleaner energy can help
+                    create a healthier environment and a more
+                    sustainable society.
+
+                </p>
+
+            </div>
 
 
-            <p>
+            <div class="benefits-grid">
 
-                Renewable energy can help diversify
-                energy systems and reduce dependence
-                on fossil fuels.
+                <article class="benefit-card reveal">
 
-            </p>
+                    <span class="benefit-number">01</span>
 
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <h3>
+                        Cleaner Environment
+                    </h3>
+
+                    <p>
+                        Renewable energy can reduce reliance
+                        on fossil fuels and help lower harmful
+                        environmental impacts.
+                    </p>
+
+                </article>
+
+
+                <article class="benefit-card reveal">
+
+                    <span class="benefit-number">02</span>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+
+                    <h3>
+                        Lower Emissions
+                    </h3>
+
+                    <p>
+                        Cleaner energy technologies can support
+                        efforts to reduce greenhouse gas emissions.
+                    </p>
+
+                </article>
+
+
+                <article class="benefit-card reveal">
+
+                    <span class="benefit-number">03</span>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+
+                    <h3>
+                        Renewable Resources
+                    </h3>
+
+                    <p>
+                        Solar, wind, hydro and other renewable
+                        resources can provide sustainable energy.
+                    </p>
+
+                </article>
+
+
+                <article class="benefit-card reveal">
+
+                    <span class="benefit-number">04</span>
+
+                    <div class="benefit-icon">
+                        <i class="fa-solid fa-earth-americas"></i>
+                    </div>
+
+                    <h3>
+                        Protect The Future
+                    </h3>
+
+                    <p>
+                        Responsible energy choices today can
+                        contribute to a more sustainable future.
+                    </p>
+
+                </article>
+
+            </div>
+
+
+            <div class="why-message reveal">
+
+                <div class="why-message-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        Every Energy Choice Matters
+                    </h3>
+
+                    <p>
+                        From the electricity we use to the
+                        technologies we support, our decisions
+                        can contribute to a cleaner energy future.
+                    </p>
+
+                </div>
+
+            </div>
 
         </div>
 
+    </section>
 
 
-        <div class="benefits-grid">
+    <!-- HOME VIDEO -->
 
+    <section class="video-section">
 
-            <!-- BENEFIT 1 -->
+        <div class="section-container">
 
-            <div class="benefit-card">
+            <div class="section-heading center">
 
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-sun"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Solar Energy
-
-                </h3>
-
-
-                <p>
-
-                    Solar energy uses sunlight to
-                    produce electricity without
-                    directly burning fossil fuels.
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- BENEFIT 2 -->
-
-            <div class="benefit-card">
-
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-water"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Hydropower
-
-                </h3>
-
-
-                <p>
-
-                    Hydropower generates electricity
-                    using the movement of water.
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- BENEFIT 3 -->
-
-            <div class="benefit-card">
-
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-wind"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Wind Energy
-
-                </h3>
-
-
-                <p>
-
-                    Wind turbines convert moving air
-                    into electrical energy.
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- BENEFIT 4 -->
-
-            <div class="benefit-card">
-
-
-                <div class="benefit-icon">
-
-                    <i class="fa-solid fa-recycle"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Sustainability
-
-                </h3>
-
-
-                <p>
-
-                    Cleaner energy choices can support
-                    long-term environmental sustainability.
-
-                </p>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     HOME VIDEO
-========================================================= -->
-
-<section
-    class="home-video-section"
-    id="home-video">
-
-
-    <div class="section-container">
-
-
-        <div class="section-heading center">
-
-
-            <span class="section-label">
-
-                WATCH & LEARN
-
-            </span>
-
-
-            <h2>
-
-                Understanding
-
-                <span>
-                    Safe Energy
+                <span class="section-label">
+                    FEATURED VIDEO
                 </span>
 
-            </h2>
+                <h2>
 
+                    Learn More About
 
-            <p>
+                    <span>
+                        Safe Energy
+                    </span>
 
-                Watch this introduction to learn more
-                about energy, renewable energy and
-                sustainability.
+                </h2>
 
-            </p>
+                <p>
+                    Watch this video to learn more about energy,
+                    renewable energy and sustainability.
+                </p>
 
+            </div>
 
-        </div>
+            <div class="video-card reveal">
 
-
-
-        <!-- =================================================
-             VIDEO CARD
-        ================================================== -->
-
-        <div class="home-video-wrapper">
-
-
-            <div class="home-video-card">
-
-
-                <!-- VIDEO -->
-
-                <div class="home-video-container">
+                <div class="video-container">
 
                     <iframe
-                        src="https://www.youtube.com/embed/RnvCbquYeIM"
-                        title="Introduction to Safe Energy"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        src="https://www.youtube.com/embed/RzTIO0MMK9I"
+                        title="Safe Energy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
 
                 </div>
 
-
-                <!-- VIDEO INFORMATION -->
-
-                <div class="home-video-content">
-
-
-                    <span class="home-video-label">
-
-                        SAFE ENERGY
-
-                    </span>
-
+                <div class="video-content">
 
                     <h3>
-
-                        Introduction to Energy
-
+                        Safe Energy
                     </h3>
 
-
                     <p>
-
-                        Learn the basic concepts of energy,
-                        renewable energy and sustainability
-                        and understand why responsible energy
-                        use is important for our future.
-
+                        Learn more about energy, renewable energy
+                        and sustainability.
                     </p>
-
 
                 </div>
 
-
             </div>
-
 
         </div>
 
-
-    </div>
-
-</section>
+    </section>
 
 
+    <!-- CALL TO ACTION -->
 
-<!-- =========================================================
-     WHAT WE CAN DO
-========================================================= -->
+    <section class="save-section">
 
-<section class="action-section">
+        <div class="section-container">
+
+            <div class="save-message reveal">
+
+                <div class="save-message-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <div>
+
+                    <h3>
+                        The Future Starts With Us
+                    </h3>
+
+                    <p>
+                        Explore the website to understand
+                        energy data, renewable energy,
+                        environmental effects and practical
+                        actions we can take.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-    <div class="section-container">
+    <!-- FOOTER -->
 
+    <footer>
 
-        <div class="section-heading center">
+        <div class="footer-container">
 
+            <div class="footer-logo">
 
-            <span class="section-label">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
 
-                TAKE ACTION
+                SAFE ENERGY
 
-            </span>
-
-
-            <h2>
-
-                What
-
-                <span>
-                    We Can Do
-                </span>
-
-            </h2>
-
+            </div>
 
             <p>
-
-                Everyone can contribute by using energy
-                wisely and supporting more sustainable
-                energy choices.
-
+                Understanding energy.
+                Protecting the future.
             </p>
 
+            <div class="footer-source">
 
-        </div>
+                Research sources:
 
+                Our World in Data •
 
+                International Energy Agency •
 
-        <div class="action-grid">
-
-
-            <!-- ACTION 1 -->
-
-            <div class="action-card">
-
-
-                <div class="action-icon">
-
-                    <i class="fa-solid fa-power-off"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Use Energy Efficiently
-
-                </h3>
-
-
-                <p>
-
-                    Switch off unused appliances and
-                    avoid unnecessary electricity use.
-
-                </p>
-
+                Tenaga Nasional Berhad
 
             </div>
 
+            <div class="footer-bottom">
 
-
-            <!-- ACTION 2 -->
-
-            <div class="action-card">
-
-
-                <div class="action-icon">
-
-                    <i class="fa-solid fa-sun"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Use Natural Light
-
-                </h3>
-
-
-                <p>
-
-                    Take advantage of daylight whenever
-                    possible instead of artificial lighting.
-
-                </p>
-
+                © 2026 Safe Energy.
+                Educational Research Website.
 
             </div>
 
-
-
-            <!-- ACTION 3 -->
-
-            <div class="action-card">
-
-
-                <div class="action-icon">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Support Renewable Energy
-
-                </h3>
-
-
-                <p>
-
-                    Learn about renewable energy and
-                    support cleaner energy solutions.
-
-                </p>
-
-
-            </div>
-
-
-
         </div>
 
+    </footer>
 
-    </div>
 
-</section>
+    <!-- JAVASCRIPT -->
 
-
-
-<!-- =========================================================
-     HOME NAVIGATION
-========================================================= -->
-
-<section class="home-navigation-section">
-
-
-    <div class="section-container">
-
-
-        <div class="section-heading center">
-
-
-            <span class="section-label">
-
-                EXPLORE SAFE ENERGY
-
-            </span>
-
-
-            <h2>
-
-                Discover More
-
-            </h2>
-
-
-        </div>
-
-
-
-        <div class="home-navigation">
-
-
-            <!-- INTRODUCTION -->
-
-            <a
-                href="introduction.html"
-                class="home-nav-card">
-
-
-                <div class="home-nav-icon">
-
-                    <i class="fa-solid fa-book-open"></i>
-
-                </div>
-
-
-                <div>
-
-
-                    <span>
-
-                        EXPLORE
-
-                    </span>
-
-
-                    <h3>
-
-                        Introduction
-
-                    </h3>
-
-
-                    <p>
-
-                        Understand the importance of
-                        energy in our daily lives.
-
-                    </p>
-
-
-                </div>
-
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
-
-
-            </a>
-
-
-
-            <!-- TREND -->
-
-            <a
-                href="trend.html"
-                class="home-nav-card">
-
-
-                <div class="home-nav-icon">
-
-                    <i class="fa-solid fa-chart-line"></i>
-
-                </div>
-
-
-                <div>
-
-
-                    <span>
-
-                        EXPLORE
-
-                    </span>
-
-
-                    <h3>
-
-                        Energy Trend
-
-                    </h3>
-
-
-                    <p>
-
-                        Explore energy trends and
-                        renewable energy development.
-
-                    </p>
-
-
-                </div>
-
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
-
-
-            </a>
-
-
-
-            <!-- IMPORTANCE -->
-
-            <a
-                href="renewable-energy-is-important-because.html"
-                class="home-nav-card">
-
-
-                <div class="home-nav-icon">
-
-                    <i class="fa-solid fa-leaf"></i>
-
-                </div>
-
-
-                <div>
-
-
-                    <span>
-
-                        LEARN
-
-                    </span>
-
-
-                    <h3>
-
-                        Importance
-
-                    </h3>
-
-
-                    <p>
-
-                        Discover why renewable energy
-                        matters for the future.
-
-                    </p>
-
-
-                </div>
-
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
-
-
-            </a>
-
-
-
-            <!-- EFFECTS -->
-
-            <a
-                href="effects.html"
-                class="home-nav-card">
-
-
-                <div class="home-nav-icon">
-
-                    <i class="fa-solid fa-smog"></i>
-
-                </div>
-
-
-                <div>
-
-
-                    <span>
-
-                        UNDERSTAND
-
-                    </span>
-
-
-                    <h3>
-
-                        Effects
-
-                    </h3>
-
-
-                    <p>
-
-                        Learn about environmental effects
-                        of fossil fuel dependence.
-
-                    </p>
-
-
-                </div>
-
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
-
-
-            </a>
-
-
-
-            <!-- WAYS -->
-
-            <a
-                href="ways-to-safe-energy.html"
-                class="home-nav-card">
-
-
-                <div class="home-nav-icon">
-
-                    <i class="fa-solid fa-hand-holding-heart"></i>
-
-                </div>
-
-
-                <div>
-
-
-                    <span>
-
-                        TAKE ACTION
-
-                    </span>
-
-
-                    <h3>
-
-                        Ways To Save Energy
-
-                    </h3>
-
-
-                    <p>
-
-                        Learn simple ways to save energy
-                        in everyday life.
-
-                    </p>
-
-
-                </div>
-
-
-                <div class="home-nav-arrow">
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </div>
-
-
-            </a>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-
-    <div class="footer-container">
-
-
-        <div class="footer-logo">
-
-
-            <div class="logo-icon">
-
-                <i class="fa-solid fa-leaf"></i>
-
-            </div>
-
-
-            SAFE ENERGY
-
-
-        </div>
-
-
-        <p>
-
-            Understanding energy.
-            Protecting the future.
-
-        </p>
-
-
-        <div class="footer-source">
-
-            Research sources:
-
-            Our World in Data •
-
-            International Energy Agency •
-
-            Tenaga Nasional Berhad
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            © 2026 Safe Energy.
-
-            Educational Research Website.
-
-        </div>
-
-
-    </div>
-
-
-</footer>
-
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
 
