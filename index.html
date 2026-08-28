@@ -10,11 +10,10 @@
 
     <meta
         name="description"
-        content="Safe Energy - Renewable Energy, Energy Efficiency and Sustainability">
+        content="Safe Energy - Understanding renewable energy, energy efficiency and sustainable solutions for a cleaner future."
+    >
 
-    <title>
-        Safe Energy | Importance of Safe Energy
-    </title>
+    <title>Safe Energy | Importance of Safe Energy</title>
 
 
     <!-- =====================================================
@@ -26,11 +25,13 @@
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossorigin>
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet"
+    >
 
 
     <!-- =====================================================
@@ -39,92 +40,57 @@
 
     <link
         rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
 
     <!-- =====================================================
          MAIN CSS
     ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 
     <!-- =====================================================
-         HOME VIDEO STYLE
-         VIDEO INDEPENDENT FROM style.css
+         HOME PAGE STYLE
     ====================================================== -->
 
     <style>
 
         /* =================================================
-           HOME VIDEO SECTION
+           HOME NAVIGATION CARDS
         ================================================= */
 
-        .home-video-section {
+        .home-navigation {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+
+        .home-nav-card {
             position: relative;
-            padding: 100px 0;
-            background:
-                linear-gradient(
-                    135deg,
-                    #f4faf6,
-                    #ffffff,
-                    #eef8f1
-                );
-            overflow: hidden;
-        }
-
-
-        .home-video-section::before {
-            content: "";
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            border-radius: 50%;
-            background: rgba(76, 175, 80, 0.08);
-            top: -180px;
-            right: -120px;
-            pointer-events: none;
-        }
-
-
-        .home-video-section::after {
-            content: "";
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(76, 175, 80, 0.06);
-            bottom: -150px;
-            left: -100px;
-            pointer-events: none;
-        }
-
-
-        .home-video-section
-        .section-container {
-            position: relative;
-            z-index: 2;
-        }
-
-
-        /* =================================================
-           VIDEO CARD
-        ================================================= */
-
-        .home-video-card {
-            width: 100%;
-            max-width: 1000px;
-            margin: 45px auto 0;
-            background: #ffffff;
-            border-radius: 26px;
             overflow: hidden;
 
-            border: 1px solid rgba(20, 60, 38, 0.10);
+            min-height: 240px;
 
-            box-shadow:
-                0 25px 70px rgba(20, 55, 35, 0.16);
+            border-radius: 24px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 22px;
+
+            padding: 32px;
+
+            color: white;
+            text-decoration: none;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            isolation: isolate;
 
             transition:
                 transform 0.35s ease,
@@ -132,11 +98,262 @@
         }
 
 
-        .home-video-card:hover {
-            transform: translateY(-7px);
+        .home-nav-card::before {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            z-index: -2;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(5, 20, 13, 0.92),
+                    rgba(5, 30, 20, 0.72),
+                    rgba(0, 0, 0, 0.48)
+                );
+        }
+
+
+        .home-nav-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -70px;
+            bottom: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(92, 220, 140, 0.16);
+
+            filter: blur(10px);
+
+            z-index: -1;
+
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease;
+        }
+
+
+        .home-nav-card:hover {
+            transform: translateY(-8px);
 
             box-shadow:
-                0 35px 85px rgba(20, 55, 35, 0.22);
+                0 25px 55px rgba(0, 0, 0, 0.22);
+        }
+
+
+        .home-nav-card:hover::after {
+            transform: scale(1.5);
+            opacity: 0.8;
+        }
+
+
+        /* =================================================
+           CARD BACKGROUND IMAGES
+        ================================================= */
+
+        .home-nav-card:nth-child(1) {
+            background-image:
+                url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        .home-nav-card:nth-child(2) {
+            background-image:
+                url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        .home-nav-card:nth-child(3) {
+            background-image:
+                url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        .home-nav-card:nth-child(4) {
+            background-image:
+                url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        .home-nav-card:nth-child(5) {
+            background-image:
+                url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        .home-nav-card:nth-child(6) {
+            background-image:
+                url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85");
+        }
+
+
+        /* =================================================
+           NAV CARD ICON
+        ================================================= */
+
+        .home-nav-card .home-nav-icon {
+            flex-shrink: 0;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.22);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            font-size: 25px;
+
+            color: white;
+        }
+
+
+        .home-nav-card > div:nth-child(2) {
+            flex: 1;
+            min-width: 0;
+        }
+
+
+        .home-nav-card span {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.4px;
+
+            color:
+                rgba(255, 255, 255, 0.72);
+        }
+
+
+        .home-nav-card h3 {
+            margin: 0 0 9px;
+
+            font-size: 24px;
+            font-weight: 800;
+
+            line-height: 1.25;
+
+            color: white;
+        }
+
+
+        .home-nav-card p {
+            margin: 0;
+
+            font-size: 13px;
+            line-height: 1.7;
+
+            color:
+                rgba(255, 255, 255, 0.82);
+        }
+
+
+        /* =================================================
+           NAV CARD ARROW
+        ================================================= */
+
+        .home-nav-card .home-nav-arrow {
+            flex-shrink: 0;
+
+            width: 44px;
+            height: 44px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.13);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.18);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .home-nav-card:hover .home-nav-arrow {
+            transform: translateX(5px);
+
+            background:
+                rgba(255, 255, 255, 0.22);
+        }
+
+
+        /* =================================================
+           HOME VIDEO SECTION
+        ================================================= */
+
+        .video-section {
+            position: relative;
+
+            display: block;
+
+            width: 100%;
+
+            padding: 90px 0;
+
+            background:
+                #f6faf7;
+
+            overflow: hidden;
+        }
+
+
+        .video-section .section-container {
+            position: relative;
+            z-index: 5;
+        }
+
+
+        .video-card {
+            position: relative;
+
+            display: block;
+
+            width: 100%;
+            max-width: 950px;
+
+            margin: 40px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 24px;
+
+            background:
+                #ffffff;
+
+            box-shadow:
+                0 20px 55px rgba(20, 45, 31, 0.15);
+
+            z-index: 10;
         }
 
 
@@ -144,25 +361,46 @@
            VIDEO CONTAINER
         ================================================= */
 
-        .home-video-container {
+        .video-container {
             position: relative;
+
+            display: block;
+
             width: 100%;
+
             aspect-ratio: 16 / 9;
-            background: #071c12;
+
+            min-height: 300px;
+
+            background:
+                #071c12;
+
             overflow: hidden;
+
+            z-index: 11;
         }
 
 
-        .home-video-container iframe {
+        .video-container iframe {
             position: absolute;
+
             top: 0;
             left: 0;
+
+            display: block;
 
             width: 100%;
             height: 100%;
 
+            min-width: 100%;
+            min-height: 100%;
+
             border: 0;
-            display: block;
+
+            z-index: 12;
+
+            background:
+                #071c12;
         }
 
 
@@ -170,108 +408,146 @@
            VIDEO CONTENT
         ================================================= */
 
-        .home-video-content {
-            padding: 30px 34px;
+        .video-content {
+            position: relative;
+
+            display: block;
+
+            padding: 28px 32px;
+
+            background:
+                #ffffff;
+
+            z-index: 13;
         }
 
 
-        .home-video-label {
-            display: inline-block;
+        .video-content .video-label {
+            display: block;
 
-            margin-bottom: 9px;
+            margin-bottom: 8px;
 
             font-size: 11px;
             font-weight: 800;
 
-            letter-spacing: 1.8px;
+            letter-spacing: 1.5px;
 
-            color: #2f8f55;
+            color:
+                #2c9c5a;
         }
 
 
-        .home-video-content h3 {
-            margin: 0 0 10px;
+        .video-content h3 {
+            margin: 0 0 8px;
 
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 800;
 
-            color: #14231c;
+            color:
+                #14231c;
         }
 
 
-        .home-video-content p {
+        .video-content p {
             margin: 0;
 
-            max-width: 800px;
+            color:
+                #64736b;
 
-            font-size: 14px;
-            line-height: 1.75;
-
-            color: #65736c;
+            line-height: 1.7;
         }
 
 
         /* =================================================
-           VIDEO BUTTON / SOURCE
+           VIDEO FALLBACK
         ================================================= */
 
-        .home-video-source {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
+        .video-note {
+            margin-top: 12px;
 
-            margin-top: 18px;
+            text-align: center;
 
-            padding: 11px 16px;
+            font-size: 12px;
 
-            border-radius: 10px;
-
-            background: #edf8f0;
-
-            color: #287847;
-
-            text-decoration: none;
-
-            font-size: 11px;
-            font-weight: 800;
-
-            transition:
-                background 0.25s ease,
-                transform 0.25s ease;
-        }
-
-
-        .home-video-source:hover {
-            background: #dcefe2;
-            transform: translateY(-2px);
+            color:
+                #7b8982;
         }
 
 
         /* =================================================
-           MOBILE VIDEO
+           MOBILE / TABLET
         ================================================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 850px) {
 
-            .home-video-section {
-                padding: 70px 0;
+            .home-navigation {
+                grid-template-columns: 1fr;
             }
 
-            .home-video-card {
-                margin-top: 30px;
-                border-radius: 20px;
-            }
+        }
 
-            .home-video-content {
+
+        @media (max-width: 600px) {
+
+            .home-nav-card {
+                min-height: 210px;
+
                 padding: 24px;
+
+                gap: 16px;
             }
 
-            .home-video-content h3 {
-                font-size: 21px;
+
+            .home-nav-card .home-nav-icon {
+                width: 56px;
+                height: 56px;
+
+                border-radius: 16px;
+
+                font-size: 20px;
             }
 
-            .home-video-content p {
-                font-size: 13px;
+
+            .home-nav-card h3 {
+                font-size: 20px;
+            }
+
+
+            .home-nav-card p {
+                font-size: 12px;
+            }
+
+
+            .home-nav-card .home-nav-arrow {
+                width: 38px;
+                height: 38px;
+            }
+
+
+            .video-section {
+                padding: 65px 0;
+            }
+
+
+            .video-card {
+                margin-top: 30px;
+
+                border-radius: 18px;
+            }
+
+
+            .video-container {
+                min-height: 200px;
+            }
+
+
+            .video-content {
+                padding: 22px;
+            }
+
+
+            .video-content h3 {
+                font-size: 20px;
             }
 
         }
@@ -320,64 +596,46 @@
             class="nav-menu"
             id="navMenu">
 
-
             <a
                 href="index.html"
                 class="active">
-
                 HOME
-
             </a>
 
 
             <a href="introduction.html">
-
                 INTRODUCTION
-
             </a>
 
 
             <a href="trend.html">
-
                 TREND
-
             </a>
 
 
             <a href="renewable-energy-is-important-because.html">
-
                 IMPORTANCE
-
             </a>
 
 
             <a href="effects.html">
-
                 EFFECTS
-
             </a>
 
 
             <a href="ways-to-safe-energy.html">
-
                 WAYS
-
             </a>
 
 
             <a href="our-team.html">
-
                 OUR TEAM
-
             </a>
 
 
             <a href="sources.html">
-
                 SOURCES
-
             </a>
-
 
         </div>
 
@@ -393,7 +651,6 @@
             <i class="fa-solid fa-ellipsis-vertical"></i>
 
         </button>
-
 
     </div>
 
@@ -444,7 +701,7 @@
         <div class="hero-energy-cards">
 
 
-            <!-- CARD 1 -->
+            <!-- HERO CARD 1 -->
 
             <div class="energy-card reveal">
 
@@ -453,6 +710,7 @@
                     <i class="fa-solid fa-solar-panel"></i>
 
                 </div>
+
 
                 <div>
 
@@ -469,7 +727,7 @@
             </div>
 
 
-            <!-- CARD 2 -->
+            <!-- HERO CARD 2 -->
 
             <div class="energy-card reveal">
 
@@ -478,6 +736,7 @@
                     <i class="fa-solid fa-bolt"></i>
 
                 </div>
+
 
                 <div>
 
@@ -494,7 +753,7 @@
             </div>
 
 
-            <!-- CARD 3 -->
+            <!-- HERO CARD 3 -->
 
             <div class="energy-card reveal">
 
@@ -503,6 +762,7 @@
                     <i class="fa-solid fa-earth-asia"></i>
 
                 </div>
+
 
                 <div>
 
@@ -518,7 +778,6 @@
 
             </div>
 
-
         </div>
 
     </div>
@@ -528,7 +787,7 @@
 
 
 <!-- =========================================================
-     INTRODUCTION / NAVIGATION CARDS
+     INTRODUCTION / NAVIGATION
 ========================================================= -->
 
 <section class="why-section">
@@ -539,9 +798,7 @@
         <div class="section-heading center">
 
             <span class="section-label">
-
                 SAFE ENERGY
-
             </span>
 
 
@@ -570,7 +827,7 @@
 
 
         <!-- =================================================
-             SIX NAVIGATION CARDS
+             ALL 6 NAVIGATION CARDS
         ================================================== -->
 
         <div class="home-navigation">
@@ -844,7 +1101,6 @@
 
             </a>
 
-
         </div>
 
     </div>
@@ -865,9 +1121,7 @@
         <div class="section-heading">
 
             <span class="section-label">
-
                 WHY IT MATTERS
-
             </span>
 
 
@@ -894,7 +1148,7 @@
 
 
 
-        <!-- BENEFITS GRID -->
+        <!-- BENEFITS -->
 
         <div class="benefits-grid">
 
@@ -916,9 +1170,7 @@
 
 
                 <h3>
-
                     Cleaner Environment
-
                 </h3>
 
 
@@ -951,9 +1203,7 @@
 
 
                 <h3>
-
                     Lower Emissions
-
                 </h3>
 
 
@@ -985,9 +1235,7 @@
 
 
                 <h3>
-
                     Renewable Resources
-
                 </h3>
 
 
@@ -1019,9 +1267,7 @@
 
 
                 <h3>
-
                     Protect The Future
-
                 </h3>
 
 
@@ -1033,7 +1279,6 @@
                 </p>
 
             </article>
-
 
         </div>
 
@@ -1053,9 +1298,7 @@
             <div>
 
                 <h3>
-
                     Every Energy Choice Matters
-
                 </h3>
 
 
@@ -1071,7 +1314,6 @@
 
         </div>
 
-
     </div>
 
 </section>
@@ -1082,7 +1324,7 @@
      HOME VIDEO
 ========================================================= -->
 
-<section class="home-video-section">
+<section class="video-section">
 
     <div class="section-container">
 
@@ -1092,8 +1334,6 @@
         <div class="section-heading center">
 
             <span class="section-label">
-
-                <i class="fa-solid fa-circle-play"></i>
 
                 FEATURED VIDEO
 
@@ -1122,20 +1362,18 @@
 
 
 
-        <!-- =================================================
-             VIDEO CARD
-        ================================================== -->
+        <!-- VIDEO CARD -->
 
-        <div class="home-video-card reveal">
+        <div class="video-card reveal">
 
 
             <!-- VIDEO -->
 
-            <div class="home-video-container">
+            <div class="video-container">
 
                 <iframe
                     src="https://www.youtube.com/embed/RzTIO0MMK9I"
-                    title="Safe Energy"
+                    title="Safe Energy - Renewable Energy and Sustainability"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
@@ -1144,49 +1382,37 @@
             </div>
 
 
-            <!-- VIDEO TEXT -->
+            <!-- VIDEO INFORMATION -->
 
-            <div class="home-video-content">
+            <div class="video-content">
 
-                <span class="home-video-label">
-
-                    SAFE ENERGY • FEATURED VIDEO
-
+                <span class="video-label">
+                    SAFE ENERGY
                 </span>
 
 
                 <h3>
-
                     Safe Energy
-
                 </h3>
 
 
                 <p>
 
                     Learn more about energy, renewable energy
-                    and sustainability through this educational
-                    video.
+                    and sustainability.
 
                 </p>
 
-
-                <a
-                    href="https://www.youtube.com/watch?v=RzTIO0MMK9I"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="home-video-source">
-
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-
-                    WATCH ON YOUTUBE
-
-                </a>
-
             </div>
 
-
         </div>
+
+
+        <p class="video-note">
+
+            ▶ Click the video to play it directly on this page.
+
+        </p>
 
     </div>
 
@@ -1216,9 +1442,7 @@
             <div>
 
                 <h3>
-
                     The Future Starts With Us
-
                 </h3>
 
 
@@ -1233,9 +1457,7 @@
 
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -1292,7 +1514,6 @@
             Educational Research Website.
 
         </div>
-
 
     </div>
 
