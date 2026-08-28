@@ -15,7 +15,7 @@ The website contains seven main pages:
 1. Home
 2. Trend
 3. Introduction
-4. Renewable Energy Is Important Because
+4. Importance Of Safe Energy
 5. Effects
 6. Ways To Safe Energy 
 7. Our Team
