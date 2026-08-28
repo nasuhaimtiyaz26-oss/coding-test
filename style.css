@@ -3997,3 +3997,59 @@ button:focus-visible {
     }
 
 }
+
+
+/* =========================================================
+   4 CARDS LAYOUT — 2 TOP + 2 BOTTOM
+   ========================================================= */
+
+/* BENEFIT CARDS */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+
+/* RENEWABLE ENERGY CARDS */
+.renewable-types-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .renewable-types-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .renewable-types-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
