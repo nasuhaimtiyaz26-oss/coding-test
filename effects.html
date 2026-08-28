@@ -6,17 +6,13 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="description"
         content="Effects of fossil fuel dependence and energy use on the environment and future.">
 
-    <title>
-        Effects | Safe Energy
-    </title>
+    <title>Effects | Safe Energy</title>
 
 
     <!-- =====================================================
@@ -50,9 +46,180 @@
          MAIN CSS
     ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- =====================================================
+         EFFECTS PAGE VIDEO STYLE
+    ====================================================== -->
+
+    <style>
+
+        /* =====================================================
+           VIDEO SECTION
+        ===================================================== */
+
+        .video-section {
+            margin-top: 90px;
+            margin-bottom: 80px;
+        }
+
+
+        .video-card {
+            max-width: 950px;
+            margin: 45px auto 0;
+
+            overflow: hidden;
+
+            border-radius: 26px;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 25px 70px rgba(20, 45, 31, 0.15);
+
+            border:
+                1px solid rgba(20, 45, 31, 0.08);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+
+        .video-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 35px 85px rgba(20, 45, 31, 0.20);
+        }
+
+
+        /* =====================================================
+           VIDEO CONTAINER
+        ===================================================== */
+
+        .video-container {
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            background: #071b11;
+
+            overflow: hidden;
+        }
+
+
+        .video-container iframe {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           VIDEO CONTENT
+        ===================================================== */
+
+        .video-content {
+            padding: 28px 32px 32px;
+        }
+
+
+        .video-label {
+            display: inline-block;
+
+            margin-bottom: 10px;
+
+            color: #27864d;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+        }
+
+
+        .video-content h3 {
+            margin: 0 0 10px;
+
+            color: #14231c;
+
+            font-size: 25px;
+
+            font-weight: 900;
+        }
+
+
+        .video-content p {
+            margin: 0;
+
+            color: #64736b;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           EFFECTS VIDEO HEADING
+        ===================================================== */
+
+        .video-section .section-heading {
+            max-width: 800px;
+
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        /* =====================================================
+           MOBILE VIDEO
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .video-section {
+                margin-top: 65px;
+                margin-bottom: 60px;
+            }
+
+
+            .video-card {
+                margin-top: 30px;
+
+                border-radius: 20px;
+            }
+
+
+            .video-content {
+                padding: 23px;
+            }
+
+
+            .video-content h3 {
+                font-size: 21px;
+            }
+
+
+            .video-content p {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -64,18 +231,14 @@
      NAVBAR
 ========================================================= -->
 
-<nav
-    class="navbar"
-    id="navbar">
+<nav class="navbar" id="navbar">
 
     <div class="nav-container">
 
 
         <!-- LOGO -->
 
-        <a
-            href="index.html"
-            class="logo">
+        <a href="index.html" class="logo">
 
             <div class="logo-icon">
 
@@ -90,30 +253,23 @@
 
         <!-- NAVIGATION -->
 
-        <div
-            class="nav-menu"
-            id="navMenu">
-
+        <div class="nav-menu" id="navMenu">
 
             <a href="index.html">
                 HOME
             </a>
 
-
             <a href="introduction.html">
                 INTRODUCTION
             </a>
-
 
             <a href="trend.html">
                 TREND
             </a>
 
-
             <a href="renewable-energy-is-important-because.html">
                 IMPORTANCE
             </a>
-
 
             <a
                 href="effects.html"
@@ -121,21 +277,17 @@
                 EFFECTS
             </a>
 
-
             <a href="ways-to-safe-energy.html">
                 WAYS
             </a>
-
 
             <a href="our-team.html">
                 OUR TEAM
             </a>
 
-
             <a href="sources.html">
                 SOURCES
             </a>
-
 
         </div>
 
@@ -152,7 +304,6 @@
 
         </button>
 
-
     </div>
 
 </nav>
@@ -165,15 +316,9 @@
 
 <section class="page-hero effects-page-hero">
 
-
-    <!-- HERO OVERLAY -->
-
     <div class="effects-hero-overlay"></div>
 
-
-    <div
-        class="section-container effects-hero-content">
-
+    <div class="section-container effects-hero-content">
 
         <span class="section-label">
 
@@ -201,7 +346,6 @@
 
         </p>
 
-
     </div>
 
 </section>
@@ -221,8 +365,7 @@
              SECTION INTRO
         ================================================== -->
 
-        <div
-            class="section-heading center">
+        <div class="section-heading center">
 
             <span class="section-label">
 
@@ -261,8 +404,6 @@
         <div class="iea-research-panel">
 
 
-            <!-- PANEL HEADER -->
-
             <div class="iea-panel-header">
 
                 <div>
@@ -270,7 +411,6 @@
                     <span>
                         IEA RESEARCH
                     </span>
-
 
                     <h3>
 
@@ -291,13 +431,8 @@
             </div>
 
 
-
-            <!-- PANEL CONTENT -->
-
             <div class="iea-panel-content">
 
-
-                <!-- CO2 -->
 
                 <div class="iea-stat">
 
@@ -312,8 +447,6 @@
                 </div>
 
 
-                <!-- CH4 -->
-
                 <div class="iea-stat">
 
                     <strong>
@@ -326,8 +459,6 @@
 
                 </div>
 
-
-                <!-- N2O -->
 
                 <div class="iea-stat">
 
@@ -342,8 +473,6 @@
                 </div>
 
 
-                <!-- GHG -->
-
                 <div class="iea-stat">
 
                     <strong>
@@ -351,18 +480,13 @@
                     </strong>
 
                     <span>
-                        Energy-related
-                        greenhouse gases
+                        Energy-related greenhouse gases
                     </span>
 
                 </div>
 
-
             </div>
 
-
-
-            <!-- IEA DESCRIPTION -->
 
             <p class="iea-note">
 
@@ -375,23 +499,17 @@
             </p>
 
 
-
-            <!-- IEA SOURCE -->
-
             <a
                 href="https://www.iea.org/data-and-statistics/data-product/greenhouse-gas-emissions-from-energy"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="iea-source-button">
 
-                <i
-                    class="fa-solid fa-arrow-up-right-from-square">
-                </i>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
                 VIEW IEA SOURCE
 
             </a>
-
 
         </div>
 
@@ -401,10 +519,8 @@
              EFFECTS VIDEO
         ================================================== -->
 
-        <div class="video-section reveal">
+        <div class="video-section">
 
-
-            <!-- VIDEO HEADING -->
 
             <div class="section-heading center">
 
@@ -436,28 +552,29 @@
             </div>
 
 
-
-            <!-- VIDEO CARD -->
+            <!-- =================================================
+                 VIDEO CARD
+            ================================================== -->
 
             <div class="video-card">
 
 
-                <!-- VIDEO -->
+                <!-- YOUTUBE VIDEO -->
 
                 <div class="video-container">
 
                     <iframe
                         src="https://www.youtube.com/embed/G4H1N_yXBiA"
                         title="Effects of Energy Use"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
                     </iframe>
 
                 </div>
 
 
-
-                <!-- VIDEO CONTENT -->
+                <!-- VIDEO INFORMATION -->
 
                 <div class="video-content">
 
@@ -482,12 +599,9 @@
 
                     </p>
 
-
                 </div>
 
-
             </div>
-
 
         </div>
 
@@ -500,19 +614,13 @@
         <div class="effects-grid">
 
 
-            <!-- =================================================
-                 EFFECT 1
-            ================================================== -->
+            <!-- EFFECT 01 -->
 
-            <div
-                class="effect-card effect-card-image effect-emissions">
-
+            <div class="effect-card effect-card-image effect-emissions">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         01
@@ -521,9 +629,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-smog">
-                        </i>
+                        <i class="fa-solid fa-smog"></i>
 
                     </div>
 
@@ -546,26 +652,19 @@
 
                     </p>
 
-
                 </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 EFFECT 2
-            ================================================== -->
+            <!-- EFFECT 02 -->
 
-            <div
-                class="effect-card effect-card-image effect-climate">
-
+            <div class="effect-card effect-card-image effect-climate">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         02
@@ -574,9 +673,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-temperature-high">
-                        </i>
+                        <i class="fa-solid fa-temperature-high"></i>
 
                     </div>
 
@@ -598,26 +695,19 @@
 
                     </p>
 
-
                 </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 EFFECT 3
-            ================================================== -->
+            <!-- EFFECT 03 -->
 
-            <div
-                class="effect-card effect-card-image effect-fossil">
-
+            <div class="effect-card effect-card-image effect-fossil">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         03
@@ -626,9 +716,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-industry">
-                        </i>
+                        <i class="fa-solid fa-industry"></i>
 
                     </div>
 
@@ -650,26 +738,19 @@
 
                     </p>
 
-
                 </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 EFFECT 4
-            ================================================== -->
+            <!-- EFFECT 04 -->
 
-            <div
-                class="effect-card effect-card-image effect-environment">
-
+            <div class="effect-card effect-card-image effect-environment">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         04
@@ -678,9 +759,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-earth-americas">
-                        </i>
+                        <i class="fa-solid fa-earth-americas"></i>
 
                     </div>
 
@@ -702,26 +781,19 @@
 
                     </p>
 
-
                 </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 EFFECT 5
-            ================================================== -->
+            <!-- EFFECT 05 -->
 
-            <div
-                class="effect-card effect-card-image effect-air">
-
+            <div class="effect-card effect-card-image effect-air">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         05
@@ -730,9 +802,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-wind">
-                        </i>
+                        <i class="fa-solid fa-wind"></i>
 
                     </div>
 
@@ -753,26 +823,19 @@
 
                     </p>
 
-
                 </div>
 
             </div>
 
 
 
-            <!-- =================================================
-                 EFFECT 6
-            ================================================== -->
+            <!-- EFFECT 06 -->
 
-            <div
-                class="effect-card effect-card-image effect-transition">
-
+            <div class="effect-card effect-card-image effect-transition">
 
                 <div class="effect-card-overlay"></div>
 
-
                 <div class="effect-card-content">
-
 
                     <span class="effect-number">
                         06
@@ -781,9 +844,7 @@
 
                     <div class="effect-icon">
 
-                        <i
-                            class="fa-solid fa-chart-line">
-                        </i>
+                        <i class="fa-solid fa-chart-line"></i>
 
                     </div>
 
@@ -805,7 +866,6 @@
 
                     </p>
 
-
                 </div>
 
             </div>
@@ -824,15 +884,12 @@
 
             <div class="effects-message-icon">
 
-                <i
-                    class="fa-solid fa-lightbulb">
-                </i>
+                <i class="fa-solid fa-lightbulb"></i>
 
             </div>
 
 
             <div>
-
 
                 <h3>
 
@@ -852,7 +909,6 @@
 
                 </p>
 
-
             </div>
 
 
@@ -869,15 +925,12 @@
      ADDITIONAL INFORMATION
 ========================================================= -->
 
-<section
-    class="effects-information">
-
+<section class="effects-information">
 
     <div class="section-container">
 
 
         <div class="section-heading center">
-
 
             <span class="section-label">
 
@@ -906,7 +959,6 @@
 
             </p>
 
-
         </div>
 
 
@@ -924,12 +976,9 @@
                 href="renewable-energy-is-important-because.html"
                 class="home-nav-card">
 
-
                 <div class="home-nav-icon">
 
-                    <i
-                        class="fa-solid fa-leaf">
-                    </i>
+                    <i class="fa-solid fa-leaf"></i>
 
                 </div>
 
@@ -959,12 +1008,9 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
@@ -976,12 +1022,9 @@
                 href="trend.html"
                 class="home-nav-card">
 
-
                 <div class="home-nav-icon">
 
-                    <i
-                        class="fa-solid fa-chart-line">
-                    </i>
+                    <i class="fa-solid fa-chart-line"></i>
 
                 </div>
 
@@ -1010,12 +1053,9 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
@@ -1027,12 +1067,9 @@
                 href="ways-to-safe-energy.html"
                 class="home-nav-card">
 
-
                 <div class="home-nav-icon">
 
-                    <i
-                        class="fa-solid fa-hand-holding-heart">
-                    </i>
+                    <i class="fa-solid fa-hand-holding-heart"></i>
 
                 </div>
 
@@ -1061,21 +1098,16 @@
 
                 <div class="home-nav-arrow">
 
-                    <i
-                        class="fa-solid fa-arrow-right">
-                    </i>
+                    <i class="fa-solid fa-arrow-right"></i>
 
                 </div>
-
 
             </a>
 
 
         </div>
 
-
     </div>
-
 
 </section>
 
@@ -1087,15 +1119,12 @@
 
 <footer>
 
-
     <div class="footer-container">
 
 
         <div class="footer-logo">
 
-            <i
-                class="fa-solid fa-leaf">
-            </i>
+            <i class="fa-solid fa-leaf"></i>
 
             SAFE ENERGY
 
@@ -1118,7 +1147,7 @@
 
             International Energy Agency •
 
-            ENERGY STAR
+            Tenaga Nasional Berhad
 
         </div>
 
@@ -1133,7 +1162,6 @@
 
 
     </div>
-
 
 </footer>
 
