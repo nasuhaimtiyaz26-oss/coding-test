@@ -10,23 +10,32 @@
 
     <title>Trend | Safe Energy</title>
 
+
     <!-- GOOGLE FONT -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
+
     <!-- FONT AWESOME -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+
     <!-- CHART.JS -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
     <!-- MAIN CSS -->
+
     <link rel="stylesheet" href="style.css">
 
 
@@ -842,6 +851,130 @@
 
 
         /* =====================================================
+           TREND VIDEO
+        ===================================================== */
+
+        .trend-video-section {
+            position: relative;
+
+            z-index: 2;
+
+            margin-top: 40px;
+
+            padding-top: 10px;
+        }
+
+        .trend-video-header {
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+        .trend-video-header span {
+            display: block;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.6px;
+
+            color: #32a968;
+
+            margin-bottom: 8px;
+        }
+
+        .trend-video-header h3 {
+            margin: 0 0 8px;
+
+            font-size: 26px;
+
+            font-weight: 900;
+
+            color: #17251e;
+        }
+
+        .trend-video-header p {
+            max-width: 680px;
+
+            margin: 0 auto;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            color: #718078;
+        }
+
+        .video-card {
+            width: 100%;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            background: white;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 20px 55px rgba(20,40,30,0.16);
+        }
+
+        .instagram-video {
+            width: 100%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #000;
+
+            min-height: 500px;
+
+            overflow: hidden;
+        }
+
+        .instagram-video .instagram-media {
+            width: 100% !important;
+
+            max-width: 540px !important;
+
+            min-width: 326px !important;
+
+            margin: 0 auto !important;
+        }
+
+        .video-content {
+            padding: 22px 25px;
+        }
+
+        .video-content h3 {
+            margin: 0 0 7px;
+
+            font-size: 18px;
+
+            font-weight: 900;
+
+            color: #17251e;
+        }
+
+        .video-content p {
+            margin: 0;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            color: #718078;
+        }
+
+
+        /* =====================================================
            INFORMATION
         ===================================================== */
 
@@ -1100,6 +1233,7 @@
 
             .hero-energy-cards {
                 grid-template-columns: 1fr;
+
                 max-width: 650px;
             }
 
@@ -1127,6 +1261,7 @@
 
             .energy-hero-content h1 {
                 font-size: 48px;
+
                 letter-spacing: -2px;
             }
 
@@ -1140,11 +1275,13 @@
 
             .energy-dashboard-section .dashboard {
                 padding: 18px;
+
                 border-radius: 22px;
             }
 
             .dashboard-header {
                 align-items: flex-start;
+
                 flex-direction: column;
             }
 
@@ -1158,11 +1295,13 @@
 
             .energy-chart-grid .chart-wrapper {
                 min-height: 320px;
+
                 height: 320px;
             }
 
             .energy-chart-full .chart-wrapper {
                 min-height: 350px;
+
                 height: 350px;
             }
 
@@ -1191,8 +1330,14 @@
 
             .energy-message-section .why-message {
                 align-items: flex-start;
+
                 flex-direction: column;
+
                 padding: 24px;
+            }
+
+            .instagram-video {
+                min-height: 430px;
             }
 
         }
@@ -1215,12 +1360,18 @@
 
             .energy-chart-grid .chart-wrapper {
                 min-height: 300px;
+
                 height: 300px;
             }
 
             .energy-chart-full .chart-wrapper {
                 min-height: 320px;
+
                 height: 320px;
+            }
+
+            .instagram-video {
+                min-height: 400px;
             }
 
         }
@@ -1600,7 +1751,7 @@
                     </div>
 
 
-                    <!-- DISCUSSION / TREND OVER TIME -->
+                    <!-- DISCUSSION -->
 
                     <div class="chart-discussion">
 
@@ -1610,17 +1761,23 @@
                         </h4>
 
                         <p>
+
                             <strong>Global Consumption Surge:</strong>
+
                             This chart shows a very consistent and significant
                             increase in global primary energy consumption
                             from 1965 to 2025.
+
                         </p>
 
                         <p>
+
                             <strong>Numerical Growth:</strong>
+
                             In 1965, total global energy consumption was around
                             60, then steadily climbed past 90 in 1995, and
                             continued to surge to nearly 160 by 2025.
+
                         </p>
 
                     </div>
@@ -1664,7 +1821,7 @@
                     </div>
 
 
-                    <!-- DISCUSSION / TREND OVER TIME -->
+                    <!-- DISCUSSION -->
 
                     <div class="chart-discussion">
 
@@ -1674,28 +1831,37 @@
                         </h4>
 
                         <p>
+
                             <strong>Energy Trends:</strong>
+
                             Fossil fuels still dominate the global energy mix
                             despite dropping from 88% in 1965 to 73% in 2025,
                             while renewable energy has risen consistently
                             from 5% to around 20%.
+
                         </p>
 
                         <p>
+
                             <strong>Positive Human Attitude:</strong>
+
                             Increasing environmental awareness is driving
                             society and industries to proactively adopt
                             eco-friendly technologies such as solar panels
                             and electric vehicles.
+
                         </p>
 
                         <p>
+
                             <strong>Reasons Fossil Fuels Are Still Used:</strong>
+
                             Fossil fuels are still maintained because their
                             infrastructure is already well-established,
                             their supply is more stable without depending on
                             weather conditions, and they remain a cheap and
                             affordable economic factor for developing countries.
+
                         </p>
 
                     </div>
@@ -1743,7 +1909,7 @@
                     </div>
 
 
-                    <!-- DISCUSSION / TREND OVER TIME -->
+                    <!-- DISCUSSION -->
 
                     <div class="chart-discussion">
 
@@ -1753,37 +1919,52 @@
                         </h4>
 
                         <p>
+
                             <strong>Fossil Dominance:</strong>
+
                             Fossil fuels hold the highest percentage in
                             electricity generation at 60%.
+
                         </p>
 
                         <p>
+
                             <strong>Renewable Energy:</strong>
+
                             Renewable energy contributes 30%.
+
                         </p>
 
                         <p>
+
                             <strong>Nuclear Energy:</strong>
+
                             Nuclear accounts for the remaining lowest share
                             at 10%.
+
                         </p>
 
                         <p>
+
                             <strong>Positive Attitude (Increasing Awareness & Concern):</strong>
+
                             People are now more aware of climate change issues.
                             Because of this, many are starting to act proactively
                             by supporting and using green technologies such as
                             solar panels and electric vehicles.
+
                         </p>
 
                         <p>
+
                             <strong>Pragmatic Attitude (Still Relying on Fossil Fuels):</strong>
+
                             Even though they know the negative impacts, people
                             still continue to use fossil fuels because they are
                             cheaper, the infrastructure is already in place,
                             and the energy supply is more stable to meet the
                             world's growing energy demands.
+
                         </p>
 
                     </div>
@@ -1802,6 +1983,62 @@
                     <i class="fa-solid fa-globe"></i>
 
                     LIVE DATA FROM OUR WORLD IN DATA
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 INSTAGRAM TREND VIDEO
+            ================================================= -->
+
+            <div class="trend-video-section">
+
+                <div class="trend-video-header">
+
+                    <span>
+                        VIDEO INSIGHT
+                    </span>
+
+                    <h3>
+                        Understanding Global Energy Trends
+                    </h3>
+
+                    <p>
+                        Watch this video to learn more about energy trends
+                        and developments around the world.
+                    </p>
+
+                </div>
+
+
+                <div class="video-card">
+
+                    <div class="instagram-video">
+
+                        <blockquote
+                            class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DP_P3i-kXkx/"
+                            data-instgrm-version="14">
+
+                        </blockquote>
+
+                    </div>
+
+
+                    <div class="video-content">
+
+                        <h3>
+                            Energy Trends
+                        </h3>
+
+                        <p>
+                            Explore current trends and developments
+                            in energy and sustainability.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1962,7 +2199,9 @@
         <div class="why-message">
 
             <div class="why-message-icon">
+
                 <i class="fa-solid fa-chart-line"></i>
+
             </div>
 
             <div>
@@ -2032,25 +2271,19 @@
 </footer>
 
 
+<!-- =========================================================
+     INSTAGRAM EMBED SCRIPT
+========================================================= -->
+
+<script async src="https://www.instagram.com/embed.js"></script>
+
+
 <!-- JAVASCRIPT -->
 
 <script src="script.js"></script>
 
-</body <div class="video-card">
-    <div class="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/EQB6FepYssc"
-            title="Energy Trends"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
 
-    <div class="video-content">
-        <h3>Energy Trends</h3>
-        <p>Explore current trends and developments in energy and sustainability.</p>
-    </div>
-</div>>
+</body>
 
 </html>
 ```
