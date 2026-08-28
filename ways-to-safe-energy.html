@@ -16,7 +16,7 @@
 
     <!-- =====================================================
          GOOGLE FONT
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -34,7 +34,7 @@
 
     <!-- =====================================================
          FONT AWESOME
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -43,7 +43,7 @@
 
     <!-- =====================================================
          MAIN CSS
-    ===================================================== -->
+    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -52,13 +52,12 @@
 
     <!-- =====================================================
          PAGE-SPECIFIC STYLE
-         BACKGROUND IMAGES
-    ===================================================== -->
+    ====================================================== -->
 
     <style>
 
         /* =================================================
-           GLOBAL BACKGROUND SETTINGS
+           PAGE BACKGROUND
         ================================================= */
 
         .action-section {
@@ -74,6 +73,7 @@
             content: "";
             position: absolute;
             inset: 0;
+
             background:
                 linear-gradient(
                     135deg,
@@ -81,6 +81,7 @@
                     rgba(6, 48, 27, 0.78),
                     rgba(0, 0, 0, 0.60)
                 );
+
             z-index: 0;
         }
 
@@ -791,6 +792,176 @@
 
 
         /* =================================================
+           VIDEO SECTION
+        ================================================= */
+
+        .ways-video-section {
+
+            padding: 90px 0;
+
+            background:
+                #f4faf6;
+
+        }
+
+
+        .ways-video-heading {
+
+            text-align: center;
+
+            max-width: 760px;
+
+            margin:
+                0 auto 40px;
+
+        }
+
+
+        .ways-video-heading .section-label {
+
+            color: #27864d;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        .ways-video-heading h2 {
+
+            margin:
+                14px 0 15px;
+
+            font-size:
+                clamp(32px, 5vw, 52px);
+
+            line-height: 1.05;
+
+            font-weight: 900;
+
+            color: #14231c;
+
+            letter-spacing: -2px;
+
+        }
+
+
+        .ways-video-heading h2 span {
+
+            color: #269653;
+
+        }
+
+
+        .ways-video-heading p {
+
+            margin: 0;
+
+            color: #64736b;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* =================================================
+           VIDEO CARD
+        ================================================= */
+
+        .ways-video-card {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            background: white;
+
+            box-shadow:
+                0 25px 70px rgba(20,45,31,0.15);
+
+            border:
+                1px solid rgba(30,80,50,0.08);
+
+        }
+
+
+        /* =================================================
+           VIDEO CONTAINER
+        ================================================= */
+
+        .ways-video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            aspect-ratio: 16 / 9;
+
+            background: #071b10;
+
+            overflow: hidden;
+
+        }
+
+
+        .ways-video-container iframe {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 0;
+
+        }
+
+
+        /* =================================================
+           VIDEO CONTENT
+        ================================================= */
+
+        .ways-video-content {
+
+            padding: 28px 32px 32px;
+
+        }
+
+
+        .ways-video-content h3 {
+
+            margin: 0 0 8px;
+
+            font-size: 24px;
+
+            font-weight: 900;
+
+            color: #14231c;
+
+        }
+
+
+        .ways-video-content p {
+
+            margin: 0;
+
+            color: #64736b;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =================================================
            FOOTER BACKGROUND
         ================================================= */
 
@@ -849,7 +1020,8 @@
 
             .energystar-panel {
 
-                grid-template-columns: 110px 1fr;
+                grid-template-columns:
+                    110px 1fr;
 
             }
 
@@ -865,14 +1037,16 @@
             .save-section,
             .page-hero {
 
-                background-attachment: scroll;
+                background-attachment:
+                    scroll;
 
             }
 
 
             .energystar-panel {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
 
                 padding: 25px;
 
@@ -890,33 +1064,60 @@
 
             .save-grid {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
 
             }
 
 
             .save-card {
 
-                min-height: auto;
+                min-height:
+                    auto;
 
             }
 
 
             .save-conclusion {
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
             }
 
 
             .save-message {
 
-                align-items: flex-start;
+                align-items:
+                    flex-start;
+
+            }
+
+
+            .ways-video-section {
+
+                padding:
+                    70px 0;
+
+            }
+
+
+            .ways-video-content {
+
+                padding:
+                    24px;
+
+            }
+
+
+            .ways-video-content h3 {
+
+                font-size:
+                    21px;
 
             }
 
         }
-
 
     </style>
 
@@ -926,668 +1127,699 @@
 <body>
 
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-<nav
-    class="navbar"
-    id="navbar">
+    <nav
+        class="navbar"
+        id="navbar">
 
-    <div class="nav-container">
+        <div class="nav-container">
 
 
-        <!-- LOGO -->
+            <!-- LOGO -->
 
-        <a
-            href="index.html"
-            class="logo">
+            <a
+                href="index.html"
+                class="logo">
 
-            <div class="logo-icon">
+                <div class="logo-icon">
 
-                <i class="fa-solid fa-leaf"></i>
+                    <i class="fa-solid fa-leaf"></i>
+
+                </div>
+
+                SAFE ENERGY
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div
+                class="nav-menu"
+                id="navMenu">
+
+                <a href="index.html">
+                    HOME
+                </a>
+
+                <a href="introduction.html">
+                    INTRODUCTION
+                </a>
+
+                <a href="trend.html">
+                    TREND
+                </a>
+
+                <a href="renewable-energy-is-important-because.html">
+                    IMPORTANCE
+                </a>
+
+                <a href="effects.html">
+                    EFFECTS
+                </a>
+
+                <a
+                    href="ways-to-safe-energy.html"
+                    class="active">
+
+                    WAYS
+
+                </a>
+
+                <a href="our-team.html">
+                    OUR TEAM
+                </a>
+
+                <a href="sources.html">
+                    SOURCES
+                </a>
 
             </div>
 
-            SAFE ENERGY
 
-        </a>
+            <!-- MOBILE MENU -->
 
+            <button
+                class="menu-dots"
+                id="menuDots"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
 
+                <i
+                    class="fa-solid fa-ellipsis-vertical">
+                </i>
 
-        <!-- NAVIGATION -->
-
-        <div
-            class="nav-menu"
-            id="navMenu">
-
-
-            <a href="index.html">
-                HOME
-            </a>
-
-
-            <a href="introduction.html">
-                INTRODUCTION
-            </a>
-
-
-            <a href="trend.html">
-                TREND
-            </a>
-
-
-            <a href="renewable-energy-is-important-because.html">
-                IMPORTANCE
-            </a>
-
-
-            <a href="effects.html">
-                EFFECTS
-            </a>
-
-
-            <a
-                href="ways-to-safe-energy.html"
-                class="active">
-
-                WAYS
-
-            </a>
-
-
-            <a href="our-team.html">
-                OUR TEAM
-            </a>
-
-
-            <a href="sources.html">
-                SOURCES
-            </a>
+            </button>
 
         </div>
 
+    </nav>
 
 
-        <!-- MOBILE MENU -->
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
-        <button
-            class="menu-dots"
-            id="menuDots"
-            aria-label="Open navigation menu"
-            aria-expanded="false">
+    <section class="page-hero">
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
-
-        </button>
-
-
-    </div>
-
-</nav>
-
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="page-hero">
-
-    <div class="section-container">
-
-
-        <span class="section-label">
-
-            TAKE ACTION
-
-        </span>
-
-
-        <h1>
-
-            Ways We Can
-
-            <span>
-                Save Energy
-            </span>
-
-        </h1>
-
-
-        <p>
-
-            Small changes in how we use electricity
-            can help reduce energy wastage, lower
-            electricity consumption and support a
-            more sustainable future.
-
-        </p>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SAVE ENERGY SECTION
-===================================================== -->
-
-<section class="save-section">
-
-    <div class="section-container">
-
-
-        <!-- =================================================
-             SECTION INTRO
-        ================================================= -->
-
-        <div class="section-heading center">
-
+        <div class="section-container">
 
             <span class="section-label">
 
-                ENERGY EFFICIENCY AT HOME
+                TAKE ACTION
 
             </span>
 
 
-            <h2>
+            <h1>
 
-                Save Energy
+                Ways We Can
 
                 <span>
-                    At Home
+                    Save Energy
                 </span>
 
-            </h2>
+            </h1>
 
 
             <p>
 
-                Energy-saving practices at home can make
-                electricity use more efficient while
-                reducing unnecessary energy consumption.
+                Small changes in how we use electricity
+                can help reduce energy wastage, lower
+                electricity consumption and support a
+                more sustainable future.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SAVE ENERGY SECTION
+    ====================================================== -->
+
+    <section class="save-section">
+
+        <div class="section-container">
+
+
+            <!-- SECTION INTRO -->
+
+            <div class="section-heading center">
+
+                <span class="section-label">
+
+                    ENERGY EFFICIENCY AT HOME
+
+                </span>
+
+
+                <h2>
+
+                    Save Energy
+
+                    <span>
+                        At Home
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Energy-saving practices at home can make
+                    electricity use more efficient while
+                    reducing unnecessary energy consumption.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 TNB PANEL
+            ================================================= -->
+
+            <div class="energystar-panel">
+
+
+                <div class="energystar-logo">
+
+                    <i class="fa-solid fa-bolt"></i>
+
+                    <span>
+                        TNB
+                    </span>
+
+                </div>
+
+
+                <div class="energystar-content">
+
+                    <span>
+
+                        TENAGA NASIONAL BERHAD
+
+                    </span>
+
+
+                    <h3>
+
+                        Energy Savings At Home
+
+                    </h3>
+
+
+                    <p>
+
+                        TNB provides energy efficiency tips
+                        to help households save electricity
+                        and use energy more efficiently.
+                        Its Energy Savings At Home resource
+                        includes practical tips, energy
+                        efficiency labels and information
+                        about household electricity usage.
+
+                    </p>
+
+
+                    <a
+                        href="https://www.tnb.com.my/residential/energy-savings-at-home"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="energystar-button">
+
+                        VIEW TNB SOURCE
+
+                        <i
+                            class="fa-solid fa-arrow-up-right-from-square">
+                        </i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 SAVE GRID
+            ================================================= -->
+
+            <div class="save-grid">
+
+
+                <!-- 01 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        01
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-power-off"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Power Down Unused Devices
+
+                    </h3>
+
+
+                    <p>
+
+                        Switch off electrical appliances and
+                        devices when they are not needed.
+                        Avoid leaving unnecessary equipment
+                        running.
+
+                    </p>
+
+                </div>
+
+
+                <!-- 02 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        02
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-sun"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Use Natural Light
+
+                    </h3>
+
+
+                    <p>
+
+                        Make use of natural daylight whenever
+                        possible instead of relying on
+                        artificial lighting during the day.
+
+                    </p>
+
+                </div>
+
+
+                <!-- 03 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        03
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-snowflake"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Use Air Conditioning Wisely
+
+                    </h3>
+
+
+                    <p>
+
+                        Use cooling appliances responsibly
+                        and avoid unnecessary operation.
+                        Keeping the cooling system efficient
+                        can help reduce electricity use.
+
+                    </p>
+
+                </div>
+
+
+                <!-- 04 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        04
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-shirt"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Dry Clothes Naturally
+
+                    </h3>
+
+
+                    <p>
+
+                        Take advantage of sunlight to dry
+                        clothes naturally instead of relying
+                        on electrical drying equipment whenever
+                        practical.
+
+                    </p>
+
+                </div>
+
+
+                <!-- 05 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        05
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-star"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Choose Efficient Appliances
+
+                    </h3>
+
+
+                    <p>
+
+                        Look at the energy efficiency label
+                        when choosing electrical appliances.
+                        TNB explains that the rating system
+                        ranges from 1 star to 5 stars, with
+                        5 stars representing higher efficiency.
+
+                    </p>
+
+                </div>
+
+
+                <!-- 06 -->
+
+                <div class="save-card">
+
+                    <span class="save-number">
+                        06
+                    </span>
+
+
+                    <div class="save-icon">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                    </div>
+
+
+                    <h3>
+
+                        Monitor Electricity Usage
+
+                    </h3>
+
+
+                    <p>
+
+                        Monitor how much electricity your
+                        household appliances use and identify
+                        areas where energy can be used more
+                        efficiently.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONCLUSION
+            ================================================= -->
+
+            <div class="save-conclusion">
+
+                <i class="fa-solid fa-star"></i>
+
+
+                <div>
+
+                    <h3>
+
+                        More Stars. More Saving.
+
+                    </h3>
+
+
+                    <p>
+
+                        TNB explains that the energy efficiency
+                        label helps consumers understand the
+                        estimated energy consumption of electrical
+                        appliances. The rating ranges from
+                        1 star to 5 stars, with 5 stars being
+                        the more efficient rating.
+
+                    </p>
+
+
+                    <a
+                        href="https://www.tnb.com.my/residential/energy-savings-at-home"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-source-link">
+
+                        TNB ENERGY SAVINGS AT HOME
+
+                        <i
+                            class="fa-solid fa-arrow-up-right-from-square">
+                        </i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 KEY MESSAGE
+            ================================================= -->
+
+            <div class="save-message">
+
+                <div class="save-message-icon">
+
+                    <i class="fa-solid fa-leaf"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        Every Energy Choice Matters
+
+                    </h3>
+
+
+                    <p>
+
+                        Using electricity wisely can reduce
+                        unnecessary energy consumption while
+                        helping households save energy and
+                        support environmental protection.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VIDEO SECTION
+         
+         VIDEO DUDUK DALAM TAB WAYS
+         TIDAK REDIRECT KE YOUTUBE
+    ====================================================== -->
+
+    <section class="ways-video-section">
+
+        <div class="section-container">
+
+
+            <div class="ways-video-heading">
+
+                <span class="section-label">
+
+                    LEARN MORE
+
+                </span>
+
+
+                <h2>
+
+                    Watch How To
+
+                    <span>
+                        Save Energy
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Learn simple and practical ways to
+                    save energy in our daily lives.
+
+                </p>
+
+            </div>
+
+
+            <!-- VIDEO CARD -->
+
+            <div class="ways-video-card">
+
+
+                <div class="ways-video-container">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/pY6fAYkscTY"
+                        title="Ways to Save Energy"
+                        loading="lazy"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+
+                <div class="ways-video-content">
+
+                    <h3>
+
+                        Ways to Save Energy
+
+                    </h3>
+
+
+                    <p>
+
+                        Simple ways to save energy and
+                        use electricity more efficiently
+                        in our daily lives.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+
+            <div class="footer-logo">
+
+                <i class="fa-solid fa-leaf"></i>
+
+                SAFE ENERGY
+
+            </div>
+
+
+            <p>
+
+                Understanding energy.
+                Protecting the future.
 
             </p>
 
 
-        </div>
+            <div class="footer-source">
 
+                Research sources:
 
+                Our World in Data •
 
-        <!-- =================================================
-             TNB PANEL
-        ================================================= -->
+                International Energy Agency •
 
-        <div class="energystar-panel">
-
-
-            <div class="energystar-logo">
-
-                <i class="fa-solid fa-bolt"></i>
-
-                <span>
-                    TNB
-                </span>
+                Tenaga Nasional Berhad
 
             </div>
 
 
+            <div class="footer-bottom">
 
-            <div class="energystar-content">
+                © 2026 Safe Energy.
 
-
-                <span>
-
-                    TENAGA NASIONAL BERHAD
-
-                </span>
-
-
-                <h3>
-
-                    Energy Savings At Home
-
-                </h3>
-
-
-                <p>
-
-                    TNB provides energy efficiency tips
-                    to help households save electricity
-                    and use energy more efficiently.
-                    Its Energy Savings At Home resource
-                    includes practical tips, energy
-                    efficiency labels and information
-                    about household electricity usage.
-
-                </p>
-
-
-                <a
-                    href="https://www.tnb.com.my/residential/energy-savings-at-home"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="energystar-button">
-
-                    VIEW TNB SOURCE
-
-                    <i
-                        class="fa-solid fa-arrow-up-right-from-square">
-                    </i>
-
-                </a>
-
+                Educational Research Website.
 
             </div>
-
 
         </div>
 
+    </footer>
 
 
-        <!-- =================================================
-             SAVE GRID
-        ================================================= -->
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-        <div class="save-grid">
+    <script src="script.js"></script>
 
 
-            <!-- 01 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    01
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-power-off"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Power Down Unused Devices
-
-                </h3>
-
-
-                <p>
-
-                    Switch off electrical appliances and
-                    devices when they are not needed.
-                    Avoid leaving unnecessary equipment
-                    running.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- 02 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    02
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-sun"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Use Natural Light
-
-                </h3>
-
-
-                <p>
-
-                    Make use of natural daylight whenever
-                    possible instead of relying on
-                    artificial lighting during the day.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- 03 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    03
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-snowflake"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Use Air Conditioning Wisely
-
-                </h3>
-
-
-                <p>
-
-                    Use cooling appliances responsibly
-                    and avoid unnecessary operation.
-                    Keeping the cooling system efficient
-                    can help reduce electricity use.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- 04 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    04
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-shirt"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Dry Clothes Naturally
-
-                </h3>
-
-
-                <p>
-
-                    Take advantage of sunlight to dry
-                    clothes naturally instead of relying
-                    on electrical drying equipment whenever
-                    practical.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- 05 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    05
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-star"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Choose Efficient Appliances
-
-                </h3>
-
-
-                <p>
-
-                    Look at the energy efficiency label
-                    when choosing electrical appliances.
-                    TNB explains that the rating system
-                    ranges from 1 star to 5 stars, with
-                    5 stars representing higher efficiency.
-
-                </p>
-
-            </div>
-
-
-
-            <!-- 06 -->
-
-            <div class="save-card">
-
-                <span class="save-number">
-                    06
-                </span>
-
-
-                <div class="save-icon">
-
-                    <i class="fa-solid fa-chart-line"></i>
-
-                </div>
-
-
-                <h3>
-
-                    Monitor Electricity Usage
-
-                </h3>
-
-
-                <p>
-
-                    Monitor how much electricity your
-                    household appliances use and identify
-                    areas where energy can be used more
-                    efficiently.
-
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             CONCLUSION
-        ================================================= -->
-
-        <div class="save-conclusion">
-
-
-            <i class="fa-solid fa-star"></i>
-
-
-            <div>
-
-                <h3>
-
-                    More Stars. More Saving.
-
-                </h3>
-
-
-                <p>
-
-                    TNB explains that the energy efficiency
-                    label helps consumers understand the
-                    estimated energy consumption of electrical
-                    appliances. The rating ranges from
-                    1 star to 5 stars, with 5 stars being
-                    the more efficient rating.
-
-                </p>
-
-
-                <a
-                    href="https://www.tnb.com.my/residential/energy-savings-at-home"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-source-link">
-
-                    TNB ENERGY SAVINGS AT HOME
-
-                    <i
-                        class="fa-solid fa-arrow-up-right-from-square">
-                    </i>
-
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- =================================================
-             KEY MESSAGE
-        ================================================= -->
-
-        <div class="save-message">
-
-
-            <div class="save-message-icon">
-
-                <i class="fa-solid fa-leaf"></i>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-
-                    Every Energy Choice Matters
-
-                </h3>
-
-
-                <p>
-
-                    Using electricity wisely can reduce
-                    unnecessary energy consumption while
-                    helping households save energy and
-                    support environmental protection.
-
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <div class="footer-container">
-
-
-        <div class="footer-logo">
-
-            <i class="fa-solid fa-leaf"></i>
-
-            SAFE ENERGY
-
-        </div>
-
-
-        <p>
-
-            Understanding energy.
-            Protecting the future.
-
-        </p>
-
-
-        <div class="footer-source">
-
-            Research sources:
-
-            Our World in Data •
-
-            International Energy Agency •
-
-            Tenaga Nasional Berhad
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            © 2026 Safe Energy.
-
-            Educational Research Website.
-
-        </div>
-
-
-    </div>
-
-</footer>
-
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script src="script.js"></script>
-
-
-</body <div class="video-card">
-    <div class="video-container">
-        <iframe
-            src="https://www.youtube.com/embed/pY6fAYkscTY"
-            title="Ways to Save Energy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
-
-    <div class="video-content">
-        <h3>Ways to Save Energy</h3>
-        <p>Simple ways to save energy in our daily lives.</p>
-    </div>
-</div>>
+</body>
 
 </html>
