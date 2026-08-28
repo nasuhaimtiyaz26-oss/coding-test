@@ -13,12 +13,13 @@ energy efficiency and practical energy-saving actions.
 The website contains seven main pages:
 
 1. Home
-2. Energy Data
-3. Why Renewable
-4. Effects
-5. What We Can Do
-6. Our Team
-7. Sources
+2. Trend
+3. Introduction
+4. Renewable Energy Is Important Because
+5. Effects
+6. Ways To Safe Energy 
+7. Our Team
+8. Sources
 
 ---
 
@@ -28,10 +29,11 @@ The website contains seven main pages:
 Safe-Energy/
 │
 ├── index.html
-├── energy-data.html
-├── why-renewable.html
+├── trend.html
+├── introduction.html
+├── renewable-energy-is-important-because.html
 ├── effects.html
-├── what-we-can-do.html
+├── ways-to-safe-energy.html
 ├── our-team.html
 ├── sources.html
 │
