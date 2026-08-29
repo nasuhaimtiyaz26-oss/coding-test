@@ -45,7 +45,7 @@
 
 
     <!-- =====================================================
-         HOME PAGE VIDEO + CARD STYLE
+         HOME PAGE EXTRA STYLE
     ====================================================== -->
 
     <style>
@@ -397,13 +397,6 @@
             box-shadow:
                 0 20px 55px rgba(20, 45, 31, 0.15);
 
-            /*
-             * IMPORTANT:
-             * Do NOT use the "reveal" class here.
-             * The main stylesheet may hide .reveal
-             * elements before JavaScript shows them.
-             */
-
             opacity: 1;
 
             transform: none;
@@ -522,6 +515,103 @@
 
 
         /* =================================================
+           SITE VIEW COUNTER
+        ================================================= */
+
+        .site-view-counter {
+
+            width: fit-content;
+
+            min-width: 230px;
+
+            margin: 45px auto 0;
+
+            padding: 16px 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            background: #ffffff;
+
+            border:
+                1px solid rgba(35, 139, 87, 0.12);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 12px 35px rgba(20, 45, 31, 0.10);
+
+            text-align: left;
+
+        }
+
+
+        .view-counter-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #e9f7ef;
+
+            color: #238b57;
+
+            font-size: 17px;
+
+        }
+
+
+        .view-counter-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+
+        }
+
+
+        .view-counter-text span {
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.3px;
+
+            color: #718078;
+
+        }
+
+
+        .view-counter-text strong {
+
+            font-size: 22px;
+
+            font-weight: 900;
+
+            color: #14231c;
+
+        }
+
+
+        /* =================================================
            MOBILE
         ================================================= */
 
@@ -626,6 +716,33 @@
             .video-content h3 {
 
                 font-size: 20px;
+
+            }
+
+
+            .site-view-counter {
+
+                min-width: 205px;
+
+                padding: 14px 20px;
+
+                margin-top: 35px;
+
+            }
+
+
+            .view-counter-icon {
+
+                width: 38px;
+
+                height: 38px;
+
+            }
+
+
+            .view-counter-text strong {
+
+                font-size: 19px;
 
             }
 
@@ -810,6 +927,7 @@
             </div>
 
 
+
             <!-- ENERGY CARD 02 -->
 
             <div class="energy-card reveal">
@@ -833,6 +951,7 @@
                 </div>
 
             </div>
+
 
 
             <!-- ENERGY CARD 03 -->
@@ -1424,9 +1543,7 @@
     <div class="section-container">
 
 
-        <!-- =================================================
-             VIDEO HEADING
-        ================================================== -->
+        <!-- VIDEO HEADING -->
 
         <div class="section-heading center">
 
@@ -1459,29 +1576,12 @@
 
 
 
-        <!-- =================================================
-             VIDEO CARD
-
-             IMPORTANT:
-             NO "reveal" CLASS HERE
-        ================================================== -->
+        <!-- VIDEO CARD -->
 
         <div class="video-card">
 
 
-            <!-- =================================================
-                 VIDEO CONTAINER
-            ================================================== -->
-
             <div class="video-container">
-
-
-                <!-- =================================================
-                     YOUTUBE VIDEO
-
-                     Video ID:
-                     G4H1N_yXBiA
-                ================================================== -->
 
                 <iframe
                     src="https://www.youtube.com/embed/G4H1N_yXBiA?rel=0"
@@ -1492,17 +1592,11 @@
                     allowfullscreen>
                 </iframe>
 
-
             </div>
 
 
 
-            <!-- =================================================
-                 VIDEO INFORMATION
-            ================================================== -->
-
             <div class="video-content">
-
 
                 <span class="video-label">
 
@@ -1526,12 +1620,10 @@
 
                 </p>
 
-
             </div>
 
 
         </div>
-
 
     </div>
 
@@ -1581,6 +1673,44 @@
 
         </div>
 
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VIEW COUNTER
+     COUNTERAPI V2
+========================================================= -->
+
+<section class="view-counter-section">
+
+    <div class="section-container">
+
+        <div class="site-view-counter">
+
+            <div class="view-counter-icon">
+
+                <i class="fa-solid fa-eye"></i>
+
+            </div>
+
+
+            <div class="view-counter-text">
+
+                <span>
+                    TOTAL WEBSITE VIEWS
+                </span>
+
+                <strong id="viewCount">
+                    Loading...
+                </strong>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -1646,16 +1776,73 @@
 
 
 <!-- =========================================================
-     JAVASCRIPT
+     COUNTERAPI V2
 ========================================================= -->
-<script src="https://cdn.jsdelivr.net/npm/counterapiv2/dist/counter.browser.min.js"></script>
+
+<script
+    src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js">
+</script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const viewCount =
+        document.getElementById("viewCount");
+
+
+    /* =====================================================
+       COUNTERAPI V2
+
+       YOUR PUBLIC WORKSPACE
+    ===================================================== */
+
+    const counter = new Counter({
+
+        workspace:
+            "nasuhaimtiyaz26-osss-team-5294"
+
+    });
+
+
+    /* =====================================================
+       INCREASE WEBSITE VIEW
+    ===================================================== */
+
+    counter.up("site-views")
+
+        .then(function (result) {
+
+            viewCount.textContent =
+                Number(result.value).toLocaleString();
+
+        })
+
+        .catch(function (error) {
+
+            console.error(
+                "CounterAPI error:",
+                error
+            );
+
+            viewCount.textContent =
+                "Unavailable";
+
+        });
+
+});
+
+</script>
+
+
+<!-- =========================================================
+     MAIN JAVASCRIPT
+========================================================= -->
+
 <script src="script.js"></script>
 
-<div class="site-view-counter">
-    <span class="view-counter-icon">👁</span>
-    <span>Views</span>
-    <strong id="viewCount">0</strong>
-</div>
 
 </body>
+
 </html>
