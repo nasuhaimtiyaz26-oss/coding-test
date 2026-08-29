@@ -309,53 +309,29 @@ const OWID_URLS = {
 
 
 /* =========================================================
-   VIEW COUNTER CONFIGURATION
-   =========================================================
-
-   IMPORTANT:
-   Replace the values below with your CounterAPI V2
-   workspace and access token.
-
+   COUNTERAPI V2
 ========================================================= */
 
-const VIEW_COUNTER_CONFIG = {
+async function initCounterAPI() {
 
-    workspace:
-        "nasuhaimtiyaz26-oss's Workspace",
+    const viewCount =
+        document.getElementById("viewCount");
 
-    accessToken:
-        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy",
-
-    counterName:
-        "website-views",
-
-    timeout:
-        8000
-
-};
-
-
-
-/* =========================================================
-   GLOBAL VIEW COUNTER
-   ---------------------------------------------------------
-   Works on every page containing:
-
-   <span id="viewCount">0</span>
-
-   Every page load increments the same global counter.
-========================================================= */
-
-async function initializeViewCounter() {
-
-    const counterElements =
-        document.querySelectorAll(
-            "#viewCount"
+    const errorMessage =
+        document.getElementById(
+            "viewCounterError"
         );
 
-    if (
-        !counterElements.length
-    ) {
+
+    /*
+       Make sure counter elements exist
+    */
+
+    if (!viewCount) {
+
+        console.warn(
+            "CounterAPI: #viewCount not found."
+        );
 
         return;
 
@@ -363,43 +339,95 @@ async function initializeViewCounter() {
 
 
     /*
-       Show loading state.
+       =====================================================
+       COUNTERAPI SETTINGS
+       =====================================================
     */
 
-    counterElements.forEach(
-        function (element) {
-
-            element.textContent =
-                "...";
-
-        }
-    );
+    const WORKSPACE =
+        "nasuhaimtiyaz26-osss's-Workspace";
 
 
     /*
-       Prevent the website from breaking
-       if the counter configuration
-       has not been completed.
+       This MUST match your CounterAPI counter:
+       
+       first-counter-5294
+    */
+
+    const COUNTER_NAME =
+        "safe-energy-views";
+
+
+    /*
+       IMPORTANT:
+       Paste your NEW CounterAPI V2 access token here.
+
+       Do NOT use the token previously exposed in chat.
+    */
+
+    const ACCESS_TOKEN =
+        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
+
+
+    /*
+       =====================================================
+       CHECK TOKEN
+       =====================================================
     */
 
     if (
-        !VIEW_COUNTER_CONFIG.workspace ||
-        VIEW_COUNTER_CONFIG.workspace ===
-            "nasuhaimtiyaz26-oss's Workspace"
+        !ACCESS_TOKEN ||
+        ACCESS_TOKEN ===
+        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy"
     ) {
 
-        console.warn(
-            "View counter: workspace has not been configured."
+        console.error(
+            "CounterAPI: Access token has not been added."
         );
 
-        counterElements.forEach(
-            function (element) {
 
-                element.textContent =
-                    "0";
+        viewCount.textContent =
+            "Unavailable";
 
-            }
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "CounterAPI token is not configured.";
+
+        }
+
+        return;
+
+    }
+
+
+    /*
+       =====================================================
+       CHECK COUNTER LIBRARY
+       =====================================================
+    */
+
+    if (
+        typeof window.Counter ===
+        "undefined"
+    ) {
+
+        console.error(
+            "CounterAPI library failed to load."
         );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "CounterAPI library unavailable.";
+
+        }
 
         return;
 
@@ -408,221 +436,308 @@ async function initializeViewCounter() {
 
     try {
 
-        const baseURL =
-            "https://api.counterapi.dev/v2/" +
-            encodeURIComponent(
-                VIEW_COUNTER_CONFIG.workspace
-            ) +
-            "/" +
-            encodeURIComponent(
-                VIEW_COUNTER_CONFIG.counterName
-            ) +
-            "/up";
+        /*
+           Show loading state
+        */
+
+        viewCount.textContent =
+            "Loading...";
 
 
-        const controller =
-            new AbortController();
+        if (errorMessage) {
 
+            errorMessage.textContent =
+                "";
 
-        const timeout =
-            setTimeout(
-                function () {
-
-                    controller.abort();
-
-                },
-                VIEW_COUNTER_CONFIG.timeout
-            );
-
-
-        const headers = {
-
-            "Accept":
-                "application/json"
-
-        };
+        }
 
 
         /*
-           Access token is required by
-           authenticated CounterAPI V2
-           requests.
+           =================================================
+           CREATE COUNTERAPI V2 CLIENT
+           =================================================
         */
 
-        if (
-            VIEW_COUNTER_CONFIG.accessToken &&
-            VIEW_COUNTER_CONFIG.accessToken !==
-                "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy"
-        ) {
+        const counter =
+            new Counter({
 
-            headers[
-                "Authorization"
-            ] =
-                "Bearer " +
-                VIEW_COUNTER_CONFIG.accessToken;
+                workspace:
+                    WORKSPACE,
 
-        }
+                accessToken:
+                    ACCESS_TOKEN,
 
+                timeout:
+                    10000,
 
-        const response =
-            await fetch(
-                baseURL,
-                {
+                debug:
+                    false
 
-                    method:
-                        "GET",
-
-                    headers:
-
-                        headers,
-
-                    cache:
-                        "no-store",
-
-                    signal:
-                        controller.signal
-
-                }
-            );
+            });
 
 
-        clearTimeout(
-            timeout
-        );
-
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Counter API HTTP " +
-                response.status
-            );
-
-        }
-
+        /*
+           =================================================
+           INCREMENT WEBSITE VIEW
+           =================================================
+        */
 
         const result =
-            await response.json();
-
-
-        /*
-           CounterAPI returns the
-           updated value.
-        */
-
-        let count = null;
-
-
-        if (
-            result &&
-            typeof result.value === "number"
-        ) {
-
-            count =
-                result.value;
-
-        }
-
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.value === "number"
-        ) {
-
-            count =
-                result.data.value;
-
-        }
-
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.up_count === "number"
-        ) {
-
-            count =
-                result.data.up_count;
-
-        }
-
-
-        if (
-            typeof count !== "number" ||
-            !Number.isFinite(count)
-        ) {
-
-            throw new Error(
-                "Counter API returned an invalid value."
-            );
-
-        }
-
-
-        /*
-           Format number nicely.
-
-           Example:
-           1
-           25
-           1,250
-           25,000
-        */
-
-        const formattedCount =
-            count.toLocaleString(
-                "en-US"
+            await counter.up(
+                COUNTER_NAME
             );
 
 
-        counterElements.forEach(
-            function (element) {
-
-                element.textContent =
-                    formattedCount;
-
-                element.classList.add(
-                    "counter-loaded"
-                );
-
-            }
+        console.log(
+            "CounterAPI result:",
+            result
         );
 
+
+        /*
+           =================================================
+           DISPLAY TOTAL VIEWS
+           =================================================
+        */
+
+        if (
+            result &&
+            typeof result.value !==
+            "undefined"
+        ) {
+
+            viewCount.textContent =
+                Number(
+                    result.value
+                ).toLocaleString();
+
+        } else {
+
+            throw new Error(
+                "CounterAPI returned an invalid response."
+            );
+
+        }
 
     } catch (error) {
 
-        console.warn(
-            "View counter failed:",
+        /*
+           =================================================
+           ERROR HANDLING
+        =================================================
+        */
+
+        console.error(
+            "CounterAPI error:",
             error
         );
 
 
-        /*
-           IMPORTANT:
-           Counter failure must NOT
-           break the rest of the website.
-        */
+        viewCount.textContent =
+            "Unavailable";
 
-        counterElements.forEach(
-            function (element) {
 
-                element.textContent =
-                    "0";
+        if (errorMessage) {
 
-                element.classList.add(
-                    "counter-error"
-                );
+            /*
+               Different messages for
+               common CounterAPI errors
+            */
+
+            if (
+                error.status === 401
+            ) {
+
+                errorMessage.textContent =
+                    "Invalid CounterAPI token.";
 
             }
-        );
+
+            else if (
+                error.status === 403
+            ) {
+
+                errorMessage.textContent =
+                    "CounterAPI permission denied.";
+
+            }
+
+            else if (
+                error.status === 404
+            ) {
+
+                errorMessage.textContent =
+                    "Counter or workspace not found.";
+
+            }
+
+            else if (
+                error.status === 429
+            ) {
+
+                errorMessage.textContent =
+                    "Too many requests. Try again later.";
+
+            }
+
+            else {
+
+                errorMessage.textContent =
+                    "Unable to load view count.";
+
+            }
+
+        }
 
     }
 
 }
 
+
+/* =========================================================
+   OPTIONAL:
+   GET CURRENT COUNTER VALUE
+========================================================= */
+
+async function getWebsiteViews() {
+
+    const WORKSPACE =
+        "nasuhaimtiyaz26-osss's-Workspace";
+
+
+    const COUNTER_NAME =
+        "safe-energy-views";
+
+
+    const ACCESS_TOKEN =
+        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
+
+
+    if (
+        typeof window.Counter ===
+        "undefined"
+    ) {
+
+        throw new Error(
+            "CounterAPI library is not loaded."
+        );
+
+    }
+
+
+    const counter =
+        new Counter({
+
+            workspace:
+                WORKSPACE,
+
+            accessToken:
+                ACCESS_TOKEN
+
+        });
+
+
+    const result =
+        await counter.get(
+            COUNTER_NAME
+        );
+
+
+    return result.value;
+
+}
+
+
+/* =========================================================
+   OPTIONAL:
+   REFRESH DISPLAY WITHOUT INCREMENTING
+========================================================= */
+
+async function refreshWebsiteViews() {
+
+    const viewCount =
+        document.getElementById(
+            "viewCount"
+        );
+
+
+    const errorMessage =
+        document.getElementById(
+            "viewCounterError"
+        );
+
+
+    if (!viewCount) {
+        return;
+    }
+
+
+    try {
+
+        const value =
+            await getWebsiteViews();
+
+
+        viewCount.textContent =
+            Number(value)
+                .toLocaleString();
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "";
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "CounterAPI refresh error:",
+            error
+        );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "Unable to refresh view count.";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   OPTIONAL:
+   PAGE VISIBILITY
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            /*
+               Do not increment again here.
+               Only the initial page load counts
+               as a website view.
+            */
+
+        }
+
+    }
+);
 
 
 /* =========================================================
