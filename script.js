@@ -385,7 +385,7 @@ async function initializeViewCounter() {
     if (
         !VIEW_COUNTER_CONFIG.workspace ||
         VIEW_COUNTER_CONFIG.workspace ===
-            "safe-energy"
+            "nasuhaimtiyaz26-oss's Workspace"
     ) {
 
         console.warn(
@@ -452,7 +452,7 @@ async function initializeViewCounter() {
         if (
             VIEW_COUNTER_CONFIG.accessToken &&
             VIEW_COUNTER_CONFIG.accessToken !==
-                "counterapiv2"
+                "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy"
         ) {
 
             headers[
