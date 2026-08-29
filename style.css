@@ -4465,120 +4465,55 @@ button:focus-visible {
 
 
 /* =========================================================
-   WEBSITE VIEW COUNTER
-   ========================================================= */
+   VIEW COUNTER
+========================================================= */
 
 .view-counter {
     position: fixed;
-    left: 16px;
-    bottom: 14px;
+    left: 20px;
+    bottom: 20px;
 
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 
-    padding: 7px 11px;
+    padding: 8px 12px;
 
     background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(50, 200, 120, 0.18);
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.08);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
     color: #52635a;
 
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
+    border: 1px solid rgba(50, 200, 120, 0.20);
+    border-radius: 20px;
 
-    font-size: 11px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
     font-weight: 600;
 
-    line-height: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
     z-index: 9999;
 
-    user-select: none;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
-
-
-.view-counter:hover {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.12);
-
-}
-
 
 .view-counter-icon {
-
-    font-size: 12px;
-
-    line-height: 1;
-
+    font-size: 13px;
 }
 
-
-.view-counter-label {
-
-    color: #64736b;
-
-}
-
-
-#viewCount {
-
-    color: #159957;
-
+.view-counter-number {
     font-weight: 800;
-
-    min-width: 12px;
-
-    text-align: center;
-
+    color: #32c878;
 }
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
 
 @media (max-width: 600px) {
 
     .view-counter {
-
         left: 10px;
         bottom: 10px;
 
-        padding: 6px 9px;
-
-        gap: 5px;
-
-        font-size: 10px;
-
-        border-radius: 18px;
-
-    }
-
-
-    .view-counter-icon {
-
+        padding: 7px 10px;
         font-size: 11px;
-
     }
 
 }
-
-
