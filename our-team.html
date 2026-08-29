@@ -1,53 +1,340 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>
-        Our Team | Safe Energy
-    </title>
+<title>Our Team | Safe Energy</title>
 
+<!-- GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <!-- Google Font -->
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-        crossorigin>
+<!-- FONT AWESOME -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-
-    <!-- Font Awesome -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- MAIN CSS -->
+<link rel="stylesheet" href="style.css">
 
 
-    <!-- Main CSS -->
+<!-- =====================================================
+     OUR TEAM SOCIAL MEDIA STYLE
+====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+<style>
+
+    /* =================================================
+       SOCIAL MEDIA SECTION
+    ================================================= */
+
+    .team-social-section {
+        padding: 90px 0;
+        background: #f6faf7;
+    }
+
+
+    /* =================================================
+       SOCIAL GRID
+    ================================================= */
+
+    .team-social-grid {
+        width: 100%;
+        max-width: 850px;
+        margin: 45px auto 0;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 30px;
+    }
+
+
+    /* =================================================
+       SOCIAL CARD
+    ================================================= */
+
+    .team-social-card {
+        display: block;
+
+        width: 100%;
+
+        overflow: hidden;
+
+        border-radius: 24px;
+
+        background: #ffffff;
+
+        text-decoration: none;
+
+        color: inherit;
+
+        box-shadow:
+            0 20px 50px rgba(20, 45, 31, 0.14);
+
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
+    }
+
+
+    .team-social-card:hover {
+        transform: translateY(-8px);
+
+        box-shadow:
+            0 28px 65px rgba(20, 45, 31, 0.22);
+    }
+
+
+    /* =================================================
+       IMAGE CONTAINER
+       9:16
+    ================================================= */
+
+    .team-social-image {
+        position: relative;
+
+        width: 100%;
+
+        aspect-ratio: 9 / 16;
+
+        overflow: hidden;
+
+        background: #071c12;
+    }
+
+
+    /* =================================================
+       IMAGE
+    ================================================= */
+
+    .team-social-image img {
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+
+        object-position: center;
+
+        transition:
+            transform 0.5s ease;
+    }
+
+
+    .team-social-card:hover
+    .team-social-image img {
+
+        transform: scale(1.04);
+
+    }
+
+
+    /* =================================================
+       IMAGE OVERLAY
+    ================================================= */
+
+    .team-social-image::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+            linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.55),
+                transparent 45%
+            );
+
+        pointer-events: none;
+    }
+
+
+    /* =================================================
+       SOCIAL ICON
+    ================================================= */
+
+    .team-social-icon {
+        position: absolute;
+
+        z-index: 5;
+
+        top: 18px;
+        right: 18px;
+
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 15px;
+
+        background:
+            rgba(255, 255, 255, 0.18);
+
+        border:
+            1px solid rgba(255, 255, 255, 0.35);
+
+        backdrop-filter: blur(10px);
+
+        -webkit-backdrop-filter: blur(10px);
+
+        color: #ffffff;
+
+        font-size: 21px;
+    }
+
+
+    /* =================================================
+       CONTENT
+    ================================================= */
+
+    .team-social-content {
+        padding: 24px;
+
+        text-align: center;
+
+        background: #ffffff;
+    }
+
+
+    .team-social-content h3 {
+        margin: 0 0 8px;
+
+        font-size: 21px;
+
+        font-weight: 800;
+
+        color: #14231c;
+    }
+
+
+    .team-social-content p {
+        margin: 0;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+        color: #64736b;
+    }
+
+
+    /* =================================================
+       VISIT BUTTON
+    ================================================= */
+
+    .team-social-link {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 8px;
+
+        margin-top: 16px;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        letter-spacing: 0.4px;
+
+        color: #238b57;
+    }
+
+
+    .team-social-link i {
+        transition:
+            transform 0.25s ease;
+    }
+
+
+    .team-social-card:hover
+    .team-social-link i {
+
+        transform: translateX(5px);
+
+    }
+
+
+    /* =================================================
+       MOBILE
+    ================================================= */
+
+    @media (max-width: 650px) {
+
+        .team-social-section {
+            padding: 65px 0;
+        }
+
+
+        .team-social-grid {
+            grid-template-columns: 1fr;
+
+            max-width: 430px;
+
+            gap: 25px;
+
+            margin-top: 35px;
+        }
+
+    }
+
+
+    /* =================================================
+       SMALL MOBILE
+    ================================================= */
+
+    @media (max-width: 430px) {
+
+        .team-social-content {
+            padding: 20px;
+        }
+
+
+        .team-social-content h3 {
+            font-size: 19px;
+        }
+
+
+        .team-social-content p {
+            font-size: 12px;
+        }
+
+    }
+
+</style>
+```
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      NAVBAR
@@ -57,106 +344,91 @@
     class="navbar"
     id="navbar">
 
-    <div class="nav-container">
+```
+<div class="nav-container">
 
 
-        <!-- LOGO -->
+    <!-- LOGO -->
 
-        <a
-            href="index.html"
-            class="logo">
+    <a
+        href="index.html"
+        class="logo">
 
-            <div class="logo-icon">
+        <div class="logo-icon">
 
-                <i class="fa-solid fa-leaf"></i>
-
-            </div>
-
-            SAFE ENERGY
-
-        </a>
-
-
-        <!-- NAVIGATION -->
-
-        <div
-            class="nav-menu"
-            id="navMenu">
-
-
-            <a href="index.html">
-                HOME
-            </a>
-
-
-            <a href="introduction.html">
-                INTRODUCTION
-            </a>
-
-
-            <a href="trend.html">
-                TREND
-            </a>
-
-
-            <a href="renewable-energy-is-important-because.html">
-                IMPORTANCE 
-            </a>
-
-
-            <a href="effects.html">
-                EFFECTS
-            </a>
-
-
-            <a href="ways-to-safe-energy.html">
-                WAYS 
-            </a>
-
-
-            <a
-                href="our-team.html"
-                class="active">
-
-                OUR TEAM
-
-            </a>
-
-
-            <a href="sources.html">
-                SOURCES
-            </a>
+            <i class="fa-solid fa-leaf"></i>
 
         </div>
 
+        SAFE ENERGY
 
-        <!-- MOBILE MENU -->
+    </a>
 
-        <button
-            class="menu-dots"
-            id="menuDots"
-            aria-label="Open navigation menu"
-            aria-expanded="false">
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
+    <!-- NAVIGATION -->
 
-        </button>
+    <div
+        class="nav-menu"
+        id="navMenu">
+
+        <a href="index.html">
+            HOME
+        </a>
+
+        <a href="introduction.html">
+            INTRODUCTION
+        </a>
+
+        <a href="trend.html">
+            TREND
+        </a>
+
+        <a href="renewable-energy-is-important-because.html">
+            IMPORTANCE
+        </a>
+
+        <a href="effects.html">
+            EFFECTS
+        </a>
+
+        <a href="ways-to-safe-energy.html">
+            WAYS
+        </a>
+
+        <a
+            href="our-team.html"
+            class="active">
+
+            OUR TEAM
+
+        </a>
+
+        <a href="sources.html">
+            SOURCES
+        </a>
 
     </div>
 
+
+    <!-- MOBILE MENU -->
+
+    <button
+        class="menu-dots"
+        id="menuDots"
+        aria-label="Open navigation menu"
+        aria-expanded="false">
+
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+
+    </button>
+
+</div>
+```
+
 </nav>
-
-
 
 <!-- =====================================================
      PAGE HERO
-     
-     ONLY THIS SECTION HAS BEEN CHANGED
-     
-     Background image:
-     Teamwork / collaboration / sustainability
 ===================================================== -->
 
 <section
@@ -168,297 +440,251 @@
             rgba(3, 20, 12, 0.78)
         ),
         url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=2000&q=85');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    ">
 
-    <div class="section-container">
+```
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+">
 
+<div class="section-container">
+
+    <span class="section-label">
+
+        THE PEOPLE BEHIND THE PROJECT
+
+    </span>
+
+
+    <h1>
+
+        Meet Our
+
+        <span>
+            Team
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        Meet the team behind Safe Energy.
+        Together, we explore the importance of
+        sustainable energy and its role in building
+        a safer and greener future.
+
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     OUR TEAM
+===================================================== -->
+
+<section class="team-section">
+
+```
+<div class="section-container">
+
+
+    <!-- SECTION HEADING -->
+
+    <div class="section-heading center">
 
         <span class="section-label">
 
-            THE PEOPLE BEHIND THE PROJECT
+            OUR TEAM
 
         </span>
 
 
-        <h1>
+        <h2>
 
-            Meet Our
+            The Team Behind
 
             <span>
-                Team
+                Safe Energy
             </span>
 
-        </h1>
+        </h2>
 
 
         <p>
 
-            Meet the team behind Safe Energy.
-            Together, we explore the importance of
-            sustainable energy and its role in building
-            a safer and greener future.
+            A collaborative team dedicated to
+            understanding energy, sustainability
+            and environmental responsibility.
 
         </p>
 
     </div>
 
-</section>
 
 
+    <!-- =================================================
+         TEAM GRID
+    ================================================== -->
 
-<!-- =====================================================
-     OUR TEAM
-     
-     EVERYTHING BELOW HERO IS UNCHANGED
-===================================================== -->
-
-<section class="team-section">
-
-    <div class="section-container">
+    <div class="team-grid">
 
 
-        <!-- SECTION HEADING -->
+        <!-- MEMBER 01 -->
 
-        <div class="section-heading center">
+        <div class="team-card">
 
-            <span class="section-label">
+            <div class="team-photo-wrap">
 
-                OUR TEAM
+                <img
+                    src="./images/person1.jpeg"
+                    alt="Asyiq Huda Zukni Bin Ahmad Zukni"
+                    class="team-photo">
 
-            </span>
+            </div>
 
 
-            <h2>
+            <div class="team-content">
 
-                The Team Behind
-
-                <span>
-                    Safe Energy
+                <span class="team-number">
+                    01
                 </span>
 
-            </h2>
-
-
-            <p>
-
-                A collaborative team dedicated to
-                understanding energy, sustainability
-                and environmental responsibility.
-
-            </p>
-
-        </div>
-
-
-
-        <!-- TEAM GRID -->
-
-        <div class="team-grid">
-
-
-            <!-- MEMBER 01 -->
-
-            <div class="team-card">
-
-
-                <div class="team-photo-wrap">
-
-                    <img
-                        src="images/person1.jpeg"
-                        alt="Asyiq Huda Zukni Bin Ahmad Zukni"
-                        class="team-photo">
-
-                </div>
-
-
-                <div class="team-content">
-
-                    <span class="team-number">
-
-                        01
-
-                    </span>
-
-
-                    <h3>
-
-                        ASYIQ HUDA ZUKNI BIN
-                        <br>
-                        AHMAD ZUKNI
-
-                    </h3>
-
-
-                    <div class="team-line"></div>
-
-
-                    <p class="team-program">
-
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
-
-                    </p>
-
-
-                    <p class="team-centre">
-
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- MEMBER 02 -->
-
-            <div class="team-card">
-
-
-                <div class="team-photo-wrap">
-
-                    <img
-                        src="images/person2.jpeg"
-                        alt="Nasuha Imtiyaz Bin Mohd Sabarjoo"
-                        class="team-photo">
-
-                </div>
-
-
-                <div class="team-content">
-
-                    <span class="team-number">
-
-                        02
-
-                    </span>
-
-
-                    <h3>
-
-                        NASUHA IMTIYAZ BIN
-                        <br>
-                        MOHD SABARJOO
-
-                    </h3>
-
-
-                    <div class="team-line"></div>
-
-
-                    <p class="team-program">
-
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
-
-                    </p>
-
-
-                    <p class="team-centre">
-
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- MEMBER 03 -->
-
-            <div class="team-card">
-
-
-                <div class="team-photo-wrap">
-
-                    <img
-                        src="images/person3.jpeg"
-                        alt="Muhammad Azfar Hadi Bin Mohd Khairi"
-                        class="team-photo">
-
-                </div>
-
-
-                <div class="team-content">
-
-                    <span class="team-number">
-
-                        03
-
-                    </span>
-
-
-                    <h3>
-
-                        MUHAMMAD AZFAR HADI BIN
-                        <br>
-                        MOHD KHAIRI
-
-                    </h3>
-
-
-                    <div class="team-line"></div>
-
-
-                    <p class="team-program">
-
-                        DEFENCE ENGINEERING AND
-                        <br>
-                        TECHNOLOGY FOUNDATION
-
-                    </p>
-
-
-                    <p class="team-centre">
-
-                        CENTRE FOR DEFENCE FOUNDATION STUDIES
-
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- TEAM MESSAGE -->
-
-        <div class="team-message">
-
-
-            <div class="team-message-icon">
-
-                <i class="fa-solid fa-users"></i>
-
-            </div>
-
-
-            <div>
 
                 <h3>
 
-                    One Team. One Mission.
+                    ASYIQ HUDA ZUKNI BIN
+                    <br>
+                    AHMAD ZUKNI
 
                 </h3>
 
 
-                <p>
+                <div class="team-line"></div>
 
-                    We believe that understanding energy
-                    is the first step towards creating a
-                    safer, cleaner and more sustainable future.
+
+                <p class="team-program">
+
+                    DEFENCE ENGINEERING AND
+                    <br>
+                    TECHNOLOGY FOUNDATION
+
+                </p>
+
+
+                <p class="team-centre">
+
+                    CENTRE FOR DEFENCE FOUNDATION STUDIES
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MEMBER 02 -->
+
+        <div class="team-card">
+
+            <div class="team-photo-wrap">
+
+                <img
+                    src="./images/person2.jpeg"
+                    alt="Nasuha Imtiyaz Bin Mohd Sabarjoo"
+                    class="team-photo">
+
+            </div>
+
+
+            <div class="team-content">
+
+                <span class="team-number">
+                    02
+                </span>
+
+
+                <h3>
+
+                    NASUHA IMTIYAZ BIN
+                    <br>
+                    MOHD SABARJOO
+
+                </h3>
+
+
+                <div class="team-line"></div>
+
+
+                <p class="team-program">
+
+                    DEFENCE ENGINEERING AND
+                    <br>
+                    TECHNOLOGY FOUNDATION
+
+                </p>
+
+
+                <p class="team-centre">
+
+                    CENTRE FOR DEFENCE FOUNDATION STUDIES
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MEMBER 03 -->
+
+        <div class="team-card">
+
+            <div class="team-photo-wrap">
+
+                <img
+                    src="./images/person3.jpeg"
+                    alt="Muhammad Azfar Hadi Bin Mohd Khairi"
+                    class="team-photo">
+
+            </div>
+
+
+            <div class="team-content">
+
+                <span class="team-number">
+                    03
+                </span>
+
+
+                <h3>
+
+                    MUHAMMAD AZFAR HADI BIN
+                    <br>
+                    MOHD KHAIRI
+
+                </h3>
+
+
+                <div class="team-line"></div>
+
+
+                <p class="team-program">
+
+                    DEFENCE ENGINEERING AND
+                    <br>
+                    TECHNOLOGY FOUNDATION
+
+                </p>
+
+
+                <p class="team-centre">
+
+                    CENTRE FOR DEFENCE FOUNDATION STUDIES
 
                 </p>
 
@@ -469,24 +695,68 @@
 
     </div>
 
+
+
+    <!-- =================================================
+         TEAM MESSAGE
+    ================================================== -->
+
+    <div class="team-message">
+
+        <div class="team-message-icon">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+
+                One Team. One Mission.
+
+            </h3>
+
+
+            <p>
+
+                We believe that understanding energy
+                is the first step towards creating a
+                safer, cleaner and more sustainable future.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+```
+
 </section>
 
-
-
-    <!-- =========================================================
+<!-- =====================================================
      TEAM SOCIAL MEDIA
-========================================================= -->
+===================================================== -->
 
 <section class="team-social-section">
 
 ```
 <div class="section-container">
 
+
+    <!-- SOCIAL HEADING -->
+
     <div class="section-heading center">
 
         <span class="section-label">
+
             FOLLOW OUR TEAM
+
         </span>
+
 
         <h2>
 
@@ -498,6 +768,7 @@
 
         </h2>
 
+
         <p>
 
             Follow our team on TikTok and Instagram
@@ -508,28 +779,36 @@
     </div>
 
 
-    <!-- SOCIAL MEDIA CARDS -->
+
+    <!-- =================================================
+         SOCIAL MEDIA GRID
+    ================================================== -->
 
     <div class="team-social-grid">
 
 
         <!-- =================================================
-             TIKTOK
+             TIKTOK CARD
         ================================================== -->
 
         <a
             href="MASUKKAN-LINK-TIKTOK-TEAM-ANDA"
             target="_blank"
             rel="noopener noreferrer"
-            class="team-social-card reveal">
+            class="team-social-card">
 
+
+            <!-- IMAGE -->
 
             <div class="team-social-image">
 
                 <img
-                    src="images/tiktok.jpeg"
-                    alt="Safe Energy Team TikTok">
+                    src="./images/tiktok.jpeg"
+                    alt="Safe Energy Team TikTok"
+                    loading="lazy">
 
+
+                <!-- TIKTOK ICON -->
 
                 <div class="team-social-icon">
 
@@ -540,17 +819,23 @@
             </div>
 
 
+            <!-- CONTENT -->
+
             <div class="team-social-content">
 
                 <h3>
                     TikTok
                 </h3>
 
+
                 <p>
-                    Come visit our Tiktok to
+
+                    Come visit our TikTok to
                     see the Safe Energy Team's
                     activities and content.
+
                 </p>
+
 
                 <span class="team-social-link">
 
@@ -568,22 +853,27 @@
 
 
         <!-- =================================================
-             INSTAGRAM
+             INSTAGRAM CARD
         ================================================== -->
 
         <a
             href="MASUKKAN-LINK-INSTAGRAM-TEAM-ANDA"
             target="_blank"
             rel="noopener noreferrer"
-            class="team-social-card reveal">
+            class="team-social-card">
 
+
+            <!-- IMAGE -->
 
             <div class="team-social-image">
 
                 <img
-                    src="images/instagram.jpeg"
-                    alt="Safe Energy Team Instagram">
+                    src="./images/instagram.jpeg"
+                    alt="Safe Energy Team Instagram"
+                    loading="lazy">
 
+
+                <!-- INSTAGRAM ICON -->
 
                 <div class="team-social-icon">
 
@@ -594,17 +884,23 @@
             </div>
 
 
+            <!-- CONTENT -->
+
             <div class="team-social-content">
 
                 <h3>
                     Instagram
                 </h3>
 
+
                 <p>
+
                     Come visit our Instagram to see
                     the latest updates and content from
                     the Safe Energy Team.
+
                 </p>
+
 
                 <span class="team-social-link">
 
@@ -627,71 +923,65 @@
 
 </section>
 
-
-
-
 <!-- =====================================================
      FOOTER
 ===================================================== -->
 
 <footer>
 
-    <div class="footer-container">
+```
+<div class="footer-container">
 
 
-        <div class="footer-logo">
+    <div class="footer-logo">
 
-            <i
-                class="fa-solid fa-leaf">
-            </i>
+        <i class="fa-solid fa-leaf"></i>
 
-            SAFE ENERGY
-
-        </div>
-
-
-        <p>
-
-            Understanding energy.
-            Protecting the future.
-
-        </p>
-
-
-        <div class="footer-source">
-
-            Research sources:
-
-            Our World in Data •
-
-            International Energy Agency •
-
-            ENERGY STAR
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            © 2026 Safe Energy.
-
-            Educational Research Website.
-
-        </div>
-
+        SAFE ENERGY
 
     </div>
 
+
+    <p>
+
+        Understanding energy.
+        Protecting the future.
+
+    </p>
+
+
+    <div class="footer-source">
+
+        Research sources:
+
+        Our World in Data •
+
+        International Energy Agency •
+
+        ENERGY STAR
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 Safe Energy.
+
+        Educational Research Website.
+
+    </div>
+
+
+</div>
+```
+
 </footer>
-
-
 
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
 
 <script src="script.js"></script>
-
 
 </body>
 
