@@ -4462,3 +4462,253 @@ button:focus-visible {
     }
 
 }
+
+
+/* =========================================================
+   SAFE ENERGY
+   HOME VIEW COUNTER
+   ========================================================= */
+
+.safe-energy-view-counter {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-width: 92px;
+    height: 42px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(50, 200, 120, 0.22);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.10);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    user-select: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.safe-energy-view-counter:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.13);
+
+}
+
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.view-counter-icon {
+
+    width: 19px;
+    height: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #32c878;
+
+}
+
+
+.view-counter-icon svg {
+
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+}
+
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.view-counter-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    line-height: 1;
+
+}
+
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.view-counter-label {
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+    color: #6c7b73;
+
+    margin-bottom: 4px;
+
+}
+
+
+
+/* =========================================================
+   NUMBER
+   ========================================================= */
+
+.view-counter-number {
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    color: #193126;
+
+    line-height: 1;
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .safe-energy-view-counter {
+
+        left: 12px;
+        bottom: 12px;
+
+        min-width: 86px;
+
+        height: 38px;
+
+        padding:
+            0 10px;
+
+        gap: 7px;
+
+        border-radius: 10px;
+
+    }
+
+
+    .view-counter-icon {
+
+        width: 17px;
+        height: 17px;
+
+    }
+
+
+    .view-counter-icon svg {
+
+        width: 16px;
+        height: 16px;
+
+    }
+
+
+    .view-counter-label {
+
+        font-size: 7px;
+
+        letter-spacing: 0.7px;
+
+    }
+
+
+    .view-counter-number {
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .safe-energy-view-counter {
+
+        left: 10px;
+        bottom: 10px;
+
+        min-width: 82px;
+
+        height: 36px;
+
+        padding:
+            0 9px;
+
+    }
+
+
+    .view-counter-number {
+
+        font-size: 12px;
+
+    }
+
+}
