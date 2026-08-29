@@ -1,226 +1,206 @@
+
 /* =========================================================
    SAFE ENERGY
-   MASTER JAVASCRIPT
-   ONLINE VERSION
-
-   FEATURES
-   - Mobile Navigation
-   - Navbar Scroll
-   - Reveal Animation
-   - Active Navigation
-   - OWID Live Energy Data
-   - Interactive Canvas Charts
-   - CounterAPI Visitor Counter
+   MAIN JAVASCRIPT
 ========================================================= */
+
+"use strict";
 
 
 /* =========================================================
-   00. COUNTER API CONFIGURATION
+   WAIT FOR PAGE
 ========================================================= */
 
-const COUNTER_API = {
+document.addEventListener("DOMContentLoaded", function () {
 
-    /*
-       Your CounterAPI workspace
-    */
+    initNavigation();
 
-    baseURL:
-        "https://api.counterapi.dev/v2/nasuhaimtiyaz26-osss-team-5294/first-counter-5294",
+    initRevealAnimation();
 
+    initNavbarScroll();
 
-    /*
-       PUT YOUR API KEY HERE
+    initCounterAPI();
 
-       Example:
-
-       apiKey: "abc123456..."
-
-       DO NOT share the API key publicly if the
-       key has powerful permissions.
-    */
-
-    apiKey:
-        "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP",
-
-
-    /*
-       Counter will increase once per browser session.
-
-       Change to false if you only want to display
-       the value without automatically increasing it.
-    */
-
-    autoIncrement:
-        true
-
-};
+});
 
 
 /* =========================================================
-   01. OUR WORLD IN DATA URLS
+   NAVIGATION
 ========================================================= */
 
-const OWID_URLS = {
-
-    energyMix:
-        "https://ourworldindata.org/grapher/primary-energy-from-fossil-nuclear-renewables.csv?v=1&csvType=full&useColumnShortNames=false",
-
-    primaryEnergy:
-        "https://ourworldindata.org/grapher/global-primary-energy-by-source.csv?v=1&csvType=full&useColumnShortNames=false",
-
-    electricity:
-        "https://ourworldindata.org/grapher/electricity-fossil-renewables-nuclear-line.csv?v=1&csvType=full&useColumnShortNames=false"
-
-};
-
-
-/* =========================================================
-   02. DOM READY
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        /* Mobile navigation */
-        initializeMobileNavigation();
-
-
-        /* Navbar scroll */
-        initializeNavbar();
-
-
-        /* Reveal animations */
-        initializeRevealAnimations();
-
-
-        /* Active navigation */
-        initializeActiveNavigation();
-
-
-        /* Close menu */
-        initializeMenuClose();
-
-
-        /* CounterAPI */
-        initializeCounterAPI();
-
-
-        /* Energy charts */
-        initializeOnlineEnergyCharts();
-
-    }
-);
-
-
-/* =========================================================
-   03. MOBILE NAVIGATION
-========================================================= */
-
-function initializeMobileNavigation() {
+function initNavigation() {
 
     const menuDots =
         document.getElementById("menuDots");
-
 
     const navMenu =
         document.getElementById("navMenu");
 
 
-    if (
-        !menuDots ||
-        !navMenu
-    ) {
-
+    if (!menuDots || !navMenu) {
         return;
-
     }
 
 
-    menuDots.addEventListener(
-        "click",
-        function (event) {
+    menuDots.addEventListener("click", function (event) {
 
-            event.stopPropagation();
+        event.stopPropagation();
+
+        const isOpen =
+            navMenu.classList.toggle("active");
 
 
-            const isOpen =
-                navMenu.classList.toggle("open");
+        menuDots.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
 
+    });
+
+
+    /*
+       Close menu when clicking outside
+    */
+
+    document.addEventListener("click", function (event) {
+
+        if (
+            !navMenu.contains(event.target) &&
+            !menuDots.contains(event.target)
+        ) {
+
+            navMenu.classList.remove("active");
 
             menuDots.setAttribute(
                 "aria-expanded",
-                isOpen
-                    ? "true"
-                    : "false"
+                "false"
             );
 
         }
-    );
+
+    });
 
 
-    navMenu
-        .querySelectorAll("a")
-        .forEach(
-            function (link) {
+    /*
+       Close menu after clicking a link
+    */
 
-                link.addEventListener(
-                    "click",
-                    function () {
-
-                        navMenu.classList.remove(
-                            "open"
-                        );
+    const navLinks =
+        navMenu.querySelectorAll("a");
 
 
-                        menuDots.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+    navLinks.forEach(function (link) {
 
-                    }
-                );
+        link.addEventListener("click", function () {
 
-            }
-        );
+            navMenu.classList.remove("active");
+
+            menuDots.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        });
+
+    });
 
 }
 
 
 /* =========================================================
-   04. NAVBAR SCROLL
+   REVEAL ANIMATION
 ========================================================= */
 
-function initializeNavbar() {
+function initRevealAnimation() {
 
-    const navbar =
-        document.getElementById(
-            "navbar"
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    if (!revealElements.length) {
+        return;
+    }
+
+
+    /*
+       Fallback for browsers without
+       IntersectionObserver
+    */
+
+    if (!("IntersectionObserver" in window)) {
+
+        revealElements.forEach(function (element) {
+
+            element.classList.add("active");
+
+        });
+
+        return;
+    }
+
+
+    const observer =
+        new IntersectionObserver(
+
+            function (entries, observer) {
+
+                entries.forEach(function (entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("active");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -40px 0px"
+            }
+
         );
 
 
+    revealElements.forEach(function (element) {
+
+        observer.observe(element);
+
+    });
+
+}
+
+
+/* =========================================================
+   NAVBAR SCROLL EFFECT
+========================================================= */
+
+function initNavbarScroll() {
+
+    const navbar =
+        document.getElementById("navbar");
+
+
     if (!navbar) {
-
         return;
-
     }
 
 
     function updateNavbar() {
 
-        if (
-            window.scrollY > 30
-        ) {
+        if (window.scrollY > 30) {
 
-            navbar.classList.add(
-                "scrolled"
-            );
+            navbar.classList.add("scrolled");
 
         } else {
 
-            navbar.classList.remove(
-                "scrolled"
-            );
+            navbar.classList.remove("scrolled");
 
         }
 
@@ -242,476 +222,223 @@ function initializeNavbar() {
 
 
 /* =========================================================
-   05. REVEAL ANIMATIONS
+   COUNTERAPI V2
 ========================================================= */
 
-function initializeRevealAnimations() {
+async function initCounterAPI() {
 
-    const animatedElements =
-        document.querySelectorAll(
-            ".data-card, " +
-            ".chart-card, " +
-            ".benefit-card, " +
-            ".renewable-type-card, " +
-            ".effect-card, " +
-            ".save-card, " +
-            ".team-card, " +
-            ".research-source-card, " +
-            ".source-detail-card, " +
-            ".home-nav-card, " +
-            ".energy-card"
-        );
+    const viewCount =
+        document.getElementById("viewCount");
 
-
-    if (
-        !animatedElements.length
-    ) {
-
-        return;
-
-    }
-
-
-    animatedElements.forEach(
-        function (element) {
-
-            element.classList.remove(
-                "reveal"
-            );
-
-            element.classList.add(
-                "show"
-            );
-
-        }
-    );
-
-
-    if (
-        !("IntersectionObserver" in window)
-    ) {
-
-        return;
-
-    }
-
-
-    animatedElements.forEach(
-        function (element) {
-
-            element.classList.remove(
-                "show"
-            );
-
-            element.classList.add(
-                "reveal"
-            );
-
-        }
-    );
-
-
-    const observer =
-        new IntersectionObserver(
-            function (entries) {
-
-                entries.forEach(
-                    function (entry) {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target.classList.add(
-                                "show"
-                            );
-
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-            {
-                threshold: 0.05
-            }
-        );
-
-
-    animatedElements.forEach(
-        function (element) {
-
-            observer.observe(
-                element
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   06. ACTIVE NAVIGATION
-========================================================= */
-
-function initializeActiveNavigation() {
-
-    let currentPage =
-        window.location.pathname
-            .split("/")
-            .pop();
-
-
-    if (!currentPage) {
-
-        currentPage =
-            "index.html";
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".nav-menu a"
-        )
-        .forEach(
-            function (link) {
-
-                const href =
-                    link.getAttribute(
-                        "href"
-                    );
-
-
-                if (!href) {
-
-                    return;
-
-                }
-
-
-                /*
-                   Remove query/hash for comparison
-                */
-
-                const linkPage =
-                    href
-                        .split("?")[0]
-                        .split("#")[0]
-                        .split("/")
-                        .pop();
-
-
-                if (
-                    linkPage ===
-                    currentPage
-                ) {
-
-                    link.classList.add(
-                        "active"
-                    );
-
-                } else {
-
-                    link.classList.remove(
-                        "active"
-                    );
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   07. MENU CLOSE
-========================================================= */
-
-function initializeMenuClose() {
-
-    const menuDots =
+    const errorMessage =
         document.getElementById(
-            "menuDots"
+            "viewCounterError"
         );
-
-
-    const navMenu =
-        document.getElementById(
-            "navMenu"
-        );
-
-
-    if (
-        !menuDots ||
-        !navMenu
-    ) {
-
-        return;
-
-    }
-
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                !navMenu.contains(
-                    event.target
-                ) &&
-                !menuDots.contains(
-                    event.target
-                )
-            ) {
-
-                navMenu.classList.remove(
-                    "open"
-                );
-
-
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        }
-    );
-
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape"
-            ) {
-
-                navMenu.classList.remove(
-                    "open"
-                );
-
-
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   08. COUNTER API
-========================================================= */
-
-/*
-   Find a counter element automatically.
-
-   Supported IDs:
-
-   #visitorCount
-   #visitCount
-   #counterValue
-   #viewsCount
-   #totalVisitors
-   #totalViews
-   #websiteVisitors
-*/
-
-function getCounterElement() {
-
-    const possibleIDs = [
-
-        "visitorCount",
-        "visitCount",
-        "counterValue",
-        "viewsCount",
-        "totalVisitors",
-        "totalViews",
-        "websiteVisitors"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < possibleIDs.length;
-        i++
-    ) {
-
-        const element =
-            document.getElementById(
-                possibleIDs[i]
-            );
-
-
-        if (element) {
-
-            return element;
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   09. COUNTER API HEADERS
-========================================================= */
-
-function getCounterHeaders() {
-
-    const headers = {
-
-        "Accept":
-            "application/json"
-
-    };
 
 
     /*
-       Only add Authorization when
-       an API key exists.
+       Make sure counter elements exist
     */
 
-    if (
-        COUNTER_API.apiKey &&
-        COUNTER_API.apiKey !==
-            "YOUR_API_KEY"
-    ) {
+    if (!viewCount) {
 
-        headers[
-            "Authorization"
-        ] =
-            "Bearer " +
-            COUNTER_API.apiKey;
-
-    }
-
-
-    return headers;
-
-}
-
-
-/* =========================================================
-   10. INITIALIZE COUNTER
-========================================================= */
-
-async function initializeCounterAPI() {
-
-    const counterElement =
-        getCounterElement();
-
-
-    /*
-       If the HTML doesn't contain
-       a counter element, we can still
-       skip the counter completely.
-    */
-
-    if (!counterElement) {
+        console.warn(
+            "CounterAPI: #viewCount not found."
+        );
 
         return;
 
     }
 
 
-    counterElement.textContent =
-        "Loading...";
+    /*
+       =====================================================
+       COUNTERAPI SETTINGS
+       =====================================================
+    */
+
+    const WORKSPACE =
+        "nasuhaimtiyaz26-osss-team-5294";
+
+
+    /*
+       This MUST match your CounterAPI counter:
+       
+       first-counter-5294
+    */
+
+    const COUNTER_NAME =
+        "first-counter-5294";
+
+
+    /*
+       IMPORTANT:
+       Paste your NEW CounterAPI V2 access token here.
+
+       Do NOT use the token previously exposed in chat.
+    */
+
+    const ACCESS_TOKEN =
+        "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP";
+
+
+    /*
+       =====================================================
+       CHECK TOKEN
+       =====================================================
+    */
+
+    if (
+        !ACCESS_TOKEN ||
+        ACCESS_TOKEN ===
+        "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP"
+    ) {
+
+        console.error(
+            "CounterAPI: Access token has not been added."
+        );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "CounterAPI token is not configured.";
+
+        }
+
+        return;
+
+    }
+
+
+    /*
+       =====================================================
+       CHECK COUNTER LIBRARY
+       =====================================================
+    */
+
+    if (
+        typeof window.Counter ===
+        "undefined"
+    ) {
+
+        console.error(
+            "CounterAPI library failed to load."
+        );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "CounterAPI library unavailable.";
+
+        }
+
+        return;
+
+    }
 
 
     try {
 
         /*
-           First get current value.
+           Show loading state
         */
 
-        let currentValue =
-            await getCounterValue();
+        viewCount.textContent =
+            "Loading...";
 
 
-        /*
-           Automatically increment once
-           per browser session.
-        */
+        if (errorMessage) {
 
-        if (
-            COUNTER_API.autoIncrement
-        ) {
-
-            const alreadyCounted =
-                sessionStorage.getItem(
-                    "safeEnergyCounterCounted"
-                );
-
-
-            if (
-                !alreadyCounted
-            ) {
-
-                const incrementResult =
-                    await incrementCounter();
-
-
-                if (
-                    incrementResult !== null
-                ) {
-
-                    currentValue =
-                        incrementResult;
-
-                }
-
-
-                sessionStorage.setItem(
-                    "safeEnergyCounterCounted",
-                    "true"
-                );
-
-            }
+            errorMessage.textContent =
+                "";
 
         }
 
 
         /*
-           Update HTML.
+           =================================================
+           CREATE COUNTERAPI V2 CLIENT
+           =================================================
+        */
+
+        const counter =
+            new Counter({
+
+                workspace:
+                    WORKSPACE,
+
+                accessToken:
+                    ACCESS_TOKEN,
+
+                timeout:
+                    10000,
+
+                debug:
+                    false
+
+            });
+
+
+        /*
+           =================================================
+           INCREMENT WEBSITE VIEW
+           =================================================
+        */
+
+        const result =
+            await counter.up(
+                COUNTER_NAME
+            );
+
+
+        console.log(
+            "CounterAPI result:",
+            result
+        );
+
+
+        /*
+           =================================================
+           DISPLAY TOTAL VIEWS
+           =================================================
         */
 
         if (
-            currentValue !== null
+            result &&
+            typeof result.value !==
+            "undefined"
         ) {
 
-            updateCounterDisplay(
-                currentValue
-            );
+            viewCount.textContent =
+                Number(
+                    result.value
+                ).toLocaleString();
 
         } else {
 
-            counterElement.textContent =
-                "—";
+            throw new Error(
+                "CounterAPI returned an invalid response."
+            );
 
         }
 
     } catch (error) {
+
+        /*
+           =================================================
+           ERROR HANDLING
+        =================================================
+        */
 
         console.error(
             "CounterAPI error:",
@@ -719,303 +446,57 @@ async function initializeCounterAPI() {
         );
 
 
-        counterElement.textContent =
-            "—";
+        viewCount.textContent =
+            "Unavailable";
 
-    }
 
-}
+        if (errorMessage) {
 
-
-/* =========================================================
-   11. GET COUNTER VALUE
-========================================================= */
-
-async function getCounterValue() {
-
-    const response =
-        await fetch(
-            COUNTER_API.baseURL,
-            {
-
-                method:
-                    "GET",
-
-                headers:
-                    getCounterHeaders(),
-
-                cache:
-                    "no-store"
-
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "Counter GET failed: HTTP " +
-            response.status
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    console.log(
-        "CounterAPI GET:",
-        data
-    );
-
-
-    return extractCounterValue(
-        data
-    );
-
-}
-
-
-/* =========================================================
-   12. INCREMENT COUNTER
-========================================================= */
-
-async function incrementCounter() {
-
-    const response =
-        await fetch(
-            COUNTER_API.baseURL +
-            "/up",
-            {
-
-                method:
-                    "GET",
-
-                headers:
-                    getCounterHeaders(),
-
-                cache:
-                    "no-store"
-
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "Counter increment failed: HTTP " +
-            response.status
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    console.log(
-        "CounterAPI UP:",
-        data
-    );
-
-
-    return extractCounterValue(
-        data
-    );
-
-}
-
-
-/* =========================================================
-   13. DECREMENT COUNTER
-========================================================= */
-
-async function decrementCounter() {
-
-    const response =
-        await fetch(
-            COUNTER_API.baseURL +
-            "/down",
-            {
-
-                method:
-                    "GET",
-
-                headers:
-                    getCounterHeaders(),
-
-                cache:
-                    "no-store"
-
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "Counter decrement failed: HTTP " +
-            response.status
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    console.log(
-        "CounterAPI DOWN:",
-        data
-    );
-
-
-    return extractCounterValue(
-        data
-    );
-
-}
-
-
-/* =========================================================
-   14. GET COUNTER STATISTICS
-========================================================= */
-
-async function getCounterStatistics() {
-
-    const response =
-        await fetch(
-            COUNTER_API.baseURL +
-            "/stats",
-            {
-
-                method:
-                    "GET",
-
-                headers:
-                    getCounterHeaders(),
-
-                cache:
-                    "no-store"
-
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "Counter statistics failed: HTTP " +
-            response.status
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    console.log(
-        "CounterAPI STATS:",
-        data
-    );
-
-
-    return data;
-
-}
-
-
-/* =========================================================
-   15. EXTRACT COUNTER VALUE
-========================================================= */
-
-function extractCounterValue(data) {
-
-    if (
-        data === null ||
-        data === undefined
-    ) {
-
-        return null;
-
-    }
-
-
-    /*
-       Different API response formats
-       can be handled here.
-    */
-
-    const possibleValues = [
-
-        data.value,
-
-        data.count,
-
-        data.counter,
-
-        data.current,
-
-        data.data?.value,
-
-        data.data?.count,
-
-        data.data?.counter,
-
-        data.data?.current
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < possibleValues.length;
-        i++
-    ) {
-
-        const value =
-            possibleValues[i];
-
-
-        if (
-            typeof value === "number" &&
-            Number.isFinite(value)
-        ) {
-
-            return value;
-
-        }
-
-
-        if (
-            typeof value === "string" &&
-            value.trim() !== ""
-        ) {
-
-            const number =
-                Number(value);
-
+            /*
+               Different messages for
+               common CounterAPI errors
+            */
 
             if (
-                Number.isFinite(number)
+                error.status === 401
             ) {
 
-                return number;
+                errorMessage.textContent =
+                    "Invalid CounterAPI token.";
+
+            }
+
+            else if (
+                error.status === 403
+            ) {
+
+                errorMessage.textContent =
+                    "CounterAPI permission denied.";
+
+            }
+
+            else if (
+                error.status === 404
+            ) {
+
+                errorMessage.textContent =
+                    "Counter or workspace not found.";
+
+            }
+
+            else if (
+                error.status === 429
+            ) {
+
+                errorMessage.textContent =
+                    "Too many requests. Try again later.";
+
+            }
+
+            else {
+
+                errorMessage.textContent =
+                    "Unable to load view count.";
 
             }
 
@@ -1023,4067 +504,151 @@ function extractCounterValue(data) {
 
     }
 
+}
 
-    return null;
+
+/* =========================================================
+   OPTIONAL:
+   GET CURRENT COUNTER VALUE
+========================================================= */
+
+async function getWebsiteViews() {
+
+    const WORKSPACE =
+        "nasuhaimtiyaz26-osss-team-5294";
+
+
+    const COUNTER_NAME =
+        "first-counter-5294";
+
+
+    const ACCESS_TOKEN =
+        "PASTE_NEW_COUNTERAPI_TOKEN_HERE";
+
+
+    if (
+        typeof window.Counter ===
+        "undefined"
+    ) {
+
+        throw new Error(
+            "CounterAPI library is not loaded."
+        );
+
+    }
+
+
+    const counter =
+        new Counter({
+
+            workspace:
+                WORKSPACE,
+
+            accessToken:
+                ACCESS_TOKEN
+
+        });
+
+
+    const result =
+        await counter.get(
+            COUNTER_NAME
+        );
+
+
+    return result.value;
 
 }
 
 
 /* =========================================================
-   16. UPDATE COUNTER DISPLAY
+   OPTIONAL:
+   REFRESH DISPLAY WITHOUT INCREMENTING
 ========================================================= */
 
-function updateCounterDisplay(
-    value
-) {
+async function refreshWebsiteViews() {
 
-    const counterElement =
-        getCounterElement();
+    const viewCount =
+        document.getElementById(
+            "viewCount"
+        );
 
 
-    if (!counterElement) {
+    const errorMessage =
+        document.getElementById(
+            "viewCounterError"
+        );
 
+
+    if (!viewCount) {
         return;
-
     }
-
-
-    if (
-        typeof value === "number"
-    ) {
-
-        counterElement.textContent =
-            value.toLocaleString(
-                "en-US"
-            );
-
-    } else {
-
-        counterElement.textContent =
-            value;
-
-    }
-
-}
-
-
-/* =========================================================
-   17. OPTIONAL COUNTER BUTTONS
-========================================================= */
-
-/*
-   If you have buttons with these IDs,
-   they will automatically work:
-
-   #counterUp
-   #counterDown
-   #counterStats
-
-   Example:
-
-   <button id="counterUp">
-       +
-   </button>
-*/
-
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const upButton =
-            document.getElementById(
-                "counterUp"
-            );
-
-
-        const downButton =
-            document.getElementById(
-                "counterDown"
-            );
-
-
-        const statsButton =
-            document.getElementById(
-                "counterStats"
-            );
-
-
-        if (upButton) {
-
-            upButton.addEventListener(
-                "click",
-                async function () {
-
-                    try {
-
-                        const value =
-                            await incrementCounter();
-
-
-                        if (
-                            value !== null
-                        ) {
-
-                            updateCounterDisplay(
-                                value
-                            );
-
-                        }
-
-                    } catch (error) {
-
-                        console.error(
-                            error
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        if (downButton) {
-
-            downButton.addEventListener(
-                "click",
-                async function () {
-
-                    try {
-
-                        const value =
-                            await decrementCounter();
-
-
-                        if (
-                            value !== null
-                        ) {
-
-                            updateCounterDisplay(
-                                value
-                            );
-
-                        }
-
-                    } catch (error) {
-
-                        console.error(
-                            error
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        if (statsButton) {
-
-            statsButton.addEventListener(
-                "click",
-                async function () {
-
-                    try {
-
-                        const stats =
-                            await getCounterStatistics();
-
-
-                        console.log(
-                            "Counter statistics:",
-                            stats
-                        );
-
-                    } catch (error) {
-
-                        console.error(
-                            error
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   18. ONLINE ENERGY CHARTS
-========================================================= */
-
-async function initializeOnlineEnergyCharts() {
-
-    const renewableFossilCanvas =
-        document.getElementById(
-            "renewableFossilChart"
-        );
-
-
-    const energyConsumptionCanvas =
-        document.getElementById(
-            "energyConsumptionChart"
-        );
-
-
-    const electricityCanvas =
-        document.getElementById(
-            "electricityChart"
-        );
-
-
-    if (
-        !renewableFossilCanvas &&
-        !energyConsumptionCanvas &&
-        !electricityCanvas
-    ) {
-
-        return;
-
-    }
-
-
-    showChartLoading(
-        renewableFossilCanvas
-    );
-
-
-    showChartLoading(
-        energyConsumptionCanvas
-    );
-
-
-    showChartLoading(
-        electricityCanvas
-    );
 
 
     try {
 
-        const results =
-            await Promise.allSettled([
-
-                fetchCSV(
-                    OWID_URLS.energyMix
-                ),
-
-                fetchCSV(
-                    OWID_URLS.primaryEnergy
-                ),
-
-                fetchCSV(
-                    OWID_URLS.electricity
-                )
-
-            ]);
+        const value =
+            await getWebsiteViews();
 
 
-        /* =================================================
-           GRAPH 1
-           RENEWABLE ENERGY VS FOSSIL FUELS
-        ================================================= */
-
-        if (
-            renewableFossilCanvas &&
-            results[0].status ===
-                "fulfilled"
-        ) {
-
-            const rows =
-                results[0].value;
+        viewCount.textContent =
+            Number(value)
+                .toLocaleString();
 
 
-            const worldRows =
-                getWorldRows(
-                    rows
-                );
+        if (errorMessage) {
 
-
-            const parsed =
-                parseEnergyTransition(
-                    worldRows
-                );
-
-
-            if (
-                parsed.years.length > 0
-            ) {
-
-                drawInteractiveLineChart(
-                    renewableFossilCanvas,
-                    {
-
-                        labels:
-                            parsed.years,
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Renewable Energy",
-
-                                data:
-                                    parsed.renewable,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    false,
-
-                                smooth:
-                                    true
-
-                            },
-
-                            {
-
-                                label:
-                                    "Fossil Fuels",
-
-                                data:
-                                    parsed.fossil,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    false,
-
-                                smooth:
-                                    true
-
-                            }
-
-                        ],
-
-                        dark:
-                            true,
-
-                        yLabel:
-                            "Share of Primary Energy (%)"
-
-                    }
-                );
-
-            } else {
-
-                drawChartError(
-                    renewableFossilCanvas,
-                    "No energy transition data found."
-                );
-
-            }
-
-        } else if (
-            renewableFossilCanvas
-        ) {
-
-            drawChartError(
-                renewableFossilCanvas,
-                "Unable to load energy transition data."
-            );
+            errorMessage.textContent =
+                "";
 
         }
-
-
-        /* =================================================
-           GRAPH 2
-           GLOBAL PRIMARY ENERGY
-        ================================================= */
-
-        if (
-            energyConsumptionCanvas &&
-            results[1].status ===
-                "fulfilled"
-        ) {
-
-            const rows =
-                results[1].value;
-
-
-            const worldRows =
-                getWorldRows(
-                    rows
-                );
-
-
-            const parsed =
-                parsePrimaryEnergy(
-                    worldRows
-                );
-
-
-            if (
-                parsed.years.length > 0
-            ) {
-
-                drawInteractiveLineChart(
-                    energyConsumptionCanvas,
-                    {
-
-                        labels:
-                            parsed.years,
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Global Primary Energy",
-
-                                data:
-                                    parsed.total,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    true,
-
-                                smooth:
-                                    true
-
-                            }
-
-                        ],
-
-                        dark:
-                            false,
-
-                        yLabel:
-                            "Energy use"
-
-                    }
-                );
-
-            } else {
-
-                drawChartError(
-                    energyConsumptionCanvas,
-                    "No primary energy data found."
-                );
-
-            }
-
-        } else if (
-            energyConsumptionCanvas
-        ) {
-
-            drawChartError(
-                energyConsumptionCanvas,
-                "Unable to load primary energy data."
-            );
-
-        }
-
-
-        /* =================================================
-           GRAPH 3
-           ELECTRICITY MIX
-        ================================================= */
-
-        if (
-            electricityCanvas &&
-            results[2].status ===
-                "fulfilled"
-        ) {
-
-            const rows =
-                results[2].value;
-
-
-            const worldRows =
-                getWorldRows(
-                    rows
-                );
-
-
-            const parsed =
-                parseElectricity(
-                    worldRows
-                );
-
-
-            if (
-                parsed.years.length > 0
-            ) {
-
-                drawInteractiveLineChart(
-                    electricityCanvas,
-                    {
-
-                        labels:
-                            parsed.years,
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Renewable",
-
-                                data:
-                                    parsed.renewable,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    false,
-
-                                smooth:
-                                    true
-
-                            },
-
-                            {
-
-                                label:
-                                    "Fossil Fuels",
-
-                                data:
-                                    parsed.fossil,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    false,
-
-                                smooth:
-                                    true
-
-                            },
-
-                            {
-
-                                label:
-                                    "Nuclear",
-
-                                data:
-                                    parsed.nuclear,
-
-                                lineWidth:
-                                    4,
-
-                                fill:
-                                    false,
-
-                                smooth:
-                                    true
-
-                            }
-
-                        ],
-
-                        dark:
-                            false,
-
-                        yLabel:
-                            "Share (%)"
-
-                    }
-                );
-
-            } else {
-
-                drawChartError(
-                    electricityCanvas,
-                    "No electricity data found."
-                );
-
-            }
-
-        } else if (
-            electricityCanvas
-        ) {
-
-            drawChartError(
-                electricityCanvas,
-                "Unable to load electricity data."
-            );
-
-        }
-
 
     } catch (error) {
 
         console.error(
-            "Energy data error:",
+            "CounterAPI refresh error:",
             error
         );
 
 
-        [
-
-            renewableFossilCanvas,
-
-            energyConsumptionCanvas,
-
-            electricityCanvas
-
-        ].forEach(
-            function (canvas) {
-
-                if (canvas) {
-
-                    drawChartError(
-                        canvas,
-                        "Unable to connect to Our World in Data."
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-}
+        viewCount.textContent =
+            "Unavailable";
 
 
-/* =========================================================
-   19. FETCH CSV
-========================================================= */
+        if (errorMessage) {
 
-async function fetchCSV(url) {
-
-    const response =
-        await fetch(
-            url,
-            {
-                cache:
-                    "no-store"
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "HTTP error: " +
-            response.status
-        );
-
-    }
-
-
-    const text =
-        await response.text();
-
-
-    return parseCSV(
-        text
-    );
-
-}
-
-
-/* =========================================================
-   20. CSV PARSER
-========================================================= */
-
-function parseCSV(text) {
-
-    const rows = [];
-
-    let row = [];
-
-    let value = "";
-
-    let insideQuotes =
-        false;
-
-
-    for (
-        let i = 0;
-        i < text.length;
-        i++
-    ) {
-
-        const char =
-            text[i];
-
-
-        const next =
-            text[i + 1];
-
-
-        if (
-            char === '"' &&
-            insideQuotes &&
-            next === '"'
-        ) {
-
-            value += '"';
-
-            i++;
-
-            continue;
+            errorMessage.textContent =
+                "Unable to refresh view count.";
 
         }
 
-
-        if (
-            char === '"'
-        ) {
-
-            insideQuotes =
-                !insideQuotes;
-
-            continue;
-
-        }
-
-
-        if (
-            char === "," &&
-            !insideQuotes
-        ) {
-
-            row.push(
-                value
-            );
-
-            value = "";
-
-            continue;
-
-        }
-
-
-        if (
-            (
-                char === "\n" ||
-                char === "\r"
-            ) &&
-            !insideQuotes
-        ) {
-
-            if (
-                char === "\r" &&
-                next === "\n"
-            ) {
-
-                i++;
-
-            }
-
-
-            row.push(
-                value
-            );
-
-            value = "";
-
-
-            if (
-                row.length > 0
-            ) {
-
-                rows.push(
-                    row
-                );
-
-            }
-
-
-            row = [];
-
-            continue;
-
-        }
-
-
-        value += char;
-
-    }
-
-
-    if (
-        value.length > 0 ||
-        row.length > 0
-    ) {
-
-        row.push(
-            value
-        );
-
-        rows.push(
-            row
-        );
-
-    }
-
-
-    if (
-        !rows.length
-    ) {
-
-        return [];
-
-    }
-
-
-    const headers =
-        rows[0].map(
-            function (header) {
-
-                return header.trim();
-
-            }
-        );
-
-
-    return rows
-        .slice(1)
-        .map(
-            function (values) {
-
-                const object = {};
-
-
-                headers.forEach(
-                    function (
-                        header,
-                        index
-                    ) {
-
-                        object[header] =
-                            values[index] !==
-                            undefined
-                                ? values[index].trim()
-                                : "";
-
-                    }
-                );
-
-
-                return object;
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   21. GET WORLD ROWS
-========================================================= */
-
-function getWorldRows(rows) {
-
-    if (
-        !rows ||
-        !rows.length
-    ) {
-
-        return [];
-
-    }
-
-
-    const worldRows =
-        rows.filter(
-            function (row) {
-
-                const entity =
-                    String(
-                        row.Entity ||
-                        row.entity ||
-                        ""
-                    )
-                        .trim()
-                        .toLowerCase();
-
-
-                return (
-                    entity === "world"
-                );
-
-            }
-        );
-
-
-    if (
-        worldRows.length
-    ) {
-
-        return worldRows;
-
-    }
-
-
-    return rows;
-
-}
-
-
-/* =========================================================
-   22. FIND COLUMN
-========================================================= */
-
-function findColumn(
-    row,
-    keywords
-) {
-
-    if (!row) {
-
-        return null;
-
-    }
-
-
-    const columns =
-        Object.keys(
-            row
-        );
-
-
-    for (
-        let i = 0;
-        i < keywords.length;
-        i++
-    ) {
-
-        const keyword =
-            keywords[i]
-                .toLowerCase();
-
-
-        const found =
-            columns.find(
-                function (column) {
-
-                    return column
-                        .toLowerCase()
-                        .includes(
-                            keyword
-                        );
-
-                }
-            );
-
-
-        if (found) {
-
-            return found;
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   23. PARSE ENERGY TRANSITION
-========================================================= */
-
-function parseEnergyTransition(rows) {
-
-    if (
-        !rows ||
-        !rows.length
-    ) {
-
-        return {
-
-            years: [],
-
-            renewable: [],
-
-            fossil: []
-
-        };
-
-    }
-
-
-    const columns =
-        Object.keys(
-            rows[0]
-        );
-
-
-    console.log(
-        "OWID Energy Transition columns:",
-        columns
-    );
-
-
-    let renewableColumn =
-        columns.find(
-            function (column) {
-
-                const name =
-                    column.toLowerCase();
-
-
-                return (
-                    name.includes(
-                        "renewable"
-                    ) &&
-                    (
-                        name.includes(
-                            "share"
-                        ) ||
-                        name.includes(
-                            "%"
-                        )
-                    )
-                );
-
-            }
-        );
-
-
-    let fossilColumn =
-        columns.find(
-            function (column) {
-
-                const name =
-                    column.toLowerCase();
-
-
-                return (
-                    name.includes(
-                        "fossil"
-                    ) &&
-                    (
-                        name.includes(
-                            "share"
-                        ) ||
-                        name.includes(
-                            "%"
-                        )
-                    )
-                );
-
-            }
-        );
-
-
-    if (!renewableColumn) {
-
-        renewableColumn =
-            findColumn(
-                rows[0],
-                [
-                    "renewables share",
-                    "renewable share",
-                    "renewables",
-                    "renewable"
-                ]
-            );
-
-    }
-
-
-    if (!fossilColumn) {
-
-        fossilColumn =
-            findColumn(
-                rows[0],
-                [
-                    "fossil fuels share",
-                    "fossil fuel share",
-                    "fossil fuels",
-                    "fossil"
-                ]
-            );
-
-    }
-
-
-    console.log(
-        "Renewable column:",
-        renewableColumn
-    );
-
-
-    console.log(
-        "Fossil column:",
-        fossilColumn
-    );
-
-
-    const yearlyData = {};
-
-
-    rows.forEach(
-        function (row) {
-
-            const year =
-                Number(
-                    row.Year
-                );
-
-
-            if (
-                !Number.isFinite(
-                    year
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            const renewableValue =
-                renewableColumn
-                    ? Number(
-                        row[
-                            renewableColumn
-                        ]
-                    )
-                    : NaN;
-
-
-            const fossilValue =
-                fossilColumn
-                    ? Number(
-                        row[
-                            fossilColumn
-                        ]
-                    )
-                    : NaN;
-
-
-            if (
-                Number.isFinite(
-                    renewableValue
-                ) ||
-                Number.isFinite(
-                    fossilValue
-                )
-            ) {
-
-                yearlyData[year] = {
-
-                    renewable:
-                        Number.isFinite(
-                            renewableValue
-                        )
-                            ? renewableValue
-                            : null,
-
-                    fossil:
-                        Number.isFinite(
-                            fossilValue
-                        )
-                            ? fossilValue
-                            : null
-
-                };
-
-            }
-
-        }
-    );
-
-
-    const years =
-        Object.keys(
-            yearlyData
-        )
-            .map(Number)
-            .sort(
-                function (a, b) {
-
-                    return a - b;
-
-                }
-            );
-
-
-    return {
-
-        years,
-
-        renewable:
-            years.map(
-                function (year) {
-
-                    return yearlyData[
-                        year
-                    ].renewable;
-
-                }
-            ),
-
-        fossil:
-            years.map(
-                function (year) {
-
-                    return yearlyData[
-                        year
-                    ].fossil;
-
-                }
-            )
-
-    };
-
-}
-
-
-/* =========================================================
-   24. PARSE PRIMARY ENERGY
-========================================================= */
-
-function parsePrimaryEnergy(rows) {
-
-    if (
-        !rows ||
-        !rows.length
-    ) {
-
-        return {
-
-            years: [],
-
-            total: []
-
-        };
-
-    }
-
-
-    const columns =
-        Object.keys(
-            rows[0]
-        );
-
-
-    const sourceColumns =
-        columns.filter(
-            function (column) {
-
-                const name =
-                    column.toLowerCase();
-
-
-                return (
-
-                    name !== "entity" &&
-
-                    name !== "code" &&
-
-                    name !== "year" &&
-
-                    (
-                        name.includes("coal") ||
-                        name.includes("oil") ||
-                        name.includes("gas") ||
-                        name.includes("nuclear") ||
-                        name.includes("hydro") ||
-                        name.includes("solar") ||
-                        name.includes("wind") ||
-                        name.includes("biofuel") ||
-                        name.includes(
-                            "other renewables"
-                        ) ||
-                        name.includes(
-                            "renewables"
-                        )
-                    )
-
-                );
-
-            }
-        );
-
-
-    const yearlyData = {};
-
-
-    rows.forEach(
-        function (row) {
-
-            const year =
-                Number(
-                    row.Year
-                );
-
-
-            if (
-                !Number.isFinite(
-                    year
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            let total = 0;
-
-            let hasValue =
-                false;
-
-
-            sourceColumns.forEach(
-                function (column) {
-
-                    const value =
-                        Number(
-                            row[column]
-                        );
-
-
-                    if (
-                        Number.isFinite(
-                            value
-                        )
-                    ) {
-
-                        total +=
-                            value;
-
-                        hasValue =
-                            true;
-
-                    }
-
-                }
-            );
-
-
-            if (
-                hasValue
-            ) {
-
-                yearlyData[
-                    year
-                ] = total;
-
-            }
-
-        }
-    );
-
-
-    const years =
-        Object.keys(
-            yearlyData
-        )
-            .map(Number)
-            .sort(
-                function (a, b) {
-
-                    return a - b;
-
-                }
-            );
-
-
-    return {
-
-        years,
-
-        total:
-            years.map(
-                function (year) {
-
-                    return yearlyData[
-                        year
-                    ];
-
-                }
-            )
-
-    };
-
-}
-
-
-/* =========================================================
-   25. PARSE ELECTRICITY
-========================================================= */
-
-function parseElectricity(rows) {
-
-    if (
-        !rows ||
-        !rows.length
-    ) {
-
-        return {
-
-            years: [],
-
-            renewable: [],
-
-            fossil: [],
-
-            nuclear: []
-
-        };
-
-    }
-
-
-    const renewableColumn =
-        findColumn(
-            rows[0],
-            [
-                "Renewables - %",
-                "Renewables"
-            ]
-        );
-
-
-    const fossilColumn =
-        findColumn(
-            rows[0],
-            [
-                "Fossil fuels - %",
-                "Fossil fuels"
-            ]
-        );
-
-
-    const nuclearColumn =
-        findColumn(
-            rows[0],
-            [
-                "Nuclear - %",
-                "Nuclear"
-            ]
-        );
-
-
-    const data = {};
-
-
-    rows.forEach(
-        function (row) {
-
-            const year =
-                Number(
-                    row.Year
-                );
-
-
-            if (
-                !Number.isFinite(
-                    year
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            const renewable =
-                renewableColumn
-                    ? Number(
-                        row[
-                            renewableColumn
-                        ]
-                    )
-                    : NaN;
-
-
-            const fossil =
-                fossilColumn
-                    ? Number(
-                        row[
-                            fossilColumn
-                        ]
-                    )
-                    : NaN;
-
-
-            const nuclear =
-                nuclearColumn
-                    ? Number(
-                        row[
-                            nuclearColumn
-                        ]
-                    )
-                    : NaN;
-
-
-            if (
-                Number.isFinite(
-                    renewable
-                ) ||
-                Number.isFinite(
-                    fossil
-                ) ||
-                Number.isFinite(
-                    nuclear
-                )
-            ) {
-
-                data[year] = {
-
-                    renewable:
-                        Number.isFinite(
-                            renewable
-                        )
-                            ? renewable
-                            : null,
-
-                    fossil:
-                        Number.isFinite(
-                            fossil
-                        )
-                            ? fossil
-                            : null,
-
-                    nuclear:
-                        Number.isFinite(
-                            nuclear
-                        )
-                            ? nuclear
-                            : null
-
-                };
-
-            }
-
-        }
-    );
-
-
-    const years =
-        Object.keys(
-            data
-        )
-            .map(Number)
-            .sort(
-                function (a, b) {
-
-                    return a - b;
-
-                }
-            );
-
-
-    return {
-
-        years,
-
-        renewable:
-            years.map(
-                function (year) {
-
-                    return data[
-                        year
-                    ].renewable;
-
-                }
-            ),
-
-        fossil:
-            years.map(
-                function (year) {
-
-                    return data[
-                        year
-                    ].fossil;
-
-                }
-            ),
-
-        nuclear:
-            years.map(
-                function (year) {
-
-                    return data[
-                        year
-                    ].nuclear;
-
-                }
-            )
-
-    };
-
-}
-
-
-/* =========================================================
-   26. CHART LOADING
-========================================================= */
-
-function showChartLoading(canvas) {
-
-    if (!canvas) {
-
-        return;
-
-    }
-
-
-    const wrapper =
-        canvas.parentElement;
-
-
-    if (!wrapper) {
-
-        return;
-
-    }
-
-
-    wrapper.style.position =
-        "relative";
-
-
-    let loading =
-        wrapper.querySelector(
-            ".energy-chart-loading"
-        );
-
-
-    if (!loading) {
-
-        loading =
-            document.createElement(
-                "div"
-            );
-
-
-        loading.className =
-            "energy-chart-loading";
-
-
-        loading.style.position =
-            "absolute";
-
-
-        loading.style.inset =
-            "0";
-
-
-        loading.style.display =
-            "flex";
-
-
-        loading.style.alignItems =
-            "center";
-
-
-        loading.style.justifyContent =
-            "center";
-
-
-        loading.style.font =
-            "600 14px Inter, Arial, sans-serif";
-
-
-        loading.style.color =
-            "#64736b";
-
-
-        loading.style.pointerEvents =
-            "none";
-
-
-        wrapper.appendChild(
-            loading
-        );
-
-    }
-
-
-    loading.textContent =
-        "Loading live energy data...";
-
-
-    loading.style.display =
-        "flex";
-
-}
-
-
-/* =========================================================
-   27. HIDE CHART LOADING
-========================================================= */
-
-function hideChartLoading(canvas) {
-
-    if (!canvas) {
-
-        return;
-
-    }
-
-
-    const wrapper =
-        canvas.parentElement;
-
-
-    if (!wrapper) {
-
-        return;
-
-    }
-
-
-    const loading =
-        wrapper.querySelector(
-            ".energy-chart-loading"
-        );
-
-
-    if (loading) {
-
-        loading.style.display =
-            "none";
-
     }
 
 }
 
 
 /* =========================================================
-   28. DRAW INTERACTIVE LINE CHART
+   OPTIONAL:
+   PAGE VISIBILITY
 ========================================================= */
 
-function drawInteractiveLineChart(
-    canvas,
-    config
-) {
-
-    if (!canvas) {
-
-        return;
-
-    }
-
-
-    hideChartLoading(
-        canvas
-    );
-
-
-    const wrapper =
-        canvas.parentElement;
-
-
-    if (!wrapper) {
-
-        return;
-
-    }
-
-
-    const rect =
-        wrapper.getBoundingClientRect();
-
-
-    const width =
-        Math.max(
-            rect.width,
-            300
-        );
-
-
-    const height =
-        Math.max(
-            rect.height,
-            280
-        );
-
-
-    const dpr =
-        window.devicePixelRatio ||
-        1;
-
-
-    canvas.width =
-        width * dpr;
-
-
-    canvas.height =
-        height * dpr;
-
-
-    canvas.style.width =
-        width + "px";
-
-
-    canvas.style.height =
-        height + "px";
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    const dark =
-        config.dark === true;
-
-
-    const textColor =
-        dark
-            ? "rgba(255,255,255,.78)"
-            : "#52635a";
-
-
-    const gridColor =
-        dark
-            ? "rgba(255,255,255,.10)"
-            : "rgba(0,0,0,.08)";
-
-
-    const colors = [
-
-        "#32c878",
-
-        "#777777",
-
-        "#3f6db5"
-
-    ];
-
-
-    const padding = {
-
-        top: 58,
-
-        right: 28,
-
-        bottom: 48,
-
-        left: 58
-
-    };
-
-
-    const chartWidth =
-        width -
-        padding.left -
-        padding.right;
-
-
-    const chartHeight =
-        height -
-        padding.top -
-        padding.bottom;
-
-
-    const labels =
-        config.labels || [];
-
-
-    const datasets =
-        config.datasets || [];
-
-
-    let allValues = [];
-
-
-    datasets.forEach(
-        function (dataset) {
-
-            dataset.data.forEach(
-                function (value) {
-
-                    if (
-                        typeof value ===
-                            "number" &&
-                        Number.isFinite(
-                            value
-                        )
-                    ) {
-
-                        allValues.push(
-                            value
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-    if (
-        !allValues.length
-    ) {
-
-        drawChartError(
-            canvas,
-            "No valid data."
-        );
-
-        return;
-
-    }
-
-
-    let minValue =
-        Math.min(
-            ...allValues
-        );
-
-
-    let maxValue =
-        Math.max(
-            ...allValues
-        );
-
-
-    if (
-        minValue ===
-        maxValue
-    ) {
-
-        minValue -= 1;
-
-        maxValue += 1;
-
-    }
-
-
-    const range =
-        maxValue -
-        minValue;
-
-
-    minValue =
-        Math.floor(
-            minValue -
-            range * 0.08
-        );
-
-
-    maxValue =
-        Math.ceil(
-            maxValue +
-            range * 0.08
-        );
-
-
-    /* Y LABEL */
-
-    ctx.fillStyle =
-        textColor;
-
-
-    ctx.font =
-        "700 11px Inter, Arial, sans-serif";
-
-
-    ctx.textAlign =
-        "left";
-
-
-    ctx.fillText(
-        config.yLabel || "",
-        padding.left,
-        22
-    );
-
-
-    /* GRID */
-
-    const gridLines = 5;
-
-
-    for (
-        let i = 0;
-        i <= gridLines;
-        i++
-    ) {
-
-        const y =
-            padding.top +
-            (
-                chartHeight /
-                gridLines
-            ) *
-            i;
-
-
-        ctx.beginPath();
-
-
-        ctx.moveTo(
-            padding.left,
-            y
-        );
-
-
-        ctx.lineTo(
-            width -
-            padding.right,
-            y
-        );
-
-
-        ctx.strokeStyle =
-            gridColor;
-
-
-        ctx.lineWidth = 1;
-
-
-        ctx.stroke();
-
-
-        const value =
-            maxValue -
-            (
-                (
-                    maxValue -
-                    minValue
-                ) /
-                gridLines
-            ) *
-            i;
-
-
-        ctx.fillStyle =
-            textColor;
-
-
-        ctx.font =
-            "600 10px Inter, Arial, sans-serif";
-
-
-        ctx.textAlign =
-            "right";
-
-
-        ctx.fillText(
-            formatChartNumber(
-                value
-            ),
-            padding.left - 10,
-            y + 3
-        );
-
-    }
-
-
-    /* X AXIS */
-
-    ctx.fillStyle =
-        textColor;
-
-
-    ctx.font =
-        "600 10px Inter, Arial, sans-serif";
-
-
-    ctx.textAlign =
-        "center";
-
-
-    const labelStep =
-        Math.max(
-            1,
-            Math.ceil(
-                labels.length / 9
-            )
-        );
-
-
-    labels.forEach(
-        function (
-            label,
-            index
-        ) {
-
-            if (
-                index %
-                    labelStep !==
-                    0 &&
-                index !==
-                    labels.length - 1
-            ) {
-
-                return;
-
-            }
-
-
-            const x =
-                getXPosition(
-                    index,
-                    labels.length,
-                    padding.left,
-                    chartWidth
-                );
-
-
-            ctx.fillText(
-                String(label),
-                x,
-                height - 18
-            );
-
-        }
-    );
-
-
-    /* POINTS */
-
-    const allPoints = [];
-
-
-    datasets.forEach(
-        function (
-            dataset,
-            datasetIndex
-        ) {
-
-            const color =
-                colors[
-                    datasetIndex %
-                    colors.length
-                ];
-
-
-            const points = [];
-
-
-            dataset.data.forEach(
-                function (
-                    value,
-                    index
-                ) {
-
-                    if (
-                        typeof value !==
-                            "number" ||
-                        !Number.isFinite(
-                            value
-                        )
-                    ) {
-
-                        points.push(
-                            null
-                        );
-
-                        return;
-
-                    }
-
-
-                    const x =
-                        getXPosition(
-                            index,
-                            labels.length,
-                            padding.left,
-                            chartWidth
-                        );
-
-
-                    const y =
-                        getYPosition(
-                            value,
-                            minValue,
-                            maxValue,
-                            padding.top,
-                            chartHeight
-                        );
-
-
-                    points.push({
-
-                        x,
-
-                        y,
-
-                        value,
-
-                        year:
-                            labels[index]
-
-                    });
-
-                }
-            );
-
-
-            allPoints.push(
-                points
-            );
-
-
-            /* FILL */
-
-            if (
-                dataset.fill
-            ) {
-
-                const validPoints =
-                    points.filter(
-                        Boolean
-                    );
-
-
-                if (
-                    validPoints.length > 1
-                ) {
-
-                    const gradient =
-                        ctx.createLinearGradient(
-                            0,
-                            padding.top,
-                            0,
-                            height -
-                            padding.bottom
-                        );
-
-
-                    gradient.addColorStop(
-                        0,
-                        hexToRGBA(
-                            color,
-                            dark
-                                ? 0.30
-                                : 0.18
-                        )
-                    );
-
-
-                    gradient.addColorStop(
-                        1,
-                        hexToRGBA(
-                            color,
-                            0.01
-                        )
-                    );
-
-
-                    ctx.beginPath();
-
-
-                    drawSmoothPath(
-                        ctx,
-                        validPoints
-                    );
-
-
-                    ctx.lineTo(
-                        validPoints[
-                            validPoints.length - 1
-                        ].x,
-                        height -
-                        padding.bottom
-                    );
-
-
-                    ctx.lineTo(
-                        validPoints[0].x,
-                        height -
-                        padding.bottom
-                    );
-
-
-                    ctx.closePath();
-
-
-                    ctx.fillStyle =
-                        gradient;
-
-
-                    ctx.fill();
-
-                }
-
-            }
-
-
-            /* LINE */
-
-            const validPoints =
-                points.filter(
-                    Boolean
-                );
-
-
-            if (
-                validPoints.length > 1
-            ) {
-
-                ctx.beginPath();
-
-
-                if (
-                    dataset.smooth
-                ) {
-
-                    drawSmoothPath(
-                        ctx,
-                        validPoints
-                    );
-
-                } else {
-
-                    validPoints.forEach(
-                        function (
-                            point,
-                            index
-                        ) {
-
-                            if (
-                                index === 0
-                            ) {
-
-                                ctx.moveTo(
-                                    point.x,
-                                    point.y
-                                );
-
-                            } else {
-
-                                ctx.lineTo(
-                                    point.x,
-                                    point.y
-                                );
-
-                            }
-
-                        }
-                    );
-
-                }
-
-
-                ctx.strokeStyle =
-                    color;
-
-
-                ctx.lineWidth =
-                    dataset.lineWidth ||
-                    3;
-
-
-                ctx.lineJoin =
-                    "round";
-
-
-                ctx.lineCap =
-                    "round";
-
-
-                ctx.stroke();
-
-            }
-
-        }
-    );
-
-
-    /* LEGEND */
-
-    drawLegend(
-        ctx,
-        datasets,
-        colors,
-        width,
-        dark
-    );
-
-
-    /* INTERACTION */
-
-    setupChartInteraction(
-        canvas,
-        {
-
-            labels,
-
-            datasets,
-
-            allPoints,
-
-            padding,
-
-            chartWidth,
-
-            chartHeight,
-
-            minValue,
-
-            maxValue,
-
-            dark,
-
-            yLabel:
-                config.yLabel || ""
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   29. CHART INTERACTION
-========================================================= */
-
-function setupChartInteraction(
-    canvas,
-    state
-) {
-
-    const oldHandler =
-        canvas._energyMouseMoveHandler;
-
-
-    if (oldHandler) {
-
-        canvas.removeEventListener(
-            "mousemove",
-            oldHandler
-        );
-
-    }
-
-
-    const oldLeave =
-        canvas._energyMouseLeaveHandler;
-
-
-    if (oldLeave) {
-
-        canvas.removeEventListener(
-            "mouseleave",
-            oldLeave
-        );
-
-    }
-
-
-    const mouseMove =
-        function (event) {
-
-            const rect =
-                canvas.getBoundingClientRect();
-
-
-            const mouseX =
-                event.clientX -
-                rect.left;
-
-
-            const mouseY =
-                event.clientY -
-                rect.top;
-
-
-            const index =
-                findNearestYear(
-                    mouseX,
-                    state.labels.length,
-                    state.padding.left,
-                    state.chartWidth
-                );
-
-
-            if (
-                index < 0 ||
-                index >=
-                    state.labels.length
-            ) {
-
-                return;
-
-            }
-
-
-            drawChartWithTooltip(
-                canvas,
-                state,
-                index,
-                mouseX,
-                mouseY
-            );
-
-        };
-
-
-    const mouseLeave =
-        function () {
-
-            redrawChart(
-                canvas,
-                state
-            );
-
-        };
-
-
-    canvas.addEventListener(
-        "mousemove",
-        mouseMove
-    );
-
-
-    canvas.addEventListener(
-        "mouseleave",
-        mouseLeave
-    );
-
-
-    canvas._energyMouseMoveHandler =
-        mouseMove;
-
-
-    canvas._energyMouseLeaveHandler =
-        mouseLeave;
-
-
-    const oldTouch =
-        canvas._energyTouchHandler;
-
-
-    if (oldTouch) {
-
-        canvas.removeEventListener(
-            "touchstart",
-            oldTouch
-        );
-
-    }
-
-
-    const touchStart =
-        function (event) {
-
-            if (
-                !event.touches.length
-            ) {
-
-                return;
-
-            }
-
-
-            const touch =
-                event.touches[0];
-
-
-            const rect =
-                canvas.getBoundingClientRect();
-
-
-            const x =
-                touch.clientX -
-                rect.left;
-
-
-            const y =
-                touch.clientY -
-                rect.top;
-
-
-            const index =
-                findNearestYear(
-                    x,
-                    state.labels.length,
-                    state.padding.left,
-                    state.chartWidth
-                );
-
-
-            drawChartWithTooltip(
-                canvas,
-                state,
-                index,
-                x,
-                y
-            );
-
-        };
-
-
-    canvas.addEventListener(
-        "touchstart",
-        touchStart,
-        {
-            passive: true
-        }
-    );
-
-
-    canvas._energyTouchHandler =
-        touchStart;
-
-}
-
-
-/* =========================================================
-   30. REDRAW CHART
-========================================================= */
-
-function redrawChart(
-    canvas,
-    state
-) {
-
-    drawInteractiveLineChart(
-        canvas,
-        {
-
-            labels:
-                state.labels,
-
-            datasets:
-                state.datasets,
-
-            dark:
-                state.dark,
-
-            yLabel:
-                state.yLabel
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   31. TOOLTIP
-========================================================= */
-
-function drawChartWithTooltip(
-    canvas,
-    state,
-    index,
-    mouseX,
-    mouseY
-) {
-
-    redrawChartBase(
-        canvas,
-        state
-    );
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const dpr =
-        window.devicePixelRatio ||
-        1;
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    const width =
-        rect.width;
-
-
-    const height =
-        rect.height;
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    const x =
-        getXPosition(
-            index,
-            state.labels.length,
-            state.padding.left,
-            state.chartWidth
-        );
-
-
-    /* VERTICAL GUIDE */
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-        x,
-        state.padding.top
-    );
-
-
-    ctx.lineTo(
-        x,
-        height -
-        state.padding.bottom
-    );
-
-
-    ctx.strokeStyle =
-        state.dark
-            ? "rgba(255,255,255,.25)"
-            : "rgba(0,0,0,.18)";
-
-
-    ctx.lineWidth = 1;
-
-
-    ctx.setLineDash([
-        5,
-        5
-    ]);
-
-
-    ctx.stroke();
-
-
-    ctx.setLineDash([]);
-
-
-    /* POINTS */
-
-    const colors = [
-
-        "#32c878",
-
-        "#777777",
-
-        "#3f6db5"
-
-    ];
-
-
-    state.allPoints.forEach(
-        function (
-            points,
-            datasetIndex
-        ) {
-
-            const point =
-                points[index];
-
-
-            if (!point) {
-
-                return;
-
-            }
-
-
-            const color =
-                colors[
-                    datasetIndex %
-                    colors.length
-                ];
-
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-                point.x,
-                point.y,
-                6,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fillStyle =
-                color;
-
-
-            ctx.fill();
-
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-                point.x,
-                point.y,
-                9,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.strokeStyle =
-                "#ffffff";
-
-
-            ctx.lineWidth = 2;
-
-
-            ctx.stroke();
-
-        }
-    );
-
-
-    /* TOOLTIP */
-
-    const tooltipLines = [];
-
-
-    tooltipLines.push(
-        String(
-            state.labels[index]
-        )
-    );
-
-
-    state.datasets.forEach(
-        function (
-            dataset,
-            datasetIndex
-        ) {
-
-            const value =
-                dataset.data[index];
-
-
-            if (
-                typeof value !==
-                    "number" ||
-                !Number.isFinite(
-                    value
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            let suffix = "";
-
-
-            if (
-                state.yLabel
-                    .toLowerCase()
-                    .includes("%")
-            ) {
-
-                suffix = "%";
-
-            }
-
-
-            tooltipLines.push(
-                dataset.label +
-                ": " +
-                formatChartNumber(
-                    value
-                ) +
-                suffix
-            );
-
-        }
-    );
-
-
-    ctx.font =
-        "700 12px Inter, Arial, sans-serif";
-
-
-    let maxTextWidth = 0;
-
-
-    tooltipLines.forEach(
-        function (line) {
-
-            maxTextWidth =
-                Math.max(
-                    maxTextWidth,
-                    ctx.measureText(
-                        line
-                    ).width
-                );
-
-        }
-    );
-
-
-    const boxWidth =
-        maxTextWidth +
-        30;
-
-
-    const boxHeight =
-        tooltipLines.length *
-        21 +
-        20;
-
-
-    let boxX =
-        mouseX +
-        15;
-
-
-    let boxY =
-        mouseY -
-        boxHeight -
-        15;
-
-
-    if (
-        boxX +
-        boxWidth >
-        width -
-        10
-    ) {
-
-        boxX =
-            mouseX -
-            boxWidth -
-            15;
-
-    }
-
-
-    if (
-        boxX < 10
-    ) {
-
-        boxX = 10;
-
-    }
-
-
-    if (
-        boxY < 10
-    ) {
-
-        boxY =
-            mouseY +
-            15;
-
-    }
-
-
-    if (
-        boxY +
-        boxHeight >
-        height -
-        10
-    ) {
-
-        boxY =
-            height -
-            boxHeight -
-            10;
-
-    }
-
-
-    ctx.fillStyle =
-        state.dark
-            ? "rgba(8,22,15,.96)"
-            : "rgba(255,255,255,.97)";
-
-
-    roundRect(
-        ctx,
-        boxX,
-        boxY,
-        boxWidth,
-        boxHeight,
-        10
-    );
-
-
-    ctx.fill();
-
-
-    ctx.strokeStyle =
-        state.dark
-            ? "rgba(255,255,255,.12)"
-            : "rgba(0,0,0,.08)";
-
-
-    ctx.lineWidth = 1;
-
-
-    ctx.stroke();
-
-
-    tooltipLines.forEach(
-        function (
-            line,
-            lineIndex
-        ) {
-
-            ctx.fillStyle =
-                lineIndex === 0
-                    ? (
-                        state.dark
-                            ? "#ffffff"
-                            : "#14231c"
-                    )
-                    : (
-                        state.dark
-                            ? "rgba(255,255,255,.75)"
-                            : "#52635a"
-                    );
-
-
-            ctx.font =
-                lineIndex === 0
-                    ? "800 12px Inter, Arial, sans-serif"
-                    : "600 11px Inter, Arial, sans-serif";
-
-
-            ctx.textAlign =
-                "left";
-
-
-            ctx.fillText(
-                line,
-                boxX + 15,
-                boxY +
-                20 +
-                lineIndex * 21
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   32. REDRAW BASE
-========================================================= */
-
-function redrawChartBase(
-    canvas,
-    state
-) {
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    const width =
-        rect.width;
-
-
-    const height =
-        rect.height;
-
-
-    const dpr =
-        window.devicePixelRatio ||
-        1;
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    const dark =
-        state.dark;
-
-
-    const textColor =
-        dark
-            ? "rgba(255,255,255,.78)"
-            : "#52635a";
-
-
-    const gridColor =
-        dark
-            ? "rgba(255,255,255,.10)"
-            : "rgba(0,0,0,.08)";
-
-
-    const gridLines = 5;
-
-
-    for (
-        let i = 0;
-        i <= gridLines;
-        i++
-    ) {
-
-        const y =
-            state.padding.top +
-            (
-                state.chartHeight /
-                gridLines
-            ) *
-            i;
-
-
-        ctx.beginPath();
-
-
-        ctx.moveTo(
-            state.padding.left,
-            y
-        );
-
-
-        ctx.lineTo(
-            width -
-            state.padding.right,
-            y
-        );
-
-
-        ctx.strokeStyle =
-            gridColor;
-
-
-        ctx.lineWidth = 1;
-
-
-        ctx.stroke();
-
-
-        const value =
-            state.maxValue -
-            (
-                (
-                    state.maxValue -
-                    state.minValue
-                ) /
-                gridLines
-            ) *
-            i;
-
-
-        ctx.fillStyle =
-            textColor;
-
-
-        ctx.font =
-            "600 10px Inter, Arial, sans-serif";
-
-
-        ctx.textAlign =
-            "right";
-
-
-        ctx.fillText(
-            formatChartNumber(
-                value
-            ),
-            state.padding.left - 10,
-            y + 3
-        );
-
-    }
-
-
-    /* Y LABEL */
-
-    ctx.fillStyle =
-        textColor;
-
-
-    ctx.font =
-        "700 11px Inter, Arial, sans-serif";
-
-
-    ctx.textAlign =
-        "left";
-
-
-    ctx.fillText(
-        state.yLabel || "",
-        state.padding.left,
-        22
-    );
-
-
-    /* X LABELS */
-
-    const labelStep =
-        Math.max(
-            1,
-            Math.ceil(
-                state.labels.length / 9
-            )
-        );
-
-
-    ctx.fillStyle =
-        textColor;
-
-
-    ctx.font =
-        "600 10px Inter, Arial, sans-serif";
-
-
-    ctx.textAlign =
-        "center";
-
-
-    state.labels.forEach(
-        function (
-            label,
-            index
-        ) {
-
-            if (
-                index %
-                    labelStep !==
-                    0 &&
-                index !==
-                    state.labels.length - 1
-            ) {
-
-                return;
-
-            }
-
-
-            const x =
-                getXPosition(
-                    index,
-                    state.labels.length,
-                    state.padding.left,
-                    state.chartWidth
-                );
-
-
-            ctx.fillText(
-                String(label),
-                x,
-                height - 18
-            );
-
-        }
-    );
-
-
-    /* LINES */
-
-    const colors = [
-
-        "#32c878",
-
-        "#777777",
-
-        "#3f6db5"
-
-    ];
-
-
-    state.datasets.forEach(
-        function (
-            dataset,
-            datasetIndex
-        ) {
-
-            const color =
-                colors[
-                    datasetIndex %
-                    colors.length
-                ];
-
-
-            const points =
-                state.allPoints[
-                    datasetIndex
-                ].filter(
-                    Boolean
-                );
-
-
-            if (
-                points.length < 2
-            ) {
-
-                return;
-
-            }
-
-
-            ctx.beginPath();
-
-
-            if (
-                dataset.smooth
-            ) {
-
-                drawSmoothPath(
-                    ctx,
-                    points
-                );
-
-            } else {
-
-                points.forEach(
-                    function (
-                        point,
-                        index
-                    ) {
-
-                        if (
-                            index === 0
-                        ) {
-
-                            ctx.moveTo(
-                                point.x,
-                                point.y
-                            );
-
-                        } else {
-
-                            ctx.lineTo(
-                                point.x,
-                                point.y
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-
-
-            ctx.strokeStyle =
-                color;
-
-
-            ctx.lineWidth =
-                dataset.lineWidth ||
-                3;
-
-
-            ctx.lineJoin =
-                "round";
-
-
-            ctx.lineCap =
-                "round";
-
-
-            ctx.stroke();
-
-        }
-    );
-
-
-    drawLegend(
-        ctx,
-        state.datasets,
-        colors,
-        width,
-        dark
-    );
-
-}
-
-
-/* =========================================================
-   33. FIND NEAREST YEAR
-========================================================= */
-
-function findNearestYear(
-    mouseX,
-    total,
-    left,
-    width
-) {
-
-    if (
-        total <= 1
-    ) {
-
-        return 0;
-
-    }
-
-
-    const position =
-        (
-            mouseX -
-            left
-        ) /
-        width;
-
-
-    const rawIndex =
-        position *
-        (
-            total -
-            1
-        );
-
-
-    return Math.max(
-        0,
-        Math.min(
-            total - 1,
-            Math.round(
-                rawIndex
-            )
-        )
-    );
-
-}
-
-
-/* =========================================================
-   34. SMOOTH LINE
-========================================================= */
-
-function drawSmoothPath(
-    ctx,
-    points
-) {
-
-    if (
-        !points.length
-    ) {
-
-        return;
-
-    }
-
-
-    ctx.moveTo(
-        points[0].x,
-        points[0].y
-    );
-
-
-    for (
-        let i = 1;
-        i < points.length;
-        i++
-    ) {
-
-        const previous =
-            points[i - 1];
-
-
-        const current =
-            points[i];
-
-
-        const midpointX =
-            (
-                previous.x +
-                current.x
-            ) / 2;
-
-
-        const midpointY =
-            (
-                previous.y +
-                current.y
-            ) / 2;
-
-
-        ctx.quadraticCurveTo(
-            previous.x,
-            previous.y,
-            midpointX,
-            midpointY
-        );
-
-    }
-
-
-    const last =
-        points[
-            points.length - 1
-        ];
-
-
-    ctx.quadraticCurveTo(
-        last.x,
-        last.y,
-        last.x,
-        last.y
-    );
-
-}
-
-
-/* =========================================================
-   35. X POSITION
-========================================================= */
-
-function getXPosition(
-    index,
-    total,
-    left,
-    width
-) {
-
-    if (
-        total <= 1
-    ) {
-
-        return left;
-
-    }
-
-
-    return (
-        left +
-        (
-            index /
-            (
-                total -
-                1
-            )
-        ) *
-        width
-    );
-
-}
-
-
-/* =========================================================
-   36. Y POSITION
-========================================================= */
-
-function getYPosition(
-    value,
-    min,
-    max,
-    top,
-    height
-) {
-
-    return (
-        top +
-        (
-            (
-                max -
-                value
-            ) /
-            (
-                max -
-                min
-            )
-        ) *
-        height
-    );
-
-}
-
-
-/* =========================================================
-   37. LEGEND
-========================================================= */
-
-function drawLegend(
-    ctx,
-    datasets,
-    colors,
-    width,
-    dark
-) {
-
-    const textColor =
-        dark
-            ? "#ffffff"
-            : "#14231c";
-
-
-    let currentX = 20;
-
-
-    const legendY = 35;
-
-
-    ctx.font =
-        "700 10px Inter, Arial, sans-serif";
-
-
-    datasets.forEach(
-        function (
-            dataset,
-            index
-        ) {
-
-            const color =
-                colors[
-                    index %
-                    colors.length
-                ];
-
-
-            const label =
-                dataset.label ||
-                "";
-
-
-            const textWidth =
-                ctx.measureText(
-                    label
-                ).width;
-
-
-            const itemWidth =
-                20 +
-                textWidth +
-                25;
-
-
-            if (
-                currentX +
-                itemWidth >
-                width
-            ) {
-
-                return;
-
-            }
-
-
-            ctx.beginPath();
-
-
-            ctx.moveTo(
-                currentX,
-                legendY
-            );
-
-
-            ctx.lineTo(
-                currentX + 14,
-                legendY
-            );
-
-
-            ctx.strokeStyle =
-                color;
-
-
-            ctx.lineWidth = 4;
-
-
-            ctx.lineCap =
-                "round";
-
-
-            ctx.stroke();
-
-
-            ctx.fillStyle =
-                textColor;
-
-
-            ctx.textAlign =
-                "left";
-
-
-            ctx.fillText(
-                label,
-                currentX + 20,
-                legendY + 4
-            );
-
-
-            currentX +=
-                itemWidth;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   38. ROUND RECT
-========================================================= */
-
-function roundRect(
-    ctx,
-    x,
-    y,
-    width,
-    height,
-    radius
-) {
-
-    ctx.beginPath();
-
-
-    ctx.moveTo(
-        x + radius,
-        y
-    );
-
-
-    ctx.lineTo(
-        x + width - radius,
-        y
-    );
-
-
-    ctx.quadraticCurveTo(
-        x + width,
-        y,
-        x + width,
-        y + radius
-    );
-
-
-    ctx.lineTo(
-        x + width,
-        y + height - radius
-    );
-
-
-    ctx.quadraticCurveTo(
-        x + width,
-        y + height,
-        x + width - radius,
-        y + height
-    );
-
-
-    ctx.lineTo(
-        x + radius,
-        y + height
-    );
-
-
-    ctx.quadraticCurveTo(
-        x,
-        y + height,
-        x,
-        y + height - radius
-    );
-
-
-    ctx.lineTo(
-        x,
-        y + radius
-    );
-
-
-    ctx.quadraticCurveTo(
-        x,
-        y,
-        x + radius,
-        y
-    );
-
-
-    ctx.closePath();
-
-}
-
-
-/* =========================================================
-   39. NUMBER FORMAT
-========================================================= */
-
-function formatChartNumber(
-    value
-) {
-
-    if (
-        !Number.isFinite(
-            value
-        )
-    ) {
-
-        return "-";
-
-    }
-
-
-    if (
-        Math.abs(value) >= 1000
-    ) {
-
-        return value.toLocaleString(
-            "en-US",
-            {
-
-                maximumFractionDigits:
-                    0
-
-            }
-        );
-
-    }
-
-
-    if (
-        Number.isInteger(
-            value
-        )
-    ) {
-
-        return value.toString();
-
-    }
-
-
-    return value.toFixed(
-        1
-    );
-
-}
-
-
-/* =========================================================
-   40. HEX TO RGBA
-========================================================= */
-
-function hexToRGBA(
-    hex,
-    alpha
-) {
-
-    const clean =
-        hex.replace(
-            "#",
-            ""
-        );
-
-
-    const bigint =
-        parseInt(
-            clean,
-            16
-        );
-
-
-    const r =
-        (
-            bigint >>
-            16
-        ) & 255;
-
-
-    const g =
-        (
-            bigint >>
-            8
-        ) & 255;
-
-
-    const b =
-        bigint &
-        255;
-
-
-    return (
-        "rgba(" +
-        r +
-        "," +
-        g +
-        "," +
-        b +
-        "," +
-        alpha +
-        ")"
-    );
-
-}
-
-
-/* =========================================================
-   41. CHART ERROR
-========================================================= */
-
-function drawChartError(
-    canvas,
-    message
-) {
-
-    if (!canvas) {
-
-        return;
-
-    }
-
-
-    hideChartLoading(
-        canvas
-    );
-
-
-    const wrapper =
-        canvas.parentElement;
-
-
-    if (!wrapper) {
-
-        return;
-
-    }
-
-
-    const rect =
-        wrapper.getBoundingClientRect();
-
-
-    const width =
-        Math.max(
-            rect.width,
-            300
-        );
-
-
-    const height =
-        Math.max(
-            rect.height,
-            280
-        );
-
-
-    const dpr =
-        window.devicePixelRatio ||
-        1;
-
-
-    canvas.width =
-        width * dpr;
-
-
-    canvas.height =
-        height * dpr;
-
-
-    canvas.style.width =
-        width + "px";
-
-
-    canvas.style.height =
-        height + "px";
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    ctx.fillStyle =
-        "#64736b";
-
-
-    ctx.font =
-        "700 14px Inter, Arial, sans-serif";
-
-
-    ctx.textAlign =
-        "center";
-
-
-    ctx.fillText(
-        message,
-        width / 2,
-        height / 2
-    );
-
-}
-
-
-/* =========================================================
-   42. WINDOW RESIZE
-========================================================= */
-
-let resizeTimer;
-
-
-window.addEventListener(
-    "resize",
+document.addEventListener(
+    "visibilitychange",
     function () {
 
-        clearTimeout(
-            resizeTimer
-        );
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
 
+            /*
+               Do not increment again here.
+               Only the initial page load counts
+               as a website view.
+            */
 
-        resizeTimer =
-            setTimeout(
-                function () {
-
-                    initializeOnlineEnergyCharts();
-
-                },
-                250
-            );
+        }
 
     }
 );
+
