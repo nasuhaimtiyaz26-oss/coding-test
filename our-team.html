@@ -5,26 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Meet the Safe Energy team and follow our project on social media.">
+    <title>Our Team | Safe Energy</title>
 
-    <title>
-        Our Team | Safe Energy
-    </title>
-
-
-    <!-- =====================================================
-         GOOGLE FONT
-    ====================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com">
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
         rel="preconnect"
@@ -35,115 +21,85 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
-
-    <!-- =====================================================
-         FONT AWESOME
-    ====================================================== -->
-
+    <!-- FONT AWESOME -->
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-
-    <!-- =====================================================
-         MAIN CSS
-    ====================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="style.css">
 
 
     <!-- =====================================================
-         SOCIAL MEDIA CARD CSS
+         SOCIAL MEDIA CARD STYLE
     ====================================================== -->
 
     <style>
 
-        /* =====================================================
-           SOCIAL MEDIA SECTION
-        ===================================================== */
+        /* SOCIAL MEDIA SECTION */
 
         .team-social-section {
-
             padding: 90px 0;
-
             background: #f6faf7;
-
         }
 
 
-        /* =====================================================
-           SOCIAL MEDIA GRID
-        ===================================================== */
+        /* SOCIAL GRID */
 
         .team-social-grid {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-
-            gap: 30px;
-
             width: 100%;
-
             max-width: 850px;
-
             margin: 45px auto 0;
 
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 30px;
         }
 
 
-        /* =====================================================
-           SOCIAL MEDIA CARD
-        ===================================================== */
+        /* SOCIAL CARD */
 
         .team-social-card {
-
-            position: relative;
-
             display: block;
 
-            overflow: hidden;
-
             width: 100%;
+
+            overflow: hidden;
 
             border-radius: 24px;
 
             background: #ffffff;
 
-            color: inherit;
-
             text-decoration: none;
 
+            color: inherit;
+
             box-shadow:
-                0 20px 50px
-                rgba(20, 45, 31, 0.14);
+                0 20px 50px rgba(20, 45, 31, 0.14);
+
+            border:
+                1px solid rgba(20, 60, 40, 0.08);
 
             transition:
                 transform 0.35s ease,
                 box-shadow 0.35s ease;
-
         }
 
 
         .team-social-card:hover {
 
-            transform:
-                translateY(-8px);
+            transform: translateY(-8px);
 
             box-shadow:
-                0 28px 65px
-                rgba(20, 45, 31, 0.22);
+                0 28px 65px rgba(20, 45, 31, 0.22);
 
         }
 
 
-        /* =====================================================
-           SOCIAL IMAGE
-           RATIO 9:16
-        ===================================================== */
+        /* =================================================
+           IMAGE
+        ================================================= */
 
         .team-social-image {
 
@@ -160,17 +116,17 @@
         }
 
 
-        /* =====================================================
-           IMAGE
-        ===================================================== */
-
         .team-social-image img {
 
-            display: block;
+            position: absolute;
+
+            inset: 0;
 
             width: 100%;
 
             height: 100%;
+
+            display: block;
 
             object-fit: cover;
 
@@ -185,15 +141,12 @@
         .team-social-card:hover
         .team-social-image img {
 
-            transform:
-                scale(1.04);
+            transform: scale(1.04);
 
         }
 
 
-        /* =====================================================
-           IMAGE OVERLAY
-        ===================================================== */
+        /* IMAGE OVERLAY */
 
         .team-social-image::after {
 
@@ -216,9 +169,7 @@
         }
 
 
-        /* =====================================================
-           SOCIAL ICON
-        ===================================================== */
+        /* SOCIAL ICON */
 
         .team-social-icon {
 
@@ -230,9 +181,11 @@
 
             right: 18px;
 
-            width: 52px;
+            width: 50px;
 
-            height: 52px;
+            height: 50px;
+
+            border-radius: 15px;
 
             display: flex;
 
@@ -240,31 +193,24 @@
 
             justify-content: center;
 
-            border-radius: 16px;
+            color: #ffffff;
 
             background:
-                rgba(255, 255, 255, 0.18);
+                rgba(255, 255, 255, 0.16);
 
             border:
-                1px solid
-                rgba(255, 255, 255, 0.30);
+                1px solid rgba(255, 255, 255, 0.30);
 
-            backdrop-filter:
-                blur(10px);
+            backdrop-filter: blur(10px);
 
-            -webkit-backdrop-filter:
-                blur(10px);
+            -webkit-backdrop-filter: blur(10px);
 
-            color: white;
-
-            font-size: 23px;
+            font-size: 22px;
 
         }
 
 
-        /* =====================================================
-           SOCIAL CONTENT
-        ===================================================== */
+        /* CARD CONTENT */
 
         .team-social-content {
 
@@ -277,8 +223,7 @@
 
         .team-social-content h3 {
 
-            margin:
-                0 0 8px;
+            margin: 0 0 8px;
 
             font-size: 22px;
 
@@ -302,9 +247,7 @@
         }
 
 
-        /* =====================================================
-           VISIT LINK
-        ===================================================== */
+        /* LINK */
 
         .team-social-link {
 
@@ -314,9 +257,9 @@
 
             justify-content: center;
 
-            gap: 9px;
+            gap: 8px;
 
-            margin-top: 16px;
+            margin-top: 15px;
 
             font-size: 12px;
 
@@ -346,11 +289,11 @@
         }
 
 
-        /* =====================================================
+        /* =================================================
            MOBILE
-        ===================================================== */
+        ================================================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 650px) {
 
             .team-social-section {
 
@@ -383,18 +326,14 @@
      NAVBAR
 ===================================================== -->
 
-<nav
-    class="navbar"
-    id="navbar">
+<nav class="navbar" id="navbar">
 
     <div class="nav-container">
 
 
         <!-- LOGO -->
 
-        <a
-            href="index.html"
-            class="logo">
+        <a href="index.html" class="logo">
 
             <div class="logo-icon">
 
@@ -409,54 +348,41 @@
 
         <!-- NAVIGATION -->
 
-        <div
-            class="nav-menu"
-            id="navMenu">
-
+        <div class="nav-menu" id="navMenu">
 
             <a href="index.html">
                 HOME
             </a>
 
-
             <a href="introduction.html">
                 INTRODUCTION
             </a>
-
 
             <a href="trend.html">
                 TREND
             </a>
 
-
             <a href="renewable-energy-is-important-because.html">
                 IMPORTANCE
             </a>
-
 
             <a href="effects.html">
                 EFFECTS
             </a>
 
-
             <a href="ways-to-safe-energy.html">
                 WAYS
             </a>
 
-
             <a
                 href="our-team.html"
                 class="active">
-
                 OUR TEAM
-
             </a>
-
 
             <a href="sources.html">
                 SOURCES
             </a>
-
 
         </div>
 
@@ -469,9 +395,7 @@
             aria-label="Open navigation menu"
             aria-expanded="false">
 
-            <i
-                class="fa-solid fa-ellipsis-vertical">
-            </i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
 
         </button>
 
@@ -496,15 +420,11 @@
         url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=2000&q=85');
 
         background-size: cover;
-
         background-position: center;
-
         background-repeat: no-repeat;
     ">
 
-
     <div class="section-container">
-
 
         <span class="section-label">
 
@@ -532,7 +452,6 @@
             a safer and greener future.
 
         </p>
-
 
     </div>
 
@@ -594,7 +513,6 @@
 
             <div class="team-card">
 
-
                 <div class="team-photo-wrap">
 
                     <img
@@ -649,7 +567,6 @@
 
             <div class="team-card">
 
-
                 <div class="team-photo-wrap">
 
                     <img
@@ -703,7 +620,6 @@
             <!-- MEMBER 03 -->
 
             <div class="team-card">
-
 
                 <div class="team-photo-wrap">
 
@@ -764,7 +680,6 @@
 
         <div class="team-message">
 
-
             <div class="team-message-icon">
 
                 <i class="fa-solid fa-users"></i>
@@ -791,7 +706,6 @@
 
             </div>
 
-
         </div>
 
 
@@ -802,16 +716,15 @@
 
 
 <!-- =====================================================
-     TEAM SOCIAL MEDIA
+     SOCIAL MEDIA
 ===================================================== -->
 
 <section class="team-social-section">
 
-
     <div class="section-container">
 
 
-        <!-- SECTION HEADING -->
+        <!-- HEADING -->
 
         <div class="section-heading center">
 
@@ -856,10 +769,10 @@
             ================================================== -->
 
             <a
-                href="https://www.tiktok.com/@the.important.of.s"
+                href="https://www.tiktok.com/@the.important.of.s?_r=1&_t=ZS-99EigKgF4Bp"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="team-social-card reveal">
+                class="team-social-card">
 
 
                 <!-- IMAGE -->
@@ -867,14 +780,16 @@
                 <div class="team-social-image">
 
                     <img
-                        src="images/tiktok.jpeg"
-                        alt="Safe Energy Team TikTok">
+                        src="./images/tiktok.jpeg"
+                        alt="Safe Energy Team TikTok"
+                        loading="lazy">
+
+
+                    <!-- ICON -->
 
                     <div class="team-social-icon">
 
-                        <i
-                            class="fa-brands fa-tiktok">
-                        </i>
+                        <i class="fa-brands fa-tiktok"></i>
 
                     </div>
 
@@ -892,9 +807,9 @@
 
                     <p>
 
-                        Follow our TikTok to see
-                        our Safe Energy activities,
-                        videos and project content.
+                        Jom layari TikTok kami
+                        untuk melihat aktiviti dan
+                        kandungan Safe Energy Team.
 
                     </p>
 
@@ -903,9 +818,7 @@
 
                         JOM LAYARI TIKTOK
 
-                        <i
-                            class="fa-solid fa-arrow-right">
-                        </i>
+                        <i class="fa-solid fa-arrow-right"></i>
 
                     </span>
 
@@ -921,10 +834,10 @@
             ================================================== -->
 
             <a
-                href="https://www.instagram.com/the.important.of.safe.energy/"
+                href="https://www.instagram.com/the.important.of.safe.energy?igsi=eTV1ZnZ5cDltYmkw"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="team-social-card reveal">
+                class="team-social-card">
 
 
                 <!-- IMAGE -->
@@ -932,14 +845,16 @@
                 <div class="team-social-image">
 
                     <img
-                        src="images/instagram.jpeg"
-                        alt="Safe Energy Team Instagram">
+                        src="./images/instagram.jpeg"
+                        alt="Safe Energy Team Instagram"
+                        loading="lazy">
+
+
+                    <!-- ICON -->
 
                     <div class="team-social-icon">
 
-                        <i
-                            class="fa-brands fa-instagram">
-                        </i>
+                        <i class="fa-brands fa-instagram"></i>
 
                     </div>
 
@@ -957,9 +872,9 @@
 
                     <p>
 
-                        Follow our Instagram to see
-                        the latest updates, activities
-                        and content from our team.
+                        Jom layari Instagram kami
+                        untuk melihat kemas kini dan
+                        kandungan Safe Energy Team.
 
                     </p>
 
@@ -968,9 +883,7 @@
 
                         JOM LAYARI INSTAGRAM
 
-                        <i
-                            class="fa-solid fa-arrow-right">
-                        </i>
+                        <i class="fa-solid fa-arrow-right"></i>
 
                     </span>
 
@@ -981,7 +894,6 @@
 
 
         </div>
-
 
     </div>
 
@@ -1000,9 +912,7 @@
 
         <div class="footer-logo">
 
-            <i
-                class="fa-solid fa-leaf">
-            </i>
+            <i class="fa-solid fa-leaf"></i>
 
             SAFE ENERGY
 
