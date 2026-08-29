@@ -4465,117 +4465,249 @@ button:focus-visible {
 
 
 /* =========================================================
-   WEBSITE VIEW COUNTER
+   SAFE ENERGY
+   HOME VIEW COUNTER
    ========================================================= */
 
-.view-counter {
+.safe-energy-view-counter {
     position: fixed;
-    left: 16px;
-    bottom: 14px;
+    left: 18px;
+    bottom: 18px;
+
+    z-index: 9999;
 
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 9px;
 
-    padding: 7px 11px;
+    min-width: 92px;
+    height: 42px;
 
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid rgba(50, 200, 120, 0.18);
+    padding: 0 12px;
 
-    border-radius: 20px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    border: 1px solid rgba(50, 200, 120, 0.22);
+
+    border-radius: 12px;
 
     box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.08);
+        0 6px 20px rgba(0, 0, 0, 0.10);
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    color: #52635a;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     font-family:
         Inter,
         Arial,
         sans-serif;
 
-    font-size: 11px;
-    font-weight: 600;
-
-    line-height: 1;
-
-    z-index: 9999;
-
     user-select: none;
 
     transition:
         transform 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 
-.view-counter:hover {
+/* =========================================================
+   HOVER
+   ========================================================= */
 
-    transform: translateY(-2px);
+.safe-energy-view-counter:hover {
+
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 6px 20px rgba(0, 0, 0, 0.12);
+        0 8px 24px rgba(0, 0, 0, 0.13);
 
 }
 
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
 
 .view-counter-icon {
 
-    font-size: 12px;
+    width: 19px;
+    height: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #32c878;
+
+}
+
+
+.view-counter-icon svg {
+
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+}
+
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.view-counter-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
 
     line-height: 1;
 
 }
 
 
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
 .view-counter-label {
 
-    color: #64736b;
-
-}
-
-
-#viewCount {
-
-    color: #159957;
+    font-size: 8px;
 
     font-weight: 800;
 
-    min-width: 12px;
+    letter-spacing: 0.9px;
 
-    text-align: center;
+    color: #6c7b73;
+
+    margin-bottom: 4px;
 
 }
+
+
+
+/* =========================================================
+   NUMBER
+   ========================================================= */
+
+.view-counter-number {
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    color: #193126;
+
+    line-height: 1;
+
+}
+
 
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
 
-    .view-counter {
+    .safe-energy-view-counter {
 
-        left: 10px;
-        bottom: 10px;
+        left: 12px;
+        bottom: 12px;
 
-        padding: 6px 9px;
+        min-width: 86px;
 
-        gap: 5px;
+        height: 38px;
 
-        font-size: 10px;
+        padding:
+            0 10px;
 
-        border-radius: 18px;
+        gap: 7px;
+
+        border-radius: 10px;
 
     }
 
 
     .view-counter-icon {
 
-        font-size: 11px;
+        width: 17px;
+        height: 17px;
+
+    }
+
+
+    .view-counter-icon svg {
+
+        width: 16px;
+        height: 16px;
+
+    }
+
+
+    .view-counter-label {
+
+        font-size: 7px;
+
+        letter-spacing: 0.7px;
+
+    }
+
+
+    .view-counter-number {
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .safe-energy-view-counter {
+
+        left: 10px;
+        bottom: 10px;
+
+        min-width: 82px;
+
+        height: 36px;
+
+        padding:
+            0 9px;
+
+    }
+
+
+    .view-counter-number {
+
+        font-size: 12px;
 
     }
 
