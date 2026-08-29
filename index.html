@@ -1767,9 +1767,12 @@ document.addEventListener("DOMContentLoaded", async function () {
        ================================================
     */
 
-    const WORKSPACE =
-        "nasuhaimtiyaz26-osss's-Workspace";
-
+    const TEAM_SLUG =
+        "nasuhaimtiyaz26-osss-team";
+    
+    const API_SLUG = 
+        "first-counter-5294";
+    
     const ACCESS_TOKEN =
         "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
 
@@ -1793,7 +1796,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         const counter =
             new Counter({
 
-                workspace: WORKSPACE,
+                teamSlug: TEAM_SLUG,
+
+                APISlug: API_SLUG,
 
                 accessToken: ACCESS_TOKEN,
 
