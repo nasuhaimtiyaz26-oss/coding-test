@@ -7,243 +7,379 @@
    - Renewable Energy
    - Fossil Fuels
    - Every available year from OWID
+   - Global Home Page View Counter
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
-       01. MOBILE NAVIGATION
-    ===================================================== */
+/* =========================================================
+   00. COUNTER CONFIGURATION
+   ---------------------------------------------------------
+   IMPORTANT:
+   Replace YOUR_WORKSPACE with your CounterAPI workspace.
 
-    const menuDots = document.getElementById("menuDots");
-    const navMenu = document.getElementById("navMenu");
+   Example:
+   const VISITOR_COUNTER_WORKSPACE = "safe-energy";
 
-    if (menuDots && navMenu) {
+   Counter name:
+   safe-energy-home
+========================================================= */
 
-        menuDots.addEventListener("click", function (event) {
+const VISITOR_COUNTER_WORKSPACE =
+    "YOUR_WORKSPACE";
 
-            event.stopPropagation();
+const VISITOR_COUNTER_NAME =
+    "safe-energy-home";
 
-            const isOpen =
-                navMenu.classList.toggle("open");
 
-            menuDots.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
+
+/* =========================================================
+   01. MAIN DOM READY
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           01. MOBILE NAVIGATION
+        ===================================================== */
+
+        const menuDots =
+            document.getElementById(
+                "menuDots"
             );
 
-        });
-
-        navMenu.querySelectorAll("a").forEach(function (link) {
-
-            link.addEventListener("click", function () {
-
-                navMenu.classList.remove("open");
-
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            });
-
-        });
-    }
+        const navMenu =
+            document.getElementById(
+                "navMenu"
+            );
 
 
-    /* =====================================================
-       02. NAVBAR SCROLL
-    ===================================================== */
+        if (
+            menuDots &&
+            navMenu
+        ) {
 
-    const navbar =
-        document.getElementById("navbar");
+            menuDots.addEventListener(
+                "click",
+                function (event) {
 
-    function updateNavbar() {
-
-        if (!navbar) return;
-
-        if (window.scrollY > 30) {
-
-            navbar.classList.add("scrolled");
-
-        } else {
-
-            navbar.classList.remove("scrolled");
-
-        }
-
-    }
-
-    updateNavbar();
-
-    window.addEventListener(
-        "scroll",
-        updateNavbar,
-        { passive: true }
-    );
+                    event.stopPropagation();
 
 
-    /* =====================================================
-       03. REVEAL ANIMATION
-    ===================================================== */
-
-    const animatedElements =
-        document.querySelectorAll(
-            ".data-card, " +
-            ".chart-card, " +
-            ".benefit-card, " +
-            ".renewable-type-card, " +
-            ".effect-card, " +
-            ".save-card, " +
-            ".team-card, " +
-            ".research-source-card, " +
-            ".source-detail-card, " +
-            ".home-nav-card, " +
-            ".energy-card"
-        );
-
-    animatedElements.forEach(function (element) {
-
-        element.classList.remove("reveal");
-        element.classList.add("show");
-
-    });
+                    const isOpen =
+                        navMenu.classList.toggle(
+                            "open"
+                        );
 
 
-    if ("IntersectionObserver" in window) {
+                    menuDots.setAttribute(
+                        "aria-expanded",
+                        isOpen
+                            ? "true"
+                            : "false"
+                    );
 
-        animatedElements.forEach(function (element) {
-
-            element.classList.remove("show");
-            element.classList.add("reveal");
-
-        });
-
-
-        const observer =
-            new IntersectionObserver(
-                function (entries) {
-
-                    entries.forEach(function (entry) {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target.classList.add("show");
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.05
                 }
             );
 
 
-        animatedElements.forEach(function (element) {
+            navMenu
+                .querySelectorAll("a")
+                .forEach(
+                    function (link) {
 
-            observer.observe(element);
+                        link.addEventListener(
+                            "click",
+                            function () {
 
-        });
-
-    } else {
-
-        animatedElements.forEach(function (element) {
-
-            element.classList.remove("reveal");
-            element.classList.add("show");
-
-        });
-
-    }
+                                navMenu.classList.remove(
+                                    "open"
+                                );
 
 
-    /* =====================================================
-       04. ACTIVE NAVIGATION
-    ===================================================== */
+                                menuDots.setAttribute(
+                                    "aria-expanded",
+                                    "false"
+                                );
 
-    let currentPage =
-        window.location.pathname
-            .split("/")
-            .pop();
+                            }
+                        );
 
-    if (!currentPage) {
+                    }
+                );
 
-        currentPage = "index.html";
-
-    }
+        }
 
 
-    document
-        .querySelectorAll(".nav-menu a")
-        .forEach(function (link) {
 
-            const linkPage =
-                link.getAttribute("href");
+        /* =====================================================
+           02. NAVBAR SCROLL
+        ===================================================== */
 
-            if (linkPage === currentPage) {
+        const navbar =
+            document.getElementById(
+                "navbar"
+            );
 
-                link.classList.add("active");
+
+        function updateNavbar() {
+
+            if (!navbar) {
+
+                return;
+
+            }
+
+
+            if (
+                window.scrollY > 30
+            ) {
+
+                navbar.classList.add(
+                    "scrolled"
+                );
 
             } else {
 
-                link.classList.remove("active");
-
-            }
-
-        });
-
-
-    /* =====================================================
-       05. CLOSE MENU OUTSIDE
-    ===================================================== */
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            if (
-                navMenu &&
-                menuDots &&
-                !navMenu.contains(event.target) &&
-                !menuDots.contains(event.target)
-            ) {
-
-                navMenu.classList.remove("open");
-
-                menuDots.setAttribute(
-                    "aria-expanded",
-                    "false"
+                navbar.classList.remove(
+                    "scrolled"
                 );
 
             }
 
         }
-    );
 
 
-    /* =====================================================
-       06. ESCAPE KEY
-    ===================================================== */
+        updateNavbar();
 
-    document.addEventListener(
-        "keydown",
-        function (event) {
 
-            if (event.key === "Escape") {
+        window.addEventListener(
+            "scroll",
+            updateNavbar,
+            {
+                passive: true
+            }
+        );
 
-                if (navMenu) {
 
-                    navMenu.classList.remove("open");
+
+        /* =====================================================
+           03. REVEAL ANIMATION
+        ===================================================== */
+
+        const animatedElements =
+            document.querySelectorAll(
+                ".data-card, " +
+                ".chart-card, " +
+                ".benefit-card, " +
+                ".renewable-type-card, " +
+                ".effect-card, " +
+                ".save-card, " +
+                ".team-card, " +
+                ".research-source-card, " +
+                ".source-detail-card, " +
+                ".home-nav-card, " +
+                ".energy-card"
+            );
+
+
+        animatedElements.forEach(
+            function (element) {
+
+                element.classList.remove(
+                    "reveal"
+                );
+
+                element.classList.add(
+                    "show"
+                );
+
+            }
+        );
+
+
+        if (
+            "IntersectionObserver" in window
+        ) {
+
+            animatedElements.forEach(
+                function (element) {
+
+                    element.classList.remove(
+                        "show"
+                    );
+
+                    element.classList.add(
+                        "reveal"
+                    );
 
                 }
+            );
 
-                if (menuDots) {
+
+            const observer =
+                new IntersectionObserver(
+                    function (
+                        entries
+                    ) {
+
+                        entries.forEach(
+                            function (
+                                entry
+                            ) {
+
+                                if (
+                                    entry.isIntersecting
+                                ) {
+
+                                    entry.target.classList.add(
+                                        "show"
+                                    );
+
+
+                                    observer.unobserve(
+                                        entry.target
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    {
+                        threshold: 0.05
+                    }
+                );
+
+
+            animatedElements.forEach(
+                function (element) {
+
+                    observer.observe(
+                        element
+                    );
+
+                }
+            );
+
+        } else {
+
+            animatedElements.forEach(
+                function (element) {
+
+                    element.classList.remove(
+                        "reveal"
+                    );
+
+                    element.classList.add(
+                        "show"
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           04. ACTIVE NAVIGATION
+        ===================================================== */
+
+        let currentPage =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+
+        if (!currentPage) {
+
+            currentPage =
+                "index.html";
+
+        }
+
+
+        /*
+           GitHub Pages sometimes opens:
+           /
+           instead of:
+           /index.html
+
+           So both are treated as Home.
+        */
+
+        if (
+            currentPage === ""
+        ) {
+
+            currentPage =
+                "index.html";
+
+        }
+
+
+        document
+            .querySelectorAll(
+                ".nav-menu a"
+            )
+            .forEach(
+                function (link) {
+
+                    const linkPage =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        linkPage ===
+                        currentPage
+                    ) {
+
+                        link.classList.add(
+                            "active"
+                        );
+
+                    } else {
+
+                        link.classList.remove(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================================
+           05. CLOSE MENU OUTSIDE
+        ===================================================== */
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    navMenu &&
+                    menuDots &&
+                    !navMenu.contains(
+                        event.target
+                    ) &&
+                    !menuDots.contains(
+                        event.target
+                    )
+                ) {
+
+                    navMenu.classList.remove(
+                        "open"
+                    );
+
 
                     menuDots.setAttribute(
                         "aria-expanded",
@@ -253,18 +389,352 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
             }
+        );
+
+
+
+        /* =====================================================
+           06. ESCAPE KEY
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    if (navMenu) {
+
+                        navMenu.classList.remove(
+                            "open"
+                        );
+
+                    }
+
+
+                    if (menuDots) {
+
+                        menuDots.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           07. HOME VIEW COUNTER
+           -----------------------------------------------------
+           Counter is ONLY activated on Home page.
+        ===================================================== */
+
+        initializeVisitorCounter();
+
+
+
+        /* =====================================================
+           08. LOAD ONLINE ENERGY DATA
+        ===================================================== */
+
+        initializeOnlineEnergyCharts();
+
+    }
+);
+
+
+
+
+/* =========================================================
+   HOME VIEW COUNTER
+   ========================================================= */
+
+async function initializeVisitorCounter() {
+
+    /*
+       Detect current page.
+    */
+
+    let currentPage =
+        window.location.pathname
+            .split("/")
+            .pop();
+
+
+    /*
+       Empty path means GitHub Pages Home.
+    */
+
+    if (!currentPage) {
+
+        currentPage =
+            "index.html";
+
+    }
+
+
+    /*
+       Counter ONLY on Home.
+    */
+
+    if (
+        currentPage !==
+        "index.html"
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       Find existing counter element.
+       If it does not exist, create it automatically.
+    */
+
+    let counterElement =
+        document.getElementById(
+            "safeEnergyViewCounter"
+        );
+
+
+    if (!counterElement) {
+
+        counterElement =
+            document.createElement(
+                "div"
+            );
+
+
+        counterElement.id =
+            "safeEnergyViewCounter";
+
+
+        counterElement.className =
+            "safe-energy-view-counter";
+
+
+        counterElement.setAttribute(
+            "aria-label",
+            "Website views"
+        );
+
+
+        counterElement.innerHTML =
+
+            '<span class="view-counter-icon" aria-hidden="true">' +
+                '<svg viewBox="0 0 24 24" role="img">' +
+                    '<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path>' +
+                    '<circle cx="12" cy="12" r="2.7"></circle>' +
+                '</svg>' +
+            '</span>' +
+
+            '<span class="view-counter-content">' +
+
+                '<span class="view-counter-label">' +
+                    'VIEWS' +
+                '</span>' +
+
+                '<span ' +
+                    'class="view-counter-number" ' +
+                    'id="safeEnergyViewNumber">' +
+                    '---' +
+                '</span>' +
+
+            '</span>';
+
+
+        document.body.appendChild(
+            counterElement
+        );
+
+    }
+
+
+    const numberElement =
+        document.getElementById(
+            "safeEnergyViewNumber"
+        );
+
+
+    /*
+       If workspace hasn't been configured,
+       do not break the rest of the website.
+    */
+
+    if (
+        !VISITOR_COUNTER_WORKSPACE ||
+        VISITOR_COUNTER_WORKSPACE ===
+        "YOUR_WORKSPACE"
+    ) {
+
+        if (numberElement) {
+
+            numberElement.textContent =
+                "---";
 
         }
-    );
+
+        console.warn(
+            "Safe Energy View Counter: " +
+            "Please configure VISITOR_COUNTER_WORKSPACE."
+        );
+
+        return;
+
+    }
 
 
-    /* =====================================================
-       07. LOAD ONLINE ENERGY DATA
-    ===================================================== */
+    try {
 
-    initializeOnlineEnergyCharts();
+        /*
+           Load CounterAPI browser library.
 
-});
+           This uses the official CounterAPI
+           JavaScript browser package.
+        */
+
+        const module =
+            await import(
+                "https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js"
+            );
+
+
+        const Counter =
+            module.Counter;
+
+
+        if (!Counter) {
+
+            throw new Error(
+                "CounterAPI library unavailable."
+            );
+
+        }
+
+
+        /*
+           Create CounterAPI client.
+        */
+
+        const counter =
+            new Counter({
+
+                workspace:
+                    VISITOR_COUNTER_WORKSPACE
+
+            });
+
+
+        /*
+           Count this page visit.
+        */
+
+        const result =
+            await counter.up(
+                VISITOR_COUNTER_NAME
+            );
+
+
+        /*
+           CounterAPI returns the updated
+           counter value.
+        */
+
+        let count =
+            null;
+
+
+        if (
+            result &&
+            typeof result.value ===
+            "number"
+        ) {
+
+            count =
+                result.value;
+
+        } else if (
+            result &&
+            result.data &&
+            typeof result.data.value ===
+            "number"
+        ) {
+
+            count =
+                result.data.value;
+
+        } else if (
+            result &&
+            result.data &&
+            typeof result.data.up_count ===
+            "number"
+        ) {
+
+            count =
+                result.data.up_count;
+
+        }
+
+
+        /*
+           Display number.
+        */
+
+        if (
+            numberElement &&
+            Number.isFinite(count)
+        ) {
+
+            numberElement.textContent =
+                Number(
+                    count
+                ).toLocaleString(
+                    "en-US"
+                );
+
+        } else {
+
+            if (numberElement) {
+
+                numberElement.textContent =
+                    "---";
+
+            }
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Safe Energy View Counter Error:",
+            error
+        );
+
+
+        /*
+           Counter failure should NEVER
+           break the website.
+        */
+
+        if (numberElement) {
+
+            numberElement.textContent =
+                "---";
+
+        }
+
+    }
+
+}
 
 
 
@@ -290,13 +760,17 @@ const OWID_URLS = {
         "https://ourworldindata.org/grapher/primary-energy-from-fossil-nuclear-renewables.csv?v=1&csvType=full&useColumnShortNames=false",
 
 
-    /* Global primary energy */
+    /*
+       GLOBAL PRIMARY ENERGY
+    */
 
     primaryEnergy:
         "https://ourworldindata.org/grapher/global-primary-energy-by-source.csv?v=1&csvType=full&useColumnShortNames=false",
 
 
-    /* Electricity mix */
+    /*
+       ELECTRICITY MIX
+    */
 
     electricity:
         "https://ourworldindata.org/grapher/electricity-fossil-renewables-nuclear-line.csv?v=1&csvType=full&useColumnShortNames=false"
@@ -383,15 +857,12 @@ async function initializeOnlineEnergyCharts() {
         /* =================================================
            GRAPH 1
            ENERGY TRANSITION
-           
-           ONLY TWO PLOTS:
-           - Renewable Energy
-           - Fossil Fuels
         ================================================= */
 
         if (
             renewableFossilCanvas &&
-            results[0].status === "fulfilled"
+            results[0].status ===
+            "fulfilled"
         ) {
 
             const rows =
@@ -399,7 +870,9 @@ async function initializeOnlineEnergyCharts() {
 
 
             const worldRows =
-                getWorldRows(rows);
+                getWorldRows(
+                    rows
+                );
 
 
             const parsed =
@@ -421,7 +894,6 @@ async function initializeOnlineEnergyCharts() {
                         labels:
                             parsed.years,
 
-
                         datasets: [
 
                             {
@@ -440,7 +912,6 @@ async function initializeOnlineEnergyCharts() {
                                 smooth:
                                     true
                             },
-
 
                             {
                                 label:
@@ -461,17 +932,14 @@ async function initializeOnlineEnergyCharts() {
 
                         ],
 
-
                         dark:
                             true,
-
 
                         yLabel:
                             "Share of Primary Energy (%)"
 
                     }
                 );
-
 
             } else {
 
@@ -482,8 +950,9 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-
-        } else if (renewableFossilCanvas) {
+        } else if (
+            renewableFossilCanvas
+        ) {
 
             drawChartError(
                 renewableFossilCanvas,
@@ -501,7 +970,8 @@ async function initializeOnlineEnergyCharts() {
 
         if (
             energyConsumptionCanvas &&
-            results[1].status === "fulfilled"
+            results[1].status ===
+            "fulfilled"
         ) {
 
             const rows =
@@ -509,7 +979,9 @@ async function initializeOnlineEnergyCharts() {
 
 
             const worldRows =
-                getWorldRows(rows);
+                getWorldRows(
+                    rows
+                );
 
 
             const parsed =
@@ -528,7 +1000,6 @@ async function initializeOnlineEnergyCharts() {
 
                         labels:
                             parsed.years,
-
 
                         datasets: [
 
@@ -552,17 +1023,14 @@ async function initializeOnlineEnergyCharts() {
 
                         ],
 
-
                         dark:
                             false,
-
 
                         yLabel:
                             "Energy use"
 
                     }
                 );
-
 
             } else {
 
@@ -573,8 +1041,9 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-
-        } else if (energyConsumptionCanvas) {
+        } else if (
+            energyConsumptionCanvas
+        ) {
 
             drawChartError(
                 energyConsumptionCanvas,
@@ -592,7 +1061,8 @@ async function initializeOnlineEnergyCharts() {
 
         if (
             electricityCanvas &&
-            results[2].status === "fulfilled"
+            results[2].status ===
+            "fulfilled"
         ) {
 
             const rows =
@@ -600,7 +1070,9 @@ async function initializeOnlineEnergyCharts() {
 
 
             const worldRows =
-                getWorldRows(rows);
+                getWorldRows(
+                    rows
+                );
 
 
             const parsed =
@@ -619,7 +1091,6 @@ async function initializeOnlineEnergyCharts() {
 
                         labels:
                             parsed.years,
-
 
                         datasets: [
 
@@ -640,7 +1111,6 @@ async function initializeOnlineEnergyCharts() {
                                     true
                             },
 
-
                             {
                                 label:
                                     "Fossil Fuels",
@@ -657,7 +1127,6 @@ async function initializeOnlineEnergyCharts() {
                                 smooth:
                                     true
                             },
-
 
                             {
                                 label:
@@ -678,17 +1147,14 @@ async function initializeOnlineEnergyCharts() {
 
                         ],
 
-
                         dark:
                             false,
-
 
                         yLabel:
                             "Share (%)"
 
                     }
                 );
-
 
             } else {
 
@@ -699,8 +1165,9 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-
-        } else if (electricityCanvas) {
+        } else if (
+            electricityCanvas
+        ) {
 
             drawChartError(
                 electricityCanvas,
@@ -722,18 +1189,20 @@ async function initializeOnlineEnergyCharts() {
             renewableFossilCanvas,
             energyConsumptionCanvas,
             electricityCanvas
-        ].forEach(function (canvas) {
+        ].forEach(
+            function (canvas) {
 
-            if (canvas) {
+                if (canvas) {
 
-                drawChartError(
-                    canvas,
-                    "Unable to connect to Our World in Data."
-                );
+                    drawChartError(
+                        canvas,
+                        "Unable to connect to Our World in Data."
+                    );
+
+                }
 
             }
-
-        });
+        );
 
     }
 
@@ -745,7 +1214,9 @@ async function initializeOnlineEnergyCharts() {
    FETCH CSV
 ========================================================= */
 
-async function fetchCSV(url) {
+async function fetchCSV(
+    url
+) {
 
     const response =
         await fetch(
@@ -771,7 +1242,9 @@ async function fetchCSV(url) {
         await response.text();
 
 
-    return parseCSV(text);
+    return parseCSV(
+        text
+    );
 
 }
 
@@ -781,7 +1254,9 @@ async function fetchCSV(url) {
    SIMPLE CSV PARSER
 ========================================================= */
 
-function parseCSV(text) {
+function parseCSV(
+    text
+) {
 
     const rows = [];
 
@@ -803,7 +1278,9 @@ function parseCSV(text) {
 
 
         const next =
-            text[i + 1];
+            text[
+                i + 1
+            ];
 
 
         if (
@@ -821,7 +1298,9 @@ function parseCSV(text) {
         }
 
 
-        if (char === '"') {
+        if (
+            char === '"'
+        ) {
 
             insideQuotes =
                 !insideQuotes;
@@ -836,7 +1315,9 @@ function parseCSV(text) {
             !insideQuotes
         ) {
 
-            row.push(value);
+            row.push(
+                value
+            );
 
             value = "";
 
@@ -863,14 +1344,20 @@ function parseCSV(text) {
             }
 
 
-            row.push(value);
+            row.push(
+                value
+            );
 
             value = "";
 
 
-            if (row.length > 0) {
+            if (
+                row.length > 0
+            ) {
 
-                rows.push(row);
+                rows.push(
+                    row
+                );
 
             }
 
@@ -882,7 +1369,8 @@ function parseCSV(text) {
         }
 
 
-        value += char;
+        value +=
+            char;
 
     }
 
@@ -892,14 +1380,20 @@ function parseCSV(text) {
         row.length > 0
     ) {
 
-        row.push(value);
+        row.push(
+            value
+        );
 
-        rows.push(row);
+        rows.push(
+            row
+        );
 
     }
 
 
-    if (!rows.length) {
+    if (
+        !rows.length
+    ) {
 
         return [];
 
@@ -908,7 +1402,9 @@ function parseCSV(text) {
 
     const headers =
         rows[0].map(
-            function (header) {
+            function (
+                header
+            ) {
 
                 return header.trim();
 
@@ -918,26 +1414,34 @@ function parseCSV(text) {
 
     return rows
         .slice(1)
-        .map(function (values) {
+        .map(
+            function (
+                values
+            ) {
 
-            const object = {};
-
-
-            headers.forEach(
-                function (header, index) {
-
-                    object[header] =
-                        values[index] !== undefined
-                            ? values[index].trim()
-                            : "";
-
-                }
-            );
+                const object = {};
 
 
-            return object;
+                headers.forEach(
+                    function (
+                        header,
+                        index
+                    ) {
 
-        });
+                        object[header] =
+                            values[index] !==
+                            undefined
+                                ? values[index].trim()
+                                : "";
+
+                    }
+                );
+
+
+                return object;
+
+            }
+        );
 
 }
 
@@ -947,7 +1451,9 @@ function parseCSV(text) {
    GET WORLD DATA
 ========================================================= */
 
-function getWorldRows(rows) {
+function getWorldRows(
+    rows
+) {
 
     if (
         !rows ||
@@ -961,7 +1467,9 @@ function getWorldRows(rows) {
 
     const worldRows =
         rows.filter(
-            function (row) {
+            function (
+                row
+            ) {
 
                 const entity =
                     String(
@@ -974,7 +1482,8 @@ function getWorldRows(rows) {
 
 
                 return (
-                    entity === "world"
+                    entity ===
+                    "world"
                 );
 
             }
@@ -1013,7 +1522,9 @@ function findColumn(
 
 
     const columns =
-        Object.keys(row);
+        Object.keys(
+            row
+        );
 
 
     for (
@@ -1029,11 +1540,15 @@ function findColumn(
 
         const found =
             columns.find(
-                function (column) {
+                function (
+                    column
+                ) {
 
                     return column
                         .toLowerCase()
-                        .includes(keyword);
+                        .includes(
+                            keyword
+                        );
 
                 }
             );
@@ -1056,16 +1571,11 @@ function findColumn(
 
 /* =========================================================
    PARSE ENERGY TRANSITION
-   ---------------------------------------------------------
-   EXACTLY TWO DATA SERIES:
-
-   1. Renewable Energy
-   2. Fossil Fuels
-
-   Every available year is preserved.
 ========================================================= */
 
-function parseEnergyTransition(rows) {
+function parseEnergyTransition(
+    rows
+) {
 
     if (
         !rows ||
@@ -1097,13 +1607,11 @@ function parseEnergyTransition(rows) {
     );
 
 
-    /*
-       Find renewable share column.
-    */
-
     let renewableColumn =
         columns.find(
-            function (column) {
+            function (
+                column
+            ) {
 
                 const name =
                     column
@@ -1111,24 +1619,28 @@ function parseEnergyTransition(rows) {
 
 
                 return (
-                    name.includes("renewable") &&
+                    name.includes(
+                        "renewable"
+                    ) &&
                     (
-                        name.includes("share") ||
-                        name.includes("%")
+                        name.includes(
+                            "share"
+                        ) ||
+                        name.includes(
+                            "%"
+                        )
                     )
                 );
 
             }
         );
 
-
-    /*
-       Find fossil-fuel share column.
-    */
 
     let fossilColumn =
         columns.find(
-            function (column) {
+            function (
+                column
+            ) {
 
                 const name =
                     column
@@ -1136,10 +1648,16 @@ function parseEnergyTransition(rows) {
 
 
                 return (
-                    name.includes("fossil") &&
+                    name.includes(
+                        "fossil"
+                    ) &&
                     (
-                        name.includes("share") ||
-                        name.includes("%")
+                        name.includes(
+                            "share"
+                        ) ||
+                        name.includes(
+                            "%"
+                        )
                     )
                 );
 
@@ -1147,12 +1665,9 @@ function parseEnergyTransition(rows) {
         );
 
 
-    /*
-       Fallback:
-       Search for the words only.
-    */
-
-    if (!renewableColumn) {
+    if (
+        !renewableColumn
+    ) {
 
         renewableColumn =
             findColumn(
@@ -1168,7 +1683,9 @@ function parseEnergyTransition(rows) {
     }
 
 
-    if (!fossilColumn) {
+    if (
+        !fossilColumn
+    ) {
 
         fossilColumn =
             findColumn(
@@ -1200,7 +1717,9 @@ function parseEnergyTransition(rows) {
 
 
     rows.forEach(
-        function (row) {
+        function (
+            row
+        ) {
 
             const year =
                 Number(
@@ -1209,7 +1728,9 @@ function parseEnergyTransition(rows) {
 
 
             if (
-                !Number.isFinite(year)
+                !Number.isFinite(
+                    year
+                )
             ) {
 
                 return;
@@ -1220,7 +1741,9 @@ function parseEnergyTransition(rows) {
             const renewableValue =
                 renewableColumn
                     ? Number(
-                        row[renewableColumn]
+                        row[
+                            renewableColumn
+                        ]
                     )
                     : NaN;
 
@@ -1228,15 +1751,12 @@ function parseEnergyTransition(rows) {
             const fossilValue =
                 fossilColumn
                     ? Number(
-                        row[fossilColumn]
+                        row[
+                            fossilColumn
+                        ]
                     )
                     : NaN;
 
-
-            /*
-               Keep the year if at least one
-               valid value exists.
-            */
 
             if (
                 Number.isFinite(
@@ -1256,7 +1776,6 @@ function parseEnergyTransition(rows) {
                             ? renewableValue
                             : null,
 
-
                     fossil:
                         Number.isFinite(
                             fossilValue
@@ -1272,17 +1791,18 @@ function parseEnergyTransition(rows) {
     );
 
 
-    /*
-       Sort every year from oldest to newest.
-    */
-
     const years =
         Object.keys(
             yearlyData
         )
-            .map(Number)
+            .map(
+                Number
+            )
             .sort(
-                function (a, b) {
+                function (
+                    a,
+                    b
+                ) {
 
                     return a - b;
 
@@ -1292,7 +1812,9 @@ function parseEnergyTransition(rows) {
 
     const renewable =
         years.map(
-            function (year) {
+            function (
+                year
+            ) {
 
                 return yearlyData[
                     year
@@ -1304,7 +1826,9 @@ function parseEnergyTransition(rows) {
 
     const fossil =
         years.map(
-            function (year) {
+            function (
+                year
+            ) {
 
                 return yearlyData[
                     year
@@ -1332,7 +1856,9 @@ function parseEnergyTransition(rows) {
    PARSE PRIMARY ENERGY
 ========================================================= */
 
-function parsePrimaryEnergy(rows) {
+function parsePrimaryEnergy(
+    rows
+) {
 
     if (
         !rows.length
@@ -1357,7 +1883,9 @@ function parsePrimaryEnergy(rows) {
 
     const sourceColumns =
         columns.filter(
-            function (column) {
+            function (
+                column
+            ) {
 
                 const name =
                     column.toLowerCase();
@@ -1372,16 +1900,36 @@ function parsePrimaryEnergy(rows) {
                     name !== "year" &&
 
                     (
-                        name.includes("coal") ||
-                        name.includes("oil") ||
-                        name.includes("gas") ||
-                        name.includes("nuclear") ||
-                        name.includes("hydro") ||
-                        name.includes("solar") ||
-                        name.includes("wind") ||
-                        name.includes("biofuel") ||
-                        name.includes("other renewables") ||
-                        name.includes("renewables")
+                        name.includes(
+                            "coal"
+                        ) ||
+                        name.includes(
+                            "oil"
+                        ) ||
+                        name.includes(
+                            "gas"
+                        ) ||
+                        name.includes(
+                            "nuclear"
+                        ) ||
+                        name.includes(
+                            "hydro"
+                        ) ||
+                        name.includes(
+                            "solar"
+                        ) ||
+                        name.includes(
+                            "wind"
+                        ) ||
+                        name.includes(
+                            "biofuel"
+                        ) ||
+                        name.includes(
+                            "other renewables"
+                        ) ||
+                        name.includes(
+                            "renewables"
+                        )
                     )
 
                 );
@@ -1394,7 +1942,9 @@ function parsePrimaryEnergy(rows) {
 
 
     rows.forEach(
-        function (row) {
+        function (
+            row
+        ) {
 
             const year =
                 Number(
@@ -1403,7 +1953,9 @@ function parsePrimaryEnergy(rows) {
 
 
             if (
-                !Number.isFinite(year)
+                !Number.isFinite(
+                    year
+                )
             ) {
 
                 return;
@@ -1417,7 +1969,9 @@ function parsePrimaryEnergy(rows) {
 
 
             sourceColumns.forEach(
-                function (column) {
+                function (
+                    column
+                ) {
 
                     const value =
                         Number(
@@ -1426,12 +1980,16 @@ function parsePrimaryEnergy(rows) {
 
 
                     if (
-                        Number.isFinite(value)
+                        Number.isFinite(
+                            value
+                        )
                     ) {
 
-                        total += value;
+                        total +=
+                            value;
 
-                        hasValue = true;
+                        hasValue =
+                            true;
 
                     }
 
@@ -1439,11 +1997,14 @@ function parsePrimaryEnergy(rows) {
             );
 
 
-            if (hasValue) {
+            if (
+                hasValue
+            ) {
 
                 yearlyData[
                     year
-                ] = total;
+                ] =
+                    total;
 
             }
 
@@ -1455,9 +2016,14 @@ function parsePrimaryEnergy(rows) {
         Object.keys(
             yearlyData
         )
-            .map(Number)
+            .map(
+                Number
+            )
             .sort(
-                function (a, b) {
+                function (
+                    a,
+                    b
+                ) {
 
                     return a - b;
 
@@ -1467,7 +2033,9 @@ function parsePrimaryEnergy(rows) {
 
     const total =
         years.map(
-            function (year) {
+            function (
+                year
+            ) {
 
                 return yearlyData[
                     year
@@ -1493,7 +2061,9 @@ function parsePrimaryEnergy(rows) {
    PARSE ELECTRICITY
 ========================================================= */
 
-function parseElectricity(rows) {
+function parseElectricity(
+    rows
+) {
 
     if (
         !rows.length
@@ -1548,7 +2118,9 @@ function parseElectricity(rows) {
 
 
     rows.forEach(
-        function (row) {
+        function (
+            row
+        ) {
 
             const year =
                 Number(
@@ -1557,7 +2129,9 @@ function parseElectricity(rows) {
 
 
             if (
-                !Number.isFinite(year)
+                !Number.isFinite(
+                    year
+                )
             ) {
 
                 return;
@@ -1607,7 +2181,9 @@ function parseElectricity(rows) {
                 )
             ) {
 
-                data[year] = {
+                data[
+                    year
+                ] = {
 
                     renewable:
                         Number.isFinite(
@@ -1616,14 +2192,12 @@ function parseElectricity(rows) {
                             ? renewable
                             : null,
 
-
                     fossil:
                         Number.isFinite(
                             fossil
                         )
                             ? fossil
                             : null,
-
 
                     nuclear:
                         Number.isFinite(
@@ -1644,9 +2218,14 @@ function parseElectricity(rows) {
         Object.keys(
             data
         )
-            .map(Number)
+            .map(
+                Number
+            )
             .sort(
-                function (a, b) {
+                function (
+                    a,
+                    b
+                ) {
 
                     return a - b;
 
@@ -1660,7 +2239,9 @@ function parseElectricity(rows) {
 
         renewable:
             years.map(
-                function (year) {
+                function (
+                    year
+                ) {
 
                     return data[
                         year
@@ -1669,10 +2250,11 @@ function parseElectricity(rows) {
                 }
             ),
 
-
         fossil:
             years.map(
-                function (year) {
+                function (
+                    year
+                ) {
 
                     return data[
                         year
@@ -1681,10 +2263,11 @@ function parseElectricity(rows) {
                 }
             ),
 
-
         nuclear:
             years.map(
-                function (year) {
+                function (
+                    year
+                ) {
 
                     return data[
                         year
@@ -1703,7 +2286,9 @@ function parseElectricity(rows) {
    LOADING STATE
 ========================================================= */
 
-function showChartLoading(canvas) {
+function showChartLoading(
+    canvas
+) {
 
     if (!canvas) return;
 
@@ -1791,7 +2376,9 @@ function showChartLoading(canvas) {
    HIDE LOADING
 ========================================================= */
 
-function hideChartLoading(canvas) {
+function hideChartLoading(
+    canvas
+) {
 
     if (!canvas) return;
 
@@ -1832,7 +2419,9 @@ function drawInteractiveLineChart(
     if (!canvas) return;
 
 
-    hideChartLoading(canvas);
+    hideChartLoading(
+        canvas
+    );
 
 
     const wrapper =
@@ -1861,7 +2450,8 @@ function drawInteractiveLineChart(
 
 
     const dpr =
-        window.devicePixelRatio || 1;
+        window.devicePixelRatio ||
+        1;
 
 
     canvas.width =
@@ -1881,7 +2471,9 @@ function drawInteractiveLineChart(
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     ctx.setTransform(
@@ -1966,17 +2558,26 @@ function drawInteractiveLineChart(
 
 
     datasets.forEach(
-        function (dataset) {
+        function (
+            dataset
+        ) {
 
             dataset.data.forEach(
-                function (value) {
+                function (
+                    value
+                ) {
 
                     if (
-                        typeof value === "number" &&
-                        Number.isFinite(value)
+                        typeof value ===
+                        "number" &&
+                        Number.isFinite(
+                            value
+                        )
                     ) {
 
-                        allValues.push(value);
+                        allValues.push(
+                            value
+                        );
 
                     }
 
@@ -2014,7 +2615,8 @@ function drawInteractiveLineChart(
 
 
     if (
-        minValue === maxValue
+        minValue ===
+        maxValue
     ) {
 
         minValue -= 1;
@@ -2043,6 +2645,7 @@ function drawInteractiveLineChart(
         );
 
 
+
     /* =====================================================
        Y LABEL
     ===================================================== */
@@ -2066,11 +2669,13 @@ function drawInteractiveLineChart(
     );
 
 
+
     /* =====================================================
        GRID
     ===================================================== */
 
-    const gridLines = 5;
+    const gridLines =
+        5;
 
 
     for (
@@ -2108,7 +2713,8 @@ function drawInteractiveLineChart(
             gridColor;
 
 
-        ctx.lineWidth = 1;
+        ctx.lineWidth =
+            1;
 
 
         ctx.stroke();
@@ -2139,7 +2745,9 @@ function drawInteractiveLineChart(
 
 
         ctx.fillText(
-            formatChartNumber(value),
+            formatChartNumber(
+                value
+            ),
             padding.left - 10,
             y + 3
         );
@@ -2147,11 +2755,9 @@ function drawInteractiveLineChart(
     }
 
 
+
     /* =====================================================
        X AXIS
-       Every year remains in the dataset.
-       Only some labels are visually displayed to
-       prevent overcrowding.
     ===================================================== */
 
     ctx.fillStyle =
@@ -2170,17 +2776,23 @@ function drawInteractiveLineChart(
         Math.max(
             1,
             Math.ceil(
-                labels.length / 9
+                labels.length /
+                9
             )
         );
 
 
     labels.forEach(
-        function (label, index) {
+        function (
+            label,
+            index
+        ) {
 
             if (
-                index % labelStep !== 0 &&
-                index !== labels.length - 1
+                index %
+                labelStep !== 0 &&
+                index !==
+                labels.length - 1
             ) {
 
                 return;
@@ -2198,13 +2810,16 @@ function drawInteractiveLineChart(
 
 
             ctx.fillText(
-                String(label),
+                String(
+                    label
+                ),
                 x,
                 height - 18
             );
 
         }
     );
+
 
 
     /* =====================================================
@@ -2237,11 +2852,16 @@ function drawInteractiveLineChart(
                 ) {
 
                     if (
-                        typeof value !== "number" ||
-                        !Number.isFinite(value)
+                        typeof value !==
+                        "number" ||
+                        !Number.isFinite(
+                            value
+                        )
                     ) {
 
-                        points.push(null);
+                        points.push(
+                            null
+                        );
 
                         return;
 
@@ -2289,6 +2909,7 @@ function drawInteractiveLineChart(
             );
 
 
+
             /* =================================================
                FILL
             ================================================= */
@@ -2298,7 +2919,9 @@ function drawInteractiveLineChart(
             ) {
 
                 const validPoints =
-                    points.filter(Boolean);
+                    points.filter(
+                        Boolean
+                    );
 
 
                 if (
@@ -2374,12 +2997,15 @@ function drawInteractiveLineChart(
             }
 
 
+
             /* =================================================
                LINE
             ================================================= */
 
             const validPoints =
-                points.filter(Boolean);
+                points.filter(
+                    Boolean
+                );
 
 
             if (
@@ -2455,6 +3081,7 @@ function drawInteractiveLineChart(
     );
 
 
+
     /* =====================================================
        LEGEND
     ===================================================== */
@@ -2466,6 +3093,7 @@ function drawInteractiveLineChart(
         width,
         dark
     );
+
 
 
     /* =====================================================
@@ -2506,9 +3134,6 @@ function drawInteractiveLineChart(
 
 /* =========================================================
    CHART INTERACTION
-   ---------------------------------------------------------
-   Hover:
-   Shows exact YEAR + DATA
 ========================================================= */
 
 function setupChartInteraction(
@@ -2549,7 +3174,9 @@ function setupChartInteraction(
 
 
     const mouseMove =
-        function (event) {
+        function (
+            event
+        ) {
 
             const rect =
                 canvas.getBoundingClientRect();
@@ -2576,7 +3203,8 @@ function setupChartInteraction(
 
             if (
                 index < 0 ||
-                index >= state.labels.length
+                index >=
+                state.labels.length
             ) {
 
                 return;
@@ -2626,9 +3254,10 @@ function setupChartInteraction(
         mouseLeave;
 
 
-    /*
-       Touch support
-    */
+
+    /* =====================================================
+       TOUCH
+    ===================================================== */
 
     const oldTouch =
         canvas._energyTouchHandler;
@@ -2647,7 +3276,9 @@ function setupChartInteraction(
 
 
     const touchStart =
-        function (event) {
+        function (
+            event
+        ) {
 
             if (
                 !event.touches.length
@@ -2763,7 +3394,9 @@ function drawChartWithTooltip(
 
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     const dpr =
@@ -2802,6 +3435,7 @@ function drawChartWithTooltip(
         );
 
 
+
     /* =====================================================
        VERTICAL GUIDE
     ===================================================== */
@@ -2828,7 +3462,8 @@ function drawChartWithTooltip(
             : "rgba(0,0,0,.18)";
 
 
-    ctx.lineWidth = 1;
+    ctx.lineWidth =
+        1;
 
 
     ctx.setLineDash([
@@ -2841,6 +3476,7 @@ function drawChartWithTooltip(
 
 
     ctx.setLineDash([]);
+
 
 
     /* =====================================================
@@ -2917,7 +3553,8 @@ function drawChartWithTooltip(
                 "#ffffff";
 
 
-            ctx.lineWidth = 2;
+            ctx.lineWidth =
+                2;
 
 
             ctx.stroke();
@@ -2926,16 +3563,13 @@ function drawChartWithTooltip(
     );
 
 
+
     /* =====================================================
-       TOOLTIP CONTENT
+       TOOLTIP
     ===================================================== */
 
     const tooltipLines = [];
 
-
-    /*
-       YEAR
-    */
 
     tooltipLines.push(
         String(
@@ -2943,10 +3577,6 @@ function drawChartWithTooltip(
         )
     );
 
-
-    /*
-       DATA FOR EVERY PLOT
-    */
 
     state.datasets.forEach(
         function (
@@ -2959,8 +3589,11 @@ function drawChartWithTooltip(
 
 
             if (
-                typeof value !== "number" ||
-                !Number.isFinite(value)
+                typeof value !==
+                "number" ||
+                !Number.isFinite(
+                    value
+                )
             ) {
 
                 return;
@@ -2985,7 +3618,9 @@ function drawChartWithTooltip(
             tooltipLines.push(
                 dataset.label +
                 ": " +
-                formatChartNumber(value) +
+                formatChartNumber(
+                    value
+                ) +
                 suffix
             );
 
@@ -2993,19 +3628,18 @@ function drawChartWithTooltip(
     );
 
 
-    /* =====================================================
-       TOOLTIP BOX
-    ===================================================== */
-
     ctx.font =
         "700 12px Inter, Arial, sans-serif";
 
 
-    let maxTextWidth = 0;
+    let maxTextWidth =
+        0;
 
 
     tooltipLines.forEach(
-        function (line) {
+        function (
+            line
+        ) {
 
             maxTextWidth =
                 Math.max(
@@ -3060,7 +3694,8 @@ function drawChartWithTooltip(
         boxX < 10
     ) {
 
-        boxX = 10;
+        boxX =
+            10;
 
     }
 
@@ -3116,15 +3751,12 @@ function drawChartWithTooltip(
             : "rgba(0,0,0,.08)";
 
 
-    ctx.lineWidth = 1;
+    ctx.lineWidth =
+        1;
 
 
     ctx.stroke();
 
-
-    /* =====================================================
-       TOOLTIP TEXT
-    ===================================================== */
 
     tooltipLines.forEach(
         function (
@@ -3181,7 +3813,9 @@ function redrawChartBase(
 ) {
 
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
 
 
     const rect =
@@ -3235,12 +3869,12 @@ function redrawChartBase(
             : "rgba(0,0,0,.08)";
 
 
-    const gridLines = 5;
+    const gridLines =
+        5;
 
 
-    /* =====================================================
-       GRID
-    ===================================================== */
+
+    /* GRID */
 
     for (
         let i = 0;
@@ -3277,7 +3911,8 @@ function redrawChartBase(
             gridColor;
 
 
-        ctx.lineWidth = 1;
+        ctx.lineWidth =
+            1;
 
 
         ctx.stroke();
@@ -3308,7 +3943,9 @@ function redrawChartBase(
 
 
         ctx.fillText(
-            formatChartNumber(value),
+            formatChartNumber(
+                value
+            ),
             state.padding.left - 10,
             y + 3
         );
@@ -3316,9 +3953,8 @@ function redrawChartBase(
     }
 
 
-    /* =====================================================
-       Y LABEL
-    ===================================================== */
+
+    /* Y LABEL */
 
     ctx.fillStyle =
         textColor;
@@ -3339,15 +3975,15 @@ function redrawChartBase(
     );
 
 
-    /* =====================================================
-       X LABELS
-    ===================================================== */
+
+    /* X LABELS */
 
     const labelStep =
         Math.max(
             1,
             Math.ceil(
-                state.labels.length / 9
+                state.labels.length /
+                9
             )
         );
 
@@ -3371,7 +4007,8 @@ function redrawChartBase(
         ) {
 
             if (
-                index % labelStep !== 0 &&
+                index %
+                labelStep !== 0 &&
                 index !==
                 state.labels.length - 1
             ) {
@@ -3391,7 +4028,9 @@ function redrawChartBase(
 
 
             ctx.fillText(
-                String(label),
+                String(
+                    label
+                ),
                 x,
                 height - 18
             );
@@ -3400,9 +4039,8 @@ function redrawChartBase(
     );
 
 
-    /* =====================================================
-       LINES
-    ===================================================== */
+
+    /* LINES */
 
     const colors = [
 
@@ -3431,7 +4069,9 @@ function redrawChartBase(
             const points =
                 state.allPoints[
                     datasetIndex
-                ].filter(Boolean);
+                ].filter(
+                    Boolean
+                );
 
 
             if (
@@ -3510,9 +4150,8 @@ function redrawChartBase(
     );
 
 
-    /* =====================================================
-       LEGEND
-    ===================================================== */
+
+    /* LEGEND */
 
     drawLegend(
         ctx,
@@ -3742,10 +4381,12 @@ function drawLegend(
             : "#14231c";
 
 
-    let currentX = 20;
+    let currentX =
+        20;
 
 
-    const legendY = 35;
+    const legendY =
+        35;
 
 
     ctx.font =
@@ -3812,7 +4453,8 @@ function drawLegend(
                 color;
 
 
-            ctx.lineWidth = 4;
+            ctx.lineWidth =
+                4;
 
 
             ctx.lineCap =
@@ -3940,7 +4582,9 @@ function formatChartNumber(
 ) {
 
     if (
-        !Number.isFinite(value)
+        !Number.isFinite(
+            value
+        )
     ) {
 
         return "-";
@@ -3949,7 +4593,8 @@ function formatChartNumber(
 
 
     if (
-        Math.abs(value) >= 1000
+        Math.abs(value) >=
+        1000
     ) {
 
         return value.toLocaleString(
@@ -3964,7 +4609,9 @@ function formatChartNumber(
 
 
     if (
-        Number.isInteger(value)
+        Number.isInteger(
+            value
+        )
     ) {
 
         return value.toString();
@@ -3972,7 +4619,9 @@ function formatChartNumber(
     }
 
 
-    return value.toFixed(1);
+    return value.toFixed(
+        1
+    );
 
 }
 
@@ -4111,9 +4760,7 @@ function drawChartError(
         dpr,
         0,
         0,
-        dpr,
-        0,
-        0
+        dpr
     );
 
 
