@@ -307,9 +307,9 @@ const OWID_URLS = {
 };
 
 
-
 /* =========================================================
    COUNTERAPI V2
+   SAFE ENERGY VIEW COUNTER
 ========================================================= */
 
 async function initCounterAPI() {
@@ -318,14 +318,12 @@ async function initCounterAPI() {
         document.getElementById("viewCount");
 
     const errorMessage =
-        document.getElementById(
-            "viewCounterError"
-        );
+        document.getElementById("viewCounterError");
 
 
-    /*
-       Make sure counter elements exist
-    */
+    /* =====================================================
+       CHECK COUNTER ELEMENT
+    ===================================================== */
 
     if (!viewCount) {
 
@@ -338,21 +336,15 @@ async function initCounterAPI() {
     }
 
 
-    /*
-       =====================================================
-       COUNTERAPI SETTINGS
-       =====================================================
-    */
+    /* =====================================================
+       COUNTERAPI V2 CONFIGURATION
+    ===================================================== */
 
-    const WORKSPACE =
-        "nasuhaimtiyaz26-osss's-Workspace";
+    const TEAM_SLUG =
+        "nasuhaimtiyaz26-osss-team-5294";
 
-
-    /*
-       This MUST match your CounterAPI counter:
-       
-       first-counter-5294
-    */
+    const API_SLUG =
+        "first-counter-5294";
 
     const COUNTER_NAME =
         "safe-energy-views";
@@ -360,20 +352,63 @@ async function initCounterAPI() {
 
     /*
        IMPORTANT:
-       Paste your NEW CounterAPI V2 access token here.
-
-       Do NOT use the token previously exposed in chat.
+       Use a NEW token here.
+       Do not reuse the token previously exposed.
     */
 
     const ACCESS_TOKEN =
         "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
 
 
-    /*
-       =====================================================
-       CHECK TOKEN
-       =====================================================
-    */
+    /* =====================================================
+       COUNTERAPI V2 URL
+    ===================================================== */
+
+    const COUNTER_API_URL =
+        "https://api.counterapi.dev/v2/" +
+        TEAM_SLUG +
+        "/" +
+        API_SLUG;
+
+
+    const INCREMENT_URL =
+        COUNTER_API_URL +
+        "/up";
+
+
+    /* =====================================================
+       DEBUG URL
+    ===================================================== */
+
+    console.log(
+        "CounterAPI Team:",
+        TEAM_SLUG
+    );
+
+    console.log(
+        "CounterAPI API Slug:",
+        API_SLUG
+    );
+
+    console.log(
+        "CounterAPI Counter Name:",
+        COUNTER_NAME
+    );
+
+    console.log(
+        "CounterAPI URL:",
+        COUNTER_API_URL
+    );
+
+    console.log(
+        "CounterAPI Increment URL:",
+        INCREMENT_URL
+    );
+
+
+    /* =====================================================
+       CHECK ACCESS TOKEN
+    ===================================================== */
 
     if (
         !ACCESS_TOKEN ||
@@ -382,9 +417,8 @@ async function initCounterAPI() {
     ) {
 
         console.error(
-            "CounterAPI: Access token has not been added."
+            "CounterAPI: Access token is not configured."
         );
-
 
         viewCount.textContent =
             "Unavailable";
@@ -402,47 +436,157 @@ async function initCounterAPI() {
     }
 
 
-    /*
-       =====================================================
-       CHECK COUNTER LIBRARY
-       =====================================================
-    */
+    /* =====================================================
+       LOADING
+    ===================================================== */
 
-    if (
-        typeof window.Counter ===
-        "undefined"
-    ) {
-
-        console.error(
-            "CounterAPI library failed to load."
-        );
+    viewCount.textContent =
+        "Loading...";
 
 
-        viewCount.textContent =
-            "Unavailable";
+    if (errorMessage) {
 
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "CounterAPI library unavailable.";
-
-        }
-
-        return;
+        errorMessage.textContent =
+            "";
 
     }
 
 
     try {
 
-        /*
-           Show loading state
-        */
+        /* =================================================
+           INCREMENT WEBSITE VIEW
+        ================================================= */
 
-        viewCount.textContent =
-            "Loading...";
+        const response =
+            await fetch(
+                INCREMENT_URL,
+                {
+                    method: "GET",
 
+                    headers: {
+                        "Authorization":
+                            "Bearer " +
+                            ACCESS_TOKEN,
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    cache:
+                        "no-store"
+                }
+            );
+
+
+        console.log(
+            "CounterAPI HTTP Status:",
+            response.status
+        );
+
+
+        /* =================================================
+           READ API RESPONSE
+        ================================================= */
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "CounterAPI Response:",
+            result
+        );
+
+
+        /* =================================================
+           CHECK RESPONSE
+        ================================================= */
+
+        if (!response.ok) {
+
+            const error =
+                new Error(
+                    "CounterAPI HTTP " +
+                    response.status
+                );
+
+            error.status =
+                response.status;
+
+            error.response =
+                result;
+
+            throw error;
+
+        }
+
+
+        /* =================================================
+           GET VALUE
+        ================================================= */
+
+        let value = null;
+
+
+        if (
+            result &&
+            typeof result.value !==
+            "undefined"
+        ) {
+
+            value =
+                result.value;
+
+        }
+
+        else if (
+            result &&
+            result.data &&
+            typeof result.data.value !==
+            "undefined"
+        ) {
+
+            value =
+                result.data.value;
+
+        }
+
+
+        /* =================================================
+           DISPLAY VALUE
+        ================================================= */
+
+        if (
+            value !== null &&
+            Number.isFinite(
+                Number(value)
+            )
+        ) {
+
+            viewCount.textContent =
+                Number(value)
+                    .toLocaleString();
+
+        }
+
+        else {
+
+            console.error(
+                "CounterAPI invalid response:",
+                result
+            );
+
+            throw new Error(
+                "CounterAPI returned an invalid value."
+            );
+
+        }
+
+
+        /* =================================================
+           CLEAR ERROR
+        ================================================= */
 
         if (errorMessage) {
 
@@ -452,83 +596,10 @@ async function initCounterAPI() {
         }
 
 
-        /*
-           =================================================
-           CREATE COUNTERAPI V2 CLIENT
-           =================================================
-        */
-
-        const counter =
-            new Counter({
-
-                workspace:
-                    WORKSPACE,
-
-                accessToken:
-                    ACCESS_TOKEN,
-
-                timeout:
-                    10000,
-
-                debug:
-                    false
-
-            });
-
-
-        /*
-           =================================================
-           INCREMENT WEBSITE VIEW
-           =================================================
-        */
-
-        const result =
-            await counter.up(
-                COUNTER_NAME
-            );
-
-
-        console.log(
-            "CounterAPI result:",
-            result
-        );
-
-
-        /*
-           =================================================
-           DISPLAY TOTAL VIEWS
-           =================================================
-        */
-
-        if (
-            result &&
-            typeof result.value !==
-            "undefined"
-        ) {
-
-            viewCount.textContent =
-                Number(
-                    result.value
-                ).toLocaleString();
-
-        } else {
-
-            throw new Error(
-                "CounterAPI returned an invalid response."
-            );
-
-        }
-
     } catch (error) {
 
-        /*
-           =================================================
-           ERROR HANDLING
-        =================================================
-        */
-
         console.error(
-            "CounterAPI error:",
+            "CounterAPI V2 Error:",
             error
         );
 
@@ -539,17 +610,12 @@ async function initCounterAPI() {
 
         if (errorMessage) {
 
-            /*
-               Different messages for
-               common CounterAPI errors
-            */
-
             if (
                 error.status === 401
             ) {
 
                 errorMessage.textContent =
-                    "Invalid CounterAPI token.";
+                    "Invalid CounterAPI access token.";
 
             }
 
@@ -567,7 +633,7 @@ async function initCounterAPI() {
             ) {
 
                 errorMessage.textContent =
-                    "Counter or workspace not found.";
+                    "CounterAPI endpoint not found.";
 
             }
 
@@ -595,62 +661,133 @@ async function initCounterAPI() {
 
 
 /* =========================================================
-   OPTIONAL:
-   GET CURRENT COUNTER VALUE
+   GET CURRENT VIEW COUNT
+   DOES NOT INCREMENT
 ========================================================= */
 
 async function getWebsiteViews() {
 
-    const WORKSPACE =
-        "nasuhaimtiyaz26-osss's-Workspace";
+    const TEAM_SLUG =
+        "nasuhaimtiyaz26-osss-team-5294";
 
-
-    const COUNTER_NAME =
-        "safe-energy-views";
-
+    const API_SLUG =
+        "first-counter-5294";
 
     const ACCESS_TOKEN =
         "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
 
 
-    if (
-        typeof window.Counter ===
-        "undefined"
-    ) {
+    /* =====================================================
+       COUNTERAPI V2 URL
+    ===================================================== */
+
+    const COUNTER_API_URL =
+        "https://api.counterapi.dev/v2/" +
+        TEAM_SLUG +
+        "/" +
+        API_SLUG;
+
+
+    console.log(
+        "CounterAPI GET URL:",
+        COUNTER_API_URL
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                COUNTER_API_URL,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            "Bearer " +
+                            ACCESS_TOKEN,
+
+                        "Accept":
+                            "application/json"
+                    },
+
+                    cache:
+                        "no-store"
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "CounterAPI GET Response:",
+            result
+        );
+
+
+        if (!response.ok) {
+
+            const error =
+                new Error(
+                    "CounterAPI HTTP " +
+                    response.status
+                );
+
+            error.status =
+                response.status;
+
+            throw error;
+
+        }
+
+
+        if (
+            result &&
+            typeof result.value !==
+            "undefined"
+        ) {
+
+            return result.value;
+
+        }
+
+
+        if (
+            result &&
+            result.data &&
+            typeof result.data.value !==
+            "undefined"
+        ) {
+
+            return result.data.value;
+
+        }
+
 
         throw new Error(
-            "CounterAPI library is not loaded."
+            "Invalid CounterAPI response."
         );
+
+
+    } catch (error) {
+
+        console.error(
+            "CounterAPI GET Error:",
+            error
+        );
+
+        throw error;
 
     }
-
-
-    const counter =
-        new Counter({
-
-            workspace:
-                WORKSPACE,
-
-            accessToken:
-                ACCESS_TOKEN
-
-        });
-
-
-    const result =
-        await counter.get(
-            COUNTER_NAME
-        );
-
-
-    return result.value;
 
 }
 
 
 /* =========================================================
-   OPTIONAL:
-   REFRESH DISPLAY WITHOUT INCREMENTING
+   REFRESH VIEW COUNT
+   WITHOUT INCREMENTING
 ========================================================= */
 
 async function refreshWebsiteViews() {
@@ -660,7 +797,6 @@ async function refreshWebsiteViews() {
             "viewCount"
         );
 
-
     const errorMessage =
         document.getElementById(
             "viewCounterError"
@@ -668,7 +804,9 @@ async function refreshWebsiteViews() {
 
 
     if (!viewCount) {
+
         return;
+
     }
 
 
@@ -689,6 +827,7 @@ async function refreshWebsiteViews() {
                 "";
 
         }
+
 
     } catch (error) {
 
@@ -712,32 +851,6 @@ async function refreshWebsiteViews() {
     }
 
 }
-
-
-/* =========================================================
-   OPTIONAL:
-   PAGE VISIBILITY
-========================================================= */
-
-document.addEventListener(
-    "visibilitychange",
-    function () {
-
-        if (
-            document.visibilityState ===
-            "visible"
-        ) {
-
-            /*
-               Do not increment again here.
-               Only the initial page load counts
-               as a website view.
-            */
-
-        }
-
-    }
-);
 
 
 /* =========================================================
