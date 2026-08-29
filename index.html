@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,38 +55,62 @@
         ================================================= */
 
         .home-navigation {
+
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 24px;
+
         }
 
 
         .home-nav-card {
+
             position: relative;
+
             overflow: hidden;
+
             min-height: 240px;
+
             border-radius: 24px;
+
             display: flex;
+
             align-items: center;
+
             gap: 22px;
+
             padding: 32px;
+
             color: white;
+
             text-decoration: none;
+
             background-size: cover;
+
             background-position: center;
+
             background-repeat: no-repeat;
+
             isolation: isolate;
 
             transition:
                 transform 0.35s ease,
                 box-shadow 0.35s ease;
+
         }
 
 
         .home-nav-card::before {
+
             content: "";
+
             position: absolute;
+
             inset: 0;
+
             z-index: -2;
 
             background:
@@ -97,41 +120,56 @@
                     rgba(5, 30, 20, 0.72),
                     rgba(0, 0, 0, 0.48)
                 );
+
         }
 
 
         .home-nav-card::after {
+
             content: "";
+
             position: absolute;
+
             width: 180px;
+
             height: 180px;
+
             right: -70px;
+
             bottom: -70px;
+
             border-radius: 50%;
 
             background:
                 rgba(92, 220, 140, 0.16);
 
             filter: blur(10px);
+
             z-index: -1;
 
             transition:
                 transform 0.5s ease,
                 opacity 0.5s ease;
+
         }
 
 
         .home-nav-card:hover {
+
             transform: translateY(-8px);
 
             box-shadow:
                 0 25px 55px rgba(0, 0, 0, 0.22);
+
         }
 
 
         .home-nav-card:hover::after {
+
             transform: scale(1.5);
+
             opacity: 0.8;
+
         }
 
 
@@ -140,38 +178,50 @@
         ================================================= */
 
         .home-nav-card:nth-child(1) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
         .home-nav-card:nth-child(2) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
         .home-nav-card:nth-child(3) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
         .home-nav-card:nth-child(4) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
         .home-nav-card:nth-child(5) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
         .home-nav-card:nth-child(6) {
+
             background-image:
                 url("https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1200&q=85");
+
         }
 
 
@@ -180,15 +230,19 @@
         ================================================= */
 
         .home-nav-card .home-nav-icon {
+
             flex-shrink: 0;
 
             width: 70px;
+
             height: 70px;
 
             border-radius: 20px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             background:
@@ -198,50 +252,67 @@
                 1px solid rgba(255, 255, 255, 0.22);
 
             backdrop-filter: blur(10px);
+
             -webkit-backdrop-filter: blur(10px);
 
             font-size: 25px;
+
             color: white;
+
         }
 
 
         .home-nav-card > div:nth-child(2) {
+
             flex: 1;
+
             min-width: 0;
+
         }
 
 
         .home-nav-card span {
+
             display: block;
+
             margin-bottom: 7px;
 
             font-size: 11px;
+
             font-weight: 800;
+
             letter-spacing: 1.4px;
 
             color:
                 rgba(255, 255, 255, 0.72);
+
         }
 
 
         .home-nav-card h3 {
+
             margin: 0 0 9px;
 
             font-size: 24px;
+
             font-weight: 800;
 
             color: white;
+
         }
 
 
         .home-nav-card p {
+
             margin: 0;
 
             font-size: 13px;
+
             line-height: 1.7;
 
             color:
                 rgba(255, 255, 255, 0.82);
+
         }
 
 
@@ -250,15 +321,19 @@
         ================================================= */
 
         .home-nav-card .home-nav-arrow {
+
             flex-shrink: 0;
 
             width: 44px;
+
             height: 44px;
 
             border-radius: 50%;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             background:
@@ -270,36 +345,44 @@
             transition:
                 transform 0.3s ease,
                 background 0.3s ease;
+
         }
 
 
         .home-nav-card:hover .home-nav-arrow {
+
             transform: translateX(5px);
 
             background:
                 rgba(255, 255, 255, 0.22);
+
         }
 
 
         /* =================================================
-           HOME VIDEO
+           HOME VIDEO SECTION
         ================================================= */
 
         .video-section {
+
             position: relative;
 
             padding: 90px 0;
 
-            background: #f6faf7;
+            background:
+                #f6faf7;
 
             overflow: hidden;
+
         }
 
 
         .video-card {
+
             position: relative;
 
             width: 100%;
+
             max-width: 950px;
 
             margin: 40px auto 0;
@@ -308,18 +391,27 @@
 
             border-radius: 24px;
 
-            background: #ffffff;
+            background:
+                #ffffff;
 
             box-shadow:
                 0 20px 55px rgba(20, 45, 31, 0.15);
 
             opacity: 1;
+
             transform: none;
+
             visibility: visible;
+
         }
 
 
+        /* =================================================
+           VIDEO CONTAINER
+        ================================================= */
+
         .video-container {
+
             position: relative;
 
             width: 100%;
@@ -330,17 +422,22 @@
 
             overflow: hidden;
 
-            background: #071c12;
+            background:
+                #071c12;
+
         }
 
 
         .video-container iframe {
+
             position: absolute;
 
             top: 0;
+
             left: 0;
 
             width: 100%;
+
             height: 100%;
 
             min-height: 300px;
@@ -350,46 +447,66 @@
             border: 0;
 
             opacity: 1;
+
             visibility: visible;
 
             z-index: 5;
+
         }
 
 
+        /* =================================================
+           VIDEO CONTENT
+        ================================================= */
+
         .video-content {
+
             padding: 28px 32px;
+
         }
 
 
         .video-label {
+
             display: block;
 
             margin-bottom: 8px;
 
             font-size: 11px;
+
             font-weight: 800;
+
             letter-spacing: 1.8px;
 
-            color: #238b57;
+            color:
+                #238b57;
+
         }
 
 
         .video-content h3 {
+
             margin: 0 0 8px;
 
             font-size: 24px;
+
             font-weight: 800;
 
-            color: #14231c;
+            color:
+                #14231c;
+
         }
 
 
         .video-content p {
+
             margin: 0;
 
-            color: #64736b;
+            color:
+                #64736b;
 
             line-height: 1.7;
+
         }
 
 
@@ -398,14 +515,18 @@
         ================================================= */
 
         .view-counter-section {
+
             padding: 35px 20px 70px;
 
             background: #f6faf7;
+
         }
 
 
         .site-view-counter {
+
             width: fit-content;
+
             min-width: 230px;
 
             margin: 0 auto;
@@ -413,7 +534,9 @@
             padding: 18px 28px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             gap: 15px;
@@ -422,22 +545,26 @@
 
             background: #ffffff;
 
-            border:
-                1px solid rgba(35, 139, 87, 0.12);
+            border: 1px solid rgba(35, 139, 87, 0.12);
 
             box-shadow:
                 0 12px 35px rgba(20, 45, 31, 0.10);
+
         }
 
 
         .view-counter-icon {
+
             width: 46px;
+
             height: 46px;
 
             flex-shrink: 0;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             border-radius: 14px;
@@ -447,39 +574,55 @@
             color: #238b57;
 
             font-size: 18px;
+
         }
 
 
         .view-counter-info {
+
             display: flex;
+
             flex-direction: column;
+
             gap: 2px;
+
         }
 
 
         .view-counter-label {
+
             font-size: 10px;
+
             font-weight: 800;
+
             letter-spacing: 1.5px;
 
             color: #718078;
+
         }
 
 
         #viewCount {
+
             font-size: 24px;
+
             font-weight: 900;
 
             line-height: 1.2;
 
             color: #14231c;
+
         }
 
 
         .view-counter-error {
+
             font-size: 10px;
+
             color: #9a5a5a;
+
             margin-top: 2px;
+
         }
 
 
@@ -490,7 +633,10 @@
         @media (max-width: 850px) {
 
             .home-navigation {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
             }
 
         }
@@ -499,77 +645,110 @@
         @media (max-width: 600px) {
 
             .home-nav-card {
+
                 min-height: 210px;
+
                 padding: 24px;
+
                 gap: 16px;
+
             }
 
 
             .home-nav-card .home-nav-icon {
+
                 width: 56px;
+
                 height: 56px;
 
                 border-radius: 16px;
 
                 font-size: 20px;
+
             }
 
 
             .home-nav-card h3 {
+
                 font-size: 20px;
+
             }
 
 
             .home-nav-card p {
+
                 font-size: 12px;
+
             }
 
 
             .home-nav-card .home-nav-arrow {
+
                 width: 38px;
+
                 height: 38px;
+
             }
 
 
             .video-section {
+
                 padding: 65px 0;
+
             }
 
 
             .video-card {
+
                 margin-top: 30px;
+
                 border-radius: 18px;
+
             }
 
 
             .video-container {
+
                 min-height: 200px;
+
             }
 
 
             .video-container iframe {
+
                 min-height: 200px;
+
             }
 
 
             .video-content {
+
                 padding: 22px;
+
             }
 
 
             .video-content h3 {
+
                 font-size: 20px;
+
             }
 
 
             .view-counter-section {
-                padding: 25px 20px 55px;
+
+                padding:
+                    25px 20px 55px;
+
             }
 
 
             .site-view-counter {
+
                 width: 100%;
+
                 max-width: 280px;
+
             }
 
         }
@@ -590,10 +769,13 @@
 
     <div class="nav-container">
 
+
         <a href="index.html" class="logo">
 
             <div class="logo-icon">
+
                 <i class="fa-solid fa-leaf"></i>
+
             </div>
 
             <span>
@@ -605,37 +787,64 @@
 
         <div class="nav-menu" id="navMenu">
 
-            <a href="index.html" class="active">
+
+            <a
+                href="index.html"
+                class="active">
+
                 HOME
+
             </a>
+
 
             <a href="introduction.html">
+
                 INTRODUCTION
+
             </a>
+
 
             <a href="trend.html">
+
                 TREND
+
             </a>
+
 
             <a href="renewable-energy-is-important-because.html">
+
                 IMPORTANCE
+
             </a>
+
 
             <a href="effects.html">
+
                 EFFECTS
+
             </a>
+
 
             <a href="ways-to-safe-energy.html">
+
                 WAYS
+
             </a>
+
 
             <a href="our-team.html">
+
                 OUR TEAM
+
             </a>
 
+
             <a href="sources.html">
+
                 SOURCES
+
             </a>
+
 
         </div>
 
@@ -650,6 +859,7 @@
 
         </button>
 
+
     </div>
 
 </nav>
@@ -662,6 +872,7 @@
 <section class="page-hero">
 
     <div class="section-container">
+
 
         <span class="section-label">
 
@@ -694,10 +905,15 @@
 
         <div class="hero-energy-cards">
 
+
+            <!-- ENERGY CARD 01 -->
+
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-solar-panel"></i>
+
                 </div>
 
                 <div>
@@ -715,10 +931,14 @@
             </div>
 
 
+            <!-- ENERGY CARD 02 -->
+
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-bolt"></i>
+
                 </div>
 
                 <div>
@@ -736,10 +956,14 @@
             </div>
 
 
+            <!-- ENERGY CARD 03 -->
+
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
+
                     <i class="fa-solid fa-earth-asia"></i>
+
                 </div>
 
                 <div>
@@ -756,6 +980,7 @@
 
             </div>
 
+
         </div>
 
     </div>
@@ -771,11 +996,15 @@
 
     <div class="section-container">
 
+
         <div class="section-heading center">
 
             <span class="section-label">
+
                 SAFE ENERGY
+
             </span>
+
 
             <h2>
 
@@ -786,6 +1015,7 @@
                 </span>
 
             </h2>
+
 
             <p>
 
@@ -802,11 +1032,18 @@
         <div class="home-navigation">
 
 
-            <a href="trend.html" class="home-nav-card reveal">
+            <!-- CARD 01 -->
+
+            <a
+                href="trend.html"
+                class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-chart-line"></i>
+
                 </div>
+
 
                 <div>
 
@@ -814,31 +1051,43 @@
                         01 • EXPLORE
                     </span>
 
+
                     <h3>
                         Energy Data
                     </h3>
 
+
                     <p>
+
                         Explore global energy trends,
                         consumption and renewable energy data.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
 
+
+            <!-- CARD 02 -->
 
             <a
                 href="renewable-energy-is-important-because.html"
                 class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-leaf"></i>
+
                 </div>
+
 
                 <div>
 
@@ -846,29 +1095,43 @@
                         02 • DISCOVER
                     </span>
 
+
                     <h3>
                         Renewable Energy Is Important Because
                     </h3>
 
+
                     <p>
+
                         Understand why renewable energy
                         is important for our future.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
 
 
-            <a href="effects.html" class="home-nav-card reveal">
+            <!-- CARD 03 -->
+
+            <a
+                href="effects.html"
+                class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-earth-americas"></i>
+
                 </div>
+
 
                 <div>
 
@@ -876,29 +1139,43 @@
                         03 • UNDERSTAND
                     </span>
 
+
                     <h3>
                         Effects
                     </h3>
 
+
                     <p>
+
                         Discover the environmental effects
                         of fossil fuel dependence.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
 
 
-            <a href="ways-to-safe-energy.html" class="home-nav-card reveal">
+            <!-- CARD 04 -->
+
+            <a
+                href="ways-to-safe-energy.html"
+                class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-lightbulb"></i>
+
                 </div>
+
 
                 <div>
 
@@ -906,29 +1183,43 @@
                         04 • TAKE ACTION
                     </span>
 
+
                     <h3>
                         Ways To Save Energy
                     </h3>
 
+
                     <p>
+
                         Learn practical ways to reduce
                         energy consumption every day.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
 
 
-            <a href="our-team.html" class="home-nav-card reveal">
+            <!-- CARD 05 -->
+
+            <a
+                href="our-team.html"
+                class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-people-group"></i>
+
                 </div>
+
 
                 <div>
 
@@ -936,29 +1227,43 @@
                         05 • OUR PROJECT
                     </span>
 
+
                     <h3>
                         Our Team
                     </h3>
 
+
                     <p>
+
                         Meet the people behind
                         the Safe Energy project.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
 
 
-            <a href="sources.html" class="home-nav-card reveal">
+            <!-- CARD 06 -->
+
+            <a
+                href="sources.html"
+                class="home-nav-card reveal">
 
                 <div class="home-nav-icon">
+
                     <i class="fa-solid fa-book"></i>
+
                 </div>
+
 
                 <div>
 
@@ -966,19 +1271,26 @@
                         06 • RESEARCH
                     </span>
 
+
                     <h3>
                         Sources
                     </h3>
 
+
                     <p>
+
                         Explore the organisations and
                         research used in this website.
+
                     </p>
 
                 </div>
 
+
                 <div class="home-nav-arrow">
+
                     <i class="fa-solid fa-arrow-right"></i>
+
                 </div>
 
             </a>
@@ -999,11 +1311,15 @@
 
     <div class="section-container">
 
+
         <div class="section-heading">
 
             <span class="section-label">
+
                 WHY IT MATTERS
+
             </span>
+
 
             <h2>
 
@@ -1014,6 +1330,7 @@
                 </span>
 
             </h2>
+
 
             <p>
 
@@ -1029,28 +1346,39 @@
         <div class="benefits-grid">
 
 
+            <!-- BENEFIT 01 -->
+
             <article class="benefit-card reveal">
 
                 <span class="benefit-number">
                     01
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-leaf"></i>
+
                 </div>
+
 
                 <h3>
                     Cleaner Environment
                 </h3>
 
+
                 <p>
+
                     Renewable energy can reduce reliance
                     on fossil fuels and help lower harmful
                     environmental impacts.
+
                 </p>
 
             </article>
 
+
+            <!-- BENEFIT 02 -->
 
             <article class="benefit-card reveal">
 
@@ -1058,21 +1386,30 @@
                     02
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-wind"></i>
+
                 </div>
+
 
                 <h3>
                     Lower Emissions
                 </h3>
 
+
                 <p>
+
                     Cleaner energy technologies can support
                     efforts to reduce greenhouse gas emissions.
+
                 </p>
 
             </article>
 
+
+            <!-- BENEFIT 03 -->
 
             <article class="benefit-card reveal">
 
@@ -1080,21 +1417,30 @@
                     03
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-sun"></i>
+
                 </div>
+
 
                 <h3>
                     Renewable Resources
                 </h3>
 
+
                 <p>
+
                     Solar, wind, hydro and other renewable
                     resources can provide sustainable energy.
+
                 </p>
 
             </article>
 
+
+            <!-- BENEFIT 04 -->
 
             <article class="benefit-card reveal">
 
@@ -1102,17 +1448,24 @@
                     04
                 </span>
 
+
                 <div class="benefit-icon">
+
                     <i class="fa-solid fa-earth-americas"></i>
+
                 </div>
+
 
                 <h3>
                     Protect The Future
                 </h3>
 
+
                 <p>
+
                     Responsible energy choices today can
                     contribute to a more sustainable future.
+
                 </p>
 
             </article>
@@ -1123,9 +1476,13 @@
 
         <div class="why-message reveal">
 
+
             <div class="why-message-icon">
+
                 <i class="fa-solid fa-lightbulb"></i>
+
             </div>
+
 
             <div>
 
@@ -1133,13 +1490,17 @@
                     Every Energy Choice Matters
                 </h3>
 
+
                 <p>
+
                     From the electricity we use to the
                     technologies we support, our decisions
                     can contribute to a cleaner energy future.
+
                 </p>
 
             </div>
+
 
         </div>
 
@@ -1157,11 +1518,15 @@
 
     <div class="section-container">
 
+
         <div class="section-heading center">
 
             <span class="section-label">
+
                 WATCH & LEARN
+
             </span>
+
 
             <h2>
 
@@ -1172,6 +1537,7 @@
                 </span>
 
             </h2>
+
 
             <p>
 
@@ -1184,6 +1550,7 @@
 
 
         <div class="video-card">
+
 
             <div class="video-container">
 
@@ -1202,20 +1569,29 @@
             <div class="video-content">
 
                 <span class="video-label">
+
                     SAFE ENERGY
+
                 </span>
 
+
                 <h3>
+
                     Understanding Safe Energy
+
                 </h3>
 
+
                 <p>
+
                     Learn more about energy use,
                     renewable energy and why sustainable
                     energy is important for our future.
+
                 </p>
 
             </div>
+
 
         </div>
 
@@ -1232,28 +1608,40 @@
 
     <div class="section-container">
 
+
         <div class="save-message reveal">
 
+
             <div class="save-message-icon">
+
                 <i class="fa-solid fa-seedling"></i>
+
             </div>
+
 
             <div>
 
                 <h3>
+
                     The Future Starts With Us
+
                 </h3>
 
+
                 <p>
+
                     Explore the website to understand
                     energy data, renewable energy,
                     environmental effects and practical
                     actions we can take.
+
                 </p>
 
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -1262,6 +1650,7 @@
 
 <!-- =========================================================
      WEBSITE VIEW COUNTER
+     COUNTERAPI V2
 ========================================================= -->
 
 <section class="view-counter-section">
@@ -1269,19 +1658,25 @@
     <div class="site-view-counter">
 
         <span class="view-counter-icon">
+
             <i class="fa-solid fa-eye"></i>
+
         </span>
 
 
         <div class="view-counter-info">
 
             <span class="view-counter-label">
+
                 WEBSITE VIEWS
+
             </span>
 
 
             <strong id="viewCount">
+
                 Loading...
+
             </strong>
 
 
@@ -1305,10 +1700,13 @@
 
     <div class="footer-container">
 
+
         <div class="footer-logo">
 
             <div class="logo-icon">
+
                 <i class="fa-solid fa-leaf"></i>
+
             </div>
 
             SAFE ENERGY
@@ -1317,8 +1715,10 @@
 
 
         <p>
+
             Understanding energy.
             Protecting the future.
+
         </p>
 
 
@@ -1342,16 +1742,122 @@
 
         </div>
 
+
     </div>
 
 </footer>
 
 
 <!-- =========================================================
-     COUNTERAPI V2 LIBRARY
+     COUNTERAPI V2
 ========================================================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js">
+</script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    /*
+       ================================================
+       COUNTERAPI V2 SETTINGS
+       ================================================
+    */
+
+    const WORKSPACE =
+        "nasuhaimtiyaz26-osss-team-5294";
+
+    const ACCESS_TOKEN =
+        "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP";
+
+    const COUNTER_NAME =
+        "website-views";
+
+
+    const viewCount =
+        document.getElementById("viewCount");
+
+    const errorMessage =
+        document.getElementById("viewCounterError");
+
+
+    try {
+
+        /*
+           Create CounterAPI V2 client
+        */
+
+        const counter =
+            new Counter({
+
+                workspace: WORKSPACE,
+
+                accessToken: ACCESS_TOKEN,
+
+                timeout: 10000
+
+            });
+
+
+        /*
+           Count one website visit
+        */
+
+        const result =
+            await counter.up(COUNTER_NAME);
+
+
+        /*
+           CounterAPI V2 returns:
+           
+           result.data.up_count
+
+           NOT result.value
+        */
+
+        if (
+            result &&
+            result.data &&
+            typeof result.data.up_count !== "undefined"
+        ) {
+
+            viewCount.textContent =
+                Number(result.data.up_count).toLocaleString();
+
+            errorMessage.textContent = "";
+
+        } else {
+
+            throw new Error(
+                "Invalid CounterAPI response."
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "CounterAPI error:",
+            error
+        );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        errorMessage.textContent =
+            "Unable to load view count.";
+
+    }
+
+});
+
+</script>
 
 
 <!-- =========================================================
