@@ -1,3 +1,4 @@
+
 /* =========================================================
    SAFE ENERGY
    MASTER JAVASCRIPT
@@ -9,85 +10,52 @@
    - Reveal Animation
    - Active Navigation
    - OWID Online Energy Data
-   - Renewable Energy
-   - Fossil Fuels
-   - Global Primary Energy
-   - Electricity Mix
-   - Interactive Canvas Charts
-   - Hover Tooltip
-   - Touch Support
+   - Interactive Energy Charts
+   - Chart Hover / Tooltip
    - Responsive Charts
-   - WEBSITE VIEW COUNTER
-========================================================= */
-
-
-/* =========================================================
-   01. PAGE LOAD
+   - GLOBAL VIEW COUNTER
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-
 
     /* =====================================================
        01. MOBILE NAVIGATION
     ===================================================== */
 
-    const menuDots =
-        document.getElementById("menuDots");
-
-    const navMenu =
-        document.getElementById("navMenu");
-
+    const menuDots = document.getElementById("menuDots");
+    const navMenu = document.getElementById("navMenu");
 
     if (menuDots && navMenu) {
 
-        menuDots.addEventListener(
-            "click",
-            function (event) {
+        menuDots.addEventListener("click", function (event) {
 
-                event.stopPropagation();
+            event.stopPropagation();
 
+            const isOpen =
+                navMenu.classList.toggle("open");
 
-                const isOpen =
-                    navMenu.classList.toggle("open");
+            menuDots.setAttribute(
+                "aria-expanded",
+                isOpen ? "true" : "false"
+            );
 
+        });
+
+        navMenu.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                navMenu.classList.remove("open");
 
                 menuDots.setAttribute(
                     "aria-expanded",
-                    isOpen
-                        ? "true"
-                        : "false"
-                );
-
-            }
-        );
-
-
-        navMenu
-            .querySelectorAll("a")
-            .forEach(function (link) {
-
-                link.addEventListener(
-                    "click",
-                    function () {
-
-                        navMenu.classList.remove(
-                            "open"
-                        );
-
-
-                        menuDots.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-
-                    }
+                    "false"
                 );
 
             });
 
+        });
     }
-
 
 
     /* =====================================================
@@ -97,40 +65,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbar =
         document.getElementById("navbar");
 
-
     function updateNavbar() {
 
         if (!navbar) return;
 
-
         if (window.scrollY > 30) {
 
-            navbar.classList.add(
-                "scrolled"
-            );
+            navbar.classList.add("scrolled");
 
         } else {
 
-            navbar.classList.remove(
-                "scrolled"
-            );
+            navbar.classList.remove("scrolled");
 
         }
 
     }
 
-
     updateNavbar();
-
 
     window.addEventListener(
         "scroll",
         updateNavbar,
-        {
-            passive: true
-        }
+        { passive: true }
     );
-
 
 
     /* =====================================================
@@ -152,65 +109,41 @@ document.addEventListener("DOMContentLoaded", function () {
             ".energy-card"
         );
 
+    animatedElements.forEach(function (element) {
 
-    animatedElements.forEach(
-        function (element) {
+        element.classList.remove("reveal");
+        element.classList.add("show");
 
-            element.classList.remove(
-                "reveal"
-            );
-
-            element.classList.add(
-                "show"
-            );
-
-        }
-    );
+    });
 
 
-    if (
-        "IntersectionObserver" in window
-    ) {
+    if ("IntersectionObserver" in window) {
 
-        animatedElements.forEach(
-            function (element) {
+        animatedElements.forEach(function (element) {
 
-                element.classList.remove(
-                    "show"
-                );
+            element.classList.remove("show");
+            element.classList.add("reveal");
 
-                element.classList.add(
-                    "reveal"
-                );
-
-            }
-        );
+        });
 
 
         const observer =
             new IntersectionObserver(
                 function (entries) {
 
-                    entries.forEach(
-                        function (entry) {
+                    entries.forEach(function (entry) {
 
-                            if (
-                                entry.isIntersecting
-                            ) {
+                        if (entry.isIntersecting) {
 
-                                entry.target.classList.add(
-                                    "show"
-                                );
+                            entry.target.classList.add("show");
 
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
+                            observer.unobserve(
+                                entry.target
+                            );
 
                         }
-                    );
+
+                    });
 
                 },
                 {
@@ -219,34 +152,22 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        animatedElements.forEach(
-            function (element) {
+        animatedElements.forEach(function (element) {
 
-                observer.observe(
-                    element
-                );
+            observer.observe(element);
 
-            }
-        );
+        });
 
     } else {
 
-        animatedElements.forEach(
-            function (element) {
+        animatedElements.forEach(function (element) {
 
-                element.classList.remove(
-                    "reveal"
-                );
+            element.classList.remove("reveal");
+            element.classList.add("show");
 
-                element.classList.add(
-                    "show"
-                );
-
-            }
-        );
+        });
 
     }
-
 
 
     /* =====================================================
@@ -258,11 +179,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .split("/")
             .pop();
 
-
     if (!currentPage) {
 
-        currentPage =
-            "index.html";
+        currentPage = "index.html";
 
     }
 
@@ -271,66 +190,26 @@ document.addEventListener("DOMContentLoaded", function () {
         .querySelectorAll(".nav-menu a")
         .forEach(function (link) {
 
-            let linkPage =
+            const linkPage =
                 link.getAttribute("href");
 
-
-            if (!linkPage) return;
-
-
-            /*
-               Remove query parameters
-            */
-
-            linkPage =
-                linkPage
-                    .split("?")[0]
-                    .split("#")[0];
-
-
-            /*
-               Handle root index
-            */
-
             if (
-                linkPage === "" ||
-                linkPage === "/"
+                linkPage === currentPage ||
+                (
+                    currentPage === "" &&
+                    linkPage === "index.html"
+                )
             ) {
 
-                linkPage =
-                    "index.html";
-
-            }
-
-
-            /*
-               Get filename
-            */
-
-            linkPage =
-                linkPage
-                    .split("/")
-                    .pop();
-
-
-            if (
-                linkPage === currentPage
-            ) {
-
-                link.classList.add(
-                    "active"
-                );
+                link.classList.add("active");
 
             } else {
 
-                link.classList.remove(
-                    "active"
-                );
+                link.classList.remove("active");
 
             }
 
         });
-
 
 
     /* =====================================================
@@ -344,18 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (
                 navMenu &&
                 menuDots &&
-                !navMenu.contains(
-                    event.target
-                ) &&
-                !menuDots.contains(
-                    event.target
-                )
+                !navMenu.contains(event.target) &&
+                !menuDots.contains(event.target)
             ) {
 
-                navMenu.classList.remove(
-                    "open"
-                );
-
+                navMenu.classList.remove("open");
 
                 menuDots.setAttribute(
                     "aria-expanded",
@@ -368,7 +240,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
        06. ESCAPE KEY
     ===================================================== */
@@ -377,18 +248,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "keydown",
         function (event) {
 
-            if (
-                event.key === "Escape"
-            ) {
+            if (event.key === "Escape") {
 
                 if (navMenu) {
 
-                    navMenu.classList.remove(
-                        "open"
-                    );
+                    navMenu.classList.remove("open");
 
                 }
-
 
                 if (menuDots) {
 
@@ -405,314 +271,20 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-
     /* =====================================================
-       07. WEBSITE VIEW COUNTER
-    ===================================================== */
-
-    initializeViewCounter();
-
-
-
-    /* =====================================================
-       08. LOAD ONLINE ENERGY DATA
+       07. LOAD ONLINE ENERGY DATA
     ===================================================== */
 
     initializeOnlineEnergyCharts();
 
+
+    /* =====================================================
+       08. INITIALIZE VIEW COUNTER
+    ===================================================== */
+
+    initializeViewCounter();
+
 });
-
-
-
-/* =========================================================
-   VIEW COUNTER
-   ---------------------------------------------------------
-   IMPORTANT:
-
-   CounterAPI requires your own workspace.
-
-   Replace:
-
-   YOUR_WORKSPACE
-
-   with your CounterAPI workspace name.
-
-   Example:
-
-   workspace:
-   "safe-energy"
-
-   The same counter is used on every page.
-========================================================= */
-
-const VIEW_COUNTER_CONFIG = {
-
-    workspace:
-        "safe-energy",
-
-    counterName:
-        "safe-energy-views"
-
-};
-
-
-
-/* =========================================================
-   INITIALIZE VIEW COUNTER
-========================================================= */
-
-async function initializeViewCounter() {
-
-    const counterElement =
-        document.getElementById(
-            "viewCount"
-        );
-
-
-    /*
-       If this page does not contain
-       the counter HTML, stop.
-    */
-
-    if (!counterElement) {
-
-        return;
-
-    }
-
-
-    /*
-       Show saved number immediately
-       while API is loading.
-    */
-
-    const savedCount =
-        localStorage.getItem(
-            "safeEnergyViewCount"
-        );
-
-
-    if (savedCount) {
-
-        counterElement.textContent =
-            formatViewCount(
-                Number(savedCount)
-            );
-
-    } else {
-
-        counterElement.textContent =
-            "0";
-
-    }
-
-
-    /*
-       Prevent accidental invalid
-       workspace request.
-    */
-
-    if (
-        !VIEW_COUNTER_CONFIG.workspace ||
-        VIEW_COUNTER_CONFIG.workspace ===
-            "safe-energy"
-    ) {
-
-        console.warn(
-            "View counter: Please add your CounterAPI workspace."
-        );
-
-
-        return;
-
-    }
-
-
-    try {
-
-        /*
-           CounterAPI V2
-        */
-
-        const url =
-            "https://api.counterapi.dev/v2/" +
-            encodeURIComponent(
-                VIEW_COUNTER_CONFIG.workspace
-            ) +
-            "/" +
-            encodeURIComponent(
-                VIEW_COUNTER_CONFIG.counterName
-            ) +
-            "/up";
-
-
-        const response =
-            await fetch(
-                url,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Counter API HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "View counter response:",
-            data
-        );
-
-
-        /*
-           CounterAPI V2 normally returns
-           the current counter value.
-
-           We support several possible
-           response structures so the
-           counter is more tolerant.
-        */
-
-        let count = null;
-
-
-        if (
-            data &&
-            typeof data.value === "number"
-        ) {
-
-            count =
-                data.value;
-
-        }
-
-
-        if (
-            count === null &&
-            data &&
-            data.data &&
-            typeof data.data.value === "number"
-        ) {
-
-            count =
-                data.data.value;
-
-        }
-
-
-        if (
-            count === null &&
-            data &&
-            data.counter &&
-            typeof data.counter.value === "number"
-        ) {
-
-            count =
-                data.counter.value;
-
-        }
-
-
-        if (
-            count === null &&
-            data &&
-            typeof data.count === "number"
-        ) {
-
-            count =
-                data.count;
-
-        }
-
-
-        if (
-            count !== null &&
-            Number.isFinite(count)
-        ) {
-
-            counterElement.textContent =
-                formatViewCount(
-                    count
-                );
-
-
-            /*
-               Save locally as backup.
-            */
-
-            localStorage.setItem(
-                "safeEnergyViewCount",
-                String(count)
-            );
-
-        } else {
-
-            console.warn(
-                "View counter: API returned no readable count.",
-                data
-            );
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "View counter error:",
-            error
-        );
-
-
-        /*
-           Keep previous saved value
-           if the API temporarily fails.
-        */
-
-        if (savedCount) {
-
-            counterElement.textContent =
-                formatViewCount(
-                    Number(savedCount)
-                );
-
-        }
-
-    }
-
-}
-
-
-
-/* =========================================================
-   FORMAT VIEW COUNT
-========================================================= */
-
-function formatViewCount(value) {
-
-    if (
-        !Number.isFinite(value)
-    ) {
-
-        return "0";
-
-    }
-
-
-    return Math.floor(value)
-        .toLocaleString("en-US");
-
-}
 
 
 
@@ -726,10 +298,8 @@ const OWID_URLS = {
     energyMix:
         "https://ourworldindata.org/grapher/primary-energy-from-fossil-nuclear-renewables.csv?v=1&csvType=full&useColumnShortNames=false",
 
-
     primaryEnergy:
         "https://ourworldindata.org/grapher/global-primary-energy-by-source.csv?v=1&csvType=full&useColumnShortNames=false",
-
 
     electricity:
         "https://ourworldindata.org/grapher/electricity-fossil-renewables-nuclear-line.csv?v=1&csvType=full&useColumnShortNames=false"
@@ -739,7 +309,324 @@ const OWID_URLS = {
 
 
 /* =========================================================
-   MAIN INITIALIZATION
+   VIEW COUNTER CONFIGURATION
+   =========================================================
+
+   IMPORTANT:
+   Replace the values below with your CounterAPI V2
+   workspace and access token.
+
+========================================================= */
+
+const VIEW_COUNTER_CONFIG = {
+
+    workspace:
+        "safe-energy",
+
+    accessToken:
+        "counterapiv2",
+
+    counterName:
+        "website-views",
+
+    timeout:
+        8000
+
+};
+
+
+
+/* =========================================================
+   GLOBAL VIEW COUNTER
+   ---------------------------------------------------------
+   Works on every page containing:
+
+   <span id="viewCount">0</span>
+
+   Every page load increments the same global counter.
+========================================================= */
+
+async function initializeViewCounter() {
+
+    const counterElements =
+        document.querySelectorAll(
+            "#viewCount"
+        );
+
+    if (
+        !counterElements.length
+    ) {
+
+        return;
+
+    }
+
+
+    /*
+       Show loading state.
+    */
+
+    counterElements.forEach(
+        function (element) {
+
+            element.textContent =
+                "...";
+
+        }
+    );
+
+
+    /*
+       Prevent the website from breaking
+       if the counter configuration
+       has not been completed.
+    */
+
+    if (
+        !VIEW_COUNTER_CONFIG.workspace ||
+        VIEW_COUNTER_CONFIG.workspace ===
+            "safe-energy"
+    ) {
+
+        console.warn(
+            "View counter: workspace has not been configured."
+        );
+
+        counterElements.forEach(
+            function (element) {
+
+                element.textContent =
+                    "0";
+
+            }
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const baseURL =
+            "https://api.counterapi.dev/v2/" +
+            encodeURIComponent(
+                VIEW_COUNTER_CONFIG.workspace
+            ) +
+            "/" +
+            encodeURIComponent(
+                VIEW_COUNTER_CONFIG.counterName
+            ) +
+            "/up";
+
+
+        const controller =
+            new AbortController();
+
+
+        const timeout =
+            setTimeout(
+                function () {
+
+                    controller.abort();
+
+                },
+                VIEW_COUNTER_CONFIG.timeout
+            );
+
+
+        const headers = {
+
+            "Accept":
+                "application/json"
+
+        };
+
+
+        /*
+           Access token is required by
+           authenticated CounterAPI V2
+           requests.
+        */
+
+        if (
+            VIEW_COUNTER_CONFIG.accessToken &&
+            VIEW_COUNTER_CONFIG.accessToken !==
+                "counterapiv2"
+        ) {
+
+            headers[
+                "Authorization"
+            ] =
+                "Bearer " +
+                VIEW_COUNTER_CONFIG.accessToken;
+
+        }
+
+
+        const response =
+            await fetch(
+                baseURL,
+                {
+
+                    method:
+                        "GET",
+
+                    headers:
+
+                        headers,
+
+                    cache:
+                        "no-store",
+
+                    signal:
+                        controller.signal
+
+                }
+            );
+
+
+        clearTimeout(
+            timeout
+        );
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Counter API HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        /*
+           CounterAPI returns the
+           updated value.
+        */
+
+        let count = null;
+
+
+        if (
+            result &&
+            typeof result.value === "number"
+        ) {
+
+            count =
+                result.value;
+
+        }
+
+
+        if (
+            result &&
+            result.data &&
+            typeof result.data.value === "number"
+        ) {
+
+            count =
+                result.data.value;
+
+        }
+
+
+        if (
+            result &&
+            result.data &&
+            typeof result.data.up_count === "number"
+        ) {
+
+            count =
+                result.data.up_count;
+
+        }
+
+
+        if (
+            typeof count !== "number" ||
+            !Number.isFinite(count)
+        ) {
+
+            throw new Error(
+                "Counter API returned an invalid value."
+            );
+
+        }
+
+
+        /*
+           Format number nicely.
+
+           Example:
+           1
+           25
+           1,250
+           25,000
+        */
+
+        const formattedCount =
+            count.toLocaleString(
+                "en-US"
+            );
+
+
+        counterElements.forEach(
+            function (element) {
+
+                element.textContent =
+                    formattedCount;
+
+                element.classList.add(
+                    "counter-loaded"
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.warn(
+            "View counter failed:",
+            error
+        );
+
+
+        /*
+           IMPORTANT:
+           Counter failure must NOT
+           break the rest of the website.
+        */
+
+        counterElements.forEach(
+            function (element) {
+
+                element.textContent =
+                    "0";
+
+                element.classList.add(
+                    "counter-error"
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   MAIN ENERGY CHART INITIALIZATION
 ========================================================= */
 
 async function initializeOnlineEnergyCharts() {
@@ -808,7 +695,6 @@ async function initializeOnlineEnergyCharts() {
             ]);
 
 
-
         /* =================================================
            GRAPH 1
            ENERGY TRANSITION
@@ -816,8 +702,7 @@ async function initializeOnlineEnergyCharts() {
 
         if (
             renewableFossilCanvas &&
-            results[0].status ===
-                "fulfilled"
+            results[0].status === "fulfilled"
         ) {
 
             const rows =
@@ -903,9 +788,7 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-        } else if (
-            renewableFossilCanvas
-        ) {
+        } else if (renewableFossilCanvas) {
 
             drawChartError(
                 renewableFossilCanvas,
@@ -915,7 +798,6 @@ async function initializeOnlineEnergyCharts() {
         }
 
 
-
         /* =================================================
            GRAPH 2
            GLOBAL PRIMARY ENERGY
@@ -923,8 +805,7 @@ async function initializeOnlineEnergyCharts() {
 
         if (
             energyConsumptionCanvas &&
-            results[1].status ===
-                "fulfilled"
+            results[1].status === "fulfilled"
         ) {
 
             const rows =
@@ -991,9 +872,7 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-        } else if (
-            energyConsumptionCanvas
-        ) {
+        } else if (energyConsumptionCanvas) {
 
             drawChartError(
                 energyConsumptionCanvas,
@@ -1003,7 +882,6 @@ async function initializeOnlineEnergyCharts() {
         }
 
 
-
         /* =================================================
            GRAPH 3
            ELECTRICITY MIX
@@ -1011,8 +889,7 @@ async function initializeOnlineEnergyCharts() {
 
         if (
             electricityCanvas &&
-            results[2].status ===
-                "fulfilled"
+            results[2].status === "fulfilled"
         ) {
 
             const rows =
@@ -1113,9 +990,7 @@ async function initializeOnlineEnergyCharts() {
 
             }
 
-        } else if (
-            electricityCanvas
-        ) {
+        } else if (electricityCanvas) {
 
             drawChartError(
                 electricityCanvas,
@@ -1137,20 +1012,18 @@ async function initializeOnlineEnergyCharts() {
             renewableFossilCanvas,
             energyConsumptionCanvas,
             electricityCanvas
-        ].forEach(
-            function (canvas) {
+        ].forEach(function (canvas) {
 
-                if (canvas) {
+            if (canvas) {
 
-                    drawChartError(
-                        canvas,
-                        "Unable to connect to Our World in Data."
-                    );
-
-                }
+                drawChartError(
+                    canvas,
+                    "Unable to connect to Our World in Data."
+                );
 
             }
-        );
+
+        });
 
     }
 
@@ -1195,7 +1068,7 @@ async function fetchCSV(url) {
 
 
 /* =========================================================
-   SIMPLE CSV PARSER
+   CSV PARSER
 ========================================================= */
 
 function parseCSV(text) {
@@ -1206,8 +1079,7 @@ function parseCSV(text) {
 
     let value = "";
 
-    let insideQuotes =
-        false;
+    let insideQuotes = false;
 
 
     for (
@@ -1239,9 +1111,7 @@ function parseCSV(text) {
         }
 
 
-        if (
-            char === '"'
-        ) {
+        if (char === '"') {
 
             insideQuotes =
                 !insideQuotes;
@@ -1321,9 +1191,7 @@ function parseCSV(text) {
     }
 
 
-    if (
-        !rows.length
-    ) {
+    if (!rows.length) {
 
         return [];
 
@@ -1342,31 +1210,29 @@ function parseCSV(text) {
 
     return rows
         .slice(1)
-        .map(
-            function (values) {
+        .map(function (values) {
 
-                const object = {};
-
-
-                headers.forEach(
-                    function (
-                        header,
-                        index
-                    ) {
-
-                        object[header] =
-                            values[index] !== undefined
-                                ? values[index].trim()
-                                : "";
-
-                    }
-                );
+            const object = {};
 
 
-                return object;
+            headers.forEach(
+                function (
+                    header,
+                    index
+                ) {
 
-            }
-        );
+                    object[header] =
+                        values[index] !== undefined
+                            ? values[index].trim()
+                            : "";
+
+                }
+            );
+
+
+            return object;
+
+        });
 
 }
 
@@ -1487,9 +1353,7 @@ function findColumn(
    PARSE ENERGY TRANSITION
 ========================================================= */
 
-function parseEnergyTransition(
-    rows
-) {
+function parseEnergyTransition(rows) {
 
     if (
         !rows ||
@@ -1520,21 +1384,14 @@ function parseEnergyTransition(
             function (column) {
 
                 const name =
-                    column
-                        .toLowerCase();
+                    column.toLowerCase();
 
 
                 return (
-                    name.includes(
-                        "renewable"
-                    ) &&
+                    name.includes("renewable") &&
                     (
-                        name.includes(
-                            "share"
-                        ) ||
-                        name.includes(
-                            "%"
-                        )
+                        name.includes("share") ||
+                        name.includes("%")
                     )
                 );
 
@@ -1547,21 +1404,14 @@ function parseEnergyTransition(
             function (column) {
 
                 const name =
-                    column
-                        .toLowerCase();
+                    column.toLowerCase();
 
 
                 return (
-                    name.includes(
-                        "fossil"
-                    ) &&
+                    name.includes("fossil") &&
                     (
-                        name.includes(
-                            "share"
-                        ) ||
-                        name.includes(
-                            "%"
-                        )
+                        name.includes("share") ||
+                        name.includes("%")
                     )
                 );
 
@@ -1599,18 +1449,6 @@ function parseEnergyTransition(
             );
 
     }
-
-
-    console.log(
-        "Renewable column:",
-        renewableColumn
-    );
-
-
-    console.log(
-        "Fossil column:",
-        fossilColumn
-    );
 
 
     const yearlyData = {};
@@ -1737,11 +1575,10 @@ function parseEnergyTransition(
    PARSE PRIMARY ENERGY
 ========================================================= */
 
-function parsePrimaryEnergy(
-    rows
-) {
+function parsePrimaryEnergy(rows) {
 
     if (
+        !rows ||
         !rows.length
     ) {
 
@@ -1820,8 +1657,7 @@ function parsePrimaryEnergy(
 
             let total = 0;
 
-            let hasValue =
-                false;
+            let hasValue = false;
 
 
             sourceColumns.forEach(
@@ -1839,8 +1675,7 @@ function parsePrimaryEnergy(
 
                         total += value;
 
-                        hasValue =
-                            true;
+                        hasValue = true;
 
                     }
 
@@ -1899,11 +1734,10 @@ function parsePrimaryEnergy(
    PARSE ELECTRICITY
 ========================================================= */
 
-function parseElectricity(
-    rows
-) {
+function parseElectricity(rows) {
 
     if (
+        !rows ||
         !rows.length
     ) {
 
@@ -2107,9 +1941,7 @@ function parseElectricity(
    LOADING STATE
 ========================================================= */
 
-function showChartLoading(
-    canvas
-) {
+function showChartLoading(canvas) {
 
     if (!canvas) return;
 
@@ -2197,9 +2029,7 @@ function showChartLoading(
    HIDE LOADING
 ========================================================= */
 
-function hideChartLoading(
-    canvas
-) {
+function hideChartLoading(canvas) {
 
     if (!canvas) return;
 
@@ -2240,9 +2070,7 @@ function drawInteractiveLineChart(
     if (!canvas) return;
 
 
-    hideChartLoading(
-        canvas
-    );
+    hideChartLoading(canvas);
 
 
     const wrapper =
@@ -2271,8 +2099,7 @@ function drawInteractiveLineChart(
 
 
     const dpr =
-        window.devicePixelRatio ||
-        1;
+        window.devicePixelRatio || 1;
 
 
     canvas.width =
@@ -2292,9 +2119,7 @@ function drawInteractiveLineChart(
 
 
     const ctx =
-        canvas.getContext(
-            "2d"
-        );
+        canvas.getContext("2d");
 
 
     ctx.setTransform(
@@ -2389,9 +2214,7 @@ function drawInteractiveLineChart(
                         Number.isFinite(value)
                     ) {
 
-                        allValues.push(
-                            value
-                        );
+                        allValues.push(value);
 
                     }
 
@@ -2458,11 +2281,6 @@ function drawInteractiveLineChart(
         );
 
 
-
-    /* =====================================================
-       Y LABEL
-    ===================================================== */
-
     ctx.fillStyle =
         textColor;
 
@@ -2481,11 +2299,6 @@ function drawInteractiveLineChart(
         22
     );
 
-
-
-    /* =====================================================
-       GRID
-    ===================================================== */
 
     const gridLines = 5;
 
@@ -2564,11 +2377,6 @@ function drawInteractiveLineChart(
     }
 
 
-
-    /* =====================================================
-       X AXIS
-    ===================================================== */
-
     ctx.fillStyle =
         textColor;
 
@@ -2598,8 +2406,7 @@ function drawInteractiveLineChart(
 
             if (
                 index % labelStep !== 0 &&
-                index !==
-                    labels.length - 1
+                index !== labels.length - 1
             ) {
 
                 return;
@@ -2625,11 +2432,6 @@ function drawInteractiveLineChart(
         }
     );
 
-
-
-    /* =====================================================
-       BUILD POINTS
-    ===================================================== */
 
     const allPoints = [];
 
@@ -2657,14 +2459,11 @@ function drawInteractiveLineChart(
                 ) {
 
                     if (
-                        typeof value !==
-                            "number" ||
+                        typeof value !== "number" ||
                         !Number.isFinite(value)
                     ) {
 
-                        points.push(
-                            null
-                        );
+                        points.push(null);
 
                         return;
 
@@ -2711,11 +2510,6 @@ function drawInteractiveLineChart(
                 points
             );
 
-
-
-            /* =================================================
-               FILL
-            ================================================= */
 
             if (
                 dataset.fill
@@ -2798,11 +2592,6 @@ function drawInteractiveLineChart(
             }
 
 
-
-            /* =================================================
-               LINE
-            ================================================= */
-
             const validPoints =
                 points.filter(Boolean);
 
@@ -2880,11 +2669,6 @@ function drawInteractiveLineChart(
     );
 
 
-
-    /* =====================================================
-       LEGEND
-    ===================================================== */
-
     drawLegend(
         ctx,
         datasets,
@@ -2893,11 +2677,6 @@ function drawInteractiveLineChart(
         dark
     );
 
-
-
-    /* =====================================================
-       INTERACTIVE HOVER
-    ===================================================== */
 
     setupChartInteraction(
         canvas,
@@ -2944,9 +2723,7 @@ function setupChartInteraction(
         canvas._energyMouseMoveHandler;
 
 
-    if (
-        oldHandler
-    ) {
+    if (oldHandler) {
 
         canvas.removeEventListener(
             "mousemove",
@@ -2960,9 +2737,7 @@ function setupChartInteraction(
         canvas._energyMouseLeaveHandler;
 
 
-    if (
-        oldLeave
-    ) {
+    if (oldLeave) {
 
         canvas.removeEventListener(
             "mouseleave",
@@ -3000,8 +2775,7 @@ function setupChartInteraction(
 
             if (
                 index < 0 ||
-                index >=
-                    state.labels.length
+                index >= state.labels.length
             ) {
 
                 return;
@@ -3051,18 +2825,11 @@ function setupChartInteraction(
         mouseLeave;
 
 
-
-    /* =====================================================
-       TOUCH
-    ===================================================== */
-
     const oldTouch =
         canvas._energyTouchHandler;
 
 
-    if (
-        oldTouch
-    ) {
+    if (oldTouch) {
 
         canvas.removeEventListener(
             "touchstart",
@@ -3189,9 +2956,7 @@ function drawChartWithTooltip(
 
 
     const ctx =
-        canvas.getContext(
-            "2d"
-        );
+        canvas.getContext("2d");
 
 
     const dpr =
@@ -3230,11 +2995,6 @@ function drawChartWithTooltip(
         );
 
 
-
-    /* =====================================================
-       VERTICAL GUIDE
-    ===================================================== */
-
     ctx.beginPath();
 
 
@@ -3272,10 +3032,16 @@ function drawChartWithTooltip(
     ctx.setLineDash([]);
 
 
+    const colors = [
 
-    /* =====================================================
-       POINTS
-    ===================================================== */
+        "#32c878",
+
+        "#777777",
+
+        "#3f6db5"
+
+    ];
+
 
     state.allPoints.forEach(
         function (
@@ -3292,17 +3058,6 @@ function drawChartWithTooltip(
                 return;
 
             }
-
-
-            const colors = [
-
-                "#32c878",
-
-                "#777777",
-
-                "#3f6db5"
-
-            ];
 
 
             const color =
@@ -3356,11 +3111,6 @@ function drawChartWithTooltip(
     );
 
 
-
-    /* =====================================================
-       TOOLTIP CONTENT
-    ===================================================== */
-
     const tooltipLines = [];
 
 
@@ -3382,8 +3132,7 @@ function drawChartWithTooltip(
 
 
             if (
-                typeof value !==
-                    "number" ||
+                typeof value !== "number" ||
                 !Number.isFinite(value)
             ) {
 
@@ -3409,20 +3158,13 @@ function drawChartWithTooltip(
             tooltipLines.push(
                 dataset.label +
                 ": " +
-                formatChartNumber(
-                    value
-                ) +
+                formatChartNumber(value) +
                 suffix
             );
 
         }
     );
 
-
-
-    /* =====================================================
-       TOOLTIP BOX
-    ===================================================== */
 
     ctx.font =
         "700 12px Inter, Arial, sans-serif";
@@ -3549,11 +3291,6 @@ function drawChartWithTooltip(
     ctx.stroke();
 
 
-
-    /* =====================================================
-       TOOLTIP TEXT
-    ===================================================== */
-
     tooltipLines.forEach(
         function (
             line,
@@ -3609,9 +3346,7 @@ function redrawChartBase(
 ) {
 
     const ctx =
-        canvas.getContext(
-            "2d"
-        );
+        canvas.getContext("2d");
 
 
     const rect =
@@ -3667,11 +3402,6 @@ function redrawChartBase(
 
     const gridLines = 5;
 
-
-
-    /* =====================================================
-       GRID
-    ===================================================== */
 
     for (
         let i = 0;
@@ -3747,11 +3477,6 @@ function redrawChartBase(
     }
 
 
-
-    /* =====================================================
-       Y LABEL
-    ===================================================== */
-
     ctx.fillStyle =
         textColor;
 
@@ -3770,11 +3495,6 @@ function redrawChartBase(
         22
     );
 
-
-
-    /* =====================================================
-       X LABELS
-    ===================================================== */
 
     const labelStep =
         Math.max(
@@ -3806,7 +3526,7 @@ function redrawChartBase(
             if (
                 index % labelStep !== 0 &&
                 index !==
-                    state.labels.length - 1
+                state.labels.length - 1
             ) {
 
                 return;
@@ -3832,11 +3552,6 @@ function redrawChartBase(
         }
     );
 
-
-
-    /* =====================================================
-       LINES
-    ===================================================== */
 
     const colors = [
 
@@ -3943,11 +3658,6 @@ function redrawChartBase(
         }
     );
 
-
-
-    /* =====================================================
-       LEGEND
-    ===================================================== */
 
     drawLegend(
         ctx,
@@ -4546,9 +4256,7 @@ function drawChartError(
         dpr,
         0,
         0,
-        dpr,
-        0,
-        0
+        dpr
     );
 
 
@@ -4602,3 +4310,4 @@ window.addEventListener(
 
     }
 );
+```
