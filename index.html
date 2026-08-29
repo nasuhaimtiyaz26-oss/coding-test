@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -398,6 +397,19 @@
             box-shadow:
                 0 20px 55px rgba(20, 45, 31, 0.15);
 
+            /*
+             * IMPORTANT:
+             * Do NOT use the "reveal" class here.
+             * The main stylesheet may hide .reveal
+             * elements before JavaScript shows them.
+             */
+
+            opacity: 1;
+
+            transform: none;
+
+            visibility: visible;
+
         }
 
 
@@ -413,6 +425,8 @@
 
             aspect-ratio: 16 / 9;
 
+            min-height: 300px;
+
             overflow: hidden;
 
             background:
@@ -420,6 +434,10 @@
 
         }
 
+
+        /* =================================================
+           YOUTUBE IFRAME
+        ================================================= */
 
         .video-container iframe {
 
@@ -433,123 +451,17 @@
 
             height: 100%;
 
+            min-height: 300px;
+
             display: block;
 
             border: 0;
 
-        }
+            opacity: 1;
 
+            visibility: visible;
 
-        /* =================================================
-           VIDEO FALLBACK
-        ================================================= */
-
-        .video-fallback {
-
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-decoration: none;
-
-            overflow: hidden;
-
-            background:
-                #071c12;
-
-        }
-
-
-        .video-fallback img {
-
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-
-            transition:
-                transform 0.5s ease;
-
-        }
-
-
-        .video-fallback::after {
-
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(0, 0, 0, 0.08),
-                    rgba(0, 0, 0, 0.55)
-                );
-
-        }
-
-
-        .video-fallback:hover img {
-
-            transform: scale(1.04);
-
-        }
-
-
-        .video-play {
-
-            position: absolute;
-
-            z-index: 3;
-
-            width: 82px;
-
-            height: 82px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            background:
-                rgba(35, 155, 91, 0.95);
-
-            color: white;
-
-            font-size: 28px;
-
-            padding-left: 5px;
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.28);
-
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease;
-
-        }
-
-
-        .video-fallback:hover .video-play {
-
-            transform: scale(1.1);
-
-            background:
-                #2cad68;
+            z-index: 5;
 
         }
 
@@ -690,6 +602,20 @@
             }
 
 
+            .video-container {
+
+                min-height: 200px;
+
+            }
+
+
+            .video-container iframe {
+
+                min-height: 200px;
+
+            }
+
+
             .video-content {
 
                 padding: 22px;
@@ -700,17 +626,6 @@
             .video-content h3 {
 
                 font-size: 20px;
-
-            }
-
-
-            .video-play {
-
-                width: 65px;
-
-                height: 65px;
-
-                font-size: 22px;
 
             }
 
@@ -870,6 +785,8 @@
         <div class="hero-energy-cards">
 
 
+            <!-- ENERGY CARD 01 -->
+
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
@@ -893,6 +810,8 @@
             </div>
 
 
+            <!-- ENERGY CARD 02 -->
+
             <div class="energy-card reveal">
 
                 <div class="energy-icon">
@@ -915,6 +834,8 @@
 
             </div>
 
+
+            <!-- ENERGY CARD 03 -->
 
             <div class="energy-card reveal">
 
@@ -948,7 +869,7 @@
 
 
 <!-- =========================================================
-     INTRODUCTION
+     INTRODUCTION / NAVIGATION
 ========================================================= -->
 
 <section class="why-section">
@@ -1503,7 +1424,9 @@
     <div class="section-container">
 
 
-        <!-- VIDEO HEADING -->
+        <!-- =================================================
+             VIDEO HEADING
+        ================================================== -->
 
         <div class="section-heading center">
 
@@ -1538,28 +1461,30 @@
 
         <!-- =================================================
              VIDEO CARD
+
+             IMPORTANT:
+             NO "reveal" CLASS HERE
         ================================================== -->
 
-        <div class="video-card reveal">
+        <div class="video-card">
 
 
             <!-- =================================================
-                 VIDEO
+                 VIDEO CONTAINER
             ================================================== -->
 
-            <div class="video-container" id="videoContainer">
+            <div class="video-container">
 
-                <!--
-                    YOUTUBE VIDEO
 
-                    The video is loaded using the
-                    youtube-nocookie.com embed domain
-                    for better privacy compatibility.
-                -->
+                <!-- =================================================
+                     YOUTUBE VIDEO
+
+                     Video ID:
+                     G4H1N_yXBiA
+                ================================================== -->
 
                 <iframe
-                    id="safeEnergyVideo"
-                    src="https://www.youtube-nocookie.com/embed/G4H1N_yXBiA?rel=0"
+                    src="https://www.youtube.com/embed/G4H1N_yXBiA?rel=0"
                     title="Causes and Effects of Climate Change"
                     loading="eager"
                     referrerpolicy="strict-origin-when-cross-origin"
@@ -1568,43 +1493,16 @@
                 </iframe>
 
 
-                <!--
-                    FALLBACK
-
-                    If the iframe cannot load, JavaScript
-                    will replace it with this clickable
-                    YouTube thumbnail.
-                -->
-
-                <a
-                    id="videoFallback"
-                    class="video-fallback"
-                    href="https://www.youtube.com/watch?v=G4H1N_yXBiA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="display:none;">
-
-                    <img
-                        src="https://i.ytimg.com/vi/G4H1N_yXBiA/hqdefault.jpg"
-                        alt="Watch Safe Energy video on YouTube">
-
-                    <div class="video-play">
-
-                        <i class="fa-solid fa-play"></i>
-
-                    </div>
-
-                </a>
-
             </div>
 
 
 
             <!-- =================================================
-                 VIDEO CONTENT
+                 VIDEO INFORMATION
             ================================================== -->
 
             <div class="video-content">
+
 
                 <span class="video-label">
 
@@ -1627,6 +1525,7 @@
                     energy is important for our future.
 
                 </p>
+
 
             </div>
 
@@ -1751,58 +1650,6 @@
 ========================================================= -->
 
 <script src="script.js"></script>
-
-
-<!-- =========================================================
-     VIDEO FALLBACK SCRIPT
-========================================================= -->
-
-<script>
-
-    document.addEventListener("DOMContentLoaded", function () {
-
-        const video = document.getElementById("safeEnergyVideo");
-
-        const fallback = document.getElementById("videoFallback");
-
-        if (!video || !fallback) {
-            return;
-        }
-
-
-        /*
-         * If the YouTube iframe fails to load,
-         * show the clickable thumbnail instead.
-         */
-
-        let videoLoaded = false;
-
-
-        video.addEventListener("load", function () {
-
-            videoLoaded = true;
-
-        });
-
-
-        setTimeout(function () {
-
-            if (!videoLoaded) {
-
-                /*
-                 * Do not completely remove the iframe.
-                 * The fallback is displayed over it.
-                 */
-
-                fallback.style.display = "flex";
-
-            }
-
-        }, 7000);
-
-    });
-
-</script>
 
 
 </body>
