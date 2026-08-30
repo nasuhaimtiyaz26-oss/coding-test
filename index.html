@@ -1749,121 +1749,28 @@
 
 
 <!-- =========================================================
-     COUNTERAPI V2
+     GLOBAL VIEW COUNTER
 ========================================================= -->
 
-<script
-    src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js">
-</script>
+<div class="view-counter" aria-label="Website view counter">
 
+    <span class="view-counter-label">
+        Website Views
+    </span>
 
-<script>
+    <span
+        id="viewCount"
+        aria-live="polite"
+    >
+        Loading...
+    </span>
 
-document.addEventListener("DOMContentLoaded", async function () {
+    <small
+        id="viewCounterError"
+        aria-live="polite"
+    ></small>
 
-    /*
-       ================================================
-       COUNTERAPI V2 SETTINGS
-       ================================================
-    */
-
-    const TEAM_SLUG =
-        "nasuhaimtiyaz26-osss-team";
-    
-    const API_SLUG = 
-        "first-counter-5294";
-    
-    const ACCESS_TOKEN =
-        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
-
-    const COUNTER_NAME =
-        "safe-energy-views";
-
-
-    const viewCount =
-        document.getElementById("viewCount");
-
-    const errorMessage =
-        document.getElementById("viewCounterError");
-
-
-    try {
-
-        /*
-           Create CounterAPI V2 client
-        */
-
-        const counter =
-            new Counter({
-
-                teamSlug: TEAM_SLUG,
-
-                APISlug: API_SLUG,
-
-                accessToken: ACCESS_TOKEN,
-
-                timeout: 10000
-
-            });
-
-
-        /*
-           Count one website visit
-        */
-
-        const result =
-            await counter.up(COUNTER_NAME);
-
-
-        /*
-           CounterAPI V2 returns:
-           
-           result.data.up_count
-
-           NOT result.value
-        */
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.up_count !== "undefined"
-        ) {
-
-            viewCount.textContent =
-                Number(result.data.up_count).toLocaleString();
-
-            errorMessage.textContent = "";
-
-        } else {
-
-            throw new Error(
-                "Invalid CounterAPI response."
-            );
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI error:",
-            error
-        );
-
-
-        viewCount.textContent =
-            "Unavailable";
-
-
-        errorMessage.textContent =
-            "Unable to load view count.";
-
-    }
-
-});
-
-</script>
-
+</div>
 
 <!-- =========================================================
      MAIN JAVASCRIPT
