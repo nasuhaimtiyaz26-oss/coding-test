@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
        08. INITIALIZE VIEW COUNTER
     ===================================================== */
 
-    initializeViewCounter();
+    initCounterApi();
 
 });
 
