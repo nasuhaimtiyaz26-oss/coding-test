@@ -340,7 +340,7 @@ async function initCounterAPI() {
         "first-counter-5294";
 
     const ACCESS_TOKEN =
-        "ut_qKNfBUjGwVn7jrRnQyOpnyNsoVboSrWZVU17RuTZ";
+        "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP";
 
     /* =====================================================
        API URL
@@ -362,7 +362,7 @@ async function initCounterAPI() {
 
     if (
         !ACCESS_TOKEN ||
-        ACCESS_TOKEN === "ut_qKNfBUjGwVn7jrRnQyOpnyNsoVboSrWZVU17RuTZ"
+        ACCESS_TOKEN === "ut_duuv7i5dT1nhk73hWEjvx8UF9PMgjDmmKjiTf0KP"
     ) {
 
         console.error(
