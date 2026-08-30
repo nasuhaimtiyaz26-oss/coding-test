@@ -340,7 +340,7 @@ async function initCounterAPI() {
     ===================================================== */
 
     const WORKSPACE =
-        "nasuhaimtiyaz26-osss-team-5294";
+        "nasuhaimtiyaz26-oss's-Workspace";
 
     const COUNTER_NAME =
         "first-counter-5294";
