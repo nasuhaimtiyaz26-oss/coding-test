@@ -308,64 +308,307 @@ const OWID_URLS = {
 
 
 /* =========================================================
+   COUNTERAPI V2 + CLOUDFLARE WORKER
    SAFE ENERGY VIEW COUNTER
-   CLOUDFLARE WORKER
 ========================================================= */
 
 const COUNTER_WORKER_URL =
     "https://safeenergycounter.nasuhaimtiyaz26.workers.dev/";
 
 
+/* =========================================================
+   INCREMENT + GET CURRENT VIEW COUNT
+========================================================= */
+
 async function initCounterAPI() {
 
-    const viewCount = document.getElementById("viewCount");
+    const viewCount =
+        document.getElementById("viewCount");
 
+    const errorMessage =
+        document.getElementById("viewCounterError");
+
+
+    // Counter element tak wujud pada page
     if (!viewCount) {
-        console.warn("Counter element not found.");
+
+        console.warn(
+            "CounterAPI: #viewCount not found."
+        );
+
         return;
+
     }
 
-    viewCount.textContent = "Loading...";
+
+    // Loading
+    viewCount.textContent =
+        "Loading...";
+
+
+    if (errorMessage) {
+
+        errorMessage.textContent =
+            "";
+
+    }
+
 
     try {
 
-        const response = await fetch(COUNTER_WORKER_URL);
+        console.log(
+            "CounterAPI: Calling Cloudflare Worker..."
+        );
+
+
+        const response =
+            await fetch(
+                COUNTER_WORKER_URL,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        console.log(
+            "CounterAPI Worker HTTP Status:",
+            response.status
+        );
+
 
         if (!response.ok) {
+
             throw new Error(
-                "Worker returned HTTP " + response.status
+                "Worker HTTP " +
+                response.status
             );
+
         }
 
-        const result = await response.json();
 
-        console.log("CounterAPI Worker:", result);
+        const result =
+            await response.json();
 
-        const count =
-            result?.data?.up_count;
+
+        console.log(
+            "CounterAPI Worker Response:",
+            result
+        );
+
+
+        /* =================================================
+           GET UP COUNT
+        ================================================= */
+
+        let value = null;
+
 
         if (
-            count === undefined ||
-            count === null ||
-            !Number.isFinite(Number(count))
+            result &&
+            result.data &&
+            typeof result.data.up_count !==
+            "undefined"
         ) {
-            throw new Error("Counter value not found.");
+
+            value =
+                result.data.up_count;
+
         }
 
-        viewCount.textContent =
-            Number(count).toLocaleString();
+
+        /* =================================================
+           VALIDATE VALUE
+        ================================================= */
+
+        if (
+            value !== null &&
+            Number.isFinite(
+                Number(value)
+            )
+        ) {
+
+            viewCount.textContent =
+                Number(value)
+                    .toLocaleString();
+
+        } else {
+
+            throw new Error(
+                "Invalid CounterAPI response."
+            );
+
+        }
+
+
+        /* =================================================
+           CLEAR ERROR
+        ================================================= */
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "";
+
+        }
+
 
     } catch (error) {
 
         console.error(
-            "CounterAPI Error:",
+            "CounterAPI Worker Error:",
             error
         );
 
+
         viewCount.textContent =
             "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "Unable to load view count.";
+
+        }
+
     }
+
 }
+
+
+/* =========================================================
+   GET CURRENT VIEW COUNT
+   NOTE:
+   Worker currently uses /up, so this function also
+   increments the counter.
+========================================================= */
+
+async function getWebsiteViews() {
+
+    try {
+
+        const response =
+            await fetch(
+                COUNTER_WORKER_URL,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Worker HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            result &&
+            result.data &&
+            typeof result.data.up_count !==
+            "undefined"
+        ) {
+
+            return result.data.up_count;
+
+        }
+
+
+        throw new Error(
+            "Invalid CounterAPI response."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "CounterAPI GET Error:",
+            error
+        );
+
+        throw error;
+
+    }
+
+}
+
+
+/* =========================================================
+   REFRESH VIEW COUNT
+========================================================= */
+
+async function refreshWebsiteViews() {
+
+    const viewCount =
+        document.getElementById(
+            "viewCount"
+        );
+
+    const errorMessage =
+        document.getElementById(
+            "viewCounterError"
+        );
+
+
+    if (!viewCount) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const value =
+            await getWebsiteViews();
+
+
+        viewCount.textContent =
+            Number(value)
+                .toLocaleString();
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "CounterAPI refresh error:",
+            error
+        );
+
+
+        viewCount.textContent =
+            "Unavailable";
+
+
+        if (errorMessage) {
+
+            errorMessage.textContent =
+                "Unable to refresh view count.";
+
+        }
+
+    }
+
+}
+
 
 /* =========================================================
    MAIN ENERGY CHART INITIALIZATION
