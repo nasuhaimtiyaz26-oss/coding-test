@@ -322,76 +322,80 @@ const COUNTER_WORKER_URL =
 
 async function initCounterAPI() {
 
-    console.log("COUNTER TEST START");
-
     const viewCount =
         document.getElementById("viewCount");
 
-    console.log("viewCount element:", viewCount);
+    const errorMessage =
+        document.getElementById("viewCounterError");
 
+
+    // Counter element tak wujud pada page
     if (!viewCount) {
-        console.log("viewCount NOT FOUND");
+
+        console.warn(
+            "CounterAPI: #viewCount not found."
+        );
+
         return;
+
     }
 
-    viewCount.textContent = "Testing...";
+
+    // Loading
+    viewCount.textContent =
+        "Loading...";
+
+
+    if (errorMessage) {
+
+        errorMessage.textContent =
+            "";
+
+    }
+
 
     try {
 
-        const response = await fetch(
-            "https://safeenergycounter.nasuhaimtiyaz26.workers.dev/",
-            {
-                method: "GET",
-                cache: "no-store"
-            }
+        console.log(
+            "CounterAPI: Calling Cloudflare Worker..."
         );
 
-        console.log("Worker status:", response.status);
 
-        const text = await response.text();
-
-        console.log("Worker response:", text);
-
-        const result = JSON.parse(text);
-
-        console.log("Parsed result:", result);
-
-        if (
-            result.data &&
-            result.data.up_count !== undefined
-        ) {
-
-            viewCount.textContent =
-                Number(
-                    result.data.up_count
-                ).toLocaleString();
-
-            console.log(
-                "COUNTER SUCCESS:",
-                result.data.up_count
+        const response =
+            await fetch(
+                COUNTER_WORKER_URL,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
             );
 
-        } else {
 
-            viewCount.textContent =
-                "No Count";
+        console.log(
+            "CounterAPI Worker HTTP Status:",
+            response.status
+        );
 
-            console.log(
-                "up_count not found"
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Worker HTTP " +
+                response.status
             );
+
         }
 
-    } catch (error) {
 
-        console.error(
-            "COUNTER FETCH ERROR:",
-            error
+        const result =
+            await response.json();
+
+
+        console.log(
+            "CounterAPI Worker Response:",
+            result
         );
 
-        viewCount.textContent =
-            "FAILURE";
-    }
-}
 
         /* =================================================
            GET UP COUNT
