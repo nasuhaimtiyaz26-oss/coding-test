@@ -308,7 +308,7 @@ const OWID_URLS = {
 
 
 /* =========================================================
-   COUNTERAPI V2
+   SAFE ENERGY VIEW COUNTER
    CLOUDFLARE WORKER
 ========================================================= */
 
@@ -318,89 +318,42 @@ const COUNTER_WORKER_URL =
 
 async function initCounterAPI() {
 
-    const viewCount =
-        document.getElementById("viewCount");
-
-    const errorMessage =
-        document.getElementById("viewCounterError");
-
+    const viewCount = document.getElementById("viewCount");
 
     if (!viewCount) {
-
-        console.warn(
-            "CounterAPI: #viewCount not found."
-        );
-
+        console.warn("Counter element not found.");
         return;
-
     }
 
-
-    viewCount.textContent =
-        "Loading...";
-
+    viewCount.textContent = "Loading...";
 
     try {
 
-        const response =
-            await fetch(
-                COUNTER_WORKER_URL,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
-
+        const response = await fetch(COUNTER_WORKER_URL);
 
         if (!response.ok) {
-
             throw new Error(
-                "Worker HTTP " +
-                response.status
+                "Worker returned HTTP " + response.status
             );
-
         }
 
+        const result = await response.json();
 
-        const result =
-            await response.json();
+        console.log("CounterAPI Worker:", result);
 
-
-        console.log(
-            "CounterAPI:",
-            result
-        );
-
+        const count =
+            result?.data?.up_count;
 
         if (
-            result &&
-            result.data &&
-            typeof result.data.up_count !==
-            "undefined"
+            count === undefined ||
+            count === null ||
+            !Number.isFinite(Number(count))
         ) {
-
-            viewCount.textContent =
-                Number(
-                    result.data.up_count
-                ).toLocaleString();
-
-
-            if (errorMessage) {
-
-                errorMessage.textContent =
-                    "";
-
-            }
-
-            return;
-
+            throw new Error("Counter value not found.");
         }
 
-
-        throw new Error(
-            "Invalid CounterAPI response."
-        );
-
+        viewCount.textContent =
+            Number(count).toLocaleString();
 
     } catch (error) {
 
@@ -409,22 +362,10 @@ async function initCounterAPI() {
             error
         );
 
-
         viewCount.textContent =
             "Unavailable";
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "Unable to load view count.";
-
-        }
-
     }
-
 }
-
 
 /* =========================================================
    MAIN ENERGY CHART INITIALIZATION
