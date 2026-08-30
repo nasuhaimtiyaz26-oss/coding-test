@@ -287,6 +287,123 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/* =========================================================
+   SAFE ENERGY VIEW COUNTER
+   CLOUDFLARE WORKER TEST
+========================================================= */
+
+async function initCounterAPI() {
+
+    console.log("COUNTER TEST START");
+
+    const viewCount =
+        document.getElementById("viewCount");
+
+
+    console.log(
+        "viewCount element:",
+        viewCount
+    );
+
+
+    if (!viewCount) {
+
+        console.log(
+            "viewCount NOT FOUND"
+        );
+
+        return;
+
+    }
+
+
+    viewCount.textContent =
+        "Testing...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "https://safeenergycounter.nasuhaimtiyaz26.workers.dev/",
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        console.log(
+            "Worker status:",
+            response.status
+        );
+
+
+        const text =
+            await response.text();
+
+
+        console.log(
+            "Worker response:",
+            text
+        );
+
+
+        const result =
+            JSON.parse(text);
+
+
+        console.log(
+            "Parsed result:",
+            result
+        );
+
+
+        if (
+            result.data &&
+            result.data.up_count !== undefined
+        ) {
+
+            viewCount.textContent =
+                Number(
+                    result.data.up_count
+                ).toLocaleString();
+
+
+            console.log(
+                "COUNTER SUCCESS:",
+                result.data.up_count
+            );
+
+
+        } else {
+
+            viewCount.textContent =
+                "No Count";
+
+
+            console.log(
+                "up_count NOT FOUND"
+            );
+
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "COUNTER FETCH ERROR:",
+            error
+        );
+
+
+        viewCount.textContent =
+            "FAILURE";
+
+    }
+
+}
+
 
 /* =========================================================
    OUR WORLD IN DATA
@@ -305,309 +422,6 @@ const OWID_URLS = {
         "https://ourworldindata.org/grapher/electricity-fossil-renewables-nuclear-line.csv?v=1&csvType=full&useColumnShortNames=false"
 
 };
-
-
-/* =========================================================
-   COUNTERAPI V2 + CLOUDFLARE WORKER
-   SAFE ENERGY VIEW COUNTER
-========================================================= */
-
-const COUNTER_WORKER_URL =
-    "https://safeenergycounter.nasuhaimtiyaz26.workers.dev/";
-
-
-/* =========================================================
-   INCREMENT + GET CURRENT VIEW COUNT
-========================================================= */
-
-async function initCounterAPI() {
-
-    const viewCount =
-        document.getElementById("viewCount");
-
-    const errorMessage =
-        document.getElementById("viewCounterError");
-
-
-    // Counter element tak wujud pada page
-    if (!viewCount) {
-
-        console.warn(
-            "CounterAPI: #viewCount not found."
-        );
-
-        return;
-
-    }
-
-
-    // Loading
-    viewCount.textContent =
-        "Loading...";
-
-
-    if (errorMessage) {
-
-        errorMessage.textContent =
-            "";
-
-    }
-
-
-    try {
-
-        console.log(
-            "CounterAPI: Calling Cloudflare Worker..."
-        );
-
-
-        const response =
-            await fetch(
-                COUNTER_WORKER_URL,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
-
-
-        console.log(
-            "CounterAPI Worker HTTP Status:",
-            response.status
-        );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Worker HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        console.log(
-            "CounterAPI Worker Response:",
-            result
-        );
-
-
-        /* =================================================
-           GET UP COUNT
-        ================================================= */
-
-        let value = null;
-
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.up_count !==
-            "undefined"
-        ) {
-
-            value =
-                result.data.up_count;
-
-        }
-
-
-        /* =================================================
-           VALIDATE VALUE
-        ================================================= */
-
-        if (
-            value !== null &&
-            Number.isFinite(
-                Number(value)
-            )
-        ) {
-
-            viewCount.textContent =
-                Number(value)
-                    .toLocaleString();
-
-        } else {
-
-            throw new Error(
-                "Invalid CounterAPI response."
-            );
-
-        }
-
-
-        /* =================================================
-           CLEAR ERROR
-        ================================================= */
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI Worker Error:",
-            error
-        );
-
-
-        viewCount.textContent =
-            "Unavailable";
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "Unable to load view count.";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   GET CURRENT VIEW COUNT
-   NOTE:
-   Worker currently uses /up, so this function also
-   increments the counter.
-========================================================= */
-
-async function getWebsiteViews() {
-
-    try {
-
-        const response =
-            await fetch(
-                COUNTER_WORKER_URL,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Worker HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const result =
-            await response.json();
-
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.up_count !==
-            "undefined"
-        ) {
-
-            return result.data.up_count;
-
-        }
-
-
-        throw new Error(
-            "Invalid CounterAPI response."
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI GET Error:",
-            error
-        );
-
-        throw error;
-
-    }
-
-}
-
-
-/* =========================================================
-   REFRESH VIEW COUNT
-========================================================= */
-
-async function refreshWebsiteViews() {
-
-    const viewCount =
-        document.getElementById(
-            "viewCount"
-        );
-
-    const errorMessage =
-        document.getElementById(
-            "viewCounterError"
-        );
-
-
-    if (!viewCount) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const value =
-            await getWebsiteViews();
-
-
-        viewCount.textContent =
-            Number(value)
-                .toLocaleString();
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI refresh error:",
-            error
-        );
-
-
-        viewCount.textContent =
-            "Unavailable";
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "Unable to refresh view count.";
-
-        }
-
-    }
-
-}
 
 
 /* =========================================================
