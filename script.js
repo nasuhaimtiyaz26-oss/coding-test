@@ -357,7 +357,7 @@ async function initCounterAPI() {
     */
 
     const ACCESS_TOKEN =
-        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
+        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ";
 
 
     /* =====================================================
@@ -413,7 +413,7 @@ async function initCounterAPI() {
     if (
         !ACCESS_TOKEN ||
         ACCESS_TOKEN ===
-        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy"
+        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ"
     ) {
 
         console.error(
@@ -674,7 +674,7 @@ async function getWebsiteViews() {
         "first-counter-5294";
 
     const ACCESS_TOKEN =
-        "ut_4NCsTiN0Bd2NrdZGmbHIFjC1yQg0AJ3TVcwWNVPy";
+        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ";
 
 
     /* =====================================================
