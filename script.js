@@ -360,24 +360,18 @@ async function initCounterAPI() {
        CHECK TOKEN
     ===================================================== */
 
-    if (
-        !ACCESS_TOKEN ||
-        ACCESS_TOKEN === "ut_qKNfBUjGwVn7jrRnQyOpnyNsoVboSrWZVU17RuTZ"
-    ) {
+    if (!ACCESS_TOKEN) {
+    console.error("CounterAPI: Access token is not configured.");
 
-        console.error(
-            "CounterAPI: Access token is not configured."
-        );
+    viewCount.textContent = "Unavailable";
 
-        viewCount.textContent = "Unavailable";
-
-        if (errorMessage) {
-            errorMessage.textContent =
-                "CounterAPI token is not configured.";
-        }
-
-        return;
+    if (errorMessage) {
+        errorMessage.textContent =
+            "CounterAPI token is not configured.";
     }
+
+    return;
+}
 
     /* =====================================================
        LOADING
