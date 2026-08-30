@@ -339,11 +339,8 @@ async function initCounterAPI() {
     const API_SLUG =
         "first-counter-5294";
 
-    /*
-       MASUKKAN ACCESS TOKEN BARU KAU DI SINI
-    */
     const ACCESS_TOKEN =
-        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ";
+        "ut_qKNfBUjGwVn7jrRnQyOpnyNsoVboSrWZVU17RuTZ";
 
     /* =====================================================
        API URL
@@ -365,7 +362,7 @@ async function initCounterAPI() {
 
     if (
         !ACCESS_TOKEN ||
-        ACCESS_TOKEN === "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ"
+        ACCESS_TOKEN === "ut_qKNfBUjGwVn7jrRnQyOpnyNsoVboSrWZVU17RuTZ"
     ) {
 
         console.error(
