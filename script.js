@@ -320,24 +320,17 @@ async function initCounterAPI() {
     const errorMessage =
         document.getElementById("viewCounterError");
 
-
     /* =====================================================
        CHECK COUNTER ELEMENT
     ===================================================== */
 
     if (!viewCount) {
-
-        console.warn(
-            "CounterAPI: #viewCount not found."
-        );
-
+        console.warn("CounterAPI: #viewCount not found.");
         return;
-
     }
 
-
     /* =====================================================
-       COUNTERAPI V2 CONFIGURATION
+       COUNTERAPI CONFIGURATION
     ===================================================== */
 
     const TEAM_SLUG =
@@ -346,22 +339,14 @@ async function initCounterAPI() {
     const API_SLUG =
         "first-counter-5294";
 
-    const COUNTER_NAME =
-        "safe-energy-views";
-
-
     /*
-       IMPORTANT:
-       Use a NEW token here.
-       Do not reuse the token previously exposed.
+       MASUKKAN ACCESS TOKEN BARU KAU DI SINI
     */
-
     const ACCESS_TOKEN =
         "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ";
 
-
     /* =====================================================
-       COUNTERAPI V2 URL
+       API URL
     ===================================================== */
 
     const COUNTER_API_URL =
@@ -370,93 +355,48 @@ async function initCounterAPI() {
         "/" +
         API_SLUG;
 
-
     const INCREMENT_URL =
         COUNTER_API_URL +
         "/up";
 
-
     /* =====================================================
-       DEBUG URL
-    ===================================================== */
-
-    console.log(
-        "CounterAPI Team:",
-        TEAM_SLUG
-    );
-
-    console.log(
-        "CounterAPI API Slug:",
-        API_SLUG
-    );
-
-    console.log(
-        "CounterAPI Counter Name:",
-        COUNTER_NAME
-    );
-
-    console.log(
-        "CounterAPI URL:",
-        COUNTER_API_URL
-    );
-
-    console.log(
-        "CounterAPI Increment URL:",
-        INCREMENT_URL
-    );
-
-
-    /* =====================================================
-       CHECK ACCESS TOKEN
+       CHECK TOKEN
     ===================================================== */
 
     if (
         !ACCESS_TOKEN ||
-        ACCESS_TOKEN ===
-        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ"
+        ACCESS_TOKEN === "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ"
     ) {
 
         console.error(
             "CounterAPI: Access token is not configured."
         );
 
-        viewCount.textContent =
-            "Unavailable";
-
+        viewCount.textContent = "Unavailable";
 
         if (errorMessage) {
-
             errorMessage.textContent =
                 "CounterAPI token is not configured.";
-
         }
 
         return;
-
     }
-
 
     /* =====================================================
        LOADING
     ===================================================== */
 
-    viewCount.textContent =
-        "Loading...";
-
+    viewCount.textContent = "Loading...";
 
     if (errorMessage) {
-
-        errorMessage.textContent =
-            "";
-
+        errorMessage.textContent = "";
     }
 
+    /* =====================================================
+       INCREMENT VIEW
+    ===================================================== */
 
     try {
-
-        /* =================================================
-           INCREMENT WEBSITE VIEW
-        ================================================= */
 
         const response =
             await fetch(
@@ -466,41 +406,31 @@ async function initCounterAPI() {
 
                     headers: {
                         "Authorization":
-                            "Bearer " +
-                            ACCESS_TOKEN,
+                            "Bearer " + ACCESS_TOKEN,
 
                         "Accept":
                             "application/json"
                     },
 
-                    cache:
-                        "no-store"
+                    cache: "no-store"
                 }
             );
-
 
         console.log(
             "CounterAPI HTTP Status:",
             response.status
         );
 
-
-        /* =================================================
-           READ API RESPONSE
-        ================================================= */
-
         const result =
             await response.json();
-
 
         console.log(
             "CounterAPI Response:",
             result
         );
 
-
         /* =================================================
-           CHECK RESPONSE
+           ERROR RESPONSE
         ================================================= */
 
         if (!response.ok) {
@@ -518,59 +448,44 @@ async function initCounterAPI() {
                 result;
 
             throw error;
-
         }
 
-
         /* =================================================
-           GET VALUE
+           GET COUNTER VALUE
         ================================================= */
 
         let value = null;
 
-
         if (
             result &&
-            typeof result.value !==
-            "undefined"
+            typeof result.value !== "undefined"
         ) {
 
-            value =
-                result.value;
+            value = result.value;
 
-        }
-
-        else if (
+        } else if (
             result &&
             result.data &&
-            typeof result.data.value !==
-            "undefined"
+            typeof result.data.value !== "undefined"
         ) {
 
             value =
                 result.data.value;
-
         }
 
-
         /* =================================================
-           DISPLAY VALUE
+           DISPLAY COUNTER
         ================================================= */
 
         if (
             value !== null &&
-            Number.isFinite(
-                Number(value)
-            )
+            Number.isFinite(Number(value))
         ) {
 
             viewCount.textContent =
-                Number(value)
-                    .toLocaleString();
+                Number(value).toLocaleString();
 
-        }
-
-        else {
+        } else {
 
             console.error(
                 "CounterAPI invalid response:",
@@ -580,21 +495,15 @@ async function initCounterAPI() {
             throw new Error(
                 "CounterAPI returned an invalid value."
             );
-
         }
-
 
         /* =================================================
            CLEAR ERROR
         ================================================= */
 
         if (errorMessage) {
-
-            errorMessage.textContent =
-                "";
-
+            errorMessage.textContent = "";
         }
-
 
     } catch (error) {
 
@@ -603,253 +512,38 @@ async function initCounterAPI() {
             error
         );
 
-
         viewCount.textContent =
             "Unavailable";
 
-
         if (errorMessage) {
 
-            if (
-                error.status === 401
-            ) {
+            if (error.status === 401) {
 
                 errorMessage.textContent =
                     "Invalid CounterAPI access token.";
 
-            }
-
-            else if (
-                error.status === 403
-            ) {
+            } else if (error.status === 403) {
 
                 errorMessage.textContent =
                     "CounterAPI permission denied.";
 
-            }
-
-            else if (
-                error.status === 404
-            ) {
+            } else if (error.status === 404) {
 
                 errorMessage.textContent =
-                    "CounterAPI endpoint not found.";
+                    "CounterAPI counter not found.";
 
-            }
-
-            else if (
-                error.status === 429
-            ) {
+            } else if (error.status === 429) {
 
                 errorMessage.textContent =
                     "Too many requests. Try again later.";
 
-            }
-
-            else {
+            } else {
 
                 errorMessage.textContent =
                     "Unable to load view count.";
-
             }
-
         }
-
     }
-
-}
-
-
-/* =========================================================
-   GET CURRENT VIEW COUNT
-   DOES NOT INCREMENT
-========================================================= */
-
-async function getWebsiteViews() {
-
-    const TEAM_SLUG =
-        "nasuhaimtiyaz26-osss-team-5294";
-
-    const API_SLUG =
-        "first-counter-5294";
-
-    const ACCESS_TOKEN =
-        "ut_l74wprkgl2qzzG8eDGpedHU50azlyGp4RZrxJQLJ";
-
-
-    /* =====================================================
-       COUNTERAPI V2 URL
-    ===================================================== */
-
-    const COUNTER_API_URL =
-        "https://api.counterapi.dev/v2/" +
-        TEAM_SLUG +
-        "/" +
-        API_SLUG;
-
-
-    console.log(
-        "CounterAPI GET URL:",
-        COUNTER_API_URL
-    );
-
-
-    try {
-
-        const response =
-            await fetch(
-                COUNTER_API_URL,
-                {
-                    method: "GET",
-
-                    headers: {
-                        "Authorization":
-                            "Bearer " +
-                            ACCESS_TOKEN,
-
-                        "Accept":
-                            "application/json"
-                    },
-
-                    cache:
-                        "no-store"
-                }
-            );
-
-
-        const result =
-            await response.json();
-
-
-        console.log(
-            "CounterAPI GET Response:",
-            result
-        );
-
-
-        if (!response.ok) {
-
-            const error =
-                new Error(
-                    "CounterAPI HTTP " +
-                    response.status
-                );
-
-            error.status =
-                response.status;
-
-            throw error;
-
-        }
-
-
-        if (
-            result &&
-            typeof result.value !==
-            "undefined"
-        ) {
-
-            return result.value;
-
-        }
-
-
-        if (
-            result &&
-            result.data &&
-            typeof result.data.value !==
-            "undefined"
-        ) {
-
-            return result.data.value;
-
-        }
-
-
-        throw new Error(
-            "Invalid CounterAPI response."
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI GET Error:",
-            error
-        );
-
-        throw error;
-
-    }
-
-}
-
-
-/* =========================================================
-   REFRESH VIEW COUNT
-   WITHOUT INCREMENTING
-========================================================= */
-
-async function refreshWebsiteViews() {
-
-    const viewCount =
-        document.getElementById(
-            "viewCount"
-        );
-
-    const errorMessage =
-        document.getElementById(
-            "viewCounterError"
-        );
-
-
-    if (!viewCount) {
-
-        return;
-
-    }
-
-
-    try {
-
-        const value =
-            await getWebsiteViews();
-
-
-        viewCount.textContent =
-            Number(value)
-                .toLocaleString();
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "CounterAPI refresh error:",
-            error
-        );
-
-
-        viewCount.textContent =
-            "Unavailable";
-
-
-        if (errorMessage) {
-
-            errorMessage.textContent =
-                "Unable to refresh view count.";
-
-        }
-
-    }
-
 }
 
 
